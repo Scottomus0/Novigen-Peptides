@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop – Novigen Peptides</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #3a6186;
+    --steel-light: #5b84a8;
+    --steel-dark: #2a4a63;
+    --bg: #f0f3f7;
+    --bg-card: #ffffff;
+    --text: #1a2a38;
+    --text-muted: #5a7080;
+    --rule: #c8d8e8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 300; }
+
+  header { background: #fff; border-bottom: 1px solid var(--rule); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(58,97,134,0.07); }
+  .logo-block { display: flex; flex-direction: column; line-height: 1; }
+  .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: 0.12em; color: var(--steel); text-transform: uppercase; cursor: pointer; }
+  .logo-sub { font-size: 0.62rem; letter-spacing: 0.45em; color: var(--steel-light); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
+  .header-right { display: flex; align-items: center; gap: 24px; }
+  .header-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 2px; }
+  .back-btn { background: var(--steel); color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
+  .back-btn:hover { background: var(--steel-dark); }
+  .basket-btn { background: var(--steel); color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; position: relative; transition: background 0.2s; }
+  .basket-btn:hover { background: var(--steel-dark); }
+  .basket-count { position: absolute; top: -8px; right: -8px; background: #e74c3c; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600; }
+
+  .hero { border-bottom: 1px solid var(--rule); padding: 56px 48px 48px; position: relative; overflow: hidden; background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
+  .hero::before { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Barlow Condensed', sans-serif; font-size: 11rem; font-weight: 700; letter-spacing: 0.1em; line-height: 1; pointer-events: none; white-space: nowrap; color: rgba(58,97,134,0.055); content: 'SHOP'; }
+  .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; color: var(--steel); }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--steel); }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 2.4rem; line-height: 1.15; max-width: 580px; margin-bottom: 16px; letter-spacing: -0.02em; color: var(--steel-dark); }
+  .hero p { font-size: 0.92rem; color: var(--text-muted); max-width: 500px; line-height: 1.75; }
+
+  .page-body { max-width: 1200px; margin: 0 auto; padding: 48px; }
+
+  .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .product-card { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(58,97,134,0.12); }
+  .product-image { width: 100%; height: 200px; background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+  .product-info { padding: 20px; }
+  .product-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .product-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
+  .product-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--steel); margin-bottom: 4px; }
+  .product-dose { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 16px; }
+  .add-btn { width: 100%; background: var(--steel); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
+  .add-btn:hover { background: var(--steel-dark); }
+
+  .sidebar-basket { position: fixed; right: -400px; top: 0; width: 400px; height: 100vh; background: white; box-shadow: -4px 0 16px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 200; overflow-y: auto; border-left: 1px solid var(--rule); }
+  .sidebar-basket.open { right: 0; }
+  .basket-header { background: var(--steel); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+  .basket-header h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .basket-close { background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem; }
+  .basket-items { padding: 20px; }
+  .basket-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .basket-item-name { flex: 1; }
+  .basket-item-name h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .basket-item-price { font-size: 0.85rem; color: var(--text-muted); }
+  .basket-item-qty { display: flex; gap: 8px; align-items: center; }
+  .qty-btn { background: var(--rule); border: none; width: 28px; height: 28px; border-radius: 2px; cursor: pointer; font-weight: 600; color: var(--text); transition: background 0.2s; }
+  .qty-btn:hover { background: var(--steel-light); color: white; }
+  .remove-btn { background: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 2px; font-size: 0.7rem; cursor: pointer; transition: background 0.2s; }
+  .remove-btn:hover { background: #c0392b; }
+  .basket-empty { padding: 40px 20px; text-align: center; color: var(--text-muted); }
+  .basket-total { padding: 20px; border-top: 2px solid var(--rule); margin-top: 20px; }
+  .total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .total-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .total-value { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 600; color: var(--steel); }
+  .checkout-btn { width: 100%; background: var(--steel); color: white; border: none; padding: 14px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
+  .checkout-btn:hover { background: var(--steel-dark); }
+
+  .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
+  .checkout-modal.open { display: flex; }
+  .checkout-form { background: white; border-radius: 4px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 16px 48px rgba(0,0,0,0.2); }
+  .checkout-form h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin-bottom: 24px; color: var(--text); }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .form-group input { width: 100%; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 2px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--text); }
+  .form-group input:focus { outline: none; border-color: var(--steel-light); }
+  .form-divider { border-top: 1px solid var(--rule); margin: 24px 0; }
+  .order-summary { background: var(--bg); padding: 16px; border-radius: 2px; margin-bottom: 20px; }
+  .order-summary h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; }
+  .order-summary-item { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; }
+  .order-summary-total { font-weight: 600; color: var(--steel); border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 8px; }
+  .form-buttons { display: flex; gap: 12px; }
+  .btn-submit { flex: 1; background: var(--steel); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
+  .btn-submit:hover { background: var(--steel-dark); }
+  .btn-cancel { flex: 1; background: var(--text-muted); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
+  .btn-cancel:hover { background: var(--text); }
+
+  footer { border-top: 1px solid var(--rule); padding: 22px 48px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
+  footer p { font-size: 0.74rem; color: var(--text-muted); }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.25em; color: var(--steel); font-weight: 700; text-transform: uppercase; }
+
+  @media(max-width: 768px) {
+    header { padding-left: 20px; padding-right: 20px; }
+    .hero { padding: 36px 20px; }
+    .hero::before { display: none; }
+    .page-body { padding: 28px 20px; }
+    .shop-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
+    .sidebar-basket { width: 100%; right: -100%; }
+    .checkout-form { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <span class="logo-main" onclick="window.location.href='index.html'" style="cursor:pointer;">Novigen</span>
+    <span class="logo-sub">Peptides</span>
+  </div>
+  <div class="header-right">
+    <span class="header-tag">Shop</span>
+    <button class="back-btn" onclick="window.location.href='index.html'">← Back to Guides</button>
+    <button class="basket-btn" onclick="toggleBasket()">
+      🛒 Basket
+      <span class="basket-count" id="basket-count" style="display:none;">0</span>
+    </button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Browse Our Products</div>
+  <h1>Novigen Peptides<br>Complete Product Range</h1>
+  <p>Select your products, add to basket, and checkout securely via WhatsApp. We deliver premium research peptides directly to your door.</p>
+</div>
+
+<div class="page-body">
+  <div class="shop-grid" id="shop-grid">
+    <!-- Products generated by JavaScript -->
+  </div>
+</div>
+
+<!-- BASKET SIDEBAR -->
+<div class="sidebar-basket" id="sidebar-basket">
+  <div class="basket-header">
+    <h2>Your Basket</h2>
+    <button class="basket-close" onclick="toggleBasket()">✕</button>
+  </div>
+  <div class="basket-items" id="basket-items">
+    <div class="basket-empty">Your basket is empty</div>
+  </div>
+  <div class="basket-total" id="basket-total" style="display:none;">
+    <div class="total-row">
+      <span class="total-label">Subtotal</span>
+      <span class="total-value" id="basket-subtotal">£0.00</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-modal" id="checkout-modal">
+  <div class="checkout-form">
+    <h2>Order Details</h2>
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div id="checkout-summary"></div>
+      <div class="order-summary-total">
+        Total: <span id="checkout-total">£0.00</span>
+      </div>
+    </div>
+    <form id="checkout-form" onsubmit="submitCheckout(event)">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="customer-name" required>
+      </div>
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="customer-email" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" id="customer-phone" required>
+      </div>
+      <div class="form-divider"></div>
+      <div class="form-group">
+        <label>Street Address *</label>
+        <input type="text" id="customer-address" required>
+      </div>
+      <div class="form-group">
+        <label>City *</label>
+        <input type="text" id="customer-city" required>
+      </div>
+      <div class="form-group">
+        <label>Postcode *</label>
+        <input type="text" id="customer-postcode" required>
+      </div>
+      <div class="form-divider"></div>
+      <div class="form-group">
+        <label>Additional Notes</label>
+        <input type="text" id="customer-notes" placeholder="Special instructions (optional)">
+      </div>
+      <div class="form-buttons">
+        <button type="submit" class="btn-submit">Send to WhatsApp</button>
+        <button type="button" class="btn-cancel" onclick="closeCheckout()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Novigen Peptides. All rights reserved. For use under medical supervision only.</p>
+  <span class="footer-logo">Novigen Peptides</span>
+</footer>
+
+<script>
+  const products = [
+    { id: 1, name: 'Retatrutide® 20mg', emoji: '💉', price: 129.99, dose: '20mg pen' },
+    { id: 2, name: 'Retatrutide® 40mg', emoji: '💉', price: 199.99, dose: '40mg pen' },
+    { id: 3, name: 'Glow 70mg', emoji: '✨', price: 149.99, dose: '70mg pen (GHK-Cu, TB-500, BPC-157)' },
+    { id: 4, name: 'Tirzepatide® 15mg', emoji: '💊', price: 89.99, dose: '15mg pen' },
+    { id: 5, name: 'Tirzepatide® 30mg', emoji: '💊', price: 149.99, dose: '30mg pen' },
+    { id: 6, name: 'Tirzepatide® 60mg', emoji: '💊', price: 249.99, dose: '60mg pen' },
+    { id: 7, name: 'HGH 120IU Pen', emoji: '⚡', price: 179.99, dose: '120IU pre-filled pen' },
+    { id: 8, name: 'HGH 240IU Kit', emoji: '⚡', price: 299.99, dose: '10 × 24IU vials' },
+    { id: 9, name: 'HGH 360IU Kit', emoji: '⚡', price: 449.99, dose: '10 × 36IU vials' },
+  ];
+
+  let basket = [];
+  const whatsappNumber = '447800522364'; // WhatsApp number for orders
+
+  function initShop() {
+    const grid = document.getElementById('shop-grid');
+    if (!grid) return;
+    
+    grid.innerHTML = products.map(product => `
+      <div class="product-card">
+        <div class="product-image">${product.emoji}</div>
+        <div class="product-info">
+          <div class="product-name">${product.name}</div>
+          <div class="product-desc">Authentic research peptide</div>
+          <div class="product-dose">${product.dose}</div>
+          <div class="product-price">£${product.price.toFixed(2)}</div>
+          <button class="add-btn" onclick="addToBasket(${product.id})">Add to Basket</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addToBasket(productId) {
+    const product = products.find(p => p.id === productId);
+    const existingItem = basket.find(item => item.id === productId);
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      basket.push({ ...product, quantity: 1 });
+    }
+    updateBasketUI();
+  }
+
+  function updateBasketUI() {
+    const itemsContainer = document.getElementById('basket-items');
+    const countBadge = document.getElementById('basket-count');
+    const totalSection = document.getElementById('basket-total');
+    
+    if (!itemsContainer || !countBadge || !totalSection) return;
+
+    if (basket.length === 0) {
+      itemsContainer.innerHTML = '<div class="basket-empty">Your basket is empty</div>';
+      countBadge.style.display = 'none';
+      totalSection.style.display = 'none';
+      return;
+    }
+
+    countBadge.textContent = basket.reduce((sum, item) => sum + item.quantity, 0);
+    countBadge.style.display = 'flex';
+    totalSection.style.display = 'block';
+
+    itemsContainer.innerHTML = basket.map(item => `
+      <div class="basket-item">
+        <div class="basket-item-name">
+          <h4>${item.name}</h4>
+          <div class="basket-item-price">£${item.price.toFixed(2)} each</div>
+        </div>
+        <div class="basket-item-qty">
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+          <span style="min-width: 30px; text-align: center;">${item.quantity}</span>
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+          <button class="remove-btn" onclick="removeFromBasket(${item.id})">Remove</button>
+        </div>
+      </div>
+    `).join('');
+
+    const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('basket-subtotal').textContent = '£' + subtotal.toFixed(2);
+  }
+
+  function updateQuantity(productId, change) {
+    const item = basket.find(i => i.id === productId);
+    if (item) {
+      item.quantity += change;
+      if (item.quantity <= 0) {
+        removeFromBasket(productId);
+      } else {
+        updateBasketUI();
+      }
+    }
+  }
+
+  function removeFromBasket(productId) {
+    basket = basket.filter(item => item.id !== productId);
+    updateBasketUI();
+  }
+
+  function toggleBasket() {
+    const sidebar = document.getElementById('sidebar-basket');
+    if (sidebar) {
+      sidebar.classList.toggle('open');
+    }
+  }
+
+  function openCheckout() {
+    if (basket.length === 0) {
+      alert('Your basket is empty');
+      return;
+    }
+
+    const summaryHtml = basket.map(item => `
+      <div class="order-summary-item">
+        <span>${item.name} × ${item.quantity}</span>
+        <span>£${(item.price * item.quantity).toFixed(2)}</span>
+      </div>
+    `).join('');
+
+    const summaryContainer = document.getElementById('checkout-summary');
+    if (summaryContainer) {
+      summaryContainer.innerHTML = summaryHtml;
+    }
+
+    const total = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const totalElement = document.getElementById('checkout-total');
+    if (totalElement) {
+      totalElement.textContent = '£' + total.toFixed(2);
+    }
+
+    const modal = document.getElementById('checkout-modal');
+    if (modal) {
+      modal.classList.add('open');
+    }
+  }
+
+  function closeCheckout() {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) {
+      modal.classList.remove('open');
+    }
+  }
+
+  function submitCheckout(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('customer-name').value;
+    const email = document.getElementById('customer-email').value;
+    const phone = document.getElementById('customer-phone').value;
+    const address = document.getElementById('customer-address').value;
+    const city = document.getElementById('customer-city').value;
+    const postcode = document.getElementById('customer-postcode').value;
+    const notes = document.getElementById('customer-notes').value;
+
+    let message = `*New Order from Novigen Peptides*\n\n`;
+    message += `*Customer Details*\n`;
+    message += `Name: ${name}\n`;
+    message += `Email: ${email}\n`;
+    message += `Phone: ${phone}\n\n`;
+
+    message += `*Delivery Address*\n`;
+    message += `${address}\n${city}\n${postcode}\n\n`;
+
+    message += `*Order Items*\n`;
+    basket.forEach(item => {
+      message += `• ${item.name} × ${item.quantity} = £${(item.price * item.quantity).toFixed(2)}\n`;
+    });
+
+    const total = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    message += `\n*Total: £${total.toFixed(2)}*\n\n`;
+
+    if (notes) {
+      message += `*Special Notes*\n${notes}\n`;
+    }
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappUrl, '_blank');
+    
+    basket = [];
+    updateBasketUI();
+    closeCheckout();
+    alert('Opening WhatsApp with your order details. Please review and send!');
+  }
+
+  // Initialize shop on page load
+  window.addEventListener('DOMContentLoaded', initShop);
+</script>
+</body>
+</html>
