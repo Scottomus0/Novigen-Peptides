@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novigen Peptides – Premium Research Peptides</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #3a6186;
+    --steel-light: #5b84a8;
+    --steel-dark: #2a4a63;
+    --glow: #7a5c8a;
+    --glow-dark: #5a3a6a;
+    --bg: #f0f3f7;
+    --bg-card: #ffffff;
+    --text: #1a2a38;
+    --text-muted: #5a7080;
+    --rule: #c8d8e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 300; }
+
+  header { background: #fff; border-bottom: 1px solid var(--rule); padding: 24px 48px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(58,97,134,0.07); }
+  .logo-block { display: flex; flex-direction: column; line-height: 1; align-items: center; }
+  .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: 0.12em; color: var(--steel); text-transform: uppercase; }
+  .logo-sub { font-size: 0.62rem; letter-spacing: 0.45em; color: var(--steel-light); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
+
+  .hero { padding: 80px 48px; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
+  .hero::before { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 20rem; font-weight: 700; letter-spacing: 0.1em; line-height: 1; pointer-events: none; white-space: nowrap; color: rgba(58,97,134,0.04); content: 'NOVIGEN'; z-index: 0; }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 3.2rem; line-height: 1.2; margin-bottom: 24px; letter-spacing: -0.02em; color: var(--steel-dark); }
+  .hero p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 48px; }
+
+  .button-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; max-width: 900px; margin: 0 auto; padding: 60px 48px; }
+
+  .button-card { background: white; border: 2px solid transparent; border-radius: 8px; padding: 48px 32px; text-align: center; cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(58,97,134,0.08); }
+  
+  .button-card:hover { transform: translateY(-8px); box-shadow: 0 12px 32px rgba(58,97,134,0.16); }
+
+  .button-card.guides { border-color: var(--steel); }
+  .button-card.guides:hover { background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
+
+  .button-card.shop { border-color: var(--glow); }
+  .button-card.shop:hover { background: linear-gradient(135deg, #f0eaf5 0%, #e8ddf0 50%, #ede4f2 100%); }
+
+  .button-icon { font-size: 4rem; margin-bottom: 20px; }
+
+  .button-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 12px; }
+
+  .button-card.guides .button-title { color: var(--steel-dark); }
+  .button-card.shop .button-title { color: var(--glow-dark); }
+
+  .button-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+
+  .button-cta { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 12px 28px; border-radius: 4px; border: none; cursor: pointer; transition: background 0.2s; font-weight: 600; display: inline-block; }
+
+  .button-card.guides .button-cta { background: var(--steel); color: white; }
+  .button-card.guides .button-cta:hover { background: var(--steel-dark); }
+
+  .button-card.shop .button-cta { background: var(--glow); color: white; }
+  .button-card.shop .button-cta:hover { background: var(--glow-dark); }
+
+  footer { border-top: 1px solid var(--rule); padding: 32px 48px; background: white; text-align: center; }
+  footer p { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 8px; }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.25em; color: var(--steel); font-weight: 700; text-transform: uppercase; }
+
+  @media(max-width: 768px) {
+    header { padding: 20px; }
+    .logo-main { font-size: 1.6rem; }
+    .hero { padding: 60px 24px; }
+    .hero::before { font-size: 12rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 1rem; }
+    .button-grid { padding: 40px 24px; gap: 24px; }
+    .button-card { padding: 40px 24px; }
+    .button-icon { font-size: 3rem; }
+    .button-title { font-size: 1.4rem; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <span class="logo-main">Novigen</span>
+    <span class="logo-sub">Peptides</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Premium Research Peptides</h1>
+    <p>High-quality peptide products with comprehensive usage guides and secure shopping</p>
+  </div>
+</div>
+
+<div class="button-grid">
+  <a href="guides.html" class="button-card guides">
+    <div class="button-icon">📖</div>
+    <div class="button-title">Usage Guides</div>
+    <div class="button-desc">Complete product documentation, dosage protocols, injection techniques, and safety information</div>
+    <button class="button-cta">View Guides</button>
+  </a>
+
+  <a href="shop.html" class="button-card shop">
+    <div class="button-icon">🛒</div>
+    <div class="button-title">Shop Products</div>
+    <div class="button-desc">Browse our complete range of premium peptides with secure WhatsApp checkout</div>
+    <button class="button-cta">Browse Shop</button>
+  </a>
+</div>
+
+<footer>
+  <p>© 2025 Novigen Peptides. All rights reserved. For use under medical supervision only.</p>
+  <span class="footer-logo">Novigen Peptides</span>
+</footer>
+
+</body>
+</html>
