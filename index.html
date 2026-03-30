@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novigen Peptides – Product Usage Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #3a6186;
+    --steel-light: #5b84a8;
+    --steel-dark: #2a4a63;
+    --glow: #7a5c8a;
+    --glow-light: #a07db5;
+    --glow-dark: #5a3a6a;
+    --bg: #f0f3f7;
+    --bg-card: #ffffff;
+    --text: #1a2a38;
+    --text-muted: #5a7080;
+    --rule: #c8d8e8;
+    --warn-bg: #fff8f0;
+    --warn-border: #e8c88a;
+    --warn-accent: #c8922a;
+    --warn-text: #7a5020;
+    --tir: #1a7a7a;
+    --tir-light: #3a9a9a;
+    --tir-dark: #0a5a5a;
+    --hgh: #2a7a5a;
+    --hgh-light: #4a9a7a;
+    --hgh-dark: #1a5a3a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 300; }
+
+  /* Header */
+  header { background: #fff; border-bottom: 1px solid var(--rule); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(58,97,134,0.07); }
+  .logo-block { display: flex; flex-direction: column; line-height: 1; }
+  .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: 0.12em; color: var(--steel); text-transform: uppercase; }
+  .logo-sub { font-size: 0.62rem; letter-spacing: 0.45em; color: var(--steel-light); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
+  .header-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 2px; }
+
+  /* Tab Nav */
+  .tab-nav { background: #fff; border-bottom: 1px solid var(--rule); padding: 0 48px; display: flex; overflow-x: auto; }
+  .tab-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 16px 28px; border: none; background: none; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; position: relative; top: 1px; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active[data-tab="retatrutide"] { color: var(--steel); border-bottom-color: var(--steel); }
+  .tab-btn.active[data-tab="glow"] { color: var(--glow); border-bottom-color: var(--glow); }
+  .tab-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 8px; vertical-align: middle; position: relative; top: -1px; }
+  .tab-btn[data-tab="retatrutide"] .tab-dot { background: var(--steel); }
+  .tab-btn[data-tab="glow"] .tab-dot { background: var(--glow); }
+
+  /* Tab Panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Hero */
+  .hero { border-bottom: 1px solid var(--rule); padding: 56px 48px 48px; position: relative; overflow: hidden; }
+  .hero-ret { background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
+  .hero-glow { background: linear-gradient(135deg, #f0eaf5 0%, #e8ddf0 50%, #ede4f2 100%); }
+  .hero::before { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Barlow Condensed', sans-serif; font-size: 11rem; font-weight: 700; letter-spacing: 0.1em; line-height: 1; pointer-events: none; white-space: nowrap; }
+  .hero-ret::before { content: 'NOVIGEN'; color: rgba(58,97,134,0.055); }
+  .hero-glow::before { content: 'GLOW'; color: rgba(122,92,138,0.07); }
+  .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; }
+  .hero-ret .hero-eyebrow { color: var(--steel); } .hero-ret .hero-eyebrow::before { background: var(--steel); }
+  .hero-glow .hero-eyebrow { color: var(--glow); } .hero-glow .hero-eyebrow::before { background: var(--glow); }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 2.4rem; line-height: 1.15; max-width: 580px; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .hero-ret h1 { color: var(--steel-dark); }
+  .hero-glow h1 { color: var(--glow-dark); }
+  .hero p { font-size: 0.92rem; color: var(--text-muted); max-width: 500px; line-height: 1.75; }
+  .product-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; }
+  .product-badge span { color: white; font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; }
+  .hero-ret .product-badge span { background: var(--steel); }
+  .hero-glow .product-badge span { background: var(--glow); }
+  .product-badge small { font-size: 0.75rem; color: var(--text-muted); }
+  .composition { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .comp-pill { font-size: 0.75rem; color: var(--glow-dark); background: rgba(122,92,138,0.1); border: 1px solid rgba(122,92,138,0.25); padding: 5px 14px; border-radius: 20px; }
+
+  /* Page body */
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 48px; display: grid; grid-template-columns: 1fr 220px; gap: 40px; align-items: start; }
+
+  /* Section labels */
+  .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.63rem; letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .ret .section-label { color: var(--steel); }
+  .glow .section-label { color: var(--glow); }
+
+  /* Steps */
+  .step-group { margin-bottom: 44px; }
+  .step { display: flex; gap: 22px; padding: 18px 0; border-bottom: 1px solid rgba(200,216,232,0.5); animation: fadeUp 0.5s ease both; }
+  .step:last-child { border-bottom: none; }
+  .step:nth-child(1){animation-delay:.04s} .step:nth-child(2){animation-delay:.08s} .step:nth-child(3){animation-delay:.12s}
+  .step:nth-child(4){animation-delay:.16s} .step:nth-child(5){animation-delay:.20s} .step:nth-child(6){animation-delay:.24s}
+  .step:nth-child(7){animation-delay:.28s} .step:nth-child(8){animation-delay:.32s}
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; margin-top: 2px; }
+  .ret .step-num { border: 1px solid var(--steel-light); color: var(--steel); }
+  .glow .step-num { border: 1px solid var(--glow-light); color: var(--glow); }
+  .step-content h3 { font-weight: 600; font-size: 0.94rem; color: var(--text); margin-bottom: 5px; }
+  .step-content p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.72; font-weight: 300; }
+  .note { display: inline-block; margin-top: 9px; font-size: 0.78rem; padding: 5px 10px; font-style: italic; line-height: 1.5; }
+  .ret .note { color: var(--steel); background: rgba(58,97,134,0.07); border-left: 2px solid var(--steel-light); }
+  .glow .note { color: var(--glow); background: rgba(122,92,138,0.07); border-left: 2px solid var(--glow-light); }
+
+  /* Blocks */
+  .warning-block { background: var(--warn-bg); border: 1px solid var(--warn-border); border-left: 3px solid var(--warn-accent); border-radius: 2px; padding: 15px 20px; margin-bottom: 30px; }
+  .warning-block strong { font-family: 'Barlow Condensed', sans-serif; font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase; color: #a06820; display: block; margin-bottom: 6px; }
+  .warning-block p { font-size: 0.84rem; color: var(--warn-text); line-height: 1.65; }
+  .info-block { border-radius: 2px; padding: 14px 18px; margin-top: 10px; }
+  .ret .info-block { background: rgba(58,97,134,0.05); border: 1px solid rgba(58,97,134,0.15); border-left: 3px solid var(--steel); }
+  .glow .info-block { background: rgba(122,92,138,0.05); border: 1px solid rgba(122,92,138,0.15); border-left: 3px solid var(--glow); }
+  .ret .info-block p { font-size: 0.83rem; color: var(--steel-dark); line-height: 1.65; }
+  .glow .info-block p { font-size: 0.83rem; color: var(--glow-dark); line-height: 1.65; }
+
+  /* Dose highlight */
+  .dose-highlight { background: white; border: 1px solid var(--rule); border-radius: 4px; padding: 22px 24px; margin-top: 12px; display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+  .dose-item { display: flex; flex-direction: column; gap: 4px; }
+  .dose-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); }
+  .dose-value { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+  .ret .dose-value { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+  .glow .dose-value { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+  .dose-unit { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+  .dose-divider { width: 1px; background: var(--rule); align-self: stretch; }
+
+  /* Side effect pills */
+  .se-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .se-pill { font-size: 0.78rem; padding: 4px 12px; border-radius: 20px; }
+  .ret .se-pill { color: var(--steel-dark); background: rgba(58,97,134,0.08); border: 1px solid rgba(58,97,134,0.18); }
+  .glow .se-pill { color: var(--glow-dark); background: rgba(122,92,138,0.08); border: 1px solid rgba(122,92,138,0.18); }
+  .se-pill.serious { background: rgba(200,146,42,0.1); border-color: rgba(200,146,42,0.3); color: #8a5a10; }
+
+  /* Sidebar */
+  .sidebar { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 16px; }
+  .card { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 4px; padding: 22px; box-shadow: 0 2px 12px rgba(58,97,134,0.06); }
+  .card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.63rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 11px; border-bottom: 1px solid var(--rule); }
+  .ret .card-title { color: var(--steel); }
+  .glow .card-title { color: var(--glow); }
+  .quick-ref-item { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px solid rgba(200,216,232,0.4); font-size: 0.8rem; }
+  .quick-ref-item:last-child { border-bottom: none; }
+  .quick-ref-item span:first-child { color: var(--text-muted); }
+  .quick-ref-item span:last-child { color: var(--text); font-weight: 500; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--rule); padding: 22px 48px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
+  footer p { font-size: 0.74rem; color: var(--text-muted); }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.25em; color: var(--steel); font-weight: 700; text-transform: uppercase; }
+
+
+  .tab-btn.active[data-tab="hgh"] { color: var(--hgh); border-bottom-color: var(--hgh); }
+  .tab-btn[data-tab="hgh"] .tab-dot { background: var(--hgh); }
+  .hero-hgh { background: linear-gradient(135deg, #e8f5ef 0%, #d8ede5 50%, #e2f0ea 100%); }
+  .hero-hgh::before { content: 'HGH'; color: rgba(42,122,90,0.06); }
+  .hero-hgh .hero-eyebrow { color: var(--hgh); } .hero-hgh .hero-eyebrow::before { background: var(--hgh); }
+  .hero-hgh h1 { color: var(--hgh-dark); }
+  .hero-hgh .product-badge span { background: var(--hgh); }
+  .hgh .section-label { color: var(--hgh); }
+  .hgh .step-num { border: 1px solid var(--hgh-light); color: var(--hgh); }
+  .hgh .note { color: var(--hgh); background: rgba(42,122,90,0.07); border-left: 2px solid var(--hgh-light); }
+  .hgh .info-block { background: rgba(42,122,90,0.05); border: 1px solid rgba(42,122,90,0.15); border-left: 3px solid var(--hgh); }
+  .hgh .info-block p { font-size: 0.83rem; color: var(--hgh-dark); line-height: 1.65; }
+  .hgh .dose-value { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+  .hgh .se-pill { color: var(--hgh-dark); background: rgba(42,122,90,0.08); border: 1px solid rgba(42,122,90,0.18); }
+  .hgh .card-title { color: var(--hgh); }
+  .hgh .qr-input-group input:focus { border-color: var(--hgh-light); }
+  .hgh .qr-btn { background: var(--hgh); } .hgh .qr-btn:hover { background: var(--hgh-dark); }
+  .dose-tier { background: white; border: 1px solid var(--rule); border-radius: 4px; padding: 18px 20px; margin-top: 10px; margin-bottom: 8px; border-left: 3px solid var(--hgh); }
+  .dose-tier-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--hgh); margin-bottom: 6px; }
+  .dose-tier-range { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--hgh-dark); line-height: 1; margin-bottom: 4px; }
+  .dose-tier-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+  .supply-note { font-size: 0.75rem; color: var(--hgh); font-style: italic; margin-top: 4px; }
+
+  /* Tirzepatide theme */
+  .tab-btn.active[data-tab="tirzepatide"] { color: var(--tir); border-bottom-color: var(--tir); }
+  .tab-btn[data-tab="tirzepatide"] .tab-dot { background: var(--tir); }
+  .hero-tir { background: linear-gradient(135deg, #e4f2f2 0%, #d8ecec 50%, #e0f0f0 100%); }
+  .hero-tir::before { content: 'NOVIGEN'; color: rgba(26,122,122,0.06); }
+  .hero-tir .hero-eyebrow { color: var(--tir); } .hero-tir .hero-eyebrow::before { background: var(--tir); }
+  .hero-tir h1 { color: var(--tir-dark); }
+  .hero-tir .product-badge span { background: var(--tir); }
+  .tir .section-label { color: var(--tir); }
+  .tir .step-num { border: 1px solid var(--tir-light); color: var(--tir); }
+  .tir .note { color: var(--tir); background: rgba(26,122,122,0.07); border-left: 2px solid var(--tir-light); }
+  .tir .info-block { background: rgba(26,122,122,0.05); border: 1px solid rgba(26,122,122,0.15); border-left: 3px solid var(--tir); }
+  .tir .info-block p { font-size: 0.83rem; color: var(--tir-dark); line-height: 1.65; }
+  .tir .dose-value { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+  .tir .se-pill { color: var(--tir-dark); background: rgba(26,122,122,0.08); border: 1px solid rgba(26,122,122,0.18); }
+  .tir .card-title { color: var(--tir); }
+
+  /* Pen size selector */
+  .pen-selector { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+  .pen-selector label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); }
+  .pen-select { font-family: 'Barlow', sans-serif; font-size: 0.82rem; color: var(--text); background: white; border: 1px solid var(--rule); border-radius: 2px; padding: 7px 12px; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; padding-right: 28px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235a7080'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+  .ret .pen-select:focus { border-color: var(--steel-light); }
+  .tir .pen-select:focus { border-color: var(--tir-light); }
+
+  /* Dynamic supply badge */
+  .supply-badge { display: inline-block; margin-top: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; color: white; }
+  .ret .supply-badge { background: var(--steel); }
+  .tir .supply-badge { background: var(--tir); }
+  @media(max-width: 768px) {
+    header, .tab-nav { padding-left: 20px; padding-right: 20px; }
+    .hero { padding: 36px 20px; } .hero::before { display: none; } .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 2.4rem; line-height: 1.15; max-width: 580px; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .page-body { grid-template-columns: 1fr; padding: 28px 20px; gap: 32px; }
+    .sidebar { position: static; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <span class="logo-main">Novigen</span>
+    <span class="logo-sub">Peptides</span>
+  </div>
+  <span class="header-tag">Product Usage Guides</span>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="retatrutide" onclick="switchTab('retatrutide')"><span class="tab-dot"></span>Retatrutide®</button>
+  <button class="tab-btn" data-tab="glow" onclick="switchTab('glow')"><span class="tab-dot"></span>Glow 70mg</button>
+  <button class="tab-btn" data-tab="tirzepatide" onclick="switchTab('tirzepatide')"><span class="tab-dot"></span>Tirzepatide</button>
+  <button class="tab-btn" data-tab="hgh" onclick="switchTab('hgh')"><span class="tab-dot"></span>HGH</button>
+</nav>
+
+<!-- TAB 1: RETATRUTIDE -->
+<div id="tab-retatrutide" class="tab-panel active">
+  <div class="hero hero-ret">
+    <div class="hero-eyebrow">Official Product Documentation</div>
+    <h1>Novigen Retatrutide®<br>Usage Guide</h1>
+    <p>Please read all instructions carefully before use. Follow each step precisely to ensure safe and effective administration of your Novigen Retatrutide® pre-filled pen.</p>
+    <div class="product-badge"><span id="ret-badge">Retatrutide®</span><small>Pre-filled injection pen &nbsp;·&nbsp; Once weekly</small></div>
+    <div class="pen-selector">
+      <label>Pen size</label>
+      <select class="pen-select" onchange="updateRetPen(this.value)">
+        <option value="20">20mg</option>
+        <option value="40" selected>40mg</option>
+      </select>
+    </div>
+  </div>
+  <div class="page-body ret">
+    <main>
+      <div class="warning-block">
+        <strong>⚠ Important — Read Before Use</strong>
+        <p>This product is for use under the guidance of a qualified healthcare professional only. Keep out of reach of children. Do not use if the seal is broken or the solution appears cloudy or discoloured. Contact your prescriber immediately if you experience unexpected side effects.</p>
+        <p style="margin-top:10px;font-weight:500;color:#a06820;"><strong>🔬 Research Chemical Notice:</strong> Retatrutide is not yet approved for human use by any regulatory authority. This product is a research chemical intended for investigational purposes only. It has not completed clinical trials and its long-term safety profile in humans has not been fully established. Use is entirely at the individual's own risk.</p>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 01 – Before You Begin</div>
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Check Your Pen</h3><p>Before each use, inspect the pen carefully. Check the expiry date on the pen label. The solution should be clear and colourless or almost colourless. Do not use if you notice particles, cloudiness, or the seal is broken.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Allow the Pen to Reach Room Temperature</h3><p>Remove from the refrigerator and allow to sit at room temperature for approximately 30 minutes before injecting. Cold solution may cause discomfort.</p><span class="note">Do not warm using hot water or a microwave.</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Wash Your Hands</h3><p>Thoroughly wash and dry your hands before handling the pen or preparing the injection site to reduce the risk of contamination.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Gather Your Supplies</h3><p>You will need your Novigen Retatrutide® pen, a new sterile needle, an alcohol swab, and a sharps disposal container. Always use a new needle for each injection.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 02 – Dosage</div>
+        <div class="step"><div class="step-num">5</div><div class="step-content">
+          <h3>Starting Dose &amp; Titration</h3>
+          <p>Begin with a starting dose of <strong>2mg once weekly</strong>. Your dose may be increased by <strong>1mg at a time</strong> when clinically appropriate and as tolerated. Only increase under guidance of your prescriber.</p>
+          <div class="dose-highlight">
+            <div class="dose-item"><span class="dose-label">Starting Dose</span><span class="dose-value">2<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">once weekly</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Titration Step</span><span class="dose-value">+1<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">when tolerated</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Pen Capacity</span><span class="dose-value" id="ret-capacity">40<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">per pen</span></div>
+          </div>
+          <span class="supply-badge" id="ret-supply">~20 doses per pen at 2mg</span>
+          <span class="note">Never increase your dose without consulting your prescriber.</span>
+        </div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-content"><h3>Injection Day</h3><p>Administer on the same day each week, at any time of day, with or without food. If changing your weekly day, ensure at least 4 days have passed since your last injection.</p></div></div>
+        <div class="step"><div class="step-num">7</div><div class="step-content"><h3>If You Miss a Dose</h3><p>If within 4 days of the missed dose, administer as soon as possible. If more than 4 days have passed, skip and resume on your next scheduled day. Do not double dose.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 03 – Administering the Injection</div>
+        <div class="step"><div class="step-num">8</div><div class="step-content"><h3>Choose Your Injection Site</h3><p>Inject subcutaneously into the abdomen, front of the thigh, or upper arm. Rotate sites each week to avoid irritation.</p><span class="note">Do not inject into a vein or muscle. Avoid bruised, red, tender, or broken skin.</span></div></div>
+        <div class="step"><div class="step-num">9</div><div class="step-content"><h3>Prepare the Injection Site</h3><p>Clean the chosen area with an alcohol swab using a circular motion. Allow to air dry completely before injecting.</p></div></div>
+        <div class="step"><div class="step-num">10</div><div class="step-content"><h3>Attach the Needle &amp; Check the Dose Counter</h3><p>Attach a new sterile needle to the pen. Confirm the correct dose is set on the dose counter before injecting.</p><div class="info-block"><p>If you are unable to read the dose counter or have poor eyesight, do not use the pen without assistance from a person with good eyesight or your healthcare provider.</p></div></div></div>
+        <div class="step"><div class="step-num">11</div><div class="step-content"><h3>Inject the Dose</h3><p>Gently pinch a fold of skin at the cleaned site. Insert the needle at 90° (or 45° if you have very little body fat). Press and hold the injection button until the dose counter reads zero. Keep the needle in skin for at least 6 seconds, then remove.</p></div></div>
+        <div class="step"><div class="step-num">12</div><div class="step-content"><h3>Remove &amp; Dispose of the Needle Safely</h3><p>Remove the needle and place directly into a sharps container. Never recap with two hands or dispose of in household waste. Replace the pen cap after every use.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 04 – Storage</div>
+        <div class="step"><div class="step-num">13</div><div class="step-content"><h3>Before Opening</h3><p>Store unused pens in the refrigerator at 2°C to 8°C. Do not freeze. Keep away from the cooling element. Protect from light.</p></div></div>
+        <div class="step"><div class="step-num">14</div><div class="step-content"><h3>After First Use</h3><p>Once in use, the pen may be kept at room temperature (below 30°C) for up to 6 weeks, or refrigerated for up to 16 weeks. Always replace the pen cap to protect from light.</p><span class="note">Do not freeze a pen that has already been used.</span></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 05 – Possible Side Effects</div>
+        <div class="step"><div class="step-num">15</div><div class="step-content"><h3>Common Side Effects</h3><p>These typically resolve as your body adjusts and are most common when starting or after a dose increase.</p><div class="se-list"><span class="se-pill">Nausea</span><span class="se-pill">Vomiting</span><span class="se-pill">Diarrhoea</span><span class="se-pill">Constipation</span><span class="se-pill">Stomach pain</span><span class="se-pill">Indigestion</span><span class="se-pill">Reduced appetite</span><span class="se-pill">Fatigue</span><span class="se-pill">Dizziness</span></div></div></div>
+        <div class="step"><div class="step-num">16</div><div class="step-content"><h3>Serious Side Effects — Seek Medical Attention</h3><p>Stop use and contact your prescriber or seek urgent medical attention if you experience any of the following:</p><div class="se-list"><span class="se-pill serious">Severe abdominal pain</span><span class="se-pill serious">Difficulty breathing or swallowing</span><span class="se-pill serious">Swelling of face, lips or throat</span><span class="se-pill serious">Signs of low blood sugar</span><span class="se-pill serious">Rapid heartbeat</span><span class="se-pill serious">Vision changes</span></div></div></div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Product</span><span>Retatrutide®</span></div>
+        <div class="quick-ref-item"><span>Starting dose</span><span>2mg</span></div>
+        <div class="quick-ref-item"><span>Titration</span><span>+1mg as needed</span></div>
+        <div class="quick-ref-item"><span>Frequency</span><span>Once weekly</span></div>
+        <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
+        <div class="quick-ref-item"><span>Fridge (unopened)</span><span>2–8°C</span></div>
+        <div class="quick-ref-item"><span>Room temp (in use)</span><span>≤30°C / 6 wks</span></div>
+        <div class="quick-ref-item"><span>Do not freeze</span><span>Once opened</span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- TAB 2: GLOW -->
+<div id="tab-glow" class="tab-panel">
+  <div class="hero hero-glow">
+    <div class="hero-eyebrow">Official Product Documentation</div>
+    <h1>Novigen Glow<br>Usage Guide</h1>
+    <p>A premium regenerative blend formulated for skin health, collagen support, tissue repair, and anti-ageing wellness. Please read all instructions before use.</p>
+    <div class="product-badge"><span>Glow 70mg</span><small>Pre-filled injection pen &nbsp;·&nbsp; Once daily</small></div>
+    <div class="composition"><span class="comp-pill">GHK-Cu 50mg</span><span class="comp-pill">TB-500 10mg</span><span class="comp-pill">BPC-157 10mg</span></div>
+  </div>
+  <div class="page-body glow">
+    <main>
+      <div class="warning-block">
+        <strong>⚠ Important — Read Before Use</strong>
+        <p>This product is for use under the guidance of a qualified healthcare professional only. Keep out of reach of children. Do not use if the seal is broken or the solution appears cloudy or discoloured. Contact your prescriber immediately if you experience unexpected side effects.</p>
+        <p style="margin-top:10px;font-weight:500;color:#a06820;"><strong>🔬 Research Chemical Notice:</strong> Novigen Glow contains peptide compounds (GHK-Cu, TB-500, BPC-157) that have not been approved for human use by any regulatory authority. These are research chemicals that have not undergone formal human clinical trials in this combined formulation. This product is intended for investigational purposes only. Use is entirely at the individual's own risk.</p>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 01 – About Glow 70mg</div>
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>What is Glow 70mg?</h3><p>Novigen Glow is a carefully formulated regenerative peptide blend combining three synergistic compounds. <strong>GHK-Cu (50mg)</strong> supports collagen synthesis, skin elasticity, and cellular repair. <strong>TB-500 (10mg)</strong> promotes tissue regeneration, flexibility, and recovery. <strong>BPC-157 (10mg)</strong> supports gut health, tissue healing, and anti-inflammatory processes.</p><div class="info-block"><p>Each pen contains 70mg total — approximately a 30-day supply at the standard 2.3mg daily dose.</p></div></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 02 – Before You Begin</div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Check Your Pen</h3><p>Before each use, inspect the pen carefully. Check the expiry date on the pen label. The solution should be clear and colourless or almost colourless. Do not use if you notice particles, cloudiness, or the seal is broken.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Allow the Pen to Reach Room Temperature</h3><p>Remove from the refrigerator and allow to sit at room temperature for approximately 15–20 minutes before injecting.</p><span class="note">Do not warm using hot water or a microwave.</span></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Wash Your Hands</h3><p>Thoroughly wash and dry your hands before handling the pen or preparing the injection site to reduce the risk of contamination.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-content"><h3>Gather Your Supplies</h3><p>You will need your Novigen Glow pen, a new sterile needle, an alcohol swab, and a sharps disposal container. Always use a new needle for each injection.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 03 – Dosage</div>
+        <div class="step"><div class="step-num">6</div><div class="step-content">
+          <h3>Daily Dose</h3>
+          <p>Administer <strong>2.3mg once daily</strong> via subcutaneous injection. This is a fixed dose — do not adjust without consulting your prescriber.</p>
+          <div class="dose-highlight">
+            <div class="dose-item"><span class="dose-label">Daily Dose</span><span class="dose-value">2.3<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">once daily</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Pen Capacity</span><span class="dose-value">70<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">per pen</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Supply</span><span class="dose-value">~30<span style="font-size:1.1rem">days</span></span><span class="dose-unit">per pen</span></div>
+          </div>
+        </div></div>
+        <div class="step"><div class="step-num">7</div><div class="step-content"><h3>Best Time to Inject</h3><p>Administer at the same time each day for consistency. Many users prefer morning administration. You may inject with or without food.</p></div></div>
+        <div class="step"><div class="step-num">8</div><div class="step-content"><h3>If You Miss a Dose</h3><p>If you miss your daily injection, administer it as soon as you remember on the same day. If you only remember the following day, skip the missed dose and continue with your normal schedule. Do not double dose.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 04 – Administering the Injection</div>
+        <div class="step"><div class="step-num">9</div><div class="step-content"><h3>Choose Your Injection Site</h3><p>Inject subcutaneously into the abdomen, front of the thigh, or upper arm. Rotate sites daily to avoid skin irritation.</p><span class="note">Do not inject into a vein or muscle. Avoid bruised, red, tender, or broken skin.</span></div></div>
+        <div class="step"><div class="step-num">10</div><div class="step-content"><h3>Prepare the Injection Site</h3><p>Clean the chosen area with an alcohol swab using a circular motion. Allow to air dry completely before injecting.</p></div></div>
+        <div class="step"><div class="step-num">11</div><div class="step-content"><h3>Attach the Needle &amp; Check the Dose</h3><p>Attach a new sterile needle to the pen. Confirm the correct dose is set before injecting. If unsure, consult your prescriber before proceeding.</p></div></div>
+        <div class="step"><div class="step-num">12</div><div class="step-content"><h3>Inject the Dose</h3><p>Gently pinch a fold of skin at the cleaned injection site. Insert the needle at a 90° angle (or 45° if you have very little body fat). Press and hold the injection button until the dose counter reads zero. Keep the needle in place for at least 6 seconds, then remove.</p></div></div>
+        <div class="step"><div class="step-num">13</div><div class="step-content"><h3>Remove &amp; Dispose of the Needle Safely</h3><p>Carefully remove the needle and place directly into a sharps disposal container. Never recap with two hands or dispose of in household waste. Replace the pen cap after every use.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 05 – Storage</div>
+        <div class="step"><div class="step-num">14</div><div class="step-content"><h3>Before Opening</h3><p>Store unused pens in the refrigerator at 2°C to 8°C. Do not freeze. Protect from light and keep away from the cooling element.</p></div></div>
+        <div class="step"><div class="step-num">15</div><div class="step-content"><h3>After First Use</h3><p>Once in use, keep the pen refrigerated at 2°C to 8°C. Always replace the pen cap after each use. Use within 30 days of first opening.</p><span class="note">Do not freeze a pen that has already been used.</span></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 06 – Possible Side Effects</div>
+        <div class="step"><div class="step-num">16</div><div class="step-content"><h3>Common Side Effects</h3><p>Most side effects are mild and localised. They typically resolve with continued use as the body adjusts.</p><div class="se-list"><span class="se-pill">Mild injection site redness</span><span class="se-pill">Temporary itching</span><span class="se-pill">Minor swelling at site</span><span class="se-pill">Mild fatigue</span><span class="se-pill">Temporary flushing</span><span class="se-pill">Mild nausea</span></div></div></div>
+        <div class="step"><div class="step-num">17</div><div class="step-content"><h3>Serious Side Effects — Seek Medical Attention</h3><p>Stop use and contact your prescriber or seek urgent medical attention if you experience any of the following:</p><div class="se-list"><span class="se-pill serious">Severe allergic reaction</span><span class="se-pill serious">Difficulty breathing or swallowing</span><span class="se-pill serious">Swelling of face, lips or throat</span><span class="se-pill serious">Severe or persistent skin reaction</span><span class="se-pill serious">Chest pain or palpitations</span></div></div></div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Product</span><span>Glow 70mg</span></div>
+        <div class="quick-ref-item"><span>GHK-Cu</span><span>50mg</span></div>
+        <div class="quick-ref-item"><span>TB-500</span><span>10mg</span></div>
+        <div class="quick-ref-item"><span>BPC-157</span><span>10mg</span></div>
+        <div class="quick-ref-item"><span>Daily dose</span><span>2.3mg</span></div>
+        <div class="quick-ref-item"><span>Frequency</span><span>Once daily</span></div>
+        <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
+        <div class="quick-ref-item"><span>Supply per pen</span><span>~30 days</span></div>
+        <div class="quick-ref-item"><span>Storage</span><span>2–8°C</span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+
+<!-- TAB: TIRZEPATIDE -->
+<div id="tab-tirzepatide" class="tab-panel">
+  <div class="hero hero-tir">
+    <div class="hero-eyebrow">Official Product Documentation</div>
+    <h1>Novigen Tirzepatide®<br>Usage Guide</h1>
+    <p>Please read all instructions carefully before use. Follow each step precisely to ensure safe and effective administration of your Novigen Tirzepatide® pre-filled pen.</p>
+    <div class="product-badge"><span id="tir-badge">Tirzepatide®</span><small>Pre-filled injection pen &nbsp;·&nbsp; Once weekly</small></div>
+    <div class="pen-selector">
+      <label>Pen size</label>
+      <select class="pen-select" onchange="updateTirPen(this.value)">
+        <option value="15" selected>15mg</option>
+        <option value="30">30mg</option>
+        <option value="60">60mg</option>
+      </select>
+    </div>
+  </div>
+  <div class="page-body tir">
+    <main>
+      <div class="warning-block">
+        <strong>⚠ Important — Read Before Use</strong>
+        <p>This product is for use under the guidance of a qualified healthcare professional only. Keep out of reach of children. Do not use if the seal is broken or the solution appears cloudy or discoloured. Contact your prescriber immediately if you experience unexpected side effects.</p>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 01 – Before You Begin</div>
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Check Your Pen</h3><p>Before each use, inspect the pen carefully. Check the expiry date printed on the pen label. Do not use if expired. The solution should be clear and colourless or almost colourless. Do not use if you notice particles, cloudiness, or the seal is broken.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Allow the Pen to Reach Room Temperature</h3><p>Remove from the refrigerator and allow to sit at room temperature for approximately 30 minutes before injecting. Injecting cold solution may cause unnecessary discomfort.</p><span class="note">Do not warm using hot water or a microwave.</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Wash Your Hands</h3><p>Thoroughly wash and dry your hands before handling the pen or preparing the injection site to reduce the risk of contamination.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Gather Your Supplies</h3><p>You will need your Novigen Tirzepatide® pen, a new sterile needle, an alcohol swab, and a sharps disposal container. Always use a new needle for each injection — never reuse needles.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-content"><h3>Check the Pen &amp; Needle</h3><p>Attach a new needle to the pen. Check the dose counter to confirm the correct dose is set. Never use a bent or damaged needle. Your pen is designed to be used with disposable needles (29–31 gauge) — up to 12 needles are included in the box.</p><span class="note">If you have poor eyesight or cannot read the dose counter, do not use the pen without assistance from a person with good eyesight or your healthcare provider.</span></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 02 – Dosage</div>
+        <div class="step"><div class="step-num">6</div><div class="step-content">
+          <h3>Dose Escalation Schedule</h3>
+          <p>Novigen Tirzepatide® is started at a low dose and increased gradually to minimise gastrointestinal side effects. Your prescriber will guide your individual escalation schedule.</p>
+          <div class="dose-highlight">
+            <div class="dose-item"><span class="dose-label">Starting Dose</span><span class="dose-value">2.5<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">once weekly × 4 wks</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Step 2</span><span class="dose-value">5<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">once weekly × 4 wks</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Pen Size</span><span class="dose-value" id="tir-capacity">15<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">per pen</span></div>
+          </div>
+          <span class="supply-badge" id="tir-supply">15mg pen = 6 doses at 2.5mg</span>
+          <span class="note">Further increases to 7.5mg, 10mg, 12.5mg, and 15mg may be made in 4-weekly intervals as directed by your prescriber.</span>
+        </div></div>
+        <div class="step"><div class="step-num">7</div><div class="step-content"><h3>Injection Day</h3><p>Administer on the same day each week, at any time of day, with or without food. If you wish to change your injection day, ensure at least 3 days have passed since your last injection.</p></div></div>
+        <div class="step"><div class="step-num">8</div><div class="step-content"><h3>If You Miss a Dose</h3><p>If you miss a dose and it is within 4 days of the missed injection, administer it as soon as possible. If more than 4 days have passed, skip the missed dose and resume on your next scheduled day. Do not inject a double dose.</p></div></div>
+        <div class="step"><div class="step-num">9</div><div class="step-content"><h3>Stopping Treatment</h3><p>Do not stop using Novigen Tirzepatide® without first consulting your prescriber. Blood sugar levels and body weight may be affected when stopping treatment. Your doctor may advise a gradual reduction.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 03 – Administering the Injection</div>
+        <div class="step"><div class="step-num">10</div><div class="step-content"><h3>Choose Your Injection Site</h3><p>Novigen Tirzepatide® is given as a subcutaneous (under the skin) injection. Recommended sites are the abdomen (at least 5cm from the navel), the front of the thigh, or the upper arm. Rotate sites each week to avoid skin irritation.</p><span class="note">Do not inject into a vein or muscle. Avoid areas that are bruised, red, tender, swollen, or have broken skin.</span></div></div>
+        <div class="step"><div class="step-num">11</div><div class="step-content"><h3>Prepare the Injection Site</h3><p>Clean the chosen area with an alcohol swab using a circular motion. Allow to air dry completely before injecting — do not blow or fan it dry.</p></div></div>
+        <div class="step"><div class="step-num">12</div><div class="step-content"><h3>Inject the Dose</h3><p>Remove the inner needle cap. Gently pinch a fold of skin at the cleaned site. Insert the needle fully at a 90° angle. Press and hold the injection button until the dose counter reads zero. Keep the needle in place for at least 10 seconds to ensure full dose delivery, then remove.</p><span class="note">You may hear a click when the injection is complete. Keep holding until the counter reads zero regardless.</span></div></div>
+        <div class="step"><div class="step-num">13</div><div class="step-content"><h3>Replace the Cap &amp; Dispose Safely</h3><p>Carefully remove the needle and place directly into a sharps disposal container. Never recap with two hands. Replace the pen cap after every use. Do not share your pen with anyone else.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 04 – Special Situations</div>
+        <div class="step"><div class="step-num">14</div><div class="step-content"><h3>Hypoglycaemia (Low Blood Sugar)</h3><p>If using this product alongside a sulphonylurea or insulin, the risk of low blood sugar is increased. Warning signs include cold sweats, shakiness, pale skin, rapid heartbeat, confusion, or unusual hunger. Your prescriber may need to reduce your insulin or sulphonylurea dose.</p><div class="info-block"><p>Always carry a fast-acting glucose source (e.g. glucose tablets, fruit juice) if you are at risk of hypoglycaemia. Inform your prescriber if you experience these symptoms.</p></div></div></div>
+        <div class="step"><div class="step-num">15</div><div class="step-content"><h3>Driving &amp; Operating Machinery</h3><p>Hypoglycaemia can impair your ability to concentrate and react. If you experience symptoms of low blood sugar, do not drive or operate machinery until your blood sugar has returned to normal.</p></div></div>
+        <div class="step"><div class="step-num">16</div><div class="step-content"><h3>Pregnancy &amp; Breastfeeding</h3><p>Do not use this product if you are pregnant, planning to become pregnant, or breastfeeding. It is unknown whether Tirzepatide passes into breast milk. Contact your prescriber immediately if you become pregnant during treatment.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 05 – Storage</div>
+        <div class="step"><div class="step-num">17</div><div class="step-content"><h3>Before Opening</h3><p>Store unused pens in the refrigerator at 2°C to 8°C. Do not freeze. Keep away from the cooling element inside the refrigerator. Protect from light.</p></div></div>
+        <div class="step"><div class="step-num">18</div><div class="step-content"><h3>After First Use</h3><p>Once in use, the pen can be kept at room temperature (below 30°C) for up to 6 weeks, or stored in the refrigerator for up to 16 weeks. Keep the pen cap on when not in use to protect from light.</p><span class="note">Do not freeze a pen that has already been used.</span></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 06 – Possible Side Effects</div>
+        <div class="step"><div class="step-num">19</div><div class="step-content"><h3>Very Common &amp; Common Side Effects</h3><p>Most common during dose escalation. Eating smaller, lower-fat meals can help reduce gastrointestinal symptoms.</p><div class="se-list"><span class="se-pill">Nausea</span><span class="se-pill">Vomiting</span><span class="se-pill">Diarrhoea</span><span class="se-pill">Constipation</span><span class="se-pill">Stomach pain</span><span class="se-pill">Indigestion</span><span class="se-pill">Burping</span><span class="se-pill">Bloating</span><span class="se-pill">Reduced appetite</span><span class="se-pill">Fatigue</span><span class="se-pill">Dizziness</span><span class="se-pill">Weight loss</span><span class="se-pill">Injection site reactions</span></div></div></div>
+        <div class="step"><div class="step-num">20</div><div class="step-content"><h3>Serious Side Effects — Seek Medical Attention</h3><p>Stop use and contact your prescriber or seek urgent medical attention if you experience any of the following:</p><div class="se-list"><span class="se-pill serious">Severe abdominal pain (possible pancreatitis)</span><span class="se-pill serious">Difficulty swallowing or breathing</span><span class="se-pill serious">Swelling of face, lips, tongue or throat</span><span class="se-pill serious">Rapid or irregular heartbeat</span><span class="se-pill serious">Signs of low blood sugar</span><span class="se-pill serious">Sudden vision changes</span><span class="se-pill serious">Severe skin reaction</span></div>
+        <div class="info-block" style="margin-top:12px;"><p>Acute pancreatitis has been reported with GLP-1/GIP receptor agonists. Severe, persistent abdominal pain — particularly if it radiates to the back — should be treated as a medical emergency.</p></div>
+        </div></div>
+      </div>
+
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Product</span><span id="tir-ref-name">Tirzepatide® 15mg</span></div>
+        <div class="quick-ref-item"><span>Starting dose</span><span>2.5mg</span></div>
+        <div class="quick-ref-item"><span>Step 2</span><span>5mg</span></div>
+        <div class="quick-ref-item"><span>Max dose</span><span>15mg</span></div>
+        <div class="quick-ref-item"><span>Frequency</span><span>Once weekly</span></div>
+        <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
+        <div class="quick-ref-item"><span>Fridge (unopened)</span><span>2–8°C</span></div>
+        <div class="quick-ref-item"><span>Room temp (in use)</span><span>≤30°C / 6 wks</span></div>
+        <div class="quick-ref-item"><span>Do not freeze</span><span>Once opened</span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- TAB 3: HGH -->
+<div id="tab-hgh" class="tab-panel">
+  <div class="hero hero-hgh">
+    <div class="hero-eyebrow">Official Product Documentation</div>
+    <h1>Novigen HGH<br>Usage Guide</h1>
+    <p>Recombinant Human Growth Hormone (rHGH) produced via <em>E. coli</em> expression. Please read all instructions carefully before use and only administer under the supervision of a qualified healthcare professional.</p>
+    <div class="product-badge"><span id="hgh-badge">rHGH 120IU</span><small id="hgh-format">Pre-filled injection pen &nbsp;·&nbsp; Subcutaneous</small></div>
+    <div class="pen-selector">
+      <label>Format</label>
+      <select class="pen-select" onchange="updateHghKit(this.value)" style="border-color:var(--hgh-light);">
+        <option value="120pen">120IU — Pre-filled Pen</option>
+        <option value="240kit">240IU — 10 × 24IU Vials</option>
+        <option value="360kit">360IU — 10 × 36IU Vials</option>
+      </select>
+    </div>
+  </div>
+  <div id="hgh-pen-instructions" class="page-body hgh">
+    <main>
+
+      <div class="warning-block">
+        <strong>⚠ Important — Read Before Use</strong>
+        <p>This product is for use under the guidance of a qualified healthcare professional only. Off-label dosing information provided is based on widely referenced clinical and community protocols. It is not approved by the MHRA or FDA for anti-ageing, body composition, or performance purposes. All use should be medically supervised. Keep out of reach of children.</p>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 01 – About This Product</div>
+        <div class="step"><div class="step-num">1</div><div class="step-content">
+          <h3>What is Novigen rHGH 120IU?</h3>
+          <p>Novigen rHGH is a recombinant human growth hormone produced using <em>Escherichia coli</em> (E. coli) bacterial expression technology. This produces a 191 amino acid sequence identical to endogenous human growth hormone. Each pen contains <strong>120IU</strong> of somatropin.</p>
+          <div class="info-block"><p>1mg is approximately equal to 3IU. 1IU is approximately equal to 0.33mg. Growth hormone is most effective when administered in the evening or post-exercise to align with the body's natural pulsatile secretion.</p></div>
+        </div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 02 – Dosage Tiers</div>
+        <div class="step"><div class="step-num">2</div><div class="step-content">
+          <h3>Therapeutic — Wellness &amp; Anti-Ageing</h3>
+          <div class="dose-tier">
+            <div class="dose-tier-label">Tier 1 — Therapeutic</div>
+            <div class="dose-tier-range">2 – 3 IU <span style="font-size:0.9rem;color:var(--text-muted)">per day</span></div>
+            <div class="dose-tier-desc">Recommended for general wellbeing, anti-ageing, improved skin elasticity, bone density, joint health, and sleep quality. Low risk of side effects at this range. Suitable for long-term use under medical supervision.</div>
+            <div class="supply-note">120IU pen supply: ~40–60 days</div>
+          </div>
+          <span class="note">This is the most commonly prescribed range for adults with age-related growth hormone decline.</span>
+        </div></div>
+
+        <div class="step"><div class="step-num">3</div><div class="step-content">
+          <h3>Enhanced — Fat Loss &amp; Body Composition</h3>
+          <div class="dose-tier">
+            <div class="dose-tier-label">Tier 2 — Enhanced</div>
+            <div class="dose-tier-range">4 – 6 IU <span style="font-size:0.9rem;color:var(--text-muted)">per day</span></div>
+            <div class="dose-tier-desc">Used for accelerated fat loss, improved body composition, increased energy, and enhanced recovery. At this range, splitting the dose (morning and evening) is recommended to reduce side effect risk. IGF-1 blood level monitoring is strongly advised.</div>
+            <div class="supply-note">120IU pen supply: ~20–30 days</div>
+          </div>
+          <span class="note">Side effects become more likely above 4IU. Water retention, mild joint discomfort, and carpal tunnel symptoms may occur. These typically resolve with dose reduction.</span>
+        </div></div>
+
+        <div class="step"><div class="step-num">4</div><div class="step-content">
+          <h3>Performance — Bodybuilding &amp; Athletic</h3>
+          <div class="dose-tier">
+            <div class="dose-tier-label">Tier 3 — Performance</div>
+            <div class="dose-tier-range">7 IU+ <span style="font-size:0.9rem;color:var(--text-muted)">per day</span></div>
+            <div class="dose-tier-desc">Used in performance and bodybuilding contexts for significant muscle hypertrophy support, aggressive fat loss, and enhanced recovery between training sessions. This range carries meaningfully higher risk and should only be considered by experienced individuals under close medical supervision with regular blood work.</div>
+            <div class="supply-note">120IU pen supply: ~15–17 days</div>
+          </div>
+          <span class="note">Doses above 6IU significantly increase the risk of insulin resistance, acromegaly symptoms, and organ stress. Regular monitoring of blood glucose and IGF-1 levels is essential at this tier.</span>
+        </div></div>
+
+        <div class="step"><div class="step-num">5</div><div class="step-content">
+          <h3>Dosing Frequency &amp; Timing</h3>
+          <p>Growth hormone is best administered <strong>once daily</strong> at Tier 1 doses. At Tier 2 and above, splitting into <strong>two doses</strong> (morning and evening, or post-workout and before bed) is widely recommended to better mimic the body's natural pulsatile release and reduce peak-related side effects.</p>
+          <div class="info-block"><p>Administering before bed is popular as it aligns with the body's largest natural GH pulse during deep sleep. Post-workout administration is also effective as exercise potentiates GH response.</p></div>
+        </div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 03 – Before You Begin</div>
+        <div class="step"><div class="step-num">6</div><div class="step-content"><h3>Check Your Pen</h3><p>Before each use, inspect the pen carefully. Check the expiry date on the pen label. The solution should be clear and colourless. Do not use if you notice particles, cloudiness, or the seal is broken.</p></div></div>
+        <div class="step"><div class="step-num">7</div><div class="step-content"><h3>Allow to Reach Room Temperature</h3><p>Remove from the refrigerator and allow to sit at room temperature for 15–20 minutes before injecting. Do not warm using hot water or a microwave.</p></div></div>
+        <div class="step"><div class="step-num">8</div><div class="step-content"><h3>Wash Your Hands</h3><p>Thoroughly wash and dry your hands before handling the pen or preparing the injection site.</p></div></div>
+        <div class="step"><div class="step-num">9</div><div class="step-content"><h3>Gather Your Supplies</h3><p>You will need your Novigen rHGH pen, a new sterile needle, an alcohol swab, and a sharps disposal container. Always use a new needle for each injection.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 04 – Administering the Injection</div>
+        <div class="step"><div class="step-num">10</div><div class="step-content"><h3>Choose Your Injection Site</h3><p>Administer subcutaneously (under the skin) into the abdomen, front of the thigh, or upper arm. Rotate injection sites with each dose to avoid lipodystrophy (fatty tissue changes at the injection site).</p><span class="note">Do not inject into a vein or muscle. Avoid bruised, red, or broken skin.</span></div></div>
+        <div class="step"><div class="step-num">11</div><div class="step-content"><h3>Prepare the Site</h3><p>Clean the chosen area with an alcohol swab using a circular motion. Allow to air dry completely before injecting.</p></div></div>
+        <div class="step"><div class="step-num">12</div><div class="step-content"><h3>Inject the Dose</h3><p>Attach a fresh sterile needle. Set the correct dose on the pen counter. Gently pinch a fold of skin, insert the needle at 90° (or 45° if lean), press and hold the button until the counter reads zero. Hold in place for 6 seconds before removing.</p></div></div>
+        <div class="step"><div class="step-num">13</div><div class="step-content"><h3>Dispose of the Needle Safely</h3><p>Place the used needle directly into a sharps container. Never recap with two hands or dispose of in household waste. Replace the pen cap after every use.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 05 – Storage</div>
+        <div class="step"><div class="step-num">14</div><div class="step-content"><h3>Before Opening</h3><p>Store unused pens in the refrigerator at 2°C to 8°C. Do not freeze. Protect from direct light. Keep away from the cooling element.</p></div></div>
+        <div class="step"><div class="step-num">15</div><div class="step-content"><h3>After First Use</h3><p>Once in use, store refrigerated at 2°C to 8°C. Replace the pen cap after every use to protect from light. Use within 28 days of first opening.</p><span class="note">Never freeze a pen that has been opened. Freezing will denature the protein and render it ineffective.</span></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 06 – Possible Side Effects</div>
+        <div class="step"><div class="step-num">16</div><div class="step-content"><h3>Common Side Effects</h3><p>More likely at higher doses or when starting treatment. Most resolve with dose adjustment.</p><div class="se-list"><span class="se-pill">Water retention / oedema</span><span class="se-pill">Joint discomfort</span><span class="se-pill">Carpal tunnel symptoms</span><span class="se-pill">Mild headaches</span><span class="se-pill">Injection site redness</span><span class="se-pill">Fatigue</span><span class="se-pill">Muscle aches</span><span class="se-pill">Temporary blood sugar rise</span></div></div></div>
+        <div class="step"><div class="step-num">17</div><div class="step-content"><h3>Serious Side Effects — Seek Medical Attention</h3><p>Stop use and contact your prescriber or seek urgent medical attention if you experience:</p><div class="se-list"><span class="se-pill serious">Signs of insulin resistance or diabetes</span><span class="se-pill serious">Severe or persistent joint/bone pain</span><span class="se-pill serious">Vision changes</span><span class="se-pill serious">Severe headache or nausea</span><span class="se-pill serious">Unexplained swelling</span><span class="se-pill serious">Chest pain</span></div>
+        <div class="info-block" style="margin-top:12px;"><p>Long-term use at high doses may contribute to acromegaly (enlargement of extremities), insulin resistance, and increased cardiovascular risk. Regular blood work including IGF-1, fasting glucose, and HbA1c is strongly recommended for anyone using above therapeutic doses.</p></div>
+        </div></div>
+      </div>
+
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Product</span><span>rHGH 120IU</span></div>
+        <div class="quick-ref-item"><span>Origin</span><span>E. coli recombinant</span></div>
+        <div class="quick-ref-item"><span>Therapeutic dose</span><span>2–3 IU/day</span></div>
+        <div class="quick-ref-item"><span>Enhanced dose</span><span>4–6 IU/day</span></div>
+        <div class="quick-ref-item"><span>Performance dose</span><span>7 IU+/day</span></div>
+        <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
+        <div class="quick-ref-item"><span>Fridge (unopened)</span><span>2–8°C</span></div>
+        <div class="quick-ref-item"><span>After opening</span><span>28 days</span></div>
+        <div class="quick-ref-item"><span>Do not freeze</span><span>Once opened</span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- HGH VIAL KIT INSTRUCTIONS -->
+<div id="hgh-kit-instructions" class="page-body hgh" style="display:none;">
+  <main>
+    <div class="warning-block">
+      <strong>⚠ Important — Vial Kit — Read Before Use</strong>
+      <p>This kit contains lyophilised (freeze-dried) rHGH powder requiring reconstitution with bacteriostatic water before use. Handle all vials under sterile conditions. For use under the guidance of a qualified healthcare professional only. Keep out of reach of children.</p>
+    </div>
+
+    <div class="step-group">
+      <div class="section-label">Kit Contents</div>
+      <div class="step"><div class="step-num">—</div><div class="step-content">
+        <h3>What's in Your Kit</h3>
+        <p>Each kit contains <strong id="kit-vial-count">10 vials</strong> of lyophilised rHGH powder (<strong id="kit-vial-iu">24IU per vial</strong>), bacteriostatic water for injection, sterile syringes, and alcohol swabs. Total kit: <strong id="kit-total-iu">240IU</strong>.</p>
+        <div class="info-block"><p>Bacteriostatic water contains 0.9% benzyl alcohol which inhibits bacterial growth, allowing multi-use from a single reconstituted vial for up to 28 days when refrigerated.</p></div>
+      </div></div>
+    </div>
+
+    <div class="step-group">
+      <div class="section-label">Section 01 – Reconstitution</div>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Prepare a Sterile Work Surface</h3><p>Thoroughly clean your workspace with 70% isopropyl alcohol. Wash and dry your hands thoroughly. Use sterile gloves throughout the reconstitution process if available.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Check the Vial</h3><p>Inspect each vial before use. The lyophilised powder should appear white or off-white. Check the expiry date. Do not use if the seal is broken, the powder appears discoloured, or the vial is cracked.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Wipe the Vial Tops</h3><p>Clean the rubber stopper of both the HGH vial and the bacteriostatic water vial with a fresh alcohol swab. Allow to air dry for 30 seconds before proceeding.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Draw the Bacteriostatic Water</h3><p>Using a sterile syringe, draw 1–2ml of bacteriostatic water. The volume used determines your final concentration — using 1ml gives a higher concentration per unit drawn, making smaller doses easier to measure accurately.</p><span class="note">Most users use 1ml per vial. At 1ml: each 0.1ml (10 units on an insulin syringe) = <span id="kit-per-unit">2.4IU</span>.</span></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><h3>Add Water to the HGH Vial</h3><p>Insert the needle into the HGH vial at an angle and allow the bacteriostatic water to run slowly down the inside wall of the vial. Do not inject directly onto the powder. Remove the syringe once complete.</p><span class="note">Never shake the vial — this denatures the protein and renders it ineffective.</span></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><h3>Gently Swirl to Dissolve</h3><p>Slowly and gently roll the vial between your palms in a circular motion until the powder is fully dissolved. The solution should be clear and colourless. If it remains cloudy or contains particles after gentle swirling, do not use.</p></div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-content"><h3>Draw Your Dose</h3><p>Using a fresh sterile insulin syringe, insert the needle into the reconstituted vial and draw the required volume for your dose. Refer to your concentration calculation to determine the correct volume.</p><div class="info-block"><p>Example: If you added 1ml bacteriostatic water to a <span id="kit-example-iu">24IU</span> vial, your concentration is <span id="kit-example-conc">24IU/ml</span>. A 2IU dose = 0.083ml ≈ 8 units on an insulin syringe.</p></div></div></div>
+    </div>
+
+    <div class="step-group">
+      <div class="section-label">Section 02 – Administration</div>
+      <div class="step"><div class="step-num">8</div><div class="step-content"><h3>Injection Site &amp; Technique</h3><p>Administer subcutaneously into the abdomen, front of thigh, or upper arm. Clean the site with an alcohol swab and allow to air dry. Pinch a fold of skin, insert at 90° (or 45° if lean), inject slowly, hold for 6 seconds, then remove. Rotate sites with each dose.</p><span class="note">Do not inject into a vein or muscle. Avoid bruised, red, or broken skin.</span></div></div>
+      <div class="step"><div class="step-num">9</div><div class="step-content"><h3>Dispose Safely</h3><p>Place used needles and syringes directly into a sharps disposal container. Never recap with two hands. Do not dispose of needles in household waste.</p></div></div>
+    </div>
+
+    <div class="step-group">
+      <div class="section-label">Section 03 – Storage of Reconstituted Vials</div>
+      <div class="step"><div class="step-num">10</div><div class="step-content"><h3>Unopened Vials</h3><p>Store lyophilised vials in the refrigerator at 2°C to 8°C. Do not freeze. Protect from light. Unopened vials may also be stored at room temperature (below 25°C) for short periods but refrigeration is preferred.</p></div></div>
+      <div class="step"><div class="step-num">11</div><div class="step-content"><h3>After Reconstitution</h3><p>Once reconstituted, store the vial in the refrigerator at 2°C to 8°C. Use within <strong>28 days</strong>. Always replace the vial stopper after each use. Never freeze a reconstituted vial.</p><span class="note">Label each vial with the date of reconstitution so you can track the 28-day window.</span></div></div>
+    </div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="card">
+      <div class="card-title">Kit Quick Reference</div>
+      <div class="quick-ref-item"><span>Kit total</span><span id="kit-ref-total">240IU</span></div>
+      <div class="quick-ref-item"><span>Vials per kit</span><span>10</span></div>
+      <div class="quick-ref-item"><span>IU per vial</span><span id="kit-ref-vial">24IU</span></div>
+      <div class="quick-ref-item"><span>Solvent</span><span>Bacteriostatic water</span></div>
+      <div class="quick-ref-item"><span>Rec. water vol.</span><span>1ml per vial</span></div>
+      <div class="quick-ref-item"><span>Conc. at 1ml</span><span id="kit-ref-conc">24IU/ml</span></div>
+      <div class="quick-ref-item"><span>Per 10 units</span><span id="kit-ref-unit">2.4IU</span></div>
+      <div class="quick-ref-item"><span>After recon.</span><span>28 days</span></div>
+      <div class="quick-ref-item"><span>Storage</span><span>2–8°C</span></div>
+      <div class="quick-ref-item"><span>Do not freeze</span><span>Once recon.</span></div>
+    </div>
+  </aside>
+</div>
+  <!-- HGH Vial Instructions (shown when vial kit selected) -->
+  <div id="hgh-vial-instructions" class="page-body hgh" style="display:none;">
+    <main>
+      <div class="warning-block">
+        <strong>⚠ Important — Read Before Use</strong>
+        <p>This product is for use under the guidance of a qualified healthcare professional only. Keep out of reach of children. Lyophilised peptide vials must be reconstituted correctly before use. Do not use if the seal is broken or the powder appears discoloured.</p>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 01 – Kit Contents</div>
+        <div class="step"><div class="step-num">1</div><div class="step-content">
+          <h3>What's in Your Kit</h3>
+          <p>Your Novigen rHGH vial kit contains <strong id="vial-count-1">10 × 24IU vials</strong> of lyophilised (freeze-dried) recombinant human growth hormone, bacteriostatic water for reconstitution, and alcohol swabs. Each vial must be reconstituted before use.</p>
+          <div class="info-block"><p>Total kit: <strong id="vial-total">240IU</strong>. Each vial: <strong id="vial-iu">24IU</strong>. Recommended reconstitution volume: <strong id="vial-water">2.4ml bacteriostatic water per vial</strong>.</p></div>
+        </div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 02 – Reconstitution</div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Prepare a Sterile Work Surface</h3><p>Thoroughly clean your workspace with 70% isopropyl alcohol. Use sterile gloves throughout the reconstitution process. Never reconstitute more than one vial at a time.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Recommended Reconstitution Volume</h3>
+          <p>Add bacteriostatic water slowly to each vial. More water is advised for easier dosing accuracy. The recommended volume is:</p>
+          <div class="dose-highlight">
+            <div class="dose-item"><span class="dose-label">Per Vial</span><span class="dose-value" id="vial-water-dose">2.4<span style="font-size:1rem">ml</span></span><span class="dose-unit">bacteriostatic water</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Concentration</span><span class="dose-value" id="vial-conc">10<span style="font-size:1rem">IU</span></span><span class="dose-unit">per 1ml (10 units on syringe)</span></div>
+            <div class="dose-divider"></div>
+            <div class="dose-item"><span class="dose-label">Vial Size</span><span class="dose-value" id="vial-iu-dose">24<span style="font-size:1rem">IU</span></span><span class="dose-unit">per vial</span></div>
+          </div>
+          <span class="note">At 2.4ml per 24IU vial: 1IU = 0.1ml = 10 units on a U100 insulin syringe. Use 0.1–0.2ml per IU depending on your preferred concentration.</span>
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Add Bacteriostatic Water Correctly</h3><p>Draw the recommended volume of bacteriostatic water into a sterile insulin syringe. Insert the needle into the vial at an angle and allow the water to run gently down the inside wall. Do not inject directly onto the powder — this can denature the protein.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-content"><h3>Dissolve Gently</h3><p>Once water is added, gently swirl the vial in a slow circular motion until the powder is fully dissolved. Do not shake vigorously. The solution should be clear and colourless. If it remains cloudy or contains particles, do not use.</p><span class="note">Never shake the vial. Shaking can break down the protein structure and reduce potency.</span></div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-content"><h3>Drawing Your Dose</h3><p>Using a fresh sterile insulin syringe, draw the required volume based on your prescribed dose. At 2.4ml per 24IU vial (10IU per ml): 2IU = 0.2ml (20 units), 4IU = 0.4ml (40 units), 6IU = 0.6ml (60 units), 8IU = 0.8ml (80 units).</p><div class="info-block"><p>Always double-check your calculation before drawing. If unsure, consult your prescriber. Label each reconstituted vial with the date of reconstitution.</p></div></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 03 – Dosage Tiers</div>
+        <div class="step"><div class="step-num">7</div><div class="step-content">
+          <h3>Therapeutic — Wellness &amp; Anti-Ageing</h3>
+          <div class="dose-tier"><div class="dose-tier-label">Tier 1 — Therapeutic</div><div class="dose-tier-range">2 – 3 IU <span style="font-size:0.9rem;color:var(--text-muted)">per day</span></div><div class="dose-tier-desc">Recommended for general wellbeing, anti-ageing, skin elasticity, bone density, joint health, and sleep quality. Low risk of side effects. Suitable for long-term use under medical supervision.</div><div class="supply-note" id="vial-supply-t1">240IU kit supply: ~80–120 days at this dose</div></div>
+        </div></div>
+        <div class="step"><div class="step-num">8</div><div class="step-content">
+          <h3>Enhanced — Fat Loss &amp; Body Composition</h3>
+          <div class="dose-tier"><div class="dose-tier-label">Tier 2 — Enhanced</div><div class="dose-tier-range">4 – 6 IU <span style="font-size:0.9rem;color:var(--text-muted)">per day</span></div><div class="dose-tier-desc">Used for accelerated fat loss, improved body composition, increased energy, and enhanced recovery. Splitting the dose (morning and evening) is recommended. IGF-1 blood level monitoring is strongly advised.</div><div class="supply-note" id="vial-supply-t2">240IU kit supply: ~40–60 days at this dose</div></div>
+          <span class="note">Side effects become more likely above 4IU. Water retention, mild joint discomfort, and carpal tunnel symptoms may occur.</span>
+        </div></div>
+        <div class="step"><div class="step-num">9</div><div class="step-content">
+          <h3>Performance — Bodybuilding &amp; Athletic</h3>
+          <div class="dose-tier"><div class="dose-tier-label">Tier 3 — Performance</div><div class="dose-tier-range">7 IU+ <span style="font-size:0.9rem;color:var(--text-muted)">per day</span></div><div class="dose-tier-desc">Used in performance and bodybuilding contexts for significant muscle hypertrophy support, aggressive fat loss, and enhanced recovery. Carries meaningfully higher risk — only consider under close medical supervision with regular blood work.</div><div class="supply-note" id="vial-supply-t3">240IU kit supply: ~30–34 days at this dose</div></div>
+          <span class="note">Doses above 6IU significantly increase the risk of insulin resistance, acromegaly symptoms, and organ stress. Regular IGF-1 and fasting glucose monitoring is essential.</span>
+        </div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 04 – Injection</div>
+        <div class="step"><div class="step-num">10</div><div class="step-content"><h3>Choose Your Injection Site</h3><p>Administer subcutaneously into the abdomen, front of the thigh, or upper arm. Rotate injection sites with each dose to avoid lipodystrophy.</p><span class="note">Do not inject into a vein or muscle. Avoid bruised, red, or broken skin.</span></div></div>
+        <div class="step"><div class="step-num">11</div><div class="step-content"><h3>Prepare the Site &amp; Inject</h3><p>Clean the site with an alcohol swab and allow to air dry. Gently pinch a fold of skin, insert the needle at 90° (or 45° if lean), slowly depress the plunger, hold for 5 seconds, then remove. Dispose of the needle in a sharps container immediately.</p></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 05 – Storage</div>
+        <div class="step"><div class="step-num">12</div><div class="step-content"><h3>Lyophilised Vials (Unopened)</h3><p>Store at 2°C to 8°C. Can be stored at room temperature (below 25°C) for short periods during transit. Protect from light. Do not freeze.</p></div></div>
+        <div class="step"><div class="step-num">13</div><div class="step-content"><h3>Reconstituted Vials</h3><p>Once reconstituted, store in the refrigerator at 2°C to 8°C. Use within <strong>20 days</strong>. Always replace the rubber stopper cap after drawing each dose. Never freeze a reconstituted vial.</p><span class="note">Label each vial with the reconstitution date. Discard any unused reconstituted solution after 20 days.</span></div></div>
+      </div>
+
+      <div class="step-group">
+        <div class="section-label">Section 06 – Side Effects</div>
+        <div class="step"><div class="step-num">14</div><div class="step-content"><h3>Common Side Effects</h3><div class="se-list"><span class="se-pill">Water retention / oedema</span><span class="se-pill">Joint discomfort</span><span class="se-pill">Carpal tunnel symptoms</span><span class="se-pill">Mild headaches</span><span class="se-pill">Injection site redness</span><span class="se-pill">Fatigue</span><span class="se-pill">Muscle aches</span><span class="se-pill">Temporary blood sugar rise</span></div></div></div>
+        <div class="step"><div class="step-num">15</div><div class="step-content"><h3>Serious Side Effects — Seek Medical Attention</h3><div class="se-list"><span class="se-pill serious">Signs of insulin resistance or diabetes</span><span class="se-pill serious">Severe or persistent joint/bone pain</span><span class="se-pill serious">Vision changes</span><span class="se-pill serious">Severe headache or nausea</span><span class="se-pill serious">Unexplained swelling</span><span class="se-pill serious">Chest pain</span></div><div class="info-block" style="margin-top:12px;"><p>Long-term use at high doses may contribute to acromegaly, insulin resistance, and increased cardiovascular risk. Regular blood work including IGF-1, fasting glucose, and HbA1c is strongly recommended.</p></div></div></div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Kit</span><span id="vial-ref-kit">240IU (10×24IU)</span></div>
+        <div class="quick-ref-item"><span>Recon water/vial</span><span id="vial-ref-water">2.4ml</span></div>
+        <div class="quick-ref-item"><span>Concentration</span><span>10IU per ml</span></div>
+        <div class="quick-ref-item"><span>Therapeutic</span><span>2–3 IU/day</span></div>
+        <div class="quick-ref-item"><span>Enhanced</span><span>4–6 IU/day</span></div>
+        <div class="quick-ref-item"><span>Performance</span><span>7 IU+/day</span></div>
+        <div class="quick-ref-item"><span>After recon</span><span>≤20 days</span></div>
+        <div class="quick-ref-item"><span>Do not freeze</span><span>Once reconstituted</span></div>
+      </div>
+    </aside>
+  </div>
+
+
+<footer>
+  <p>© 2025 Novigen Peptides. All rights reserved. For use under medical supervision only. &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#d9b0b7bfb699b7b6afb0bebcb7a9bca9adb0bdbcaaf7bab6b4" style="color:var(--steel-light);text-decoration:none;"><span class="__cf_email__" data-cfemail="c9a0a7afa689a7a6bfa0aeaca7b9acb9bda0adacbae7aaa6a4">[email&#160;protected]</span></a></p>
+  <span class="footer-logo">Novigen Peptides</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelector('.tab-btn[data-tab="' + tab + '"]').classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateRetPen(size) {
+    size = parseInt(size);
+    document.getElementById('ret-badge').textContent = 'Retatrutide®';
+    document.getElementById('ret-capacity').innerHTML = size + '<span style="font-size:1.1rem">mg</span>';
+    document.getElementById('ret-supply').textContent = '~' + size + 'mg pen = ' + Math.floor(size / 2) + ' doses at 2mg starting dose';
+  }
+
+  function updateTirPen(size) {
+    size = parseInt(size);
+    document.getElementById('tir-badge').textContent = 'Tirzepatide®';
+    document.getElementById('tir-capacity').innerHTML = size + '<span style="font-size:1.1rem">mg</span>';
+    document.getElementById('tir-ref-name').textContent = 'Tirzepatide® ' + size + 'mg';
+    var doses = Math.floor(size / 2.5);
+    document.getElementById('tir-supply').textContent = size + 'mg pen = ' + doses + ' doses at 2.5mg starting dose';
+  }
+
+  function updateHghKit(val) {
+    var penInstr = document.getElementById('hgh-pen-instructions');
+    var kitInstr = document.getElementById('hgh-kit-instructions');
+    if (val === '120pen') {
+      penInstr.style.display = '';
+      kitInstr.style.display = 'none';
+      document.getElementById('hgh-badge').textContent = 'rHGH 120IU';
+      document.getElementById('hgh-format').textContent = 'Pre-filled injection pen · Subcutaneous';
+    } else {
+      var totalIU = val === '240kit' ? 240 : 360;
+      var vialIU  = val === '240kit' ? 24  : 36;
+      var concPer10 = (vialIU / 10).toFixed(1);
+      penInstr.style.display = 'none';
+      kitInstr.style.display = '';
+      document.getElementById('hgh-badge').textContent = 'rHGH ' + totalIU + 'IU Kit';
+      document.getElementById('hgh-format').textContent = '10 × ' + vialIU + 'IU vials · Lyophilised powder';
+      document.getElementById('kit-vial-iu').textContent = vialIU + 'IU per vial';
+      document.getElementById('kit-total-iu').textContent = totalIU + 'IU';
+      document.getElementById('kit-per-unit').textContent = concPer10 + 'IU';
+      document.getElementById('kit-example-iu').textContent = vialIU + 'IU';
+      document.getElementById('kit-example-conc').textContent = vialIU + 'IU/ml';
+      document.getElementById('kit-ref-total').textContent = totalIU + 'IU';
+      document.getElementById('kit-ref-vial').textContent = vialIU + 'IU';
+      document.getElementById('kit-ref-conc').textContent = vialIU + 'IU/ml';
+      document.getElementById('kit-ref-unit').textContent = concPer10 + 'IU';
+    }
+  }
+</script>
+</body>
+</html>
