@@ -291,7 +291,29 @@
     `).join('');
 
     const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const delivery = 6.00;
+    const total = subtotal + delivery;
     document.getElementById('basket-subtotal').textContent = '£' + subtotal.toFixed(2);
+    
+    // Update total in basket-total section
+    const totalSection = document.getElementById('basket-total');
+    if (totalSection) {
+      totalSection.innerHTML = `
+        <div class="total-row">
+          <span class="total-label">Subtotal</span>
+          <span class="total-value" id="basket-subtotal">£${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="total-row" style="border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 8px;">
+          <span class="total-label">Delivery</span>
+          <span style="font-weight: 600; color: var(--text);">£6.00</span>
+        </div>
+        <div class="total-row">
+          <span class="total-label">Total</span>
+          <span class="total-value" style="color: var(--steel);">£${total.toFixed(2)}</span>
+        </div>
+        <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+      `;
+    }
   }
 
   function updateQuantity(productId, change) {
@@ -380,8 +402,12 @@
       message += `• ${item.name} × ${item.quantity} = £${(item.price * item.quantity).toFixed(2)}\n`;
     });
 
-    const total = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    message += `\n*Total: £${total.toFixed(2)}*\n\n`;
+    const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const delivery = 6.00;
+    const total = subtotal + delivery;
+    message += `\n*Subtotal: £${subtotal.toFixed(2)}*\n`;
+    message += `*Delivery: £6.00*\n`;
+    message += `*Total: £${total.toFixed(2)}*\n\n`;
 
     if (notes) {
       message += `*Special Notes*\n${notes}\n`;
