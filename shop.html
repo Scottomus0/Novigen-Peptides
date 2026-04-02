@@ -293,15 +293,13 @@
     const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const delivery = 6.00;
     const total = subtotal + delivery;
-    document.getElementById('basket-subtotal').textContent = '£' + subtotal.toFixed(2);
     
     // Update total in basket-total section
-    const totalSection = document.getElementById('basket-total');
     if (totalSection) {
       totalSection.innerHTML = `
         <div class="total-row">
           <span class="total-label">Subtotal</span>
-          <span class="total-value" id="basket-subtotal">£${subtotal.toFixed(2)}</span>
+          <span class="total-value">£${subtotal.toFixed(2)}</span>
         </div>
         <div class="total-row" style="border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 8px;">
           <span class="total-label">Delivery</span>
