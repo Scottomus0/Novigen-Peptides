@@ -4,138 +4,232 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop – Novigen Peptides</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700;800&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --steel: #3a6186;
-    --steel-light: #5b84a8;
-    --steel-dark: #2a4a63;
-    --bg: #f0f3f7;
+    --steel: #2a5a8a;
+    --steel-light: #4a8abf;
+    --steel-dark: #1a3a5a;
+    --glow: #6a4a8a;
+    --glow-light: #9a6abf;
+    --tir: #1a7a7a;
+    --hgh: #2a7a5a;
+    --bg: #eef5ff;
     --bg-card: #ffffff;
-    --text: #1a2a38;
-    --text-muted: #5a7080;
-    --rule: #c8d8e8;
+    --bg-elevated: #e4effc;
+    --text: #0d1f38;
+    --text-muted: #3a5068;
+    --text-subtle: #6a8090;
+    --rule: #c8daf0;
+    --rule-light: #dce8f8;
+    --warn-bg: #fffaf0;
+    --warn-border: #e8c870;
+    --warn-text: #7a5010;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 300; }
+  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-  header { background: #fff; border-bottom: 1px solid var(--rule); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(58,97,134,0.07); }
-  .logo-block { display: flex; flex-direction: column; line-height: 1; }
-  .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: 0.12em; color: var(--steel); text-transform: uppercase; cursor: pointer; }
-  .logo-sub { font-size: 0.62rem; letter-spacing: 0.45em; color: var(--steel-light); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
-  .header-right { display: flex; align-items: center; gap: 24px; }
-  .header-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 2px; }
-  .back-btn { background: var(--steel); color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
-  .back-btn:hover { background: var(--steel-dark); }
-  .basket-btn { background: var(--steel); color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; position: relative; transition: background 0.2s; }
-  .basket-btn:hover { background: var(--steel-dark); }
-  .basket-count { position: absolute; top: -8px; right: -8px; background: #e74c3c; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
 
-  .hero { border-bottom: 1px solid var(--rule); padding: 56px 48px 48px; position: relative; overflow: hidden; background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
-  .hero::before { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Barlow Condensed', sans-serif; font-size: 11rem; font-weight: 700; letter-spacing: 0.1em; line-height: 1; pointer-events: none; white-space: nowrap; color: rgba(58,97,134,0.055); content: 'SHOP'; }
-  .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; color: var(--steel); }
-  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--steel); }
-  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 2.4rem; line-height: 1.15; max-width: 580px; margin-bottom: 16px; letter-spacing: -0.02em; color: var(--steel-dark); }
-  .hero p { font-size: 0.92rem; color: var(--text-muted); max-width: 500px; line-height: 1.75; }
+  /* ── Header ── */
+  header {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 24px rgba(42,90,138,0.09);
+  }
+  .logo-block { display: flex; flex-direction: column; line-height: 1; cursor: pointer; transition: opacity 0.2s; }
+  .logo-block:hover { opacity: 0.8; }
+  .logo-main { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 0.18em; color: var(--steel); text-transform: uppercase; }
+  .logo-sub  { font-size: 0.6rem; letter-spacing: 0.45em; color: var(--text-subtle); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-tag { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-subtle); border: 1px solid var(--rule); padding: 5px 14px; border-radius: 20px; background: white; font-weight: 600; }
+  .back-btn { color: var(--text-subtle); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; border: 1px solid var(--rule); padding: 7px 14px; border-radius: 20px; background: white; transition: border-color 0.2s; }
+  .back-btn:hover { border-color: var(--steel-light); color: var(--steel); }
+  .basket-btn { color: white; border: none; padding: 9px 18px; border-radius: 20px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; position: relative; background: linear-gradient(135deg, var(--steel), var(--steel-light)); box-shadow: 0 4px 12px rgba(42,90,138,0.2); transition: box-shadow 0.2s; }
+  .basket-btn:hover { box-shadow: 0 6px 18px rgba(42,90,138,0.3); }
+  .basket-count { position: absolute; top: -8px; right: -8px; background: #e74c3c; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; }
 
-  .page-body { max-width: 1200px; margin: 0 auto; padding: 48px; }
+  /* ── Hero ── */
+  .hero {
+    border-bottom: 1px solid var(--rule);
+    padding: 60px 48px 52px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(140deg, #ddeeff 0%, #c8e0f8 35%, #ddeeff 65%, #f0f8ff 100%);
+  }
+  .hero-watermark {
+    position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+    font-family: 'Outfit', sans-serif; font-size: 12rem; font-weight: 800;
+    letter-spacing: 0.05em; line-height: 1; pointer-events: none; white-space: nowrap; z-index: 0;
+    background-image: linear-gradient(135deg, rgba(42,90,138,0.12) 0%, rgba(74,138,191,0.04) 100%);
+    background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    animation: watermarkFloat 12s ease-in-out infinite;
+  }
+  @keyframes watermarkFloat { 0%,100%{transform:translateY(-50%) translateX(0)} 50%{transform:translateY(-52%) translateX(-8px)} }
+  .hero-hex {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.7'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 90px 78px; opacity: 0.1;
+    mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+    animation: hexBreathe 9s ease-in-out infinite;
+  }
+  @keyframes hexBreathe { 0%,100%{opacity:0.1} 50%{opacity:0.06} }
+  .hero-ray { position: absolute; top: -100%; right: 12%; width: 180px; height: 300%; transform: rotate(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); animation: raySlide 7s ease-in-out infinite; pointer-events: none; z-index: 1; }
+  @keyframes raySlide { 0%{opacity:0;transform:rotate(-18deg) translateX(-60px)} 30%{opacity:0.8} 70%{opacity:0.8} 100%{opacity:0;transform:rotate(-18deg) translateX(60px)} }
+  .hero-content { position: relative; z-index: 2; animation: heroEntrance 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+  @keyframes heroEntrance { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; font-weight: 600; }
+  .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--steel); }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 3rem; line-height: 1.0; letter-spacing: -0.03em; color: var(--steel-dark); margin-bottom: 16px; max-width: 560px; }
+  .hero p { font-size: 0.9rem; color: var(--text-muted); max-width: 500px; line-height: 1.8; font-weight: 300; }
 
-  .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-  .product-card { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
-  .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(58,97,134,0.12); }
-  .product-image { width: 100%; height: 200px; background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
-  .product-info { padding: 20px; }
-  .product-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
-  .product-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
-  .product-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--steel); margin-bottom: 4px; }
-  .product-dose { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 16px; }
-  .add-btn { width: 100%; background: var(--steel); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
-  .add-btn:hover { background: var(--steel-dark); }
+  /* ── Shop Grid ── */
+  .page-body { max-width: 1200px; margin: 0 auto; padding: 52px 48px 64px; }
+  .section-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; font-weight: 700; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-  .sidebar-basket { position: fixed; right: -400px; top: 0; width: 400px; height: 100vh; background: white; box-shadow: -4px 0 16px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 200; overflow-y: auto; border-left: 1px solid var(--rule); }
+  .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+
+  .product-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(42,90,138,0.07);
+    position: relative;
+    animation: cardIn 0.5s ease both;
+  }
+  .product-card:nth-child(1){animation-delay:0.04s} .product-card:nth-child(2){animation-delay:0.08s}
+  .product-card:nth-child(3){animation-delay:0.12s} .product-card:nth-child(4){animation-delay:0.16s}
+  .product-card:nth-child(5){animation-delay:0.20s} .product-card:nth-child(6){animation-delay:0.24s}
+  .product-card:nth-child(7){animation-delay:0.28s} .product-card:nth-child(8){animation-delay:0.32s}
+  .product-card:nth-child(9){animation-delay:0.36s}
+  @keyframes cardIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(42,90,138,0.14); }
+
+  .product-image { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; overflow: hidden; }
+  .product-image::after { content: ''; position: absolute; inset: 0; opacity: 0.3; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.5'%3E%3Cpolygon points='30,3 54,15 54,37 30,49 6,37 6,15'/%3E%3C/g%3E%3C/svg%3E"); background-size: 60px 52px; pointer-events: none; }
+
+  .product-image.ret  { background: linear-gradient(140deg, #ddeeff, #c8e0f8); }
+  .product-image.glow { background: linear-gradient(140deg, #ecddf8, #ddc8f0); }
+  .product-image.tir  { background: linear-gradient(140deg, #d8f2f2, #c2e8e8); }
+  .product-image.hgh  { background: linear-gradient(140deg, #d8f0e8, #c2e8d8); }
+
+  .product-info { padding: 18px 18px 20px; }
+  .product-name  { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .product-dose  { font-size: 0.75rem; color: var(--text-subtle); margin-bottom: 12px; font-weight: 400; }
+  .product-price { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--steel); margin-bottom: 14px; letter-spacing: -0.02em; }
+
+  .add-btn { width: 100%; color: white; border: none; padding: 11px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: box-shadow 0.2s, transform 0.15s; box-shadow: 0 4px 12px rgba(42,90,138,0.15); background: linear-gradient(135deg, var(--steel), var(--steel-light)); }
+  .add-btn:hover { box-shadow: 0 6px 18px rgba(42,90,138,0.25); transform: translateY(-1px); }
+
+  /* ── Basket Sidebar ── */
+  .sidebar-basket { position: fixed; right: -420px; top: 0; width: 420px; height: 100vh; background: white; box-shadow: -4px 0 32px rgba(42,90,138,0.12); transition: right 0.3s cubic-bezier(0.16,1,0.3,1); z-index: 200; overflow-y: auto; border-left: 1px solid var(--rule); }
   .sidebar-basket.open { right: 0; }
-  .basket-header { background: var(--steel); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
-  .basket-header h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; }
-  .basket-close { background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem; }
+  .basket-header { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+  .basket-header h2 { font-family: 'Outfit', sans-serif; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+  .basket-close { background: rgba(255,255,255,0.2); border: none; color: white; cursor: pointer; font-size: 1.1rem; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .basket-close:hover { background: rgba(255,255,255,0.35); }
   .basket-items { padding: 20px; }
-  .basket-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
-  .basket-item-name { flex: 1; }
-  .basket-item-name h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-  .basket-item-price { font-size: 0.85rem; color: var(--text-muted); }
-  .basket-item-qty { display: flex; gap: 8px; align-items: center; }
-  .qty-btn { background: var(--rule); border: none; width: 28px; height: 28px; border-radius: 2px; cursor: pointer; font-weight: 600; color: var(--text); transition: background 0.2s; }
-  .qty-btn:hover { background: var(--steel-light); color: white; }
-  .remove-btn { background: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 2px; font-size: 0.7rem; cursor: pointer; transition: background 0.2s; }
-  .remove-btn:hover { background: #c0392b; }
-  .basket-empty { padding: 40px 20px; text-align: center; color: var(--text-muted); }
-  .basket-total { padding: 20px; border-top: 2px solid var(--rule); margin-top: 20px; }
-  .total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-  .total-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; }
-  .total-value { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 600; color: var(--steel); }
-  .checkout-btn { width: 100%; background: var(--steel); color: white; border: none; padding: 14px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
-  .checkout-btn:hover { background: var(--steel-dark); }
+  .basket-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--rule-light); gap: 12px; }
+  .basket-item-name h4 { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .basket-item-price { font-size: 0.82rem; color: var(--text-subtle); }
+  .basket-item-qty { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+  .qty-btn { background: var(--bg-elevated); border: 1px solid var(--rule); width: 28px; height: 28px; border-radius: 6px; cursor: pointer; font-weight: 700; color: var(--text); transition: background 0.15s; font-size: 1rem; }
+  .qty-btn:hover { background: var(--steel); color: white; border-color: var(--steel); }
+  .remove-btn { background: none; color: #c03020; border: 1px solid rgba(192,48,32,0.25); padding: 5px 10px; border-radius: 6px; font-size: 0.68rem; cursor: pointer; font-weight: 600; transition: background 0.15s; font-family: 'Outfit', sans-serif; }
+  .remove-btn:hover { background: #c03020; color: white; }
+  .basket-empty { padding: 40px 20px; text-align: center; color: var(--text-subtle); font-size: 0.88rem; }
+  .basket-total { padding: 20px; border-top: 2px solid var(--rule); }
+  .total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.84rem; }
+  .total-row:last-of-type { margin-bottom: 20px; }
+  .total-label { color: var(--text-subtle); font-weight: 500; }
+  .total-value { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--steel); }
+  .checkout-btn { width: 100%; color: white; border: none; padding: 14px; border-radius: 10px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; background: linear-gradient(135deg, var(--steel), var(--steel-light)); box-shadow: 0 4px 16px rgba(42,90,138,0.2); transition: box-shadow 0.2s; }
+  .checkout-btn:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.3); }
 
-  .product-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
-  .product-modal.open { display: flex; }
-  .product-detail { background: white; border-radius: 4px; padding: 40px; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 16px 48px rgba(0,0,0,0.2); }
-  .product-detail h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 16px; color: var(--text); }
-  .product-detail-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--steel); margin-bottom: 24px; }
+  /* ── Product Modal ── */
+  .product-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .product-modal.open { display: flex; animation: modalIn 0.2s ease; }
+  @keyframes modalIn { from{opacity:0} to{opacity:1} }
+  .product-detail { background: white; border-radius: 12px; padding: 40px; max-width: 580px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes detailIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .product-detail h2 { font-family: 'Outfit', sans-serif; font-size: 1.7rem; font-weight: 800; margin-bottom: 8px; color: var(--text); letter-spacing: -0.02em; }
+  .product-detail-price { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--steel); margin-bottom: 24px; letter-spacing: -0.02em; }
   .product-detail-section { margin-bottom: 20px; }
-  .product-detail-section h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); margin-bottom: 8px; }
-  .product-detail-section p { font-size: 0.95rem; line-height: 1.6; color: var(--text); margin-bottom: 12px; }
-  .product-detail-disclaimer { background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 20px 0; border-radius: 2px; }
-  .product-detail-disclaimer p { font-size: 0.85rem; color: #856404; margin: 0; }
+  .product-detail-section h3 { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 8px; font-weight: 700; }
+  .product-detail-section p { font-size: 0.9rem; line-height: 1.65; color: var(--text-muted); }
+  .product-detail-disclaimer { background: var(--warn-bg); border-left: 3px solid var(--warn-border); padding: 14px 16px; margin: 20px 0; border-radius: 6px; }
+  .product-detail-disclaimer p { font-size: 0.83rem; color: var(--warn-text); margin: 0; }
   .product-modal-buttons { display: flex; gap: 12px; margin-top: 24px; }
-  .btn-add-modal { flex: 1; background: var(--steel); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
-  .btn-add-modal:hover { background: var(--steel-dark); }
-  .btn-close-modal { flex: 1; background: var(--text-muted); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
-  .btn-close-modal:hover { background: var(--text); }
+  .btn-add-modal { flex: 1; color: white; border: none; padding: 13px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; background: linear-gradient(135deg, var(--steel), var(--steel-light)); box-shadow: 0 4px 12px rgba(42,90,138,0.2); transition: box-shadow 0.2s; }
+  .btn-add-modal:hover { box-shadow: 0 6px 18px rgba(42,90,138,0.3); }
+  .btn-close-modal { flex: 1; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--rule); padding: 13px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: background 0.15s; }
+  .btn-close-modal:hover { background: var(--rule); }
 
-  .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
-  .checkout-modal.open { display: flex; }
-  .checkout-form { background: white; border-radius: 4px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 16px 48px rgba(0,0,0,0.2); }
-  .checkout-form h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin-bottom: 24px; color: var(--text); }
+  /* ── Checkout Modal ── */
+  .checkout-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .checkout-modal.open { display: flex; animation: modalIn 0.2s ease; }
+  .checkout-form { background: white; border-radius: 12px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
+  .checkout-form h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; color: var(--text); letter-spacing: -0.02em; }
   .form-group { margin-bottom: 16px; }
-  .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-  .form-group input { width: 100%; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 2px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--text); }
-  .form-group input:focus { outline: none; border-color: var(--steel-light); }
-  .form-divider { border-top: 1px solid var(--rule); margin: 24px 0; }
-  .order-summary { background: var(--bg); padding: 16px; border-radius: 2px; margin-bottom: 20px; }
-  .order-summary h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; }
-  .order-summary-item { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; }
-  .order-summary-total { font-weight: 600; color: var(--steel); border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 8px; }
+  .form-group label { display: block; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 6px; font-weight: 700; }
+  .form-group input { width: 100%; padding: 11px 14px; border: 1px solid var(--rule); border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: var(--text); background: white; transition: border-color 0.2s; }
+  .form-group input:focus { outline: none; border-color: var(--steel-light); box-shadow: 0 0 0 3px rgba(42,90,138,0.08); }
+  .form-divider { border: none; border-top: 1px solid var(--rule); margin: 22px 0; }
+  .order-summary { background: var(--bg-elevated); padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--rule); }
+  .order-summary h3 { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 10px; font-weight: 700; }
+  .order-summary-item { display: flex; justify-content: space-between; font-size: 0.84rem; margin-bottom: 7px; color: var(--text-muted); }
+  .order-summary-total { font-weight: 700; color: var(--steel); border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 10px; font-size: 0.9rem; }
   .form-buttons { display: flex; gap: 12px; }
-  .btn-submit { flex: 1; background: var(--steel); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
-  .btn-submit:hover { background: var(--steel-dark); }
-  .btn-cancel { flex: 1; background: var(--text-muted); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; }
-  .btn-cancel:hover { background: var(--text); }
+  .btn-submit { flex: 1; color: white; border: none; padding: 13px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; background: linear-gradient(135deg, var(--steel), var(--steel-light)); box-shadow: 0 4px 12px rgba(42,90,138,0.2); transition: box-shadow 0.2s; }
+  .btn-submit:hover { box-shadow: 0 6px 18px rgba(42,90,138,0.3); }
+  .btn-cancel { flex: 1; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--rule); padding: 13px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: background 0.15s; }
+  .btn-cancel:hover { background: var(--rule); }
 
-  footer { border-top: 1px solid var(--rule); padding: 22px 48px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
-  footer p { font-size: 0.74rem; color: var(--text-muted); }
-  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.25em; color: var(--steel); font-weight: 700; text-transform: uppercase; }
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--rule); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: white; box-shadow: 0 -2px 16px rgba(42,90,138,0.05); }
+  footer p { font-size: 0.72rem; color: var(--text-subtle); }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.22em; color: var(--steel); font-weight: 800; text-transform: uppercase; }
 
   @media(max-width: 768px) {
-    header { padding-left: 20px; padding-right: 20px; }
+    header { padding: 16px 20px; }
+    .logo-main { font-size: 1.3rem; }
     .hero { padding: 36px 20px; }
-    .hero::before { display: none; }
-    .page-body { padding: 28px 20px; }
-    .shop-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .hero-watermark { display: none; }
+    .hero h1 { font-size: 2.2rem; }
+    .page-body { padding: 28px 20px 48px; }
+    .shop-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
     footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
     .sidebar-basket { width: 100%; right: -100%; }
-    .checkout-form { padding: 20px; }
+    .checkout-form, .product-detail { padding: 24px 20px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-block">
-    <span class="logo-main" onclick="window.location.href='index.html'" style="cursor:pointer;">Novigen</span>
+  <div class="logo-block" onclick="window.location.href='index.html'">
+    <span class="logo-main">Novigen</span>
     <span class="logo-sub">Peptides</span>
   </div>
   <div class="header-right">
+    <a href="guides.html" class="back-btn">← Guides</a>
     <span class="header-tag">Shop</span>
-    <button class="back-btn" onclick="window.location.href='guides.html'">← Back to Guides</button>
     <button class="basket-btn" onclick="toggleBasket()">
       🛒 Basket
       <span class="basket-count" id="basket-count" style="display:none;">0</span>
@@ -144,12 +238,18 @@
 </header>
 
 <div class="hero">
-  <div class="hero-eyebrow">Browse Our Products</div>
-  <h1>Novigen Peptides<br>Complete Product Range</h1>
-  <p>Select your products, add to basket, and checkout securely via WhatsApp. We deliver premium research peptides directly to your door.</p>
+  <div class="hero-watermark">SHOP</div>
+  <div class="hero-hex"></div>
+  <div class="hero-ray"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Browse Products</div>
+    <h1>Complete Product Range</h1>
+    <p>Select your products, add to basket, and checkout securely via WhatsApp. We deliver premium research peptides directly to your door.</p>
+  </div>
 </div>
 
 <div class="page-body">
+  <div class="section-label">All Products</div>
   <div class="shop-grid" id="shop-grid"></div>
 </div>
 
@@ -176,27 +276,27 @@
     <h2>Complete Your Order</h2>
     <div class="form-group">
       <label>Full Name</label>
-      <input type="text" id="customer-name" required>
+      <input type="text" id="customer-name" required placeholder="Your full name">
     </div>
     <div class="form-group">
       <label>Email Address</label>
-      <input type="email" id="customer-email" required>
+      <input type="email" id="customer-email" required placeholder="your@email.com">
     </div>
     <div class="form-group">
       <label>Phone Number</label>
-      <input type="tel" id="customer-phone" required>
+      <input type="tel" id="customer-phone" required placeholder="+44 7700 000000">
     </div>
-    <div class="form-divider"></div>
+    <hr class="form-divider">
     <div class="order-summary">
       <h3>Order Summary</h3>
       <div id="checkout-summary"></div>
     </div>
     <div class="form-group">
       <label>Special Instructions (Optional)</label>
-      <input type="text" id="customer-notes" placeholder="Special instructions (optional)">
+      <input type="text" id="customer-notes" placeholder="Any special instructions...">
     </div>
     <div class="form-buttons">
-      <button type="submit" class="btn-submit">Send to WhatsApp</button>
+      <button type="submit" class="btn-submit">📱 Send to WhatsApp</button>
       <button type="button" class="btn-cancel" onclick="closeCheckout()">Cancel</button>
     </div>
   </form>
@@ -209,15 +309,15 @@
 
 <script>
   const products = [
-    { id: 1, name: 'Retatrutide® 20mg', emoji: '💉', price: 115, dose: '20mg pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.' },
-    { id: 2, name: 'Retatrutide® 40mg', emoji: '💉', price: 150, dose: '40mg pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.' },
-    { id: 3, name: 'Glow 70mg', emoji: '✨', price: 80, dose: '70mg pen (GHK-Cu, TB-500, BPC-157)', description: 'Peptide blend containing GHK-Cu, TB-500, and BPC-157. Research chemical for scientific study only.' },
-    { id: 4, name: 'Tirzepatide® 15mg', emoji: '💊', price: 100, dose: '15mg pen', description: 'A dual GLP-1/GIP receptor agonist. Research chemical for scientific study only.' },
-    { id: 5, name: 'Tirzepatide® 30mg', emoji: '💊', price: 120, dose: '30mg pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.' },
-    { id: 6, name: 'Tirzepatide® 60mg', emoji: '💊', price: 160, dose: '60mg pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.' },
-    { id: 7, name: 'HGH 120IU Pen', emoji: '⚡', price: 120, dose: '120IU pre-filled pen', description: 'Human Growth Hormone (HGH) in pre-filled pen format. Research chemical for scientific study only.' },
-    { id: 8, name: 'HGH 240IU Kit', emoji: '⚡', price: 200, dose: '10 × 24IU vials', description: 'Human Growth Hormone (HGH) in multiple vials. Research chemical for scientific study only.' },
-    { id: 9, name: 'HGH 360IU Kit', emoji: '⚡', price: 260, dose: '10 × 36IU vials', description: 'Human Growth Hormone (HGH) at highest dosage per vial. Research chemical for scientific study only.' },
+    { id: 1, name: 'Retatrutide® 20mg', cat: 'ret', emoji: '💉', price: 115, dose: '20mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.', research: true },
+    { id: 2, name: 'Retatrutide® 40mg', cat: 'ret', emoji: '💉', price: 150, dose: '40mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.', research: true },
+    { id: 3, name: 'Glow 70mg', cat: 'glow', emoji: '✨', price: 80, dose: '70mg pen — GHK-Cu, TB-500, BPC-157', description: 'Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.', research: true },
+    { id: 4, name: 'Tirzepatide® 15mg', cat: 'tir', emoji: '💊', price: 100, dose: '15mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist. Research chemical for scientific study only.', research: false },
+    { id: 5, name: 'Tirzepatide® 30mg', cat: 'tir', emoji: '💊', price: 120, dose: '30mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.', research: false },
+    { id: 6, name: 'Tirzepatide® 60mg', cat: 'tir', emoji: '💊', price: 160, dose: '60mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.', research: false },
+    { id: 7, name: 'HGH 120IU Pen', cat: 'hgh', emoji: '⚡', price: 120, dose: '120IU pre-filled pen', description: 'Recombinant Human Growth Hormone in pre-filled pen format. Research chemical for scientific study only.', research: false },
+    { id: 8, name: 'HGH 240IU Kit', cat: 'hgh', emoji: '⚡', price: 200, dose: '10 × 24IU lyophilised vials', description: 'Recombinant Human Growth Hormone in multi-vial kit. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
+    { id: 9, name: 'HGH 360IU Kit', cat: 'hgh', emoji: '⚡', price: 260, dose: '10 × 36IU lyophilised vials', description: 'Recombinant Human Growth Hormone at highest dosage per vial. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
   ];
 
   let basket = [];
@@ -226,119 +326,68 @@
   function initShop() {
     const grid = document.getElementById('shop-grid');
     if (!grid) return;
-    
-    grid.innerHTML = products.map(product => `
-      <div class="product-card" onclick="openProductDetail(${product.id})">
-        <div class="product-image">${product.emoji}</div>
+    grid.innerHTML = products.map(p => `
+      <div class="product-card" onclick="openProductDetail(${p.id})">
+        <div class="product-image ${p.cat}">${p.emoji}</div>
         <div class="product-info">
-          <div class="product-name">${product.name}</div>
-          <div class="product-desc">Authentic research peptide</div>
-          <div class="product-dose">${product.dose}</div>
-          <div class="product-price">£${product.price.toFixed(2)}</div>
-          <button class="add-btn" onclick="event.stopPropagation(); addToBasket(${product.id})">Add to Basket</button>
+          <div class="product-name">${p.name}</div>
+          <div class="product-dose">${p.dose}</div>
+          <div class="product-price">£${p.price.toFixed(2)}</div>
+          <button class="add-btn" onclick="event.stopPropagation(); addToBasket(${p.id})">Add to Basket</button>
         </div>
       </div>
     `).join('');
   }
 
   function openProductDetail(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    const modal = document.getElementById('product-modal');
-    const content = document.getElementById('product-detail-content');
-    
-    let disclaimer = '';
-    if (product.id === 1 || product.id === 2) {
-      disclaimer = '<div class="product-detail-disclaimer"><p><strong>⚠️ Research Chemical Notice:</strong> This is a research chemical for laboratory use only. Not for human consumption.</p></div>';
-    } else if (product.id === 3) {
-      disclaimer = '<div class="product-detail-disclaimer"><p><strong>⚠️ Research Chemical Notice:</strong> This is a research peptide blend for laboratory use only. Not for human consumption.</p></div>';
-    }
-
-    content.innerHTML = `
-      <h2>${product.name}</h2>
-      <div class="product-detail-price">£${product.price.toFixed(2)}</div>
-      
-      <div class="product-detail-section">
-        <h3>Product Type</h3>
-        <p>${product.description}</p>
-      </div>
-
-      <div class="product-detail-section">
-        <h3>Specifications</h3>
-        <p>${product.dose}</p>
-      </div>
-
+    const p = products.find(x => x.id === productId);
+    if (!p) return;
+    const disclaimer = p.research ? `<div class="product-detail-disclaimer"><p><strong>🔬 Research Chemical Notice:</strong> This is a research chemical for laboratory use only. Not for human consumption.</p></div>` : '';
+    document.getElementById('product-detail-content').innerHTML = `
+      <h2>${p.name}</h2>
+      <div class="product-detail-price">£${p.price.toFixed(2)}</div>
+      <div class="product-detail-section"><h3>Description</h3><p>${p.description}</p></div>
+      <div class="product-detail-section"><h3>Specifications</h3><p>${p.dose}</p></div>
       ${disclaimer}
-
-      <div class="product-detail-section">
-        <h3>Storage</h3>
-        <p>Store in a cool, dry place. Keep away from direct sunlight and moisture.</p>
-      </div>
-
+      <div class="product-detail-section"><h3>Storage</h3><p>Store refrigerated at 2–8°C. Protect from light. Keep out of reach of children.</p></div>
       <div class="product-modal-buttons">
-        <button class="btn-add-modal" onclick="addToBasket(${product.id}); closeProductDetail()">Add to Basket</button>
+        <button class="btn-add-modal" onclick="addToBasket(${p.id}); closeProductDetail()">Add to Basket</button>
         <button class="btn-close-modal" onclick="closeProductDetail()">Close</button>
-      </div>
-    `;
-
-    modal.classList.add('open');
+      </div>`;
+    document.getElementById('product-modal').classList.add('open');
   }
 
-  function closeProductDetail() {
-    const modal = document.getElementById('product-modal');
-    modal.classList.remove('open');
-  }
+  function closeProductDetail() { document.getElementById('product-modal').classList.remove('open'); }
 
   function addToBasket(productId) {
-    const product = products.find(p => p.id === productId);
+    const p = products.find(x => x.id === productId);
     const existing = basket.find(i => i.id === productId);
-    
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      basket.push({ ...product, quantity: 1 });
-    }
-    
+    if (existing) { existing.quantity += 1; } else { basket.push({ ...p, quantity: 1 }); }
     updateBasketUI();
   }
 
-  function removeFromBasket(productId) {
-    basket = basket.filter(i => i.id !== productId);
-    updateBasketUI();
-  }
+  function removeFromBasket(productId) { basket = basket.filter(i => i.id !== productId); updateBasketUI(); }
 
   function updateQuantity(productId, change) {
     const item = basket.find(i => i.id === productId);
-    if (item) {
-      item.quantity += change;
-      if (item.quantity <= 0) {
-        removeFromBasket(productId);
-      } else {
-        updateBasketUI();
-      }
-    }
+    if (item) { item.quantity += change; if (item.quantity <= 0) removeFromBasket(productId); else updateBasketUI(); }
   }
 
   function updateBasketUI() {
-    const itemsContainer = document.getElementById('basket-items');
-    const countBadge = document.getElementById('basket-count');
-    const totalSection = document.getElementById('basket-total');
-    
-    if (!itemsContainer || !countBadge || !totalSection) return;
+    const items = document.getElementById('basket-items');
+    const count = document.getElementById('basket-count');
+    const total = document.getElementById('basket-total');
+    if (!items) return;
 
     if (basket.length === 0) {
-      itemsContainer.innerHTML = '<div class="basket-empty">Your basket is empty</div>';
-      countBadge.style.display = 'none';
-      totalSection.style.display = 'none';
-      return;
+      items.innerHTML = '<div class="basket-empty">Your basket is empty</div>';
+      count.style.display = 'none'; total.style.display = 'none'; return;
     }
 
-    countBadge.textContent = basket.reduce((sum, item) => sum + item.quantity, 0);
-    countBadge.style.display = 'flex';
-    totalSection.style.display = 'block';
+    count.textContent = basket.reduce((s, i) => s + i.quantity, 0);
+    count.style.display = 'flex'; total.style.display = 'block';
 
-    itemsContainer.innerHTML = basket.map(item => `
+    items.innerHTML = basket.map(item => `
       <div class="basket-item">
         <div class="basket-item-name">
           <h4>${item.name}</h4>
@@ -346,112 +395,54 @@
         </div>
         <div class="basket-item-qty">
           <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
-          <span style="min-width: 30px; text-align: center;">${item.quantity}</span>
+          <span style="min-width:28px;text-align:center;font-weight:600;">${item.quantity}</span>
           <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
           <button class="remove-btn" onclick="removeFromBasket(${item.id})">Remove</button>
         </div>
-      </div>
-    `).join('');
+      </div>`).join('');
 
-    const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
     const delivery = 6.00;
-    const total = subtotal + delivery;
-    
-    totalSection.innerHTML = `
-      <div class="total-row">
-        <span class="total-label">Subtotal</span>
-        <span class="total-value">£${subtotal.toFixed(2)}</span>
-      </div>
-      <div class="total-row" style="border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 8px;">
-        <span class="total-label">Delivery</span>
-        <span style="font-weight: 600; color: var(--text);">£6.00</span>
-      </div>
-      <div class="total-row">
-        <span class="total-label">Total</span>
-        <span class="total-value" style="color: var(--steel);">£${total.toFixed(2)}</span>
-      </div>
-      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
-    `;
+    const orderTotal = subtotal + delivery;
+    total.innerHTML = `
+      <div class="total-row"><span class="total-label">Subtotal</span><span style="font-weight:700;color:var(--text);">£${subtotal.toFixed(2)}</span></div>
+      <div class="total-row"><span class="total-label">Delivery</span><span style="font-weight:600;color:var(--text-muted);">£6.00</span></div>
+      <div class="total-row"><span class="total-label">Total</span><span class="total-value">£${orderTotal.toFixed(2)}</span></div>
+      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>`;
   }
 
-  function toggleBasket() {
-    const sidebar = document.getElementById('sidebar-basket');
-    sidebar.classList.toggle('open');
-  }
+  function toggleBasket() { document.getElementById('sidebar-basket').classList.toggle('open'); }
 
   function openCheckout() {
-    if (basket.length === 0) {
-      alert('Your basket is empty');
-      return;
-    }
-    
-    const modal = document.getElementById('checkout-modal');
-    const summary = document.getElementById('checkout-summary');
-    const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const delivery = 6.00;
-    const total = subtotal + delivery;
-
-    summary.innerHTML = basket.map(item => `
-      <div class="order-summary-item">
-        <span>${item.name} × ${item.quantity}</span>
-        <span>£${(item.price * item.quantity).toFixed(2)}</span>
-      </div>
-    `).join('') + `
-      <div class="order-summary-item">
-        <span>Delivery</span>
-        <span>£6.00</span>
-      </div>
-      <div class="order-summary-total">
-        <span>Total: £${total.toFixed(2)}</span>
-      </div>
-    `;
-
-    modal.classList.add('open');
+    if (basket.length === 0) { alert('Your basket is empty'); return; }
+    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const orderTotal = subtotal + 6;
+    document.getElementById('checkout-summary').innerHTML = basket.map(i =>
+      `<div class="order-summary-item"><span>${i.name} × ${i.quantity}</span><span>£${(i.price * i.quantity).toFixed(2)}</span></div>`
+    ).join('') + `
+      <div class="order-summary-item"><span>Delivery</span><span>£6.00</span></div>
+      <div class="order-summary-total">Total: £${orderTotal.toFixed(2)}</div>`;
+    document.getElementById('checkout-modal').classList.add('open');
   }
 
-  function closeCheckout() {
-    const modal = document.getElementById('checkout-modal');
-    modal.classList.remove('open');
-  }
+  function closeCheckout() { document.getElementById('checkout-modal').classList.remove('open'); }
 
   function submitOrder(event) {
     event.preventDefault();
-
-    const name = document.getElementById('customer-name').value;
+    const name  = document.getElementById('customer-name').value;
     const email = document.getElementById('customer-email').value;
     const phone = document.getElementById('customer-phone').value;
     const notes = document.getElementById('customer-notes').value;
+    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const orderTotal = subtotal + 6;
 
-    let message = `*Novigen Peptides Order*\n\n`;
-    message += `*Customer Details*\n`;
-    message += `Name: ${name}\n`;
-    message += `Email: ${email}\n`;
-    message += `Phone: ${phone}\n\n`;
-    
-    message += `*Order Items*\n`;
-    basket.forEach(item => {
-      message += `• ${item.name} × ${item.quantity} = £${(item.price * item.quantity).toFixed(2)}\n`;
-    });
+    let msg = `*Novigen Peptides Order*\n\n*Customer*\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n*Items*\n`;
+    basket.forEach(i => { msg += `• ${i.name} × ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}\n`; });
+    msg += `\n*Subtotal:* £${subtotal.toFixed(2)}\n*Delivery:* £6.00\n*Total:* £${orderTotal.toFixed(2)}`;
+    if (notes) msg += `\n\n*Notes:* ${notes}`;
 
-    const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const delivery = 6.00;
-    const total = subtotal + delivery;
-    message += `\n*Subtotal: £${subtotal.toFixed(2)}*\n`;
-    message += `*Delivery: £6.00*\n`;
-    message += `*Total: £${total.toFixed(2)}*\n\n`;
-
-    if (notes) {
-      message += `*Special Notes*\n${notes}\n`;
-    }
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    window.open(whatsappUrl, '_blank');
-    
-    basket = [];
-    updateBasketUI();
-    closeCheckout();
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    basket = []; updateBasketUI(); closeCheckout();
     document.getElementById('checkout-form').reset();
     alert('Opening WhatsApp with your order details. Please review and send!');
   }

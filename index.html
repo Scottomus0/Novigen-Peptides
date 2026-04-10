@@ -4,81 +4,272 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Novigen Peptides – Premium Research Peptides</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700;800&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --steel: #3a6186;
-    --steel-light: #5b84a8;
-    --steel-dark: #2a4a63;
-    --glow: #7a5c8a;
-    --glow-dark: #5a3a6a;
-    --bg: #f0f3f7;
+    --steel: #2a5a8a;
+    --steel-light: #4a8abf;
+    --steel-dark: #1a3a5a;
+    --glow: #6a4a8a;
+    --glow-light: #9a6abf;
+    --glow-dark: #4a2a6a;
+    --bg: #eef5ff;
     --bg-card: #ffffff;
-    --text: #1a2a38;
-    --text-muted: #5a7080;
-    --rule: #c8d8e8;
+    --text: #0d1f38;
+    --text-muted: #3a5068;
+    --text-subtle: #6a8090;
+    --rule: #c8daf0;
+    --rule-light: #dce8f8;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 300; }
+  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-  header { background: #fff; border-bottom: 1px solid var(--rule); padding: 24px 48px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(58,97,134,0.07); }
-  .logo-block { display: flex; flex-direction: column; line-height: 1; align-items: center; }
-  .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: 0.12em; color: var(--steel); text-transform: uppercase; }
-  .logo-sub { font-size: 0.62rem; letter-spacing: 0.45em; color: var(--steel-light); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
 
-  .hero { padding: 80px 48px; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
-  .hero::before { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 20rem; font-weight: 700; letter-spacing: 0.1em; line-height: 1; pointer-events: none; white-space: nowrap; color: rgba(58,97,134,0.04); content: 'NOVIGEN'; z-index: 0; }
+  /* ── Header ── */
+  header {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 24px rgba(42,90,138,0.09);
+  }
+  .logo-block { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+  .logo-main { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.8rem; letter-spacing: 0.18em; color: var(--steel); text-transform: uppercase; }
+  .logo-sub  { font-size: 0.6rem; letter-spacing: 0.45em; color: var(--text-subtle); text-transform: uppercase; margin-top: 4px; font-weight: 400; }
 
-  .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 3.2rem; line-height: 1.2; margin-bottom: 24px; letter-spacing: -0.02em; color: var(--steel-dark); }
-  .hero p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 48px; }
+  /* ── Hero ── */
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 48px 60px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(140deg, #ddeeff 0%, #c8e0f8 35%, #ddeeff 65%, #f0f8ff 100%);
+  }
 
-  .button-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; max-width: 900px; margin: 0 auto; padding: 60px 48px; }
+  /* Hex pattern */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.8'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='39' r='3'/%3E%3Ccircle cx='45' cy='4' r='2'/%3E%3Ccircle cx='80' cy='22' r='2'/%3E%3Ccircle cx='80' cy='56' r='2'/%3E%3Ccircle cx='45' cy='74' r='2'/%3E%3Ccircle cx='10' cy='56' r='2'/%3E%3Ccircle cx='10' cy='22' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 90px 78px;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
+    animation: hexBreathe 10s ease-in-out infinite;
+  }
 
-  .button-card { background: white; border: 2px solid transparent; border-radius: 8px; padding: 48px 32px; text-align: center; cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(58,97,134,0.08); }
-  
-  .button-card:hover { transform: translateY(-8px); box-shadow: 0 12px 32px rgba(58,97,134,0.16); }
+  /* Light ray */
+  .hero-ray {
+    position: absolute;
+    top: -100%; right: 15%;
+    width: 180px; height: 300%;
+    transform: rotate(-18deg);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: raySlide 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
 
-  .button-card.guides { border-color: var(--steel); }
-  .button-card.guides:hover { background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
+  @keyframes hexBreathe { 0%,100%{opacity:0.12} 50%{opacity:0.07} }
+  @keyframes raySlide { 0%{opacity:0;transform:rotate(-18deg) translateX(-80px)} 30%{opacity:0.8} 70%{opacity:0.8} 100%{opacity:0;transform:rotate(-18deg) translateX(80px)} }
 
-  .button-card.shop { border-color: var(--glow); }
-  .button-card.shop:hover { background: linear-gradient(135deg, #f0eaf5 0%, #e8ddf0 50%, #ede4f2 100%); }
+  /* Watermark */
+  .hero-watermark {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    background-image: linear-gradient(135deg, rgba(42,90,138,0.1) 0%, rgba(74,138,191,0.04) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: watermarkFloat 14s ease-in-out infinite;
+  }
+  @keyframes watermarkFloat { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(-50%,-53%)} }
 
-  .button-icon { font-size: 4rem; margin-bottom: 20px; }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    animation: heroEntrance 0.9s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  @keyframes heroEntrance { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-  .button-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 12px; }
+  .hero-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
 
-  .button-card.guides .button-title { color: var(--steel-dark); }
-  .button-card.shop .button-title { color: var(--glow-dark); }
+  .hero h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 4rem;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--steel-dark);
+    margin-bottom: 20px;
+  }
 
-  .button-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+  .hero h1 span {
+    display: block;
+    font-weight: 200;
+    font-size: 0.55em;
+    letter-spacing: 0.05em;
+    color: var(--text-subtle);
+    margin-top: 8px;
+  }
 
-  .button-cta { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 12px 28px; border-radius: 4px; border: none; cursor: pointer; transition: background 0.2s; font-weight: 600; display: inline-block; }
+  .hero p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 
-  .button-card.guides .button-cta { background: var(--steel); color: white; }
-  .button-card.guides .button-cta:hover { background: var(--steel-dark); }
+  /* ── Cards ── */
+  .card-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 48px 80px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
 
-  .button-card.shop .button-cta { background: var(--glow); color: white; }
-  .button-card.shop .button-cta:hover { background: var(--glow-dark); }
+  .nav-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 44px 36px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 20px rgba(42,90,138,0.07);
+    position: relative;
+    overflow: hidden;
+  }
 
-  footer { border-top: 1px solid var(--rule); padding: 32px 48px; background: white; text-align: center; }
-  footer p { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 8px; }
-  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 0.25em; color: var(--steel); font-weight: 700; text-transform: uppercase; }
+  .nav-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+    transition: opacity 0.2s;
+  }
+
+  .nav-card.guides::before { background: linear-gradient(90deg, var(--steel), var(--steel-light), transparent); }
+  .nav-card.shop::before   { background: linear-gradient(90deg, var(--glow), var(--glow-light), transparent); }
+
+  .nav-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(42,90,138,0.14);
+  }
+
+  .nav-card-icon {
+    width: 72px; height: 72px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin-bottom: 4px;
+  }
+
+  .nav-card.guides .nav-card-icon { background: rgba(42,90,138,0.08); }
+  .nav-card.shop   .nav-card-icon { background: rgba(106,74,138,0.08); }
+
+  .nav-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-card.guides .nav-card-title { color: var(--steel-dark); }
+  .nav-card.shop   .nav-card-title { color: var(--glow-dark); }
+
+  .nav-card-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .nav-card-btn {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-top: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .nav-card:hover .nav-card-btn { box-shadow: 0 6px 18px rgba(0,0,0,0.18); transform: translateY(-1px); }
+  .nav-card.guides .nav-card-btn { background: linear-gradient(135deg, var(--steel), var(--steel-light)); }
+  .nav-card.shop   .nav-card-btn { background: linear-gradient(135deg, var(--glow), var(--glow-light)); }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+  }
+  footer p { font-size: 0.72rem; color: var(--text-subtle); }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.22em; color: var(--steel); font-weight: 800; text-transform: uppercase; }
 
   @media(max-width: 768px) {
-    header { padding: 20px; }
-    .logo-main { font-size: 1.6rem; }
-    .hero { padding: 60px 24px; }
-    .hero::before { font-size: 12rem; }
-    .hero h1 { font-size: 2.2rem; }
-    .hero p { font-size: 1rem; }
-    .button-grid { padding: 40px 24px; gap: 24px; }
-    .button-card { padding: 40px 24px; }
-    .button-icon { font-size: 3rem; }
-    .button-title { font-size: 1.4rem; }
-    footer { padding: 24px; }
+    header { padding: 16px 20px; }
+    .logo-main { font-size: 1.4rem; }
+    .hero { padding: 60px 24px 48px; min-height: auto; }
+    .hero h1 { font-size: 2.6rem; }
+    .hero-watermark { font-size: 8rem; }
+    .card-grid { grid-template-columns: 1fr; padding: 32px 20px 48px; gap: 20px; }
+    .nav-card { padding: 32px 24px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
   }
 </style>
 </head>
@@ -92,25 +283,30 @@
 </header>
 
 <div class="hero">
+  <div class="hero-watermark">NOVIGEN</div>
+  <div class="hero-ray"></div>
   <div class="hero-content">
-    <h1>Premium Research Peptides</h1>
-    <p>High-quality peptide products with comprehensive usage guides and secure shopping</p>
+    <div class="hero-eyebrow">Welcome</div>
+    <h1>Novigen Peptides
+      <span>Premium Research Compounds</span>
+    </h1>
+    <p>High-quality research peptides with comprehensive usage guides and secure ordering</p>
   </div>
 </div>
 
-<div class="button-grid">
-  <a href="guides.html" class="button-card guides">
-    <div class="button-icon">📖</div>
-    <div class="button-title">Usage Guides</div>
-    <div class="button-desc">Complete product documentation, dosage protocols, injection techniques, and safety information</div>
-    <button class="button-cta">View Guides</button>
+<div class="card-grid">
+  <a href="guides.html" class="nav-card guides">
+    <div class="nav-card-icon">📖</div>
+    <div class="nav-card-title">Usage Guides</div>
+    <div class="nav-card-desc">Complete product documentation, dosage protocols, injection techniques, and safety information for all products</div>
+    <button class="nav-card-btn">View Guides</button>
   </a>
 
-  <a href="shop.html" class="button-card shop">
-    <div class="button-icon">🛒</div>
-    <div class="button-title">Shop Products</div>
-    <div class="button-desc">Browse our complete range of premium peptides with secure WhatsApp checkout</div>
-    <button class="button-cta">Browse Shop</button>
+  <a href="shop.html" class="nav-card shop">
+    <div class="nav-card-icon">🛒</div>
+    <div class="nav-card-title">Shop Products</div>
+    <div class="nav-card-desc">Browse our complete range of premium research peptides with secure WhatsApp checkout</div>
+    <button class="nav-card-btn">Browse Shop</button>
   </a>
 </div>
 

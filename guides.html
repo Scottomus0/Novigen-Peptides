@@ -4,73 +4,229 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Novigen Peptides – Usage Guides</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700;800&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --steel: #3a6186;
-    --steel-light: #5b84a8;
-    --steel-dark: #2a4a63;
-    --bg: #f0f3f7;
+    --steel: #2a5a8a;
+    --steel-light: #4a8abf;
+    --steel-dark: #1a3a5a;
+    --glow: #6a4a8a;
+    --glow-light: #9a6abf;
+    --glow-dark: #4a2a6a;
+    --tir: #1a7a7a;
+    --tir-light: #3aabab;
+    --hgh: #2a7a5a;
+    --hgh-light: #4aab7a;
+    --bg: #eef5ff;
     --bg-card: #ffffff;
-    --text: #1a2a38;
-    --text-muted: #5a7080;
-    --rule: #c8d8e8;
+    --bg-elevated: #e4effc;
+    --text: #0d1f38;
+    --text-muted: #3a5068;
+    --text-subtle: #6a8090;
+    --rule: #c8daf0;
+    --rule-light: #dce8f8;
   }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 300; }
+  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-  header { background: #fff; border-bottom: 1px solid var(--rule); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(58,97,134,0.07); }
-  .logo-block { display: flex; flex-direction: column; line-height: 1; cursor: pointer; transition: opacity 0.2s; text-align: center; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+
+  /* ── Header ── */
+  header {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 24px rgba(42,90,138,0.09);
+  }
+  .logo-block { display: flex; flex-direction: column; line-height: 1; cursor: pointer; transition: opacity 0.2s; }
   .logo-block:hover { opacity: 0.8; }
-  .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 3rem; letter-spacing: 0.12em; color: var(--steel); text-transform: uppercase; }
-  .logo-sub { font-size: 0.75rem; letter-spacing: 0.45em; color: var(--steel-light); text-transform: uppercase; margin-top: 6px; font-weight: 400; }
-  .header-right { display: flex; align-items: center; gap: 16px; }
-  .header-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 2px; }
-  .shop-btn { background: var(--steel); color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; text-decoration: none; }
-  .shop-btn:hover { background: var(--steel-dark); }
+  .logo-main { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 0.18em; color: var(--steel); text-transform: uppercase; }
+  .logo-sub  { font-size: 0.6rem; letter-spacing: 0.45em; color: var(--text-subtle); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-tag { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-subtle); border: 1px solid var(--rule); padding: 5px 14px; border-radius: 20px; background: white; font-weight: 600; }
+  .shop-btn { color: white; border: none; padding: 9px 18px; border-radius: 20px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; text-decoration: none; display: inline-block; background: linear-gradient(135deg, var(--steel), var(--steel-light)); box-shadow: 0 4px 12px rgba(42,90,138,0.2); transition: box-shadow 0.2s, transform 0.2s; }
+  .shop-btn:hover { box-shadow: 0 6px 18px rgba(42,90,138,0.3); transform: translateY(-1px); }
 
-  .hero { border-bottom: 1px solid var(--rule); padding: 56px 48px 48px; background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 50%, #e4eaf2 100%); }
-  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 2.4rem; line-height: 1.15; margin-bottom: 16px; color: var(--steel-dark); }
-  .hero p { font-size: 0.92rem; color: var(--text-muted); max-width: 600px; line-height: 1.75; }
+  /* ── Hero ── */
+  .hero {
+    border-bottom: 1px solid var(--rule);
+    padding: 64px 48px 52px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(140deg, #ddeeff 0%, #c8e0f8 35%, #ddeeff 65%, #f0f8ff 100%);
+  }
 
-  .page-body { max-width: 1000px; margin: 0 auto; padding: 48px; }
+  .hero-watermark {
+    position: absolute;
+    right: -20px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12rem; font-weight: 800;
+    letter-spacing: 0.05em; line-height: 1;
+    pointer-events: none; white-space: nowrap; z-index: 0;
+    background-image: linear-gradient(135deg, rgba(42,90,138,0.12) 0%, rgba(74,138,191,0.04) 100%);
+    background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    animation: watermarkFloat 12s ease-in-out infinite;
+  }
+  @keyframes watermarkFloat { 0%,100%{transform:translateY(-50%) translateX(0)} 50%{transform:translateY(-52%) translateX(-8px)} }
 
-  .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-bottom: 48px; }
-  .product-card { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; transition: all 0.2s; cursor: pointer; }
-  .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(58,97,134,0.15); border-color: var(--steel); }
-  .product-card-header { background: linear-gradient(135deg, #e8eef5 0%, #dce6f0 100%); padding: 32px 24px; text-align: center; font-size: 3.5rem; }
-  .product-card-body { padding: 28px 24px; }
-  .product-name { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
-  .product-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
-  .product-btn { width: 100%; background: var(--steel); color: white; border: none; padding: 12px; border-radius: 2px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; text-decoration: none; display: inline-block; }
-  .product-btn:hover { background: var(--steel-dark); }
+  .hero-hex {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.7'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 90px 78px;
+    opacity: 0.1;
+    mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+    animation: hexBreathe 9s ease-in-out infinite;
+  }
+  @keyframes hexBreathe { 0%,100%{opacity:0.1} 50%{opacity:0.06} }
 
-  .qr-section { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 4px; padding: 40px; text-align: center; margin-top: 48px; }
-  .qr-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 8px; color: var(--text); }
-  .qr-section p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 28px; }
-  #qrcode { display: inline-block; margin: 0 auto; }
-  .qr-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 16px; font-style: italic; max-width: 300px; margin-left: auto; margin-right: auto; }
+  .hero-ray {
+    position: absolute; top: -100%; right: 12%;
+    width: 180px; height: 300%;
+    transform: rotate(-18deg);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    animation: raySlide 7s ease-in-out infinite;
+    pointer-events: none; z-index: 1;
+  }
+  @keyframes raySlide { 0%{opacity:0;transform:rotate(-18deg) translateX(-60px)} 30%{opacity:0.8} 70%{opacity:0.8} 100%{opacity:0;transform:rotate(-18deg) translateX(60px)} }
 
-  footer { border-top: 1px solid var(--rule); padding: 22px 48px; text-align: center; background: #fff; }
-  footer p { font-size: 0.74rem; color: var(--text-muted); }
+  .hero-content { position: relative; z-index: 2; animation: heroEntrance 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+  @keyframes heroEntrance { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+  .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; font-weight: 600; }
+  .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--steel); }
+
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 3rem; line-height: 1.0; letter-spacing: -0.03em; color: var(--steel-dark); margin-bottom: 16px; max-width: 560px; }
+  .hero p { font-size: 0.9rem; color: var(--text-muted); max-width: 500px; line-height: 1.8; font-weight: 300; }
+
+  /* ── Product Grid ── */
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 52px 48px 64px; }
+
+  .section-label {
+    font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--text-subtle); margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px; font-weight: 700;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px; margin-bottom: 56px; }
+
+  .product-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 16px rgba(42,90,138,0.07);
+    position: relative;
+    animation: cardIn 0.5s ease both;
+  }
+
+  .product-card:nth-child(1){animation-delay:0.05s}
+  .product-card:nth-child(2){animation-delay:0.10s}
+  .product-card:nth-child(3){animation-delay:0.15s}
+  .product-card:nth-child(4){animation-delay:0.20s}
+  @keyframes cardIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+  }
+  .product-card[data-product="retatrutide"]::before { background: linear-gradient(90deg, var(--steel), var(--steel-light), transparent); }
+  .product-card[data-product="glow"]::before        { background: linear-gradient(90deg, var(--glow), var(--glow-light), transparent); }
+  .product-card[data-product="tirzepatide"]::before  { background: linear-gradient(90deg, var(--tir), var(--tir-light), transparent); }
+  .product-card[data-product="hgh"]::before          { background: linear-gradient(90deg, var(--hgh), var(--hgh-light), transparent); }
+
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(42,90,138,0.14); }
+
+  .product-card-header {
+    padding: 36px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card[data-product="retatrutide"] .product-card-header { background: linear-gradient(140deg, #ddeeff, #c8e0f8); }
+  .product-card[data-product="glow"]        .product-card-header { background: linear-gradient(140deg, #ecddf8, #ddc8f0); }
+  .product-card[data-product="tirzepatide"] .product-card-header { background: linear-gradient(140deg, #d8f2f2, #c2e8e8); }
+  .product-card[data-product="hgh"]         .product-card-header { background: linear-gradient(140deg, #d8f0e8, #c2e8d8); }
+
+  .product-card-body { padding: 22px 22px 26px; flex: 1; display: flex; flex-direction: column; }
+
+  .product-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text); letter-spacing: -0.01em; }
+  .product-tag  { display: inline-block; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+
+  .product-card[data-product="retatrutide"] .product-tag { color: var(--steel); background: rgba(42,90,138,0.08); border: 1px solid rgba(42,90,138,0.18); }
+  .product-card[data-product="glow"]        .product-tag { color: var(--glow);  background: rgba(106,74,138,0.08); border: 1px solid rgba(106,74,138,0.18); }
+  .product-card[data-product="tirzepatide"] .product-tag { color: var(--tir);   background: rgba(26,122,122,0.08); border: 1px solid rgba(26,122,122,0.18); }
+  .product-card[data-product="hgh"]         .product-tag { color: var(--hgh);   background: rgba(42,122,90,0.08);  border: 1px solid rgba(42,122,90,0.18); }
+
+  .product-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 20px; font-weight: 300; flex: 1; }
+
+  .product-btn {
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 11px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: box-shadow 0.2s, transform 0.15s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-decoration: none;
+    display: block;
+    text-align: center;
+  }
+  .product-btn:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.15); transform: translateY(-1px); }
+
+  .product-card[data-product="retatrutide"] .product-btn { background: linear-gradient(135deg, var(--steel), var(--steel-light)); }
+  .product-card[data-product="glow"]        .product-btn { background: linear-gradient(135deg, var(--glow), var(--glow-light)); }
+  .product-card[data-product="tirzepatide"] .product-btn { background: linear-gradient(135deg, var(--tir), var(--tir-light)); }
+  .product-card[data-product="hgh"]         .product-btn { background: linear-gradient(135deg, var(--hgh), var(--hgh-light)); }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--rule); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: white; box-shadow: 0 -2px 16px rgba(42,90,138,0.05); }
+  footer p { font-size: 0.72rem; color: var(--text-subtle); }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.22em; color: var(--steel); font-weight: 800; text-transform: uppercase; }
 
   @media(max-width: 768px) {
-    header { padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
-    .logo-block { flex: 1 1 100%; }
-    .logo-main { font-size: 2rem; }
-    .logo-sub { font-size: 0.65rem; }
-    .header-right { flex: 1 1 100%; gap: 8px; justify-content: flex-start; }
-    .header-tag { font-size: 0.6rem; padding: 4px 10px; }
-    .shop-btn { padding: 8px 12px; font-size: 0.65rem; }
-    .hero { padding: 36px 16px 28px; }
-    .hero h1 { font-size: 1.8rem; margin-bottom: 12px; }
-    .hero p { font-size: 0.85rem; }
-    .page-body { padding: 24px 16px; }
-    .product-grid { grid-template-columns: 1fr; gap: 20px; }
-    .qr-section { padding: 24px 16px; }
-    footer { padding: 16px; }
-    footer p { font-size: 0.7rem; }
+    header { padding: 16px 20px; }
+    .logo-main { font-size: 1.3rem; }
+    .hero { padding: 40px 20px; }
+    .hero-watermark { display: none; }
+    .hero h1 { font-size: 2.2rem; }
+    .page-body { padding: 32px 20px 48px; }
+    .product-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
+  }
+  @media(max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -88,77 +244,67 @@
 </header>
 
 <div class="hero">
-  <h1>Product Usage Guides</h1>
-  <p>Select a product below to access detailed usage instructions, dosage protocols, storage guidelines, and important safety information for our research peptides.</p>
+  <div class="hero-watermark">GUIDES</div>
+  <div class="hero-hex"></div>
+  <div class="hero-ray"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Product Documentation</div>
+    <h1>Usage Guides</h1>
+    <p>Select a product below for detailed usage instructions, dosage protocols, storage guidelines, and safety information.</p>
+  </div>
 </div>
 
 <div class="page-body">
+  <div class="section-label">Select a Product</div>
   <div class="product-grid">
-    <!-- Retatrutide Card -->
-    <div class="product-card">
+
+    <a href="guides-detailed.html#retatrutide" class="product-card" data-product="retatrutide">
       <div class="product-card-header">💉</div>
       <div class="product-card-body">
         <div class="product-name">Retatrutide®</div>
-        <div class="product-desc">Triple GLP-1/GIP/Glucagon receptor agonist. Complete usage protocols and administration guidelines.</div>
-        <a href="guides-detailed.html" class="product-btn">View Guide</a>
+        <div class="product-tag">Triple Agonist</div>
+        <div class="product-desc">GLP-1 / GIP / Glucagon receptor agonist. Complete usage protocols, dosage titration, and administration guidelines.</div>
+        <span class="product-btn">View Guide →</span>
       </div>
-    </div>
+    </a>
 
-    <!-- Glow Card -->
-    <div class="product-card">
+    <a href="guides-detailed.html#glow" class="product-card" data-product="glow">
       <div class="product-card-header">✨</div>
       <div class="product-card-body">
-        <div class="product-name">Glow</div>
-        <div class="product-desc">Premium peptide blend: GHK-Cu, TB-500, BPC-157. Comprehensive research protocols included.</div>
-        <a href="guides-detailed.html" class="product-btn">View Guide</a>
+        <div class="product-name">Glow 70mg</div>
+        <div class="product-tag">Peptide Blend</div>
+        <div class="product-desc">GHK-Cu 50mg · TB-500 10mg · BPC-157 10mg. Skin, collagen, tissue repair and anti-ageing protocols.</div>
+        <span class="product-btn">View Guide →</span>
       </div>
-    </div>
+    </a>
 
-    <!-- Tirzepatide Card -->
-    <div class="product-card">
+    <a href="guides-detailed.html#tirzepatide" class="product-card" data-product="tirzepatide">
       <div class="product-card-header">💊</div>
       <div class="product-card-body">
         <div class="product-name">Tirzepatide®</div>
-        <div class="product-desc">Dual GLP-1/GIP receptor agonist. Detailed dosage information and best practices.</div>
-        <a href="guides-detailed.html" class="product-btn">View Guide</a>
+        <div class="product-tag">Dual Agonist</div>
+        <div class="product-desc">GLP-1 / GIP receptor agonist. Detailed dose escalation, administration, and best practice guidance.</div>
+        <span class="product-btn">View Guide →</span>
       </div>
-    </div>
+    </a>
 
-    <!-- HGH Card -->
-    <div class="product-card">
+    <a href="guides-detailed.html#hgh" class="product-card" data-product="hgh">
       <div class="product-card-header">⚡</div>
       <div class="product-card-body">
         <div class="product-name">HGH</div>
-        <div class="product-desc">Human Growth Hormone. Reconstitution, administration, and storage protocols for all formats.</div>
-        <a href="guides-detailed.html" class="product-btn">View Guide</a>
+        <div class="product-tag">rHGH — E. coli</div>
+        <div class="product-desc">Recombinant Human Growth Hormone. Pen and vial kit formats — reconstitution, dosage tiers, and storage.</div>
+        <span class="product-btn">View Guide →</span>
       </div>
-    </div>
-  </div>
+    </a>
 
-  <div class="qr-section">
-    <h2>Quick Access</h2>
-    <p>Scan this QR code to access the usage guides on mobile devices</p>
-    <div id="qrcode"></div>
   </div>
 </div>
 
 <footer>
-  <p>© 2025 Novigen Peptides. All rights reserved. For laboratory research use only.</p>
+  <p>© 2025 Novigen Peptides. All rights reserved. For use under medical supervision only.</p>
+  <span class="footer-logo">Novigen Peptides</span>
 </footer>
 
-<script>
-  window.addEventListener('DOMContentLoaded', function() {
-    // Always link to guides.html - this QR code is permanent and should not change
-    const guidePageUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/') + '/guides.html';
-    new QRCode(document.getElementById('qrcode'), {
-      text: guidePageUrl,
-      width: 180,
-      height: 180,
-      colorDark: '#3a6186',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  });
-</script>
 </body>
 </html>
