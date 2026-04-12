@@ -27,18 +27,27 @@
     --warn-text: #7a5010;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body { font-family: 'Outfit', sans-serif; background: rgba(255,255,255,0.7); }
 
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
 
+
+  @keyframes holoShimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes holoRay {
+    0%   { transform: translateX(-100%) rotate(15deg); opacity:0; }
+    20%  { opacity: 0.5; }
+    80%  { opacity: 0.5; }
+    100% { transform: translateX(300%) rotate(15deg); opacity:0; }
+  }
   /* ── Header ── */
   header {
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--rule);
+    background: transparent;  
     padding: 18px 48px;
     display: flex;
     align-items: center;
@@ -46,9 +55,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 24px rgba(42,90,138,0.09);
+    
   }
-  .logo-block { display: flex; flex-direction: column; line-height: 1; cursor: pointer; transition: opacity 0.2s; }
+  .logo-block { display: flex; flex-direction: column; align-items: center; line-height: 1; cursor: pointer; transition: opacity 0.2s; }
   .logo-block:hover { opacity: 0.8; }
   .logo-main { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 0.18em; color: var(--steel); text-transform: uppercase; }
   .logo-sub  { font-size: 0.6rem; letter-spacing: 0.45em; color: var(--text-subtle); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
@@ -66,7 +75,7 @@
     padding: 60px 48px 52px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(140deg, #ddeeff 0%, #c8e0f8 35%, #ddeeff 65%, #f0f8ff 100%);
+    background: transparent;
   }
   .hero-watermark {
     position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
@@ -85,6 +94,18 @@
     -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
     animation: hexBreathe 9s ease-in-out infinite;
   }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.6'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 90px 78px;
+    opacity: 0.07;
+    animation: hexBreathe 9s ease-in-out infinite;
+  }
   @keyframes hexBreathe { 0%,100%{opacity:0.1} 50%{opacity:0.06} }
   .hero-ray { position: absolute; top: -100%; right: 12%; width: 180px; height: 300%; transform: rotate(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); animation: raySlide 7s ease-in-out infinite; pointer-events: none; z-index: 1; }
   @keyframes raySlide { 0%{opacity:0;transform:rotate(-18deg) translateX(-60px)} 30%{opacity:0.8} 70%{opacity:0.8} 100%{opacity:0;transform:rotate(-18deg) translateX(60px)} }
@@ -96,7 +117,7 @@
   .hero p { font-size: 0.9rem; color: var(--text-muted); max-width: 500px; line-height: 1.8; font-weight: 300; }
 
   /* ── Shop Grid ── */
-  .page-body { max-width: 1200px; margin: 0 auto; padding: 52px 48px 64px; }
+  .page-body { font-family: 'Outfit', sans-serif; background: rgba(255,255,255,0.7); }
   .section-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; font-weight: 700; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
@@ -140,7 +161,7 @@
   /* ── Basket Sidebar ── */
   .sidebar-basket { position: fixed; right: -420px; top: 0; width: 420px; height: 100vh; background: white; box-shadow: -4px 0 32px rgba(42,90,138,0.12); transition: right 0.3s cubic-bezier(0.16,1,0.3,1); z-index: 200; overflow-y: auto; border-left: 1px solid var(--rule); }
   .sidebar-basket.open { right: 0; }
-  .basket-header { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+  .basket-header { background: transparent;   color: white; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
   .basket-header h2 { font-family: 'Outfit', sans-serif; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
   .basket-close { background: rgba(255,255,255,0.2); border: none; color: white; cursor: pointer; font-size: 1.1rem; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
   .basket-close:hover { background: rgba(255,255,255,0.35); }
@@ -163,7 +184,7 @@
   .checkout-btn:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.3); }
 
   /* ── Product Modal ── */
-  .product-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .product-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; }
   .product-modal.open { display: flex; animation: modalIn 0.2s ease; }
   @keyframes modalIn { from{opacity:0} to{opacity:1} }
   .product-detail { background: white; border-radius: 12px; padding: 40px; max-width: 580px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -182,7 +203,7 @@
   .btn-close-modal:hover { background: var(--rule); }
 
   /* ── Checkout Modal ── */
-  .checkout-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .checkout-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; }
   .checkout-modal.open { display: flex; animation: modalIn 0.2s ease; }
   .checkout-form { background: white; border-radius: 12px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
   .checkout-form h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; color: var(--text); letter-spacing: -0.02em; }
@@ -212,7 +233,7 @@
     .hero { padding: 36px 20px; }
     .hero-watermark { display: none; }
     .hero h1 { font-size: 2.2rem; }
-    .page-body { padding: 28px 20px 48px; }
+    .page-body { font-family: 'Outfit', sans-serif; background: rgba(255,255,255,0.7); }
     .shop-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
     footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
     .sidebar-basket { width: 100%; right: -100%; }
@@ -223,13 +244,45 @@
 <body>
 
 <header>
-  <div class="logo-block" onclick="window.location.href='index.html'">
-    <span class="logo-main">Novigen</span>
-    <span class="logo-sub">Peptides</span>
+  <div style="position:relative;z-index:2;">
+    <svg width="160" height="58" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <defs>
+        <linearGradient id="hLG1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#1a3a5a"/>
+          <stop offset="25%"  stop-color="#2a6aaa"/>
+          <stop offset="45%"  stop-color="#5aaad8"/>
+          <stop offset="55%"  stop-color="#3a7abf"/>
+          <stop offset="75%"  stop-color="#2a5a9a"/>
+          <stop offset="100%" stop-color="#1a3a5a"/>
+        </linearGradient>
+        <linearGradient id="hLG2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#2a5a8a"/>
+          <stop offset="50%"  stop-color="#5aaad8"/>
+          <stop offset="100%" stop-color="#2a5a8a"/>
+        </linearGradient>
+        <clipPath id="hLC"><rect x="0" y="0" width="220" height="38"/></clipPath>
+      </defs>
+      <g clip-path="url(#hLC)">
+        <g transform="translate(96,28)">
+          <circle cx="0" cy="0" r="5" fill="url(#hLG1)"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#hLG1)" stroke-width="2"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#hLG1)" stroke-width="2" transform="rotate(60)"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#hLG1)" stroke-width="2" transform="rotate(-60)"/>
+          <circle cx="21"    cy="0"     r="3" fill="url(#hLG2)"/>
+          <circle cx="-10.5" cy="18.2"  r="3" fill="url(#hLG2)"/>
+          <circle cx="-10.5" cy="-18.2" r="3" fill="url(#hLG2)"/>
+        </g>
+      </g>
+      <text x="4"   y="58" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="48" fill="url(#hLG1)" letter-spacing="-3">nov</text>
+      <text x="88"  y="58" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="48" fill="url(#hLG1)" letter-spacing="-3">i</text>
+      <text x="100" y="58" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="48" fill="url(#hLG1)" letter-spacing="-3">gen</text>
+      <text x="105" y="77" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="url(#hLG2)" letter-spacing="18" text-anchor="middle">PEPTIDES</text>
+    </svg>
   </div>
   <div class="header-right">
     <a href="guides.html" class="back-btn">← Guides</a>
     <span class="header-tag">Shop</span>
+    <a href="verify.html" class="nav-link" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 16px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;">Verify</a>
     <button class="basket-btn" onclick="toggleBasket()">
       🛒 Basket
       <span class="basket-count" id="basket-count" style="display:none;">0</span>
@@ -287,6 +340,25 @@
       <input type="tel" id="customer-phone" required placeholder="+44 7700 000000">
     </div>
     <hr class="form-divider">
+    <div class="form-group">
+      <label>Delivery Address — Line 1</label>
+      <input type="text" id="customer-address1" required placeholder="House number and street name">
+    </div>
+    <div class="form-group">
+      <label>Address Line 2 (Optional)</label>
+      <input type="text" id="customer-address2" placeholder="Apartment, flat, suite, etc.">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="form-group">
+        <label>Town / City</label>
+        <input type="text" id="customer-city" required placeholder="City">
+      </div>
+      <div class="form-group">
+        <label>Postcode</label>
+        <input type="text" id="customer-postcode" required placeholder="SW1A 1AA">
+      </div>
+    </div>
+    <hr class="form-divider">
     <div class="order-summary">
       <h3>Order Summary</h3>
       <div id="checkout-summary"></div>
@@ -303,7 +375,7 @@
 </div>
 
 <footer>
-  <p>© 2025 Novigen Peptides. All rights reserved. For use under medical supervision only.</p>
+  <p>© 2025 Novigen Peptides. All rights reserved. For use under medical supervision only. &nbsp;|&nbsp; <a href="verify.html" style="color:var(--text-subtle);text-decoration:none;font-weight:600;">Verify Product</a></p>
   <span class="footer-logo">Novigen Peptides</span>
 </footer>
 
@@ -436,7 +508,13 @@
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
     const orderTotal = subtotal + 6;
 
-    let msg = `*Novigen Peptides Order*\n\n*Customer*\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n*Items*\n`;
+    const addr1    = document.getElementById('customer-address1').value;
+    const addr2    = document.getElementById('customer-address2').value;
+    const city     = document.getElementById('customer-city').value;
+    const postcode = document.getElementById('customer-postcode').value;
+    const address  = [addr1, addr2, city, postcode].filter(Boolean).join(', ');
+
+    let msg = `*Novigen Peptides Order*\n\n*Customer*\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\n\n*Items*\n`;
     basket.forEach(i => { msg += `• ${i.name} × ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}\n`; });
     msg += `\n*Subtotal:* £${subtotal.toFixed(2)}\n*Delivery:* £6.00\n*Total:* £${orderTotal.toFixed(2)}`;
     if (notes) msg += `\n\n*Notes:* ${notes}`;
