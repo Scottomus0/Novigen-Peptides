@@ -23,7 +23,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; background-attachment: fixed; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
@@ -107,7 +107,7 @@
   .section-eyebrow { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--steel); font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .section-eyebrow::before { content: ''; width: 28px; height: 2px; background: linear-gradient(90deg, var(--steel), var(--steel-light)); border-radius: 2px; }
   .section-heading { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 2.6rem; line-height: 1.05; letter-spacing: -0.03em; color: var(--steel-dark); margin-bottom: 20px; }
-  .section-body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; background-attachment: fixed; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+  .section-body { font-size: 0.92rem; color: var(--text-muted); line-height: 1.85; font-weight: 300; margin-bottom: 28px; }
 
   .peptide-list { display: flex; flex-direction: column; gap: 12px; }
   .peptide-item { display: flex; align-items: center; gap: 16px; background: white; border: 1px solid var(--rule); border-radius: 10px; padding: 13px 16px; box-shadow: 0 2px 10px rgba(42,90,138,0.05); transition: transform 0.2s, box-shadow 0.2s; }
@@ -204,9 +204,54 @@
     .process-grid{grid-template-columns:1fr}
     .hero-actions{flex-direction:column}
   }
+
+  /* ── Disclaimer Banner ── */
+  .disclaimer-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(10,20,40,0.85);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(6px);
+  }
+  .disclaimer-box {
+    background: white; border-radius: 16px; max-width: 540px; width: 100%;
+    padding: 40px 36px; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .disclaimer-icon { font-size: 2.4rem; margin-bottom: 16px; }
+  .disclaimer-box h2 { font-family: 'Outfit',sans-serif; font-weight: 800; font-size: 1.4rem; color: #1a3a5a; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .disclaimer-box p { font-size: 0.88rem; color: #3a5068; line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
+  .disclaimer-box p strong { color: #1a3a5a; font-weight: 700; }
+  .disclaimer-divider { border: none; border-top: 1px solid #c8daf0; margin: 20px 0; }
+  .disclaimer-confirm { width: 100%; background: linear-gradient(135deg,#2a5a8a,#4a8abf); color: white; border: none; padding: 14px 24px; border-radius: 10px; font-family: 'Outfit',sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; cursor: pointer; box-shadow: 0 4px 16px rgba(42,90,138,0.25); transition: box-shadow 0.2s, transform 0.2s; }
+  .disclaimer-confirm:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.35); transform: translateY(-1px); }
+  .disclaimer-decline { display: block; margin-top: 12px; font-size: 0.78rem; color: #6a8090; text-decoration: none; cursor: pointer; }
+  .disclaimer-decline:hover { color: #1a3a5a; }
 </style>
 </head>
 <body>
+<!-- ── Disclaimer Banner ── -->
+<div class="disclaimer-overlay" id="disclaimer-overlay">
+  <div class="disclaimer-box">
+    <div class="disclaimer-icon">⚗️</div>
+    <h2>Research Use Only</h2>
+    <p>The products on this website are <strong>for research purposes only</strong>. They are <strong>not intended for human consumption</strong>, not approved by the MHRA, FDA, or any regulatory authority, and have not been evaluated for safety or efficacy in humans.</p>
+    <p>By continuing, you confirm that you are a <strong>qualified researcher or medical professional</strong>, that you are over 18 years of age, and that you understand these products are strictly for laboratory and research use.</p>
+    <hr class="disclaimer-divider">
+    <button class="disclaimer-confirm" onclick="acceptDisclaimer()">I Understand — Continue to Site</button>
+    <a class="disclaimer-decline" href="https://www.google.com">I do not agree — Leave this site</a>
+  </div>
+</div>
+
+<script>
+  function acceptDisclaimer() {
+    sessionStorage.setItem('disclaimer_accepted', '1');
+    document.getElementById('disclaimer-overlay').style.display = 'none';
+  }
+  if (sessionStorage.getItem('disclaimer_accepted') === '1') {
+    document.getElementById('disclaimer-overlay').style.display = 'none';
+  }
+</script>
 
 <header>
   <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;"><div style="position:relative;z-index:2;">
@@ -519,7 +564,7 @@
 </section>
 
 <footer>
-  <p>© 2025 Novigen Peptides. All rights reserved. For use under medical supervision only.</p>
+  <p>© 2025 Novigen Peptides. All rights reserved. For research purposes only. Not for human consumption.</p>
   <span class="footer-logo">Novigen Peptides</span>
 </footer>
 
