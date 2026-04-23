@@ -49,7 +49,7 @@
     body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.6'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E"); background-size:90px 78px; opacity:0.04; }
   @keyframes holoShimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
 
   /* ── Header ── */
@@ -221,10 +221,10 @@
   }
 
   /* Base gradient per product - matches packaging */
-  .hero-ret  { background: linear-gradient(140deg, #ddeeff 0%, #c8e0f8 35%, #ddeeff 65%, #f0f8ff 100%); }
-  .hero-glow { background: linear-gradient(140deg, #ecddf8 0%, #ddc8f0 35%, #ecddf8 65%, #f8f0ff 100%); }
-  .hero-tir  { background: linear-gradient(140deg, #d8f2f2 0%, #c2e8e8 35%, #d8f2f2 65%, #f0fafa 100%); }
-  .hero-hgh  { background: linear-gradient(140deg, #d8f0e8 0%, #c2e8d8 35%, #d8f0e8 65%, #f0faf5 100%); }
+  .hero-ret  { background: transparent; }
+  .hero-glow { background: transparent; }
+  .hero-tir  { background: transparent; }
+  .hero-hgh  { background: transparent; }
 
   /* Layer 1 — Large background product name watermark (like dark version) */
   .hero-watermark {
