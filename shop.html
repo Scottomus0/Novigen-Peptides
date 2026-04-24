@@ -286,6 +286,12 @@
   if (sessionStorage.getItem('disclaimer_accepted') === '1') {
     document.getElementById('disclaimer-overlay').style.display = 'none';
   }
+
+  function showOrderConfirmation(orderNum) {
+    const modal = document.getElementById('order-confirm-modal');
+    document.getElementById('order-confirm-num').textContent = orderNum;
+    modal.style.display = 'flex';
+  }
 </script>
 
 <header>
@@ -564,7 +570,7 @@
     const postcode = document.getElementById('customer-postcode').value;
     const address  = [addr1, addr2, city, postcode].filter(Boolean).join(', ');
 
-    let msg = `*Novigen Peptides Order*\n\n*Customer*\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\n\n*Items*\n`;
+    let msg = `*Novigen Peptides Order*\n*Order:* ${orderNum}\n\n*Customer*\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\n\n*Items*\n`;
     basket.forEach(i => { msg += `• ${i.name} × ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}\n`; });
     msg += `\n*Subtotal:* £${subtotal.toFixed(2)}\n*Delivery:* £6.00\n*Total:* £${orderTotal.toFixed(2)}`;
     if (notes) msg += `\n\n*Notes:* ${notes}`;
@@ -577,5 +583,20 @@
 
   document.addEventListener('DOMContentLoaded', initShop);
 </script>
+
+<!-- Order Confirmation Modal -->
+<div id="order-confirm-modal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(10,20,40,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px;">
+  <div style="background:white;border-radius:16px;max-width:420px;width:100%;padding:40px 32px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.2);">
+    <div style="font-size:2.8rem;margin-bottom:16px;">✅</div>
+    <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.4rem;color:#1a3a5a;margin-bottom:8px;letter-spacing:-0.02em;">Order Placed!</h2>
+    <p style="font-size:0.88rem;color:#3a5068;line-height:1.8;margin-bottom:20px;font-weight:300;">Your order has been sent via WhatsApp. Please quote your order number in all correspondence.</p>
+    <div style="background:#eef5ff;border:1px solid #c8daf0;border-radius:10px;padding:16px 24px;margin-bottom:24px;">
+      <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#6a8090;font-weight:700;margin-bottom:6px;">Your Order Number</div>
+      <div id="order-confirm-num" style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:#1a3a5a;letter-spacing:0.05em;"></div>
+    </div>
+    <p style="font-size:0.82rem;color:#3a5068;margin-bottom:24px;line-height:1.7;">Payment instructions will be sent to you shortly. Please keep this order number safe.</p>
+    <button onclick="document.getElementById('order-confirm-modal').style.display='none'" style="width:100%;background:linear-gradient(135deg,#2a5a8a,#4a8abf);color:white;border:none;padding:14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;">Close</button>
+  </div>
+</div>
 </body>
 </html>
