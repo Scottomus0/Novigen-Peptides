@@ -54,10 +54,7 @@
 
   /* ── Header ── */
   header {
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--rule);
+    background: transparent;
     padding: 18px 48px;
     display: flex;
     align-items: center;
@@ -65,7 +62,6 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 24px rgba(42,90,138,0.09);
   }
 
   .logo-block { display: flex; align-items: baseline; gap: 10px; }
@@ -425,8 +421,16 @@
     .hero { padding: 40px 20px; min-height: auto; }
     .hero h1 { font-size: 2.4rem; }
     .page-body { grid-template-columns: 1fr; padding: 28px 20px; gap: 28px; }
-    .sidebar { position: static; }
+    /* Sidebar moves to TOP on mobile */
+    .sidebar { position: static; order: -1; }
+    /* Tabs fit on one row on mobile */
+    .tab-btn { font-size: 0.62rem; letter-spacing: 0.05em; padding: 10px 10px; white-space: nowrap; }
+    .tab-dot { display: none; }
+    .tab-bar { overflow-x: visible; }
     footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
+  }
+  @media(max-width: 400px) {
+    .tab-btn { font-size: 0.55rem; padding: 10px 7px; }
   }
 
   /* ── Hero entrance ── */
