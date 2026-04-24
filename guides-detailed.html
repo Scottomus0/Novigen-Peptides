@@ -17,6 +17,12 @@
     --tir-light: #3aabab;
     --tir-dark: #0a5a5a;
     --hgh: #2a7a5a;
+  --nad:  #1a6a8a;
+  --nad-light: #3a9abf;
+  --ghk:  #2a7a3a;
+  --ghk-light: #4aab5a;
+  --mt2:  #8a3a6a;
+  --mt2-light: #bf5a9a;
     --hgh-light: #4aab7a;
     --hgh-dark: #1a5a3a;
     --bg: #eef5ff;
@@ -83,11 +89,17 @@
   .tab-btn.active[data-tab="glow"]        { color: var(--glow);  border-bottom-color: var(--glow); }
   .tab-btn.active[data-tab="tirzepatide"] { color: var(--tir);   border-bottom-color: var(--tir); }
   .tab-btn.active[data-tab="hgh"]         { color: var(--hgh);   border-bottom-color: var(--hgh); }
+  .tab-btn.active[data-tab="nad"]         { color: var(--nad);   border-bottom-color: var(--nad); }
+  .tab-btn.active[data-tab="ghkcu"]       { color: var(--ghk);   border-bottom-color: var(--ghk); }
+  .tab-btn.active[data-tab="mt2"]         { color: var(--mt2);   border-bottom-color: var(--mt2); }
   .tab-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 7px; vertical-align: middle; position: relative; top: -1px; }
   .tab-btn[data-tab="retatrutide"] .tab-dot { background: var(--steel); }
   .tab-btn[data-tab="glow"]        .tab-dot { background: var(--glow); }
   .tab-btn[data-tab="tirzepatide"] .tab-dot { background: var(--tir); }
   .tab-btn[data-tab="hgh"]         .tab-dot { background: var(--hgh); }
+  .tab-btn[data-tab="nad"]         .tab-dot { background: var(--nad); }
+  .tab-btn[data-tab="ghkcu"]       .tab-dot { background: var(--ghk); }
+  .tab-btn[data-tab="mt2"]         .tab-dot { background: var(--mt2); }
 
   /* ── Tab Panels ── */
   .tab-panel { display: none; }
@@ -588,6 +600,9 @@
   <button class="tab-btn" data-tab="glow" onclick="switchTab('glow')"><span class="tab-dot"></span>Glow 70mg</button>
   <button class="tab-btn" data-tab="tirzepatide" onclick="switchTab('tirzepatide')"><span class="tab-dot"></span>Tirzepatide</button>
   <button class="tab-btn" data-tab="hgh" onclick="switchTab('hgh')"><span class="tab-dot"></span>HGH</button>
+    <button class="tab-btn" data-tab="nad" onclick="switchTab('nad')"><span class="tab-dot"></span>NAD+</button>
+    <button class="tab-btn" data-tab="ghkcu" onclick="switchTab('ghkcu')"><span class="tab-dot"></span>GHK-Cu</button>
+    <button class="tab-btn" data-tab="mt2" onclick="switchTab('mt2')"><span class="tab-dot"></span>MT2</button>
 </nav>
 
 <!-- TAB 1: RETATRUTIDE -->
@@ -1450,7 +1465,415 @@
         <div class="quick-ref-item"><span>Do not freeze</span><span>Once reconstituted</span></div>
       </div>
     </aside>
+  
+<!-- ══ TAB: NAD+ ══ -->
+<div id="tab-nad" class="tab-panel">
+
+  <div class="hero nad" style="padding:52px 48px 40px;position:relative;overflow:hidden;border-bottom:1px solid var(--rule-light);">
+    <div class="hero-hex-canvas">
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" aria-hidden="true">
+        <defs>
+          <pattern id="hexpat-nad" x="0" y="0" width="90" height="78" patternUnits="userSpaceOnUse">
+            <polygon points="45,4 80,22 80,56 45,74 10,56 10,22" fill="none" stroke="#1a6a8a" stroke-width="0.8" opacity="0.05"/>
+          </pattern>
+          <linearGradient id="hexfade-nad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="white" stop-opacity="0"/>
+            <stop offset="60%" stop-color="white" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="white"/>
+          </linearGradient>
+          <mask id="hexmask-nad">
+            <rect width="100%" height="100%" fill="url(#hexfade-nad)"/>
+          </mask>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hexpat-nad)" mask="url(#hexmask-nad)"/>
+      </svg>
+    </div>
+    <div class="hero-ray"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Research Compound · For Research Use Only</div>
+      <h1 class="hero-title" style="color:var(--nad);">Novigen<br>NAD+ Guide</h1>
+      <p>Nicotinamide Adenine Dinucleotide — a coenzyme central to cellular energy production, DNA repair, and metabolic function. Please read all instructions before use.</p>
+      <div class="product-badge"><span>NAD+</span><small>Subcutaneous injection &nbsp;·&nbsp; Daily or 3×/week</small></div>
+    </div>
   </div>
+
+  <div class="page-body nad">
+    <main>
+
+      <div class="section-label">Section 01 – About NAD+</div>
+      <div class="step"><div class="step-num">1</div><div class="step-content">
+        <h3>What is NAD+?</h3>
+        <p>NAD+ (Nicotinamide Adenine Dinucleotide) is a naturally occurring coenzyme found in every cell in the body. It plays a critical role in energy metabolism (ATP production via the electron transport chain), DNA repair, circadian rhythm regulation, and the activation of sirtuins — proteins linked to longevity and cellular health. NAD+ levels decline significantly with age, declining by up to 50% between the ages of 40 and 60.</p>
+        <p style="margin-top:10px;">Each vial contains lyophilised NAD+ powder which must be reconstituted with bacteriostatic water before use.</p>
+      </div></div>
+
+      <div class="section-label">Section 02 – Before You Begin</div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">
+        <h3>Check Your Vial</h3>
+        <p>Inspect the vial before use. The powder should be white or off-white. Do not use if the vial appears discoloured, cracked, or if the seal is broken. Store lyophilised NAD+ at −20°C. Once reconstituted, refrigerate at 2–8°C and use within 14 days. Protect from light.</p>
+      </div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content">
+        <h3>Reconstitution — Adding Bacteriostatic Water</h3>
+        <p>Using a sterile syringe, slowly inject bacteriostatic water into the vial by directing the water down the inner wall — do not aim directly at the powder. Gently roll the vial between your palms until fully dissolved. Do not shake. Label with the reconstitution date.</p>
+        <div class="note">⚠️ Never shake the vial — this degrades the peptide.</div>
+        <div class="quick-ref-item" style="margin-top:12px;"><span>1000mg vial + 3ml BAC water</span><span>= 333.3mg/ml</span></div>
+        <div class="quick-ref-item"><span>1 unit (0.01ml)</span><span>= 3.33mg</span></div>
+      </div></div>
+
+      <div class="section-label">Section 03 – Dosage Protocols</div>
+      <div class="step"><div class="step-num">4</div><div class="step-content">
+        <h3>Starting Dose — Titration Phase (Week 1–2)</h3>
+        <p>Begin at a low dose to assess tolerance. NAD+ can cause side effects at higher doses including nausea, headache, flushing, anxiety, and insomnia if escalated too quickly.</p>
+        <div class="tier-card" style="border-left:4px solid var(--nad);padding:14px 16px;background:rgba(26,106,138,0.05);border-radius:0 8px 8px 0;margin-top:12px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--nad);font-weight:700;margin-bottom:4px;">Week 1–2 — Titration</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">25–50mg <span style="font-size:0.9rem;color:var(--text-muted)">daily</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">8–15 clicks (1000mg vial, 3ml BAC). Once daily SubQ. Assess tolerance before increasing.</div>
+        </div>
+      </div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content">
+        <h3>Maintenance Protocol</h3>
+        <div class="tier-card" style="border-left:4px solid var(--nad);padding:14px 16px;background:rgba(26,106,138,0.05);border-radius:0 8px 8px 0;margin-top:4px;margin-bottom:12px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--nad);font-weight:700;margin-bottom:4px;">Standard Maintenance</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">50–100mg <span style="font-size:0.9rem;color:var(--text-muted)">daily or 3×/week</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">15–30 clicks daily. After 2 weeks at lower dose. Once daily SubQ or Mon/Wed/Fri protocol.</div>
+        </div>
+        <div class="tier-card" style="border-left:4px solid var(--nad);padding:14px 16px;background:rgba(26,106,138,0.05);border-radius:0 8px 8px 0;margin-bottom:12px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--nad);font-weight:700;margin-bottom:4px;">Enhanced Protocol</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">100–200mg <span style="font-size:0.9rem;color:var(--text-muted)">daily</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">Up to 50 clicks per injection (0.5ml max). Split higher doses across two sites. Medical supervision advised.</div>
+        </div>
+        <div class="note">⚠️ Do not exceed 0.5ml (83mg at 3ml reconstitution) per single injection. Split higher doses across two sites.</div>
+      </div></div>
+
+      <div class="section-label">Section 04 – Administering the Injection</div>
+      <div class="step"><div class="step-num">6</div><div class="step-content">
+        <h3>Injection Technique</h3>
+        <p>NAD+ is administered subcutaneously. Pinch the skin at the injection site, insert needle at a 45° angle, inject slowly and steadily, then withdraw at the same angle. Apply gentle pressure with a clean swab. Inject slowly to reduce the risk of nausea and flushing.</p>
+        <div class="inject-sites" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+          <div class="site-badge" style="background:rgba(26,106,138,0.08);border:1px solid rgba(26,106,138,0.2);color:var(--nad);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Abdomen</div>
+          <div class="site-badge" style="background:rgba(26,106,138,0.08);border:1px solid rgba(26,106,138,0.2);color:var(--nad);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Upper Arm</div>
+          <div class="site-badge" style="background:rgba(26,106,138,0.08);border:1px solid rgba(26,106,138,0.2);color:var(--nad);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Thigh</div>
+        </div>
+        <p style="margin-top:12px;font-size:0.84rem;color:var(--text-muted);">Rotate injection sites with each dose to prevent tissue irritation and nodule formation. Avoid injecting on consecutive days at the same site.</p>
+      </div></div>
+
+      <div class="section-label">Section 05 – Storage & Safety</div>
+      <div class="step"><div class="step-num">7</div><div class="step-content">
+        <h3>Storage Guidelines</h3>
+        <div class="quick-ref-item"><span>Lyophilised (unused)</span><span>−20°C, up to 12 months</span></div>
+        <div class="quick-ref-item"><span>Reconstituted</span><span>2–8°C, use within 14 days</span></div>
+        <div class="quick-ref-item"><span>Light exposure</span><span>Protect from light at all times</span></div>
+        <div class="quick-ref-item"><span>Freeze-thaw cycles</span><span>Avoid — degrades the compound</span></div>
+      </div></div>
+      <div class="step"><div class="step-num">8</div><div class="step-content">
+        <h3>Side Effects &amp; Safety</h3>
+        <p>Common side effects at higher doses include nausea, flushing, headache, fatigue, insomnia, and anxiety. These are usually dose-dependent and resolve with lower dosing. Titrate slowly. If side effects persist, reduce dose or discontinue and seek medical advice.</p>
+        <div class="note">⚠️ This product is for research purposes only. Not for human consumption. Not approved by the MHRA or FDA.</div>
+      </div></div>
+
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="click-table" style="display:block;">
+          <div class="click-table-title" style="background:var(--nad);">NAD+ Clicks (1000mg + 3ml BAC = 333.3mg/ml)</div>
+          <table>
+            <tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
+            <tr><td>25mg</td><td>8</td><td>0.08ml</td></tr>
+            <tr><td>50mg</td><td>15</td><td>0.15ml</td></tr>
+            <tr><td>100mg</td><td>30</td><td>0.30ml</td></tr>
+            <tr class="max-dose"><td>167mg (split dose)</td><td>50+50</td><td>0.25ml ×2</td></tr>
+          </table>
+        </div>
+        <p class="click-note">Max 0.5ml per injection. 1 click = 0.01ml = 3.33mg.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Product</span><span>NAD+</span></div>
+        <div class="quick-ref-item"><span>Starting dose</span><span>25–50mg</span></div>
+        <div class="quick-ref-item"><span>Maintenance</span><span>50–100mg</span></div>
+        <div class="quick-ref-item"><span>Frequency</span><span>Daily or 3×/week</span></div>
+        <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
+        <div class="quick-ref-item"><span>Max per injection</span><span>0.5ml / 83mg</span></div>
+        <div class="quick-ref-item"><span>Reconstitute with</span><span>3ml BAC water</span></div>
+        <div class="quick-ref-item"><span>Storage (reconstituted)</span><span>2–8°C, 14 days</span></div>
+      </div>
+    </aside>
+  </div>
+
+</div><!-- end tab-nad -->
+
+<!-- ══ TAB: GHK-Cu ══ -->
+<div id="tab-ghkcu" class="tab-panel">
+
+  <div class="hero" style="padding:52px 48px 40px;position:relative;overflow:hidden;border-bottom:1px solid var(--rule-light);">
+    <div class="hero-hex-canvas">
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" aria-hidden="true">
+        <defs>
+          <pattern id="hexpat-ghk" x="0" y="0" width="90" height="78" patternUnits="userSpaceOnUse">
+            <polygon points="45,4 80,22 80,56 45,74 10,56 10,22" fill="none" stroke="#2a7a3a" stroke-width="0.8" opacity="0.05"/>
+          </pattern>
+          <linearGradient id="hexfade-ghk" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="white" stop-opacity="0"/>
+            <stop offset="60%" stop-color="white" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="white"/>
+          </linearGradient>
+          <mask id="hexmask-ghk">
+            <rect width="100%" height="100%" fill="url(#hexfade-ghk)"/>
+          </mask>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hexpat-ghk)" mask="url(#hexmask-ghk)"/>
+      </svg>
+    </div>
+    <div class="hero-ray"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Research Compound · For Research Use Only</div>
+      <h1 class="hero-title" style="color:var(--ghk);">Novigen<br>GHK-Cu Guide</h1>
+      <p>Glycyl-L-Histidyl-L-Lysine Copper Complex — a naturally occurring copper-binding tripeptide with documented roles in wound healing, collagen synthesis, and skin regeneration. Please read all instructions before use.</p>
+      <div class="product-badge" style="background:rgba(42,122,58,0.08);border-color:rgba(42,122,58,0.2);color:var(--ghk)"><span>GHK-Cu</span><small>Subcutaneous injection &nbsp;·&nbsp; 5×/week or 3×/week</small></div>
+    </div>
+  </div>
+
+  <div class="page-body ghkcu">
+    <main>
+
+      <div class="section-label">Section 01 – About GHK-Cu</div>
+      <div class="step"><div class="step-num">1</div><div class="step-content">
+        <h3>What is GHK-Cu?</h3>
+        <p>GHK-Cu (Glycyl-L-Histidyl-L-Lysine:Copper) is a naturally occurring copper peptide first isolated from human plasma. It is one of the most studied regenerative peptides in dermatology and wound-repair research. GHK-Cu acts as a signal peptide — modulating over 4,000 genes involved in tissue remodelling, collagen synthesis, antioxidant defence, and anti-inflammatory pathways. GHK-Cu levels decline with age: young adults may have ~200ng/ml in plasma, falling by more than 50% by age 60.</p>
+        <p style="margin-top:10px;">Each vial contains lyophilised GHK-Cu powder which must be reconstituted with bacteriostatic water before use.</p>
+      </div></div>
+
+      <div class="section-label">Section 02 – Before You Begin</div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">
+        <h3>Check Your Vial</h3>
+        <p>The powder should appear white. Do not use if discoloured or if the seal is broken. Store lyophilised GHK-Cu at −20°C. Once reconstituted, refrigerate at 2–8°C and use within 30 days. Protect from light.</p>
+      </div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content">
+        <h3>Reconstitution</h3>
+        <p>Slowly inject bacteriostatic water down the inner wall of the vial. Gently roll between palms until dissolved. Do not shake. Label with reconstitution date.</p>
+        <div class="quick-ref-item" style="margin-top:12px;"><span>Select pen size above for concentration</span></div>
+        <div class="quick-ref-item"><span>1 unit (0.01ml)</span><span>= see table →</span></div>
+      </div></div>
+
+      <div class="section-label">Section 03 – Dosage Protocols</div>
+      <div class="step"><div class="step-num">4</div><div class="step-content">
+        <h3>Standard Protocol — 30-Day Cycle</h3>
+        <div class="tier-card" style="border-left:4px solid var(--ghk);padding:14px 16px;background:rgba(42,122,58,0.05);border-radius:0 8px 8px 0;margin-top:8px;margin-bottom:10px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ghk);font-weight:700;margin-bottom:4px;">Phase 1 — Days 1–15</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">1mg/day <span style="font-size:0.9rem;color:var(--text-muted)">= 10 clicks</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">Once daily SubQ, administered before sleep. Establishes tissue exposure without overwhelming signalling pathways.</div>
+        </div>
+        <div class="tier-card" style="border-left:4px solid var(--ghk);padding:14px 16px;background:rgba(42,122,58,0.05);border-radius:0 8px 8px 0;margin-bottom:10px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ghk);font-weight:700;margin-bottom:4px;">Phase 2 — Days 16–30</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">2mg/day <span style="font-size:0.9rem;color:var(--text-muted)">= 20 clicks</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">Dose doubles to reinforce collagen synthesis, sirtuin activation, and anti-inflammatory pathways initiated in Phase 1.</div>
+        </div>
+        <p style="font-size:0.84rem;color:var(--text-muted);">After 30 days on: take 30 days off before repeating. Continuous dosing without a rest period is not recommended. Cycling prevents copper dysregulation and maintains receptor sensitivity.</p>
+      </div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content">
+        <h3>Maintenance Protocol — 3×/Week</h3>
+        <div class="tier-card" style="border-left:4px solid var(--ghk);padding:14px 16px;background:rgba(42,122,58,0.05);border-radius:0 8px 8px 0;margin-top:8px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ghk);font-weight:700;margin-bottom:4px;">3×/Week Protocol (e.g. Mon/Wed/Fri)</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">2mg/dose <span style="font-size:0.9rem;color:var(--text-muted)">= 6mg/week</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">20 clicks per injection. Maintains consistent weekly dosing with less frequent administrations. Suitable for 8–16 week protocols.</div>
+        </div>
+      </div></div>
+
+      <div class="section-label">Section 04 – Administering the Injection</div>
+      <div class="step"><div class="step-num">6</div><div class="step-content">
+        <h3>Injection Sites &amp; Technique</h3>
+        <p>Administer subcutaneously. Recommended site is the abdomen lateral to the navel. Rotate injection sites with each dose to avoid local tissue buildup. Inject before bed — at least 2 hours after last meal.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+          <div style="background:rgba(42,122,58,0.08);border:1px solid rgba(42,122,58,0.2);color:var(--ghk);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Abdomen</div>
+          <div style="background:rgba(42,122,58,0.08);border:1px solid rgba(42,122,58,0.2);color:var(--ghk);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Upper Arm</div>
+          <div style="background:rgba(42,122,58,0.08);border:1px solid rgba(42,122,58,0.2);color:var(--ghk);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Thigh</div>
+        </div>
+      </div></div>
+
+      <div class="section-label">Section 05 – Storage & Safety</div>
+      <div class="step"><div class="step-num">7</div><div class="step-content">
+        <h3>Storage</h3>
+        <div class="quick-ref-item"><span>Lyophilised</span><span>−20°C, 12+ months</span></div>
+        <div class="quick-ref-item"><span>Reconstituted</span><span>2–8°C, up to 30 days</span></div>
+        <div class="quick-ref-item"><span>Light exposure</span><span>Protect from light</span></div>
+      </div></div>
+      <div class="step"><div class="step-num">8</div><div class="step-content">
+        <h3>Side Effects</h3>
+        <p>Generally well tolerated at research doses. Potential side effects include injection site redness, swelling, or temporary skin flushing. Some users report "copper uglies" — a temporary change in skin texture that resolves after cycling off. Monitor skin for any mole changes or unusual pigmentation changes.</p>
+        <div class="note">⚠️ For research purposes only. Not for human consumption.</div>
+      </div></div>
+
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="click-table" style="display:block;">
+          <div class="click-table-title" style="background:var(--ghk);">50mg Vial (5ml BAC = 10mg/ml)</div>
+          <table>
+            <tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
+            <tr><td>1mg (Phase 1)</td><td>10</td><td>0.10ml</td></tr>
+            <tr><td>2mg (Phase 2)</td><td>20</td><td>0.20ml</td></tr>
+            <tr><td>3mg</td><td>30</td><td>0.30ml</td></tr>
+          </table>
+        </div>
+        <p class="click-note">5ml BAC water. 1 click = 0.01ml = 0.10mg.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Product</span><span>GHK-Cu</span></div>
+        <div class="quick-ref-item"><span>Phase 1 (Days 1–15)</span><span>1mg/day</span></div>
+        <div class="quick-ref-item"><span>Phase 2 (Days 16–30)</span><span>2mg/day</span></div>
+        <div class="quick-ref-item"><span>Frequency</span><span>Daily or 3×/week</span></div>
+        <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
+        <div class="quick-ref-item"><span>Cycle</span><span>30 days on, 30 days off</span></div>
+        <div class="quick-ref-item"><span>Reconstitute with</span><span>5ml BAC water</span></div>
+        <div class="quick-ref-item"><span>Concentration</span><span>10mg/ml · 0.10mg/click</span></div>
+        <div class="quick-ref-item"><span>Storage (reconstituted)</span><span>2–8°C, 30 days</span></div>
+      </div>
+    </aside>
+  </div>
+
+</div><!-- end tab-ghkcu -->
+
+<!-- ══ TAB: MT2 ══ -->
+<div id="tab-mt2" class="tab-panel">
+
+  <div class="hero" style="padding:52px 48px 40px;position:relative;overflow:hidden;border-bottom:1px solid var(--rule-light);">
+    <div class="hero-hex-canvas">
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" aria-hidden="true">
+        <defs>
+          <pattern id="hexpat-mt2" x="0" y="0" width="90" height="78" patternUnits="userSpaceOnUse">
+            <polygon points="45,4 80,22 80,56 45,74 10,56 10,22" fill="none" stroke="#8a3a6a" stroke-width="0.8" opacity="0.05"/>
+          </pattern>
+          <linearGradient id="hexfade-mt2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="white" stop-opacity="0"/>
+            <stop offset="60%" stop-color="white" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="white"/>
+          </linearGradient>
+          <mask id="hexmask-mt2">
+            <rect width="100%" height="100%" fill="url(#hexfade-mt2)"/>
+          </mask>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hexpat-mt2)" mask="url(#hexmask-mt2)"/>
+      </svg>
+    </div>
+    <div class="hero-ray"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Research Compound · For Research Use Only</div>
+      <h1 class="hero-title" style="color:var(--mt2);">Novigen<br>Melanotan II Guide</h1>
+      <p>A synthetic analogue of alpha-melanocyte-stimulating hormone (α-MSH) studied for its ability to stimulate melanogenesis and increase skin pigmentation. Please read all instructions carefully before use.</p>
+      <div class="product-badge" style="background:rgba(138,58,106,0.08);border-color:rgba(138,58,106,0.2);color:var(--mt2)"><span>Melanotan II — 10mg Vial</span><small>Subcutaneous injection &nbsp;·&nbsp; Daily titration</small></div>
+      <div class="research-warning" style="margin-top:16px;background:rgba(138,58,106,0.08);border:1px solid rgba(138,58,106,0.25);border-radius:8px;padding:12px 16px;">
+        <p style="font-size:0.82rem;color:var(--mt2);font-weight:600;">⚠️ Research Chemical Notice</p>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;line-height:1.65;">Melanotan II has not been approved for human use by any regulatory authority. It is associated with side effects including nausea, flushing, and spontaneous erections in males. Monitor skin closely — cease use immediately if any mole changes, new moles, or unusual pigmentation changes occur.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body mt2">
+    <main>
+
+      <div class="section-label">Section 01 – About Melanotan II</div>
+      <div class="step"><div class="step-num">1</div><div class="step-content">
+        <h3>What is Melanotan II?</h3>
+        <p>Melanotan II (MT-II) is a cyclic heptapeptide analogue of α-melanocyte-stimulating hormone. It acts as a non-selective agonist of melanocortin receptors (MC1R, MC3R, MC4R, MC5R). Activation of MC1R stimulates melanin production in the skin, producing a tanning effect. Binding to MC4R is associated with appetite suppression and sexual function effects. UV exposure is required alongside MT-II to complete the pigmentation response — the peptide primes the melanin pathway but UV light triggers the actual darkening.</p>
+      </div></div>
+
+      <div class="section-label">Section 02 – Before You Begin</div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">
+        <h3>Check Your Vial</h3>
+        <p>The powder should appear white. Do not use if the seal is broken or the powder appears discoloured. Store lyophilised MT-II at −20°C. Once reconstituted, refrigerate at 2–8°C and use within 1–2 weeks. Protect from light.</p>
+      </div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content">
+        <h3>Reconstitution</h3>
+        <p>Slowly inject 3ml bacteriostatic water down the inner wall of the vial. Gently roll between palms until fully dissolved. Do not shake. Label with reconstitution date.</p>
+        <div class="quick-ref-item" style="margin-top:12px;"><span>10mg vial + 3ml BAC water</span><span>= 3.33mg/ml</span></div>
+        <div class="quick-ref-item"><span>1 unit (0.01ml)</span><span>≈ 33.3mcg (0.0333mg)</span></div>
+      </div></div>
+
+      <div class="section-label">Section 03 – Dosage Protocols</div>
+      <div class="step"><div class="step-num">4</div><div class="step-content">
+        <h3>Loading Phase — Building Pigmentation (Weeks 1–8)</h3>
+        <p>Always begin at the lowest dose and titrate up gradually. MT-II is highly potent — side effects are strongly dose-dependent and most pronounced at the start of a cycle.</p>
+        <div class="tier-card" style="border-left:4px solid var(--mt2);padding:14px 16px;background:rgba(138,58,106,0.05);border-radius:0 8px 8px 0;margin-top:8px;margin-bottom:10px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mt2);font-weight:700;margin-bottom:4px;">Week 1 — Starting Dose</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">0.25mg <span style="font-size:0.9rem;color:var(--text-muted)">= ~8 clicks</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">Once daily SubQ. Assess tolerance — nausea and flushing are common at first dose. Administer in the evening to sleep through side effects.</div>
+        </div>
+        <div class="tier-card" style="border-left:4px solid var(--mt2);padding:14px 16px;background:rgba(138,58,106,0.05);border-radius:0 8px 8px 0;margin-bottom:10px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mt2);font-weight:700;margin-bottom:4px;">Weeks 2–4 — Loading</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">0.5–1mg <span style="font-size:0.9rem;color:var(--text-muted)">= 15–30 clicks</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">Increase to 0.5mg once tolerated, then up to 1mg. Most visible tanning results occur between 7–21 days with UV exposure. Once daily.</div>
+        </div>
+        <div class="note">⚠️ Always combine with brief UV exposure (5–15 min) to activate the melanin pathway. MT-II alone produces minimal effect without UV light.</div>
+      </div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content">
+        <h3>Maintenance Phase</h3>
+        <div class="tier-card" style="border-left:4px solid var(--mt2);padding:14px 16px;background:rgba(138,58,106,0.05);border-radius:0 8px 8px 0;margin-top:8px;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mt2);font-weight:700;margin-bottom:4px;">Maintenance — Once desired tan achieved</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--text);">0.5–1mg <span style="font-size:0.9rem;color:var(--text-muted)">1–2×/week</span></div>
+          <div style="font-size:0.84rem;color:var(--text-muted);margin-top:4px;">Reduce to 1–2 injections per week to sustain pigmentation. The tan will gradually fade over 4–8 weeks without continued dosing. Allow several months washout between full cycles.</div>
+        </div>
+      </div></div>
+
+      <div class="section-label">Section 04 – Administering the Injection</div>
+      <div class="step"><div class="step-num">6</div><div class="step-content">
+        <h3>Injection Sites &amp; Technique</h3>
+        <p>Administer subcutaneously. Inject slowly to minimise the risk of nausea and flushing. Rotate injection sites with each administration.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+          <div style="background:rgba(138,58,106,0.08);border:1px solid rgba(138,58,106,0.2);color:var(--mt2);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Abdomen</div>
+          <div style="background:rgba(138,58,106,0.08);border:1px solid rgba(138,58,106,0.2);color:var(--mt2);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Upper Arm</div>
+          <div style="background:rgba(138,58,106,0.08);border:1px solid rgba(138,58,106,0.2);color:var(--mt2);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">Thigh</div>
+        </div>
+      </div></div>
+
+      <div class="section-label">Section 05 – Storage & Safety</div>
+      <div class="step"><div class="step-num">7</div><div class="step-content">
+        <h3>Storage</h3>
+        <div class="quick-ref-item"><span>Lyophilised</span><span>−20°C or below</span></div>
+        <div class="quick-ref-item"><span>Reconstituted</span><span>2–8°C, use within 1–2 weeks</span></div>
+        <div class="quick-ref-item"><span>Light</span><span>Protect from light</span></div>
+      </div></div>
+      <div class="step"><div class="step-num">8</div><div class="step-content">
+        <h3>Side Effects &amp; Warnings</h3>
+        <p><strong>Common:</strong> Nausea, facial flushing, fatigue, yawning/stretching complex, decreased appetite, spontaneous erections in males (MC4R activation).</p>
+        <p style="margin-top:8px;"><strong>Skin monitoring:</strong> Monitor all moles and freckles throughout the cycle. Melanotan II may cause reversible darkening of existing moles. Cease use immediately and seek medical advice if any mole changes shape, size, or colour, or if new moles appear.</p>
+        <p style="margin-top:8px;"><strong>Cycle limits:</strong> Do not run continuous long-term cycles without a significant washout period. Annual use only per available research data.</p>
+        <div class="note" style="margin-top:12px;">⚠️ For research purposes only. Not for human consumption. Not approved by the MHRA or FDA. This product is associated with significant side effects — use with extreme caution.</div>
+      </div></div>
+
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <div class="click-table" style="display:block;">
+          <div class="click-table-title" style="background:var(--mt2);">MT2 Clicks (10mg + 3ml BAC = 3.33mg/ml)</div>
+          <table>
+            <tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
+            <tr><td>0.25mg (start)</td><td>8</td><td>0.08ml</td></tr>
+            <tr><td>0.5mg</td><td>15</td><td>0.15ml</td></tr>
+            <tr class="max-dose"><td>1mg (loading)</td><td>30</td><td>0.30ml</td></tr>
+          </table>
+        </div>
+        <p class="click-note">3ml BAC water. 1 click = 0.01ml ≈ 0.033mg (33mcg).</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="quick-ref-item"><span>Product</span><span>Melanotan II</span></div>
+        <div class="quick-ref-item"><span>Starting dose</span><span>0.25mg</span></div>
+        <div class="quick-ref-item"><span>Loading dose</span><span>0.5–1mg daily</span></div>
+        <div class="quick-ref-item"><span>Maintenance</span><span>0.5–1mg × 1–2/week</span></div>
+        <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
+        <div class="quick-ref-item"><span>UV exposure</span><span>Required for tanning</span></div>
+        <div class="quick-ref-item"><span>Reconstitute with</span><span>3ml BAC water</span></div>
+        <div class="quick-ref-item"><span>Storage (reconstituted)</span><span>2–8°C, 1–2 weeks</span></div>
+      </div>
+    </aside>
+  </div>
+
+</div><!-- end tab-mt2 -->
+</div>
 
 
 <footer>
@@ -1462,7 +1885,7 @@
   // Switch to tab from URL hash on load
   window.addEventListener('DOMContentLoaded', function() {
     var hash = window.location.hash.replace('#', '');
-    var validTabs = ['retatrutide', 'glow', 'tirzepatide', 'hgh'];
+    var validTabs = ['retatrutide', 'glow', 'tirzepatide', 'hgh', 'nad', 'ghkcu', 'mt2'];
     if (hash && validTabs.indexOf(hash) !== -1) {
       switchTab(hash);
     }
@@ -1537,6 +1960,12 @@
     var r=document.querySelector('.glow-tier-row[data-tier="1"]');
     if(r){r.style.background='rgba(106,74,138,0.08)';r.style.fontWeight='700';}
   });
+
+  function updateGhkVial(size) {
+    size = parseInt(size);
+    document.querySelectorAll('[id^="ghk-clicks-"]').forEach(t => t.style.display='none');
+    var ct = document.getElementById('ghk-clicks-'+size); if(ct) ct.style.display='block';
+  }
 </script>
 </body>
 </html>
