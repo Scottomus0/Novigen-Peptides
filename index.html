@@ -229,10 +229,10 @@
   .disclaimer-decline:hover { color: #1a3a5a; }
 
   /* ── Hero redesign ── */
-  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 92vh; align-items: center; gap: 60px; padding: 80px 80px 80px 80px; position: relative; overflow: hidden; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; align-items: center; gap: 48px; padding: 60px 80px; position: relative; overflow: hidden; max-width: 1300px; margin: 0 auto; width: 100%; }
   .hero-left { position: relative; z-index: 2; }
   .hero-right { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
-  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 5rem; line-height: 0.95; letter-spacing: -0.04em; color: var(--steel-dark); margin-bottom: 20px; }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 4.4rem; line-height: 0.95; letter-spacing: -0.04em; color: var(--steel-dark); margin-bottom: 20px; }
   .hero h1 em { font-style: normal; color: var(--steel-light); display: block; }
   .hero-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; max-width: 420px; margin-bottom: 32px; font-weight: 300; }
   .hero-actions { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
@@ -240,13 +240,13 @@
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(42,90,138,0.35); }
   .btn-ghost { background: rgba(255,255,255,0.7); color: var(--steel); padding: 13px 28px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; border: 1px solid var(--rule); transition: background 0.2s; }
   .btn-ghost:hover { background: white; }
-  .hero-stats { display: flex; align-items: center; gap: 28px; padding-top: 32px; border-top: 1px solid var(--rule-light); }
+  .hero-stats { display: flex; align-items: center; gap: 24px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--rule-light); }
   .hero-stat-val { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: var(--steel-dark); letter-spacing: -0.03em; line-height: 1; }
   .hero-stat-lbl { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-subtle); margin-top: 4px; font-weight: 600; }
   .hero-stat-divider { width: 1px; height: 36px; background: var(--rule); }
 
   /* ── Dark product card ── */
-  .product-card-dark { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border: 1px solid var(--rule); border-radius: 20px; padding: 28px; width: 100%; max-width: 400px; box-shadow: 0 8px 40px rgba(42,90,138,0.10); }
+  .product-card-dark { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border: 1px solid var(--rule); border-radius: 20px; padding: 24px; width: 100%; max-width: 360px; box-shadow: 0 8px 40px rgba(42,90,138,0.10); }
   .pcd-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 20px; font-weight: 700; font-family: 'Outfit', sans-serif; }
   .pcd-list { display: flex; flex-direction: column; }
   .pcd-item { display: flex; align-items: center; gap: 14px; padding: 11px 6px; border-bottom: 1px solid var(--rule-light); text-decoration: none; transition: background 0.15s; border-radius: 8px; margin: 0 -6px; }
@@ -294,7 +294,7 @@
 
 <header>
   <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;"><div style="position:relative;z-index:2;">
-    <svg width="100%" height="auto" viewBox="0 0 220 80" style="max-width:160px;display:block;" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:200px;display:block;" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="hLG1" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%"   stop-color="#1a3a5a"/>
@@ -309,11 +309,11 @@
       <stop offset="50%"  stop-color="#5aaad8"/>
       <stop offset="100%" stop-color="#2a5a8a"/>
     </linearGradient>
-    <clipPath id="hLC"><rect x="0" y="0" width="220" height="36"/></clipPath>
+    <clipPath id="hLC"><rect x="0" y="0" width="240" height="36"/></clipPath>
   </defs>
 
   <g clip-path="url(#hLC)">
-    <g transform="translate(97, 26)">
+    <g transform="translate(102, 26)">
       <circle cx="0" cy="0" r="5" fill="url(#hLG1)"/>
       <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#hLG1)" stroke-width="2"/>
       <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#hLG1)" stroke-width="2" transform="rotate(60)"/>
@@ -324,13 +324,13 @@
     </g>
   </g>
 
-  <text x="15" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif"
+  <text x="8" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif"
         font-weight="900" font-size="48" fill="url(#hLG1)" letter-spacing="-3">nov</text>
-  <text x="91" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif"
+  <text x="94" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif"
         font-weight="900" font-size="48" fill="url(#hLG1)" letter-spacing="-3">i</text>
-  <text x="100" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif"
+  <text x="107" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif"
         font-weight="900" font-size="48" fill="url(#hLG1)" letter-spacing="-3">gen</text>
-  <text x="16" y="77" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#hLG2)" textLength="163" lengthAdjust="spacing">PEPTIDES</text>
+  <text x="8" y="74" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="url(#hLG2)" textLength="190" lengthAdjust="spacing">PEPTIDES</text>
 </svg>
   </div>
   <nav>
@@ -343,7 +343,7 @@
 </header>
 
 <!-- ══ HERO ══ -->
-<section class="hero">
+<div style="width:100%;"><section class="hero">
   <div class="hero-ray"></div>
   <div class="hero-left">
     <div class="hero-eyebrow">Premium Research Peptides</div>
@@ -404,7 +404,7 @@
       <a href="shop.html" class="pcd-cta">Shop All Products →</a>
     </div>
   </div>
-</section>
+</section></div>
 
 <!-- ══ FEATURES STRIP ══ -->
 <div class="features-strip">
