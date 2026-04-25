@@ -52,7 +52,7 @@
   .nav-cta:hover { box-shadow: 0 6px 20px rgba(42,90,138,0.3); transform: translateY(-1px); }
 
   /* ══ HERO ══ */
-  .hero { min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; position: relative; overflow: hidden; background: transparent; }
+  /* hero handled above */ .hero-unused { min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; position: relative; overflow: hidden; background: transparent; }
   
   
   body::before {
@@ -70,14 +70,14 @@
   .hero-ray { position: absolute; top: -100%; left: 40%; width: 200px; height: 300%; transform: rotate(-15deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent); animation: raySlide 9s ease-in-out infinite; pointer-events: none; z-index: 1; }
   @keyframes raySlide { 0%{opacity:0;transform:rotate(-15deg) translateX(-100px)} 35%{opacity:0.8} 65%{opacity:0.8} 100%{opacity:0;transform:rotate(-15deg) translateX(100px)} }
 
-  .hero-left { padding: 80px 60px; position: relative; z-index: 2; animation: heroLeft 1s cubic-bezier(0.16,1,0.3,1) both; }
+  /* hero-left handled above */
   @keyframes heroLeft { from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
 
   .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--steel); font-weight: 700; background: rgba(42,90,138,0.07); border: 1px solid rgba(42,90,138,0.15); padding: 6px 14px; border-radius: 20px; margin-bottom: 24px; }
   .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--steel); animation: dotPulse 2s ease-in-out infinite; }
   @keyframes dotPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
 
-  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 3.8rem; line-height: 0.95; letter-spacing: -0.04em; color: var(--steel-dark); margin-bottom: 24px; }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 5rem; line-height: 0.95; letter-spacing: -0.04em; color: var(--steel-dark); margin-bottom: 24px; }
   .hero h1 em { font-style: normal; color: var(--steel-light); display: block; }
   .hero-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.8; max-width: 420px; margin-bottom: 40px; font-weight: 300; }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -91,9 +91,9 @@
   .hero-stat-value { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--steel-dark); letter-spacing: -0.03em; line-height: 1; }
   .hero-stat-label { font-size: 0.72rem; color: var(--text-subtle); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; font-weight: 600; }
 
-  .hero-right { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; padding: 60px 40px 60px 20px; animation: heroRight 1s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+  .hero-right { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; padding: 60px 60px 60px 20px; animation: heroRight 1s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
   @keyframes heroRight { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
-  .lab-illustration { width: 100%; max-width: 520px; filter: drop-shadow(0 20px 40px rgba(42,90,138,0.18)); }
+  .lab-illustration { width: 100%; max-width: 620px; filter: drop-shadow(0 20px 40px rgba(42,90,138,0.18)); }
 
   /* ══ FEATURES STRIP ══ */
   .features-strip { background: white; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 28px 60px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
@@ -227,6 +227,45 @@
   .disclaimer-confirm:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.35); transform: translateY(-1px); }
   .disclaimer-decline { display: block; margin-top: 12px; font-size: 0.78rem; color: #6a8090; text-decoration: none; cursor: pointer; }
   .disclaimer-decline:hover { color: #1a3a5a; }
+
+  /* ── Hero redesign ── */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 92vh; align-items: center; gap: 60px; padding: 80px 80px 80px 80px; position: relative; overflow: hidden; }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-right { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 5rem; line-height: 0.95; letter-spacing: -0.04em; color: var(--steel-dark); margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--steel-light); display: block; }
+  .hero-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; max-width: 420px; margin-bottom: 32px; font-weight: 300; }
+  .hero-actions { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+  .btn-primary { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; padding: 13px 28px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(42,90,138,0.25); transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(42,90,138,0.35); }
+  .btn-ghost { background: rgba(255,255,255,0.7); color: var(--steel); padding: 13px 28px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; border: 1px solid var(--rule); transition: background 0.2s; }
+  .btn-ghost:hover { background: white; }
+  .hero-stats { display: flex; align-items: center; gap: 28px; padding-top: 32px; border-top: 1px solid var(--rule-light); }
+  .hero-stat-val { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: var(--steel-dark); letter-spacing: -0.03em; line-height: 1; }
+  .hero-stat-lbl { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-subtle); margin-top: 4px; font-weight: 600; }
+  .hero-stat-divider { width: 1px; height: 36px; background: var(--rule); }
+
+  /* ── Dark product card ── */
+  .product-card-dark { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border: 1px solid var(--rule); border-radius: 20px; padding: 28px; width: 100%; max-width: 400px; box-shadow: 0 8px 40px rgba(42,90,138,0.10); }
+  .pcd-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 20px; font-weight: 700; font-family: 'Outfit', sans-serif; }
+  .pcd-list { display: flex; flex-direction: column; }
+  .pcd-item { display: flex; align-items: center; gap: 14px; padding: 11px 6px; border-bottom: 1px solid var(--rule-light); text-decoration: none; transition: background 0.15s; border-radius: 8px; margin: 0 -6px; }
+  .pcd-item:hover { background: rgba(42,90,138,0.04); }
+  .pcd-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .pcd-info { flex: 1; }
+  .pcd-name { font-size: 0.88rem; font-weight: 700; color: var(--steel-dark); font-family: 'Outfit', sans-serif; }
+  .pcd-sub { font-size: 0.72rem; color: var(--text-subtle); margin-top: 2px; }
+  .pcd-price { font-size: 0.85rem; color: var(--steel); font-weight: 700; white-space: nowrap; font-family: 'Outfit', sans-serif; }
+  .pcd-cta { display: block; margin-top: 20px; text-align: center; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: white; text-decoration: none; font-weight: 700; padding: 12px; background: linear-gradient(135deg, var(--steel), var(--steel-light)); border-radius: 8px; font-family: 'Outfit', sans-serif; transition: opacity 0.2s; }
+  .pcd-cta:hover { opacity: 0.9; }
+
+  /* Mobile hero */
+  @media(max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; min-height: auto; }
+    .hero h1 { font-size: 3rem; }
+    .product-card-dark { max-width: 100%; }
+    .hero-stats { gap: 20px; }
+  }
 </style>
 </head>
 <body>
@@ -297,136 +336,72 @@
   <nav>
     <a href="guides.html" class="nav-link">Guides</a>
     <a href="verify.html" class="nav-link">Verify</a>
+    <a href="contact.html" class="nav-link">Contact / FAQ</a>
     <a href="shop.html" class="nav-cta">🛒 Shop Now</a>
   </nav>
 </header>
 
 <!-- ══ HERO ══ -->
 <section class="hero">
-  
   <div class="hero-ray"></div>
   <div class="hero-left">
     <div class="hero-eyebrow">Premium Research Peptides</div>
-    <h1>Advanced<br>Peptide<br><em>Science</em></h1>
-    <p class="hero-desc">High-purity recombinant peptides produced under strict quality controls, with comprehensive usage documentation and professional support.</p>
+    <h1>Molecular<br>Precision.<br><em>Delivered.</em></h1>
+    <p class="hero-desc">Research-grade recombinant peptides with pharmaceutical traceability. Formulated for the serious researcher. UK-based, cold-chain delivered.</p>
     <div class="hero-actions">
-      <a href="guides.html" class="btn-primary">📖 View Usage Guides</a>
-      <a href="shop.html" class="btn-secondary">🛒 Shop Products</a>
+      <a href="shop.html" class="btn-primary">🛒 Shop Products</a>
+      <a href="guides.html" class="btn-ghost">View Guides →</a>
     </div>
     <div class="hero-stats">
-      <div><div class="hero-stat-value">99%+</div><div class="hero-stat-label">Purity Grade</div></div>
-      <div><div class="hero-stat-value">4</div><div class="hero-stat-label">Product Lines</div></div>
-      
+      <div class="hero-stat"><div class="hero-stat-val">99%+</div><div class="hero-stat-lbl">Purity Grade</div></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><div class="hero-stat-val">7</div><div class="hero-stat-lbl">Products</div></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><div class="hero-stat-val">UK</div><div class="hero-stat-lbl">Based</div></div>
     </div>
   </div>
-
   <div class="hero-right">
-    <svg class="lab-illustration" viewBox="0 0 520 440" xmlns="http://www.w3.org/2000/svg">
-      <!-- Lab bench -->
-      <rect x="20" y="340" width="480" height="16" rx="4" fill="#b8d0ea" opacity="0.7"/>
-      <rect x="20" y="352" width="480" height="8" rx="2" fill="#9abcd8" opacity="0.5"/>
-      <!-- Flask -->
-      <ellipse cx="110" cy="300" rx="48" ry="52" fill="rgba(168,200,240,0.35)" stroke="#6a9fd8" stroke-width="1.5"/>
-      <rect x="103" y="248" width="14" height="32" rx="4" fill="rgba(168,200,240,0.5)" stroke="#6a9fd8" stroke-width="1.2"/>
-      <ellipse cx="110" cy="320" rx="34" ry="18" fill="rgba(74,138,191,0.3)"/>
-      <circle cx="98" cy="305" r="4" fill="rgba(255,255,255,0.4)"/>
-      <circle cx="118" cy="315" r="3" fill="rgba(255,255,255,0.3)"/>
-      <circle cx="106" cy="295" r="2.5" fill="rgba(255,255,255,0.35)"/>
-      <ellipse cx="92" cy="282" rx="8" ry="14" fill="rgba(255,255,255,0.2)" transform="rotate(-20,92,282)"/>
-      <!-- Microscope -->
-      <g transform="translate(220,140)">
-        <ellipse cx="40" cy="185" rx="52" ry="10" fill="#8ab4d8" opacity="0.8"/>
-        <rect x="28" y="165" width="24" height="24" rx="3" fill="#7aa8d0"/>
-        <rect x="37" y="60" width="8" height="110" rx="4" fill="#6a9ac8"/>
-        <rect x="20" y="55" width="42" height="12" rx="4" fill="#7aaad2"/>
-        <ellipse cx="41" cy="50" rx="22" ry="14" fill="#8ab8e0"/>
-        <rect x="36" y="20" width="10" height="32" rx="5" fill="#6a98c8"/>
-        <ellipse cx="41" cy="20" rx="9" ry="6" fill="#5a88b8"/>
-        <circle cx="41" cy="82" r="10" fill="#5a88c0"/>
-        <circle cx="41" cy="82" r="6" fill="#4a7ab8"/>
-        <circle cx="41" cy="82" r="3" fill="#2a5a90" opacity="0.8"/>
-        <rect x="15" y="130" width="52" height="8" rx="2" fill="#7aaad0"/>
-        <rect x="22" y="126" width="38" height="4" rx="1" fill="rgba(200,228,255,0.8)" stroke="#8abce8" stroke-width="0.5"/>
-        <ellipse cx="32" cy="90" rx="4" ry="16" fill="rgba(255,255,255,0.25)" transform="rotate(-15,32,90)"/>
-      </g>
-      <!-- Vial rack -->
-      <g transform="translate(360,220)">
-        <rect x="0" y="110" width="120" height="10" rx="3" fill="#8ab4d8"/>
-        <rect x="8" y="100" width="104" height="12" rx="2" fill="#7aa8d0"/>
-        <rect x="16" y="40" width="18" height="62" rx="9" fill="rgba(168,210,248,0.5)" stroke="#6a9fd8" stroke-width="1.2"/>
-        <rect x="16" y="80" width="18" height="22" rx="0 0 9 9" fill="rgba(74,138,200,0.45)"/>
-        <rect x="20" y="36" width="10" height="8" rx="2" fill="rgba(200,228,255,0.7)" stroke="#8abce8" stroke-width="0.8"/>
-        <rect x="42" y="34" width="18" height="68" rx="9" fill="rgba(168,230,230,0.5)" stroke="#5ab0b0" stroke-width="1.2"/>
-        <rect x="42" y="74" width="18" height="28" rx="0 0 9 9" fill="rgba(42,148,148,0.4)"/>
-        <rect x="46" y="30" width="10" height="8" rx="2" fill="rgba(200,240,240,0.7)" stroke="#8ad0d0" stroke-width="0.8"/>
-        <rect x="68" y="44" width="18" height="58" rx="9" fill="rgba(210,190,240,0.5)" stroke="#9a7ac8" stroke-width="1.2"/>
-        <rect x="68" y="80" width="18" height="22" rx="0 0 9 9" fill="rgba(130,90,180,0.4)"/>
-        <rect x="72" y="40" width="10" height="8" rx="2" fill="rgba(230,218,250,0.7)" stroke="#b8a0d8" stroke-width="0.8"/>
-        <rect x="94" y="38" width="18" height="64" rx="9" fill="rgba(180,235,210,0.5)" stroke="#5ab890" stroke-width="1.2"/>
-        <rect x="94" y="76" width="18" height="26" rx="0 0 9 9" fill="rgba(50,150,100,0.4)"/>
-        <rect x="98" y="34" width="10" height="8" rx="2" fill="rgba(210,245,228,0.7)" stroke="#8ad0b0" stroke-width="0.8"/>
-        <rect x="19" y="48" width="4" height="20" rx="2" fill="rgba(255,255,255,0.35)"/>
-        <rect x="45" y="42" width="4" height="22" rx="2" fill="rgba(255,255,255,0.35)"/>
-        <rect x="71" y="52" width="4" height="18" rx="2" fill="rgba(255,255,255,0.35)"/>
-        <rect x="97" y="46" width="4" height="20" rx="2" fill="rgba(255,255,255,0.35)"/>
-      </g>
-      <!-- DNA helix top -->
-      <g transform="translate(30,30)" opacity="0.85">
-        <path d="M0,0 C20,-20 40,20 60,0 C80,-20 100,20 120,0 C140,-20 160,20 180,0" fill="none" stroke="#4a8abf" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M0,0 C20,20 40,-20 60,0 C80,20 100,-20 120,0 C140,20 160,-20 180,0" fill="none" stroke="#7aacd8" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="18" y1="-12" x2="18" y2="12" stroke="#9ac4e8" stroke-width="1.5" opacity="0.8"/>
-        <line x1="36" y1="12" x2="36" y2="-12" stroke="#9ac4e8" stroke-width="1.5" opacity="0.8"/>
-        <line x1="84" y1="12" x2="84" y2="-12" stroke="#9ac4e8" stroke-width="1.5" opacity="0.8"/>
-        <line x1="102" y1="-12" x2="102" y2="12" stroke="#9ac4e8" stroke-width="1.5" opacity="0.8"/>
-        <line x1="144" y1="12" x2="144" y2="-12" stroke="#9ac4e8" stroke-width="1.5" opacity="0.8"/>
-        <line x1="162" y1="-12" x2="162" y2="12" stroke="#9ac4e8" stroke-width="1.5" opacity="0.8"/>
-        <circle cx="18" cy="-12" r="3.5" fill="#3a7abf"/><circle cx="18" cy="12" r="3.5" fill="#5a98d8"/>
-        <circle cx="36" cy="12" r="3.5" fill="#3a7abf"/><circle cx="36" cy="-12" r="3.5" fill="#5a98d8"/>
-        <circle cx="84" cy="12" r="3.5" fill="#3a7abf"/><circle cx="84" cy="-12" r="3.5" fill="#5a98d8"/>
-        <circle cx="102" cy="-12" r="3.5" fill="#3a7abf"/><circle cx="102" cy="12" r="3.5" fill="#5a98d8"/>
-        <circle cx="144" cy="12" r="3.5" fill="#3a7abf"/><circle cx="144" cy="-12" r="3.5" fill="#5a98d8"/>
-        <circle cx="162" cy="-12" r="3.5" fill="#3a7abf"/><circle cx="162" cy="12" r="3.5" fill="#5a98d8"/>
-      </g>
-      <!-- Pen render -->
-      <g transform="translate(160,255)">
-        <defs>
-          <linearGradient id="penGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#5a9ad8"/><stop offset="50%" stop-color="#4a8abf"/><stop offset="100%" stop-color="#2a6aaa"/>
-          </linearGradient>
-          <linearGradient id="penCapGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#2a5a8a"/><stop offset="100%" stop-color="#0a3a6a"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="22" height="82" rx="11" fill="url(#penGrad)"/>
-        <rect x="1" y="0" width="20" height="28" rx="10" fill="url(#penCapGrad)"/>
-        <rect x="4" y="32" width="14" height="22" rx="3" fill="rgba(200,230,255,0.6)" stroke="rgba(100,160,220,0.4)" stroke-width="0.5"/>
-        <rect x="6" y="58" width="10" height="8" rx="2" fill="rgba(255,255,255,0.5)"/>
-        <text x="11" y="65" font-family="Outfit" font-size="4" font-weight="700" fill="#2a5a8a" text-anchor="middle">2mg</text>
-        <rect x="9" y="80" width="4" height="12" rx="2" fill="#8ab8e0"/>
-        <rect x="3" y="5" width="5" height="50" rx="2.5" fill="rgba(255,255,255,0.25)"/>
-      </g>
-      <!-- Molecule top-right -->
-      <g transform="translate(300,60)" opacity="0.7">
-        <circle cx="60" cy="40" r="14" fill="rgba(74,138,191,0.2)" stroke="#4a8abf" stroke-width="1.5"/>
-        <circle cx="20" cy="70" r="10" fill="rgba(106,74,138,0.2)" stroke="#6a4a8a" stroke-width="1.5"/>
-        <circle cx="100" cy="70" r="10" fill="rgba(26,122,122,0.2)" stroke="#1a7a7a" stroke-width="1.5"/>
-        <circle cx="40" cy="10" r="8" fill="rgba(42,122,90,0.2)" stroke="#2a7a5a" stroke-width="1.5"/>
-        <circle cx="80" cy="10" r="8" fill="rgba(74,138,191,0.15)" stroke="#4a8abf" stroke-width="1.2"/>
-        <line x1="60" y1="40" x2="20" y2="70" stroke="#6a9fd8" stroke-width="1.5"/>
-        <line x1="60" y1="40" x2="100" y2="70" stroke="#6a9fd8" stroke-width="1.5"/>
-        <line x1="60" y1="40" x2="40" y2="10" stroke="#6a9fd8" stroke-width="1.5"/>
-        <line x1="60" y1="40" x2="80" y2="10" stroke="#6a9fd8" stroke-width="1.5"/>
-        <text x="60" y="44" font-family="Outfit" font-size="7" font-weight="700" fill="#2a5a8a" text-anchor="middle">C</text>
-        <text x="20" y="74" font-family="Outfit" font-size="6" font-weight="700" fill="#6a4a8a" text-anchor="middle">N</text>
-        <text x="100" y="74" font-family="Outfit" font-size="6" font-weight="700" fill="#1a7a7a" text-anchor="middle">O</text>
-        <text x="40" y="14" font-family="Outfit" font-size="5.5" font-weight="700" fill="#2a7a5a" text-anchor="middle">H</text>
-        <text x="80" y="14" font-family="Outfit" font-size="5.5" font-weight="700" fill="#4a8abf" text-anchor="middle">H</text>
-      </g>
-      <!-- Floating particles -->
-      <circle cx="480" cy="60" r="5" fill="rgba(74,138,191,0.3)" stroke="#4a8abf" stroke-width="1"><animate attributeName="cy" values="60;50;60" dur="3s" repeatCount="indefinite"/></circle>
-      <circle cx="460" cy="90" r="3" fill="rgba(42,122,90,0.3)" stroke="#2a7a5a" stroke-width="0.8"><animate attributeName="cy" values="90;80;90" dur="4s" repeatCount="indefinite"/></circle>
-      <circle cx="490" cy="110" r="4" fill="rgba(106,74,138,0.25)" stroke="#6a4a8a" stroke-width="0.8"><animate attributeName="cy" values="110;100;110" dur="3.5s" repeatCount="indefinite"/></circle>
-    </svg>
+    <div class="product-card-dark">
+      <div class="pcd-label">Product Range</div>
+      <div class="pcd-list">
+        <a href="shop.html" class="pcd-item">
+          <div class="pcd-dot" style="background:#4a9ad8;box-shadow:0 0 8px rgba(74,154,216,0.5);"></div>
+          <div class="pcd-info"><div class="pcd-name">Retatrutide®</div><div class="pcd-sub">Triple agonist · GLP-1 / GIP / Glucagon</div></div>
+          <div class="pcd-price">£115+</div>
+        </a>
+        <a href="shop.html" class="pcd-item">
+          <div class="pcd-dot" style="background:#9a6abf;box-shadow:0 0 8px rgba(154,106,191,0.5);"></div>
+          <div class="pcd-info"><div class="pcd-name">Glow 70mg</div><div class="pcd-sub">GHK-Cu · TB-500 · BPC-157</div></div>
+          <div class="pcd-price">£80</div>
+        </a>
+        <a href="shop.html" class="pcd-item">
+          <div class="pcd-dot" style="background:#1a9a9a;box-shadow:0 0 8px rgba(26,154,154,0.5);"></div>
+          <div class="pcd-info"><div class="pcd-name">Tirzepatide®</div><div class="pcd-sub">Dual GLP-1 / GIP agonist</div></div>
+          <div class="pcd-price">£100+</div>
+        </a>
+        <a href="shop.html" class="pcd-item">
+          <div class="pcd-dot" style="background:#4aab7a;box-shadow:0 0 8px rgba(74,171,122,0.5);"></div>
+          <div class="pcd-info"><div class="pcd-name">rHGH</div><div class="pcd-sub">Recombinant Human Growth Hormone</div></div>
+          <div class="pcd-price">£120+</div>
+        </a>
+        <a href="shop.html" class="pcd-item">
+          <div class="pcd-dot" style="background:#3a9abf;box-shadow:0 0 8px rgba(58,154,191,0.5);"></div>
+          <div class="pcd-info"><div class="pcd-name">NAD+</div><div class="pcd-sub">1000mg · Cellular energy & DNA repair</div></div>
+          <div class="pcd-price">£90</div>
+        </a>
+        <a href="shop.html" class="pcd-item">
+          <div class="pcd-dot" style="background:#4aab5a;box-shadow:0 0 8px rgba(74,171,90,0.5);"></div>
+          <div class="pcd-info"><div class="pcd-name">GHK-Cu</div><div class="pcd-sub">50mg · Copper peptide complex</div></div>
+          <div class="pcd-price">£30</div>
+        </a>
+        <a href="shop.html" class="pcd-item" style="border-bottom:none;">
+          <div class="pcd-dot" style="background:#bf5a9a;box-shadow:0 0 8px rgba(191,90,154,0.5);"></div>
+          <div class="pcd-info"><div class="pcd-name">Melanotan II</div><div class="pcd-sub">10mg · α-MSH analogue</div></div>
+          <div class="pcd-price">£25</div>
+        </a>
+      </div>
+      <a href="shop.html" class="pcd-cta">Shop All Products →</a>
+    </div>
   </div>
 </section>
 
@@ -443,97 +418,137 @@
   <div class="feature-item"><div class="feature-icon">🚚</div><span class="feature-text">UK Wide Delivery</span></div>
 </div>
 
-<!-- ══ MOLECULAR SECTION ══ -->
-<section style="padding:40px 60px;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;">
-
-    <!-- Left: text + peptide boxes -->
-    <div>
-      <div style="font-size:0.62rem;letter-spacing:0.35em;text-transform:uppercase;color:#2a5a8a;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;font-family:Outfit,sans-serif;">
-        <span style="width:28px;height:2px;background:linear-gradient(90deg,#2a5a8a,#4a8abf);border-radius:2px;display:inline-block;"></span>
-        Molecular Precision
+<!-- ══ MOST POPULAR ══ -->
+<section style="padding:48px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div style="font-size:0.62rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--steel);font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-family:Outfit,sans-serif;">
+          <span style="width:24px;height:2px;background:linear-gradient(90deg,var(--steel),var(--steel-light));border-radius:2px;display:inline-block;"></span>
+          Most Popular
+        </div>
+        <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:2.4rem;letter-spacing:-0.03em;color:var(--steel-dark);line-height:1.05;">Today's Best Sellers</h2>
       </div>
-      <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:2.4rem;line-height:1.05;letter-spacing:-0.03em;color:#1a3a5a;margin-bottom:16px;">Research-Grade<br>Peptide Science</h2>
-      <p style="font-size:0.92rem;color:#3a5068;line-height:1.85;font-weight:300;margin-bottom:24px;font-family:Outfit,sans-serif;">Every Novigen product is produced using advanced recombinant DNA technology, ensuring consistent amino acid sequences identical to endogenous human proteins.</p>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.8);border:1px solid #c8daf0;border-radius:10px;padding:13px 16px;">
-          <div style="width:10px;height:10px;border-radius:50%;background:#2a5a8a;box-shadow:0 0 8px rgba(42,90,138,0.4);flex-shrink:0;"></div>
-          <div><div style="font-weight:700;font-size:0.88rem;color:#0d1f38;font-family:Outfit,sans-serif;">Retatrutide® — Triple Receptor Agonist</div><div style="font-size:0.75rem;color:#6a8090;margin-top:2px;font-family:Outfit,sans-serif;">GLP-1 · GIP · Glucagon — 39 amino acid chain</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.8);border:1px solid #c8daf0;border-radius:10px;padding:13px 16px;">
-          <div style="width:10px;height:10px;border-radius:50%;background:#6a4a8a;box-shadow:0 0 8px rgba(106,74,138,0.4);flex-shrink:0;"></div>
-          <div><div style="font-weight:700;font-size:0.88rem;color:#0d1f38;font-family:Outfit,sans-serif;">Glow 70mg — Regenerative Blend</div><div style="font-size:0.75rem;color:#6a8090;margin-top:2px;font-family:Outfit,sans-serif;">GHK-Cu · TB-500 · BPC-157</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.8);border:1px solid #c8daf0;border-radius:10px;padding:13px 16px;">
-          <div style="width:10px;height:10px;border-radius:50%;background:#1a7a7a;box-shadow:0 0 8px rgba(26,122,122,0.4);flex-shrink:0;"></div>
-          <div><div style="font-weight:700;font-size:0.88rem;color:#0d1f38;font-family:Outfit,sans-serif;">Tirzepatide® — Dual GLP-1/GIP Agonist</div><div style="font-size:0.75rem;color:#6a8090;margin-top:2px;font-family:Outfit,sans-serif;">Weekly subcutaneous · 15mg–60mg pens</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.8);border:1px solid #c8daf0;border-radius:10px;padding:13px 16px;">
-          <div style="width:10px;height:10px;border-radius:50%;background:#2a7a5a;box-shadow:0 0 8px rgba(42,122,90,0.4);flex-shrink:0;"></div>
-          <div><div style="font-weight:700;font-size:0.88rem;color:#0d1f38;font-family:Outfit,sans-serif;">rHGH — Recombinant Growth Hormone</div><div style="font-size:0.75rem;color:#6a8090;margin-top:2px;font-family:Outfit,sans-serif;">191 amino acids · 22 kDa</div></div>
-        </div>
-      </div>
+      <a href="shop.html" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel);text-decoration:none;font-weight:700;border:1px solid var(--rule);padding:10px 20px;border-radius:20px;font-family:Outfit,sans-serif;white-space:nowrap;transition:background 0.2s;">View All Products →</a>
     </div>
 
-    <!-- Right: DNA helix -->
-    <div style="display:flex;align-items:center;justify-content:center;">
-      <svg viewBox="80 20 180 380" xmlns="http://www.w3.org/2000/svg" width="180" height="280" style="display:block;">
-        <path d="M120,30 C90,70 150,110 120,150 C90,190 150,230 120,270 C90,310 150,350 120,390" fill="none" stroke="#4a8abf" stroke-width="3" stroke-linecap="round"/>
-        <path d="M220,30 C250,70 190,110 220,150 C250,190 190,230 220,270 C250,310 190,350 220,390" fill="none" stroke="#6aaad8" stroke-width="3" stroke-linecap="round"/>
-        <line x1="120" y1="30"  x2="220" y2="30"  stroke="#8ac0e8" stroke-width="2" opacity="0.7"/>
-        <line x1="97"  y1="80"  x2="243" y2="80"  stroke="#8ac0e8" stroke-width="1.8" opacity="0.6"/>
-        <line x1="96"  y1="105" x2="244" y2="105" stroke="#8ac0e8" stroke-width="1.8" opacity="0.6"/>
-        <line x1="120" y1="150" x2="220" y2="150" stroke="#8ac0e8" stroke-width="2" opacity="0.7"/>
-        <line x1="142" y1="190" x2="198" y2="190" stroke="#8ac0e8" stroke-width="1.8" opacity="0.6"/>
-        <line x1="142" y1="210" x2="198" y2="210" stroke="#8ac0e8" stroke-width="1.8" opacity="0.6"/>
-        <line x1="120" y1="270" x2="220" y2="270" stroke="#8ac0e8" stroke-width="2" opacity="0.7"/>
-        <line x1="97"  y1="320" x2="243" y2="320" stroke="#8ac0e8" stroke-width="1.8" opacity="0.6"/>
-        <line x1="120" y1="390" x2="220" y2="390" stroke="#8ac0e8" stroke-width="2" opacity="0.7"/>
-        <text x="170" y="34"  font-family="Outfit" font-size="8" font-weight="700" fill="#2a5a8a" text-anchor="middle">A—T</text>
-        <text x="170" y="109" font-family="Outfit" font-size="8" font-weight="700" fill="#2a5a8a" text-anchor="middle">G—C</text>
-        <text x="170" y="154" font-family="Outfit" font-size="8" font-weight="700" fill="#2a5a8a" text-anchor="middle">T—A</text>
-        <text x="170" y="214" font-family="Outfit" font-size="8" font-weight="700" fill="#2a5a8a" text-anchor="middle">C—G</text>
-        <text x="170" y="274" font-family="Outfit" font-size="8" font-weight="700" fill="#2a5a8a" text-anchor="middle">A—T</text>
-        <text x="170" y="394" font-family="Outfit" font-size="8" font-weight="700" fill="#2a5a8a" text-anchor="middle">T—A</text>
-        <circle cx="120" cy="30"  r="5" fill="#2a5a8a"/><circle cx="220" cy="30"  r="5" fill="#4a8abf"/>
-        <circle cx="97"  cy="80"  r="5" fill="#2a5a8a"/><circle cx="243" cy="80"  r="5" fill="#4a8abf"/>
-        <circle cx="120" cy="150" r="5" fill="#2a5a8a"/><circle cx="220" cy="150" r="5" fill="#4a8abf"/>
-        <circle cx="120" cy="270" r="5" fill="#2a5a8a"/><circle cx="220" cy="270" r="5" fill="#4a8abf"/>
-        <circle cx="120" cy="390" r="5" fill="#2a5a8a"/><circle cx="220" cy="390" r="5" fill="#4a8abf"/>
-      </svg>
-    </div></a>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" id="popular-grid">
 
+      <!-- Retatrutide 20mg -->
+      <a href="shop.html" class="pop-card" data-p="ret" style="border-radius:16px;overflow:hidden;border:1px solid var(--rule);text-decoration:none;color:inherit;display:flex;flex-direction:column;background:rgba(255,255,255,0.8);box-shadow:0 4px 20px rgba(42,90,138,0.07);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;">
+        <div style="height:130px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#c8dcf8,#a8c4f0);position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpolygon points='30,2 56,15 56,37 30,50 4,37 4,15' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='0.8'/%3E%3C/svg%3E");background-size:60px 52px;opacity:0.5;"></div>
+          <div style="font-size:2.4rem;position:relative;z-index:1;">💉</div>
+          <div class="pop-badge" style="position:absolute;top:10px;right:10px;background:rgba(42,90,138,0.15);backdrop-filter:blur(4px);border-radius:20px;padding:4px 10px;font-size:0.65rem;font-weight:700;color:#1a3a5a;font-family:Outfit,sans-serif;letter-spacing:0.05em;">20mg</div>
+        </div>
+        <div style="padding:18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#2a5a8a;font-weight:700;font-family:Outfit,sans-serif;margin-bottom:6px;">Retatrutide®</div>
+          <div style="font-size:1rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;margin-bottom:4px;letter-spacing:-0.01em;">20mg Pen</div>
+          <div style="font-size:0.75rem;color:var(--text-subtle);margin-bottom:14px;line-height:1.5;">Triple agonist · GLP-1 / GIP / Glucagon</div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;">£115</div>
+            <div class="pop-sold" style="font-size:0.7rem;color:var(--text-subtle);font-family:Outfit,sans-serif;"></div>
+          </div>
+          <div class="pop-activity" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-light);font-size:0.72rem;color:#2a7a3a;font-weight:600;font-family:Outfit,sans-serif;display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#2a7a3a;display:inline-block;animation:pulse 2s infinite;"></span>
+            <span class="pop-count"></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Retatrutide 40mg -->
+      <a href="shop.html" class="pop-card" data-p="ret" style="border-radius:16px;overflow:hidden;border:1px solid var(--rule);text-decoration:none;color:inherit;display:flex;flex-direction:column;background:rgba(255,255,255,0.8);box-shadow:0 4px 20px rgba(42,90,138,0.07);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;">
+        <div style="height:130px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#c8dcf8,#a8c4f0);position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpolygon points='30,2 56,15 56,37 30,50 4,37 4,15' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='0.8'/%3E%3C/svg%3E");background-size:60px 52px;opacity:0.5;"></div>
+          <div style="font-size:2.4rem;position:relative;z-index:1;">💉</div>
+          <div class="pop-badge" style="position:absolute;top:10px;right:10px;background:rgba(42,90,138,0.15);backdrop-filter:blur(4px);border-radius:20px;padding:4px 10px;font-size:0.65rem;font-weight:700;color:#1a3a5a;font-family:Outfit,sans-serif;letter-spacing:0.05em;">40mg</div>
+        </div>
+        <div style="padding:18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#2a5a8a;font-weight:700;font-family:Outfit,sans-serif;margin-bottom:6px;">Retatrutide®</div>
+          <div style="font-size:1rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;margin-bottom:4px;letter-spacing:-0.01em;">40mg Pen</div>
+          <div style="font-size:0.75rem;color:var(--text-subtle);margin-bottom:14px;line-height:1.5;">Triple agonist · GLP-1 / GIP / Glucagon</div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;">£150</div>
+            <div class="pop-sold" style="font-size:0.7rem;color:var(--text-subtle);font-family:Outfit,sans-serif;"></div>
+          </div>
+          <div class="pop-activity" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-light);font-size:0.72rem;color:#2a7a3a;font-weight:600;font-family:Outfit,sans-serif;display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#2a7a3a;display:inline-block;animation:pulse 2s infinite;"></span>
+            <span class="pop-count"></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tirzepatide 60mg -->
+      <a href="shop.html" class="pop-card" data-p="tir" style="border-radius:16px;overflow:hidden;border:1px solid var(--rule);text-decoration:none;color:inherit;display:flex;flex-direction:column;background:rgba(255,255,255,0.8);box-shadow:0 4px 20px rgba(42,90,138,0.07);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;">
+        <div style="height:130px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#b8e0e0,#98cccc);position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpolygon points='30,2 56,15 56,37 30,50 4,37 4,15' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='0.8'/%3E%3C/svg%3E");background-size:60px 52px;opacity:0.5;"></div>
+          <div style="font-size:2.4rem;position:relative;z-index:1;">💉</div>
+          <div class="pop-badge" style="position:absolute;top:10px;right:10px;background:rgba(26,122,122,0.15);backdrop-filter:blur(4px);border-radius:20px;padding:4px 10px;font-size:0.65rem;font-weight:700;color:#0a5a5a;font-family:Outfit,sans-serif;letter-spacing:0.05em;">60mg</div>
+        </div>
+        <div style="padding:18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#1a7a7a;font-weight:700;font-family:Outfit,sans-serif;margin-bottom:6px;">Tirzepatide®</div>
+          <div style="font-size:1rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;margin-bottom:4px;letter-spacing:-0.01em;">60mg Pen</div>
+          <div style="font-size:0.75rem;color:var(--text-subtle);margin-bottom:14px;line-height:1.5;">Dual agonist · GLP-1 / GIP</div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;">£160</div>
+          </div>
+          <div class="pop-activity" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-light);font-size:0.72rem;color:#2a7a3a;font-weight:600;font-family:Outfit,sans-serif;display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#2a7a3a;display:inline-block;animation:pulse 2s infinite;"></span>
+            <span class="pop-count"></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Glow 70mg -->
+      <a href="shop.html" class="pop-card" data-p="glow" style="border-radius:16px;overflow:hidden;border:1px solid var(--rule);text-decoration:none;color:inherit;display:flex;flex-direction:column;background:rgba(255,255,255,0.8);box-shadow:0 4px 20px rgba(42,90,138,0.07);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;">
+        <div style="height:130px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#d8c8f0,#c0a8e8);position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpolygon points='30,2 56,15 56,37 30,50 4,37 4,15' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='0.8'/%3E%3C/svg%3E");background-size:60px 52px;opacity:0.5;"></div>
+          <div style="font-size:2.4rem;position:relative;z-index:1;">✨</div>
+          <div class="pop-badge" style="position:absolute;top:10px;right:10px;background:rgba(106,74,138,0.15);backdrop-filter:blur(4px);border-radius:20px;padding:4px 10px;font-size:0.65rem;font-weight:700;color:#4a2a6a;font-family:Outfit,sans-serif;letter-spacing:0.05em;">70mg</div>
+        </div>
+        <div style="padding:18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#6a4a8a;font-weight:700;font-family:Outfit,sans-serif;margin-bottom:6px;">Glow</div>
+          <div style="font-size:1rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;margin-bottom:4px;letter-spacing:-0.01em;">Glow 70mg Blend</div>
+          <div style="font-size:0.75rem;color:var(--text-subtle);margin-bottom:14px;line-height:1.5;">GHK-Cu · TB-500 · BPC-157</div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--steel-dark);font-family:Outfit,sans-serif;">£80</div>
+          </div>
+          <div class="pop-activity" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-light);font-size:0.72rem;color:#2a7a3a;font-weight:600;font-family:Outfit,sans-serif;display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#2a7a3a;display:inline-block;animation:pulse 2s infinite;"></span>
+            <span class="pop-count"></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
   </div>
 </section>
 
-<!-- ══ PRODUCTS ══ -->
-<section class="products-section">
-  <div class="products-inner">
-    <div class="products-header">
-      <div class="section-eyebrow" style="justify-content:center;">Our Products</div>
-      <h2 class="section-heading" style="text-align:center;">Complete Product Range</h2>
-      <p style="font-size:0.92rem;color:var(--text-muted);max-width:480px;margin:12px auto 0;line-height:1.8;font-weight:300;">Four distinct product lines, each with comprehensive usage documentation.</p>
-    </div>
-    <div class="product-showcase">
-      <a href="guides-detailed.html#retatrutide" class="showcase-card" data-p="ret">
-        <div class="showcase-card-img"><svg viewBox="0 0 100 120" width="70" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5a9ad8"/><stop offset="100%" stop-color="#2a6aaa"/></linearGradient></defs><rect x="38" y="8" width="24" height="82" rx="12" fill="url(#pg1)"/><rect x="39" y="8" width="22" height="26" rx="11" fill="#1a4a7a"/><rect x="42" y="38" width="16" height="20" rx="3" fill="rgba(200,228,255,0.65)"/><rect x="44" y="62" width="12" height="8" rx="2" fill="rgba(255,255,255,0.55)"/><rect x="46" y="88" width="8" height="14" rx="4" fill="#8ab8e0"/><rect x="41" y="12" width="5" height="52" rx="2.5" fill="rgba(255,255,255,0.22)"/></svg></div>
-        <div class="showcase-card-body"><div class="showcase-name">Retatrutide®</div><div class="showcase-tag">Triple Agonist</div><div class="showcase-desc">GLP-1 / GIP / Glucagon. 20mg &amp; 40mg pre-filled pens.</div><button class="showcase-btn">View Guide →</button></div>
-      </a>
-      <a href="guides-detailed.html#glow" class="showcase-card" data-p="glow">
-        <div class="showcase-card-img"><svg viewBox="0 0 100 120" width="70" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#9a6abf"/><stop offset="100%" stop-color="#6a3a9a"/></linearGradient></defs><rect x="38" y="8" width="24" height="82" rx="12" fill="url(#pg2)"/><rect x="39" y="8" width="22" height="26" rx="11" fill="#4a2a6a"/><rect x="42" y="38" width="16" height="20" rx="3" fill="rgba(230,210,255,0.65)"/><rect x="44" y="62" width="12" height="8" rx="2" fill="rgba(255,255,255,0.55)"/><rect x="46" y="88" width="8" height="14" rx="4" fill="#b088cc"/><rect x="41" y="12" width="5" height="52" rx="2.5" fill="rgba(255,255,255,0.22)"/></svg></div>
-        <div class="showcase-card-body"><div class="showcase-name">Glow 70mg</div><div class="showcase-tag">Peptide Blend</div><div class="showcase-desc">GHK-Cu · TB-500 · BPC-157. Skin &amp; tissue repair.</div><button class="showcase-btn">View Guide →</button></div>
-      </a>
-      <a href="guides-detailed.html#tirzepatide" class="showcase-card" data-p="tir">
-        <div class="showcase-card-img"><svg viewBox="0 0 100 120" width="70" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pg3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3aabab"/><stop offset="100%" stop-color="#0a7a7a"/></linearGradient></defs><rect x="38" y="8" width="24" height="82" rx="12" fill="url(#pg3)"/><rect x="39" y="8" width="22" height="26" rx="11" fill="#0a5a5a"/><rect x="42" y="38" width="16" height="20" rx="3" fill="rgba(200,240,240,0.65)"/><rect x="44" y="62" width="12" height="8" rx="2" fill="rgba(255,255,255,0.55)"/><rect x="46" y="88" width="8" height="14" rx="4" fill="#5ababa"/><rect x="41" y="12" width="5" height="52" rx="2.5" fill="rgba(255,255,255,0.22)"/></svg></div>
-        <div class="showcase-card-body"><div class="showcase-name">Tirzepatide®</div><div class="showcase-tag">Dual Agonist</div><div class="showcase-desc">GLP-1 / GIP. 15mg, 30mg &amp; 60mg pens.</div><button class="showcase-btn">View Guide →</button></div>
-      </a>
-      <a href="guides-detailed.html#hgh" class="showcase-card" data-p="hgh">
-        <div class="showcase-card-img"><svg viewBox="0 0 100 120" width="70" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pg4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4aab7a"/><stop offset="100%" stop-color="#1a7a4a"/></linearGradient></defs><rect x="38" y="8" width="24" height="82" rx="12" fill="url(#pg4)"/><rect x="39" y="8" width="22" height="26" rx="11" fill="#1a5a3a"/><rect x="42" y="38" width="16" height="20" rx="3" fill="rgba(200,240,218,0.65)"/><rect x="44" y="62" width="12" height="8" rx="2" fill="rgba(255,255,255,0.55)"/><rect x="46" y="88" width="8" height="14" rx="4" fill="#5ab888"/><rect x="41" y="12" width="5" height="52" rx="2.5" fill="rgba(255,255,255,0.22)"/></svg></div>
-        <div class="showcase-card-body"><div class="showcase-name">HGH</div><div class="showcase-tag">rHGH</div><div class="showcase-desc">120IU pen · 240IU kit · 360IU kit.</div><button class="showcase-btn">View Guide →</button></div>
-      </a>
-    </div>
-  </div>
-</section>
+<style>
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  .pop-card:hover { transform: translateY(-8px) !important; box-shadow: 0 20px 48px rgba(42,90,138,0.16) !important; border-color: var(--steel-light) !important; }
+  .pop-card[data-p="ret"]:hover  { border-color: #4a8abf !important; }
+  .pop-card[data-p="tir"]:hover  { border-color: #3aabab !important; }
+  .pop-card[data-p="glow"]:hover { border-color: #9a6abf !important; }
+  @media(max-width:768px){ #popular-grid { grid-template-columns: 1fr 1fr !important; } }
+  @media(max-width:480px){ #popular-grid { grid-template-columns: 1fr !important; } }
+</style>
+
+<script>
+  // Randomise sold counts between 2-10+ on load
+  (function() {
+    var labels = [
+      'bought today', 'ordered today', 'sold today'
+    ];
+    var cards = document.querySelectorAll('.pop-card');
+    cards.forEach(function(card) {
+      var n = Math.floor(Math.random() * 9) + 2; // 2-10
+      var label = n >= 9 ? (n + '+ bought today') : (n + ' bought today');
+      var el = card.querySelector('.pop-count');
+      if (el) el.textContent = label;
+    });
+  })();
+</script>
 
 <!-- ══ PROCESS ══ -->
 <section class="process-section">
