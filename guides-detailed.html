@@ -429,20 +429,19 @@
   .hgh  .section-label { color: var(--text-subtle); }
 
   @media(max-width: 768px) {
-    header, .tab-nav { padding-left: 20px; padding-right: 20px; }
+    header { padding: 14px 20px; }
+    .tab-nav { padding: 0 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
     .hero { padding: 40px 20px; min-height: auto; }
     .hero h1 { font-size: 2.4rem; }
-    .page-body { grid-template-columns: 1fr; padding: 28px 20px; gap: 28px; }
-    /* Sidebar moves to TOP on mobile */
+    .page-body { grid-template-columns: 1fr; padding: 20px 16px; gap: 20px; }
     .sidebar { position: static; order: -1; }
-    /* Tabs fit on one row on mobile */
-    .tab-btn { font-size: 0.62rem; letter-spacing: 0.05em; padding: 10px 10px; white-space: nowrap; }
+    .tab-btn { font-size: 0.65rem; letter-spacing: 0.04em; padding: 12px 14px; white-space: nowrap; flex-shrink: 0; }
     .tab-dot { display: none; }
-    .tab-bar { overflow-x: visible; }
     footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
   }
   @media(max-width: 400px) {
-    .tab-btn { font-size: 0.55rem; padding: 10px 7px; }
+    .tab-btn { font-size: 0.6rem; padding: 12px 10px; }
   }
 
   /* ── Hero entrance ── */
@@ -591,7 +590,7 @@
   <div style="display:flex;align-items:center;gap:12px;">
     <a href="guides.html" style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-subtle);border:1px solid var(--rule);padding:5px 14px;border-radius:20px;background:white;text-decoration:none;font-weight:600;">← Guides</a>
     <span class="header-tag">Product Usage Guides</span>
-    <a href="shop.html" style="color:white;border:none;padding:9px 18px;border-radius:20px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#2a5a8a,#4a8abf);box-shadow:0 4px 12px rgba(42,90,138,0.2);">🛒 Shop</a>
+    <a href="refer.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Refer a Friend</a><a href="shop.html" style="color:white;border:none;padding:9px 18px;border-radius:20px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#2a5a8a,#4a8abf);box-shadow:0 4px 12px rgba(42,90,138,0.2);">🛒 Shop</a>
   </div>
 </header>
 

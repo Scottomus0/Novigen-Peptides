@@ -27,7 +27,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; background-attachment: fixed; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
 
   /* Header */
   header {
@@ -209,9 +209,54 @@
     80%  { opacity: 0.5; }
     100% { transform: translateX(300%) rotate(15deg); opacity:0; }
   }
+
+  /* ── Disclaimer Banner ── */
+  .disclaimer-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(10,20,40,0.85);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(6px);
+  }
+  .disclaimer-box {
+    background: white; border-radius: 16px; max-width: 540px; width: 100%;
+    padding: 40px 36px; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .disclaimer-icon { font-size: 2.4rem; margin-bottom: 16px; }
+  .disclaimer-box h2 { font-family: 'Outfit',sans-serif; font-weight: 800; font-size: 1.4rem; color: #1a3a5a; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .disclaimer-box p { font-size: 0.88rem; color: #3a5068; line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
+  .disclaimer-box p strong { color: #1a3a5a; font-weight: 700; }
+  .disclaimer-divider { border: none; border-top: 1px solid #c8daf0; margin: 20px 0; }
+  .disclaimer-confirm { width: 100%; background: linear-gradient(135deg,#2a5a8a,#4a8abf); color: white; border: none; padding: 14px 24px; border-radius: 10px; font-family: 'Outfit',sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; cursor: pointer; box-shadow: 0 4px 16px rgba(42,90,138,0.25); transition: box-shadow 0.2s, transform 0.2s; }
+  .disclaimer-confirm:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.35); transform: translateY(-1px); }
+  .disclaimer-decline { display: block; margin-top: 12px; font-size: 0.78rem; color: #6a8090; text-decoration: none; cursor: pointer; }
+  .disclaimer-decline:hover { color: #1a3a5a; }
 </style>
 </head>
 <body>
+<!-- ── Disclaimer Banner ── -->
+<div class="disclaimer-overlay" id="disclaimer-overlay">
+  <div class="disclaimer-box">
+    <div class="disclaimer-icon">⚗️</div>
+    <h2>Research Use Only</h2>
+    <p>The products on this website are <strong>for research purposes only</strong>. They are <strong>not intended for human consumption</strong>, not approved by the MHRA, FDA, or any regulatory authority, and have not been evaluated for safety or efficacy in humans.</p>
+    <p>By continuing, you confirm that you are a <strong>qualified researcher or medical professional</strong>, that you are over 18 years of age, and that you understand these products are strictly for laboratory and research use.</p>
+    <hr class="disclaimer-divider">
+    <button class="disclaimer-confirm" onclick="acceptDisclaimer()">I Understand — Continue to Site</button>
+    <a class="disclaimer-decline" href="https://www.google.com">I do not agree — Leave this site</a>
+  </div>
+</div>
+
+<script>
+  function acceptDisclaimer() {
+    sessionStorage.setItem('disclaimer_accepted', '1');
+    document.getElementById('disclaimer-overlay').style.display = 'none';
+  }
+  if (sessionStorage.getItem('disclaimer_accepted') === '1') {
+    document.getElementById('disclaimer-overlay').style.display = 'none';
+  }
+</script>
 
 <header>
   <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;">
@@ -254,6 +299,12 @@
   <text x="16" y="77" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#vLG2)" textLength="163" lengthAdjust="spacing">PEPTIDES</text>
 </svg>
 </a>
+<div style="display:flex;align-items:center;gap:8px;">
+  <a href="guides.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Guides</a>
+  <a href="contact.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Contact / FAQ</a>
+  <a href="refer.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Refer a Friend</a>
+  <a href="shop.html" style="background:linear-gradient(135deg,#2a5a8a,#4a8abf);color:white;padding:9px 20px;border-radius:20px;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;text-decoration:none;">🛒 Shop Now</a>
+</div>
 </header>
 
 <main>
@@ -281,7 +332,7 @@
 </main>
 
 <footer>
-  <p>© 2025 Novigen Peptides. All rights reserved.</p>
+  <p>© 2025 Novigen Peptides. All rights reserved. For research purposes only. Not for human consumption.</p>
 </footer>
 
 <script>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refer a Friend — Novigen Peptides</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #2a5a8a; --steel-light: #4a8abf; --steel-dark: #1a3a5a;
+    --bg: #eef5ff; --text: #0d1f38; --text-muted: #3a5068; --text-subtle: #6a8090;
+    --rule: #c8daf0; --rule-light: #dce8f8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; min-height: 100vh; color: var(--text); overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.6'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E"); background-size: 90px 78px; opacity: 0.04; }
+  @keyframes holoShimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+  header { background: transparent; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-links { display: flex; align-items: center; gap: 8px; }
+  .nav-link { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-subtle); text-decoration: none; font-weight: 600; padding: 7px 14px; border-radius: 20px; transition: color 0.2s; }
+  .nav-link:hover { color: var(--steel); }
+  .nav-link.active { color: var(--steel); }
+  .shop-btn { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; padding: 9px 20px; border-radius: 20px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; text-decoration: none; }
+
+  .page-wrap { max-width: 860px; margin: 0 auto; padding: 64px 48px 80px; position: relative; z-index: 1; }
+  .page-eyebrow { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--steel); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .page-eyebrow::before { content: ''; width: 24px; height: 2px; background: linear-gradient(90deg, var(--steel), var(--steel-light)); border-radius: 2px; display: block; }
+  .page-h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; color: var(--steel-dark); line-height: 1.0; margin-bottom: 16px; }
+  .page-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; max-width: 520px; font-weight: 300; margin-bottom: 48px; }
+
+  /* Hero card */
+  .refer-hero { background: linear-gradient(135deg, #0d1e35, #1a3a6a); border-radius: 20px; padding: 48px; margin-bottom: 32px; position: relative; overflow: hidden; }
+  .refer-hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='0.8'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3C/g%3E%3C/svg%3E"); background-size: 90px 78px; }
+  .refer-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .refer-hero h2 { font-size: 2.2rem; font-weight: 800; color: white; letter-spacing: -0.03em; margin-bottom: 12px; }
+  .refer-hero p { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 420px; }
+  .refer-reward { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 24px 28px; text-align: center; flex-shrink: 0; }
+  .refer-reward-val { font-size: 3rem; font-weight: 800; color: #4a9ad8; letter-spacing: -0.04em; line-height: 1; }
+  .refer-reward-lbl { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 6px; font-weight: 600; }
+
+  /* Steps */
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .step-card { background: rgba(255,255,255,0.85); border: 1px solid var(--rule); border-radius: 14px; padding: 24px; }
+  .step-num { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; font-size: 0.88rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .step-title { font-size: 0.92rem; font-weight: 700; color: var(--steel-dark); margin-bottom: 8px; }
+  .step-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* Share section */
+  .share-card { background: rgba(255,255,255,0.85); border: 1px solid var(--rule); border-radius: 14px; padding: 28px; margin-bottom: 24px; }
+  .share-card h3 { font-size: 0.88rem; font-weight: 700; color: var(--steel-dark); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-light); }
+  .share-msg { background: var(--bg); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; font-style: italic; margin-bottom: 14px; position: relative; }
+  .copy-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; letter-spacing: 0.06em; transition: opacity 0.2s; }
+  .copy-btn:hover { opacity: 0.9; }
+  .share-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; border: none; letter-spacing: 0.04em; text-decoration: none; transition: opacity 0.2s; }
+  .share-btn:hover { opacity: 0.88; }
+  .share-btn.whatsapp { background: #25d366; color: white; }
+  .share-btn.sms { background: var(--steel); color: white; }
+  .copy-notice { font-size: 0.75rem; color: #1a6a2a; font-weight: 600; margin-left: 12px; display: none; }
+
+  /* T&Cs */
+  .tc-card { background: rgba(255,255,255,0.7); border: 1px solid var(--rule); border-radius: 12px; padding: 20px 24px; }
+  .tc-card h3 { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-subtle); font-weight: 700; margin-bottom: 12px; }
+  .tc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tc-list li { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; padding-left: 14px; position: relative; }
+  .tc-list li::before { content: '·'; position: absolute; left: 0; color: var(--steel); font-weight: 700; }
+
+  footer { border-top: 1px solid var(--rule); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: white; position: relative; z-index: 1; }
+  footer p { font-size: 0.72rem; color: var(--text-subtle); }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.22em; color: var(--steel); font-weight: 800; text-transform: uppercase; }
+
+  .disclaimer-overlay { position:fixed; inset:0; z-index:9999; background:rgba(10,20,40,0.85); display:flex; align-items:center; justify-content:center; padding:24px; backdrop-filter:blur(6px); }
+  .disclaimer-box { background:white; border-radius:16px; max-width:540px; width:100%; padding:40px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.3); text-align:center; }
+  .disclaimer-box h2 { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.4rem; color:#1a3a5a; margin-bottom:12px; }
+  .disclaimer-box p { font-size:0.88rem; color:#3a5068; line-height:1.8; margin-bottom:16px; font-weight:300; }
+  .disclaimer-box p strong { color:#1a3a5a; font-weight:700; }
+  .disclaimer-confirm { width:100%; background:linear-gradient(135deg,#2a5a8a,#4a8abf); color:white; border:none; padding:14px 24px; border-radius:10px; font-family:'Outfit',sans-serif; font-size:0.88rem; font-weight:700; letter-spacing:0.08em; cursor:pointer; margin-top:8px; }
+  .disclaimer-decline { display:block; margin-top:12px; font-size:0.78rem; color:#6a8090; text-decoration:none; cursor:pointer; }
+
+  @media(max-width:768px) {
+    header { padding: 14px 20px; }
+    .page-wrap { padding: 40px 20px 60px; }
+    .page-h1 { font-size: 2.2rem; }
+    .refer-hero { padding: 28px; }
+    .refer-hero-inner { grid-template-columns: 1fr; }
+    .refer-reward { display: none; }
+    .steps-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="disclaimer-overlay" id="disclaimer-overlay">
+  <div class="disclaimer-box">
+    <div style="font-size:2.4rem;margin-bottom:16px;">⚗️</div>
+    <h2>Research Use Only</h2>
+    <p>The products on this website are <strong>for research purposes only</strong>. They are <strong>not intended for human consumption</strong> and have not been approved by the MHRA, FDA, or any regulatory authority.</p>
+    <p>By continuing you confirm you are a <strong>qualified researcher or medical professional</strong>, are over 18 years of age, and understand these products are strictly for laboratory and research use.</p>
+    <button class="disclaimer-confirm" onclick="acceptDisclaimer()">I Understand — Continue to Site</button>
+    <a class="disclaimer-decline" href="https://www.google.com">I do not agree — Leave this site</a>
+  </div>
+</div>
+<script>
+  function acceptDisclaimer() { sessionStorage.setItem('novigen_disclaimer','1'); document.getElementById('disclaimer-overlay').style.display='none'; }
+  if (sessionStorage.getItem('novigen_disclaimer')==='1') { document.getElementById('disclaimer-overlay').style.display='none'; }
+</script>
+
+<header>
+  <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;"><div style="position:relative;z-index:2;">
+    <svg width="100%" height="auto" viewBox="0 0 220 80" style="max-width:160px;display:block;" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rLG1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1a3a5a"/><stop offset="25%" stop-color="#2a6aaa"/>
+          <stop offset="45%" stop-color="#5aaad8"/><stop offset="55%" stop-color="#3a7abf"/>
+          <stop offset="75%" stop-color="#2a5a9a"/><stop offset="100%" stop-color="#1a3a5a"/>
+        </linearGradient>
+        <linearGradient id="rLG2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2a5a8a"/><stop offset="50%" stop-color="#5aaad8"/><stop offset="100%" stop-color="#2a5a8a"/>
+        </linearGradient>
+        <clipPath id="rLC"><rect x="0" y="0" width="220" height="36"/></clipPath>
+      </defs>
+      <g clip-path="url(#rLC)">
+        <g transform="translate(97,26)">
+          <circle cx="0" cy="0" r="5" fill="url(#rLG1)"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#rLG1)" stroke-width="2"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#rLG1)" stroke-width="2" transform="rotate(60)"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#rLG1)" stroke-width="2" transform="rotate(-60)"/>
+          <circle cx="21" cy="0" r="3" fill="url(#rLG2)"/>
+          <circle cx="-10.5" cy="18.2" r="3" fill="url(#rLG2)"/>
+          <circle cx="-10.5" cy="-18.2" r="3" fill="url(#rLG2)"/>
+        </g>
+      </g>
+      <text x="10" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#rLG1)" letter-spacing="-3">nov</text>
+      <text x="91" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#rLG1)" letter-spacing="-3">i</text>
+      <text x="103" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#rLG1)" letter-spacing="-3">gen</text>
+      <text x="16" y="77" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#rLG2)" textLength="163" lengthAdjust="spacing">PEPTIDES</text>
+    </svg>
+  </div></a>
+  <div class="nav-links">
+    <a href="guides.html" class="nav-link">Guides</a>
+    <a href="verify.html" class="nav-link">Verify</a>
+    <a href="contact.html" class="nav-link">Contact / FAQ</a>
+    <a href="refer.html" class="nav-link active">Refer a Friend</a>
+    <a href="shop.html" class="shop-btn">🛒 Shop Now</a>
+  </div>
+</header>
+
+<div class="page-wrap">
+  <div class="page-eyebrow">Earn Rewards</div>
+  <h1 class="page-h1">Refer a Friend,<br>Get 5% Off</h1>
+  <p class="page-sub">Love Novigen? Share it. When a friend places their first order and mentions your name, we'll send you a personal 5% discount code for your next purchase.</p>
+
+  <!-- Hero card -->
+  <div class="refer-hero">
+    <div class="refer-hero-inner">
+      <div>
+        <h2>It's simple.<br>Share & save.</h2>
+        <p>No sign-up required. No app needed. Just tell your friend about Novigen and ask them to mention your name when they order. We'll do the rest.</p>
+      </div>
+      <div class="refer-reward">
+        <div class="refer-reward-val">5%</div>
+        <div class="refer-reward-lbl">Off your<br>next order</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Steps -->
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Share with a friend</div>
+      <div class="step-desc">Tell a friend about Novigen. Share the link, send a message, or just mention us in conversation. Use the buttons below to make it easy.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">They place their order</div>
+      <div class="step-desc">Your friend visits novigenpeptides.com, places their first order, and mentions your name in the special instructions or via WhatsApp.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">You get 5% off</div>
+      <div class="step-desc">Once their order is confirmed, we'll send you a personal 5% discount code via WhatsApp to use on your next order. No limit on referrals.</div>
+    </div>
+  </div>
+
+  <!-- Share message -->
+  <div class="share-card">
+    <h3>Share Your Referral Message</h3>
+    <div class="share-msg" id="share-msg">
+      "Hey! I've been using Novigen Peptides for my research — really impressed with the quality and documentation. Use my name when you order and mention it in the notes — I get 5% off my next order! Check them out at novigenpeptides.com 🧬"
+    </div>
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;">
+      <button class="copy-btn" onclick="copyMsg()">📋 Copy Message</button>
+      <span class="copy-notice" id="copy-notice">✓ Copied!</span>
+    </div>
+    <div class="share-btns">
+      <a class="share-btn whatsapp" href="https://wa.me/?text=Hey%21%20I've%20been%20using%20Novigen%20Peptides%20for%20my%20research%20%E2%80%94%20really%20impressed%20with%20the%20quality.%20Use%20my%20name%20when%20you%20order%20and%20mention%20it%20in%20the%20notes%20%E2%80%94%20I%20get%205%25%20off%20my%20next%20order%21%20Check%20them%20out%20at%20novigenpeptides.com%20%F0%9F%A7%AC" target="_blank">💬 Share via WhatsApp</a>
+      <a class="share-btn sms" href="sms:?body=Hey%21%20I've%20been%20using%20Novigen%20Peptides%20%E2%80%94%20use%20my%20name%20when%20you%20order%20and%20mention%20it%20in%20the%20notes%2C%20I%20get%205%25%20off%21%20novigenpeptides.com">📱 Share via SMS</a>
+    </div>
+  </div>
+
+  <!-- T&Cs -->
+  <div class="tc-card">
+    <h3>Terms & Conditions</h3>
+    <ul class="tc-list">
+      <li>The referral reward applies to your next order after your friend's first order is confirmed and paid.</li>
+      <li>Your friend must mention your name in their order notes or WhatsApp message for the referral to be valid.</li>
+      <li>The 5% discount code will be sent to you via WhatsApp once their order is confirmed.</li>
+      <li>Referral codes are single-use and cannot be combined with other discount codes.</li>
+      <li>There is no limit to how many friends you can refer — each confirmed referral earns you a new 5% code.</li>
+      <li>Novigen Peptides reserves the right to amend or withdraw the referral scheme at any time.</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Novigen Peptides. All rights reserved. For research purposes only. Not for human consumption.</p>
+  <span class="footer-logo">Novigen Peptides</span>
+</footer>
+
+<script>
+  function copyMsg() {
+    var msg = document.getElementById('share-msg').innerText;
+    navigator.clipboard.writeText(msg).then(function() {
+      var notice = document.getElementById('copy-notice');
+      notice.style.display = 'inline';
+      setTimeout(function() { notice.style.display = 'none'; }, 2500);
+    });
+  }
+</script>
+</body>
+</html>

@@ -265,6 +265,34 @@
   .disclaimer-confirm:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.35); transform: translateY(-1px); }
   .disclaimer-decline { display: block; margin-top: 12px; font-size: 0.78rem; color: #6a8090; text-decoration: none; cursor: pointer; }
   .disclaimer-decline:hover { color: #1a3a5a; }
+
+  .discount-row { display: flex; gap: 8px; margin-bottom: 14px; }
+  .discount-input { flex: 1; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: var(--text); background: white; outline: none; text-transform: uppercase; letter-spacing: 0.05em; }
+  .discount-input:focus { border-color: var(--steel-light); }
+  .discount-btn { padding: 10px 18px; background: var(--steel); color: white; border: none; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; letter-spacing: 0.06em; white-space: nowrap; }
+  .discount-btn:hover { background: var(--steel-light); }
+  .discount-msg { font-size: 0.78rem; margin-top: 6px; padding: 7px 12px; border-radius: 6px; font-weight: 600; }
+  .discount-msg.success { color: #1a6a2a; background: rgba(26,106,42,0.08); border: 1px solid rgba(26,106,42,0.15); }
+  .discount-msg.error { color: #8a2020; background: rgba(138,32,32,0.08); border: 1px solid rgba(138,32,32,0.15); }
+  .discount-applied { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(26,106,42,0.06); border: 1px solid rgba(26,106,42,0.15); border-radius: 8px; margin-bottom: 10px; }
+  .discount-applied span { font-size: 0.82rem; color: #1a6a2a; font-weight: 600; }
+  .discount-remove { font-size: 0.72rem; color: #8a2020; cursor: pointer; font-weight: 700; border: none; background: none; padding: 0; }
+  .refer-banner { background: linear-gradient(135deg, rgba(42,90,138,0.06), rgba(74,138,191,0.06)); border: 1px solid rgba(42,90,138,0.15); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+  .refer-banner-title { font-size: 0.78rem; font-weight: 700; color: var(--steel-dark); margin-bottom: 4px; font-family: 'Outfit', sans-serif; }
+  .refer-banner-text { font-size: 0.74rem; color: var(--text-muted); line-height: 1.55; }
+  .refer-link { font-size: 0.74rem; color: var(--steel); font-weight: 700; cursor: pointer; text-decoration: underline; }
+
+  .discount-row { display: flex; gap: 8px; margin-bottom: 6px; }
+  .discount-input { flex: 1; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: var(--text); background: white; outline: none; }
+  .discount-input:focus { border-color: var(--steel-light); }
+  .discount-apply-btn { padding: 10px 16px; background: var(--steel); color: white; border: none; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; letter-spacing: 0.06em; white-space: nowrap; }
+  .discount-apply-btn:hover { background: var(--steel-light); }
+  .discount-msg-ok { font-size: 0.78rem; color: #1a6a2a; background: rgba(26,106,42,0.08); border: 1px solid rgba(26,106,42,0.15); border-radius: 6px; padding: 7px 12px; font-weight: 600; margin-top: 6px; display: flex; align-items: center; justify-content: space-between; }
+  .discount-msg-err { font-size: 0.78rem; color: #8a2020; background: rgba(138,32,32,0.08); border: 1px solid rgba(138,32,32,0.15); border-radius: 6px; padding: 7px 12px; font-weight: 600; margin-top: 6px; }
+  .discount-remove-btn { font-size: 0.72rem; color: #8a2020; cursor: pointer; font-weight: 700; border: none; background: none; padding: 0; }
+  .refer-banner { background: linear-gradient(135deg, rgba(42,90,138,0.05), rgba(74,138,191,0.08)); border: 1px solid rgba(42,90,138,0.14); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+  .refer-banner b { font-size: 0.8rem; color: var(--steel-dark); display: block; margin-bottom: 4px; }
+  .refer-banner p { font-size: 0.74rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 </style>
 </head>
 <body>
@@ -342,6 +370,7 @@
     <a href="guides.html" class="back-btn">← Guides</a>
     <span class="header-tag">Shop</span>
     <a href="verify.html" class="nav-link" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 16px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;">Verify</a>
+<a href="refer.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Refer a Friend</a>
     <button class="basket-btn" onclick="toggleBasket()">
       🛒 Basket
       <span class="basket-count" id="basket-count" style="display:none;">0</span>
@@ -455,7 +484,7 @@
   ];
 
   let basket = [];
-  const whatsappNumber = '447800522364';
+  const whatsappNumber = '447348650538';
 
   function initShop() {
     const grid = document.getElementById('shop-grid');
@@ -537,12 +566,31 @@
 
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
     const delivery = 6.00;
-    const orderTotal = subtotal + delivery;
+    const discAmt = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const discountedSub = subtotal - discAmt;
+    const orderTotal = discountedSub + delivery;
+    const discRow = activeDiscount
+      ? `<div class="total-row" style="color:#1a6a2a;"><span class="total-label">Discount (${activeDiscount.pct}% off)</span><span style="font-weight:700;">−£${discAmt.toFixed(2)}</span></div>`
+      : '';
     total.innerHTML = `
       <div class="total-row"><span class="total-label">Subtotal</span><span style="font-weight:700;color:var(--text);">£${subtotal.toFixed(2)}</span></div>
+      ${discRow}
       <div class="total-row"><span class="total-label">Delivery</span><span style="font-weight:600;color:var(--text-muted);">£6.00</span></div>
       <div class="total-row"><span class="total-label">Total</span><span class="total-value">£${orderTotal.toFixed(2)}</span></div>
-      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>`;
+      <div style="margin:14px 0 0;">
+        <div style="margin-bottom:8px;">
+          <div class="discount-row" style="margin-bottom:6px;">
+            <input type="text" id="discount-code-input" class="discount-input" placeholder="" autocomplete="off" style="text-transform:uppercase;">
+            <button type="button" class="discount-apply-btn" onclick="applyDiscount()">Apply</button>
+          </div>
+          <div id="discount-feedback"></div>
+        </div>
+        <div class="refer-banner" style="margin-bottom:14px;">
+          <b>🎁 Refer a Friend — Get 5% Off</b>
+          <p>Share Novigen with a friend and get a personal 5% code for your next order.</p>
+        </div>
+      </div>
+      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>\`;
   }
 
   function toggleBasket() { document.getElementById('sidebar-basket').classList.toggle('open'); }
@@ -550,10 +598,17 @@
   function openCheckout() {
     if (basket.length === 0) { alert('Your basket is empty'); return; }
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const orderTotal = subtotal + 6;
+    const discAmt = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const discountedSub = subtotal - discAmt;
+    const orderTotal = discountedSub + 6;
+    const discountRow = activeDiscount
+      ? `<div class="order-summary-item" style="color:#1a6a2a;"><span>Discount (${activeDiscount.code} ${activeDiscount.pct}% off)</span><span>−£${discAmt.toFixed(2)}</span></div>`
+      : '';
     document.getElementById('checkout-summary').innerHTML = basket.map(i =>
       `<div class="order-summary-item"><span>${i.name} × ${i.quantity}</span><span>£${(i.price * i.quantity).toFixed(2)}</span></div>`
     ).join('') + `
+      <div class="order-summary-item"><span>Subtotal</span><span>£${subtotal.toFixed(2)}</span></div>
+      ${discountRow}
       <div class="order-summary-item"><span>Delivery</span><span>£6.00</span></div>
       <div class="order-summary-total">Total: £${orderTotal.toFixed(2)}</div>`;
     document.getElementById('checkout-modal').classList.add('open');
@@ -561,31 +616,76 @@
 
   function closeCheckout() { document.getElementById('checkout-modal').classList.remove('open'); }
 
+
+  const CODES = { 'WELCOME10': 10, 'REFERRAL5': 5, 'NOVI10': 10 };
+  let activeDiscount = null;
+
+  function applyDiscount() {
+    var raw = document.getElementById('discount-code-input').value.trim().toUpperCase();
+    var fb = document.getElementById('discount-feedback');
+    if (!raw) { fb.innerHTML = '<div class="discount-msg-err">Please enter a code.</div>'; return; }
+    var used = JSON.parse(localStorage.getItem('nvg_used') || '[]');
+    if (used.includes(raw)) {
+      fb.innerHTML = '<div class="discount-msg-err">This code has already been used on this device.</div>'; return;
+    }
+    if (CODES[raw] !== undefined) {
+      activeDiscount = { code: raw, pct: CODES[raw] };
+      fb.innerHTML = '<div class="discount-msg-ok"><span>✓ ' + raw + ' — ' + CODES[raw] + '% off applied</span><button class="discount-remove-btn" onclick="removeDiscount()">✕ Remove</button></div>';
+      document.getElementById('discount-code-input').disabled = true;
+    } else {
+      fb.innerHTML = '<div class="discount-msg-err">Invalid code — please check and try again.</div>';
+    }
+  }
+
+  function removeDiscount() {
+    activeDiscount = null;
+    document.getElementById('discount-feedback').innerHTML = '';
+    var inp = document.getElementById('discount-code-input');
+    inp.disabled = false; inp.value = '';
+  }
+
   function submitOrder(event) {
     if (event) event.preventDefault();
     if (basket.length === 0) { alert('Your basket is empty!'); return; }
-    const name  = document.getElementById('customer-name').value;
-    const email = document.getElementById('customer-email').value;
-    const phone = document.getElementById('customer-phone').value;
-    const notes = document.getElementById('customer-notes').value;
-    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const orderTotal = subtotal + 6;
-
+    const name     = document.getElementById('customer-name').value;
+    const email    = document.getElementById('customer-email').value;
+    const phone    = document.getElementById('customer-phone').value;
+    const notes    = document.getElementById('customer-notes').value;
     const addr1    = document.getElementById('customer-address1').value;
     const addr2    = document.getElementById('customer-address2').value;
     const city     = document.getElementById('customer-city').value;
     const postcode = document.getElementById('customer-postcode').value;
     const address  = [addr1, addr2, city, postcode].filter(Boolean).join(', ');
 
-    let msg = `*Novigen Peptides Order*\n*Order:* ${orderNum}\n\n*Customer*\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\n\n*Items*\n`;
-    basket.forEach(i => { msg += `• ${i.name} × ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}\n`; });
-    msg += `\n*Subtotal:* £${subtotal.toFixed(2)}\n*Delivery:* £6.00\n*Total:* £${orderTotal.toFixed(2)}`;
-    if (notes) msg += `\n\n*Notes:* ${notes}`;
+    // Generate order number
+    const orderNum = 'NVG-' + Math.floor(1000 + Math.random() * 9000);
 
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    // Mark discount code as used
+    if (activeDiscount) {
+      var used = JSON.parse(localStorage.getItem('nvg_used') || '[]');
+      if (!used.includes(activeDiscount.code)) { used.push(activeDiscount.code); localStorage.setItem('nvg_used', JSON.stringify(used)); }
+    }
+
+    // Calculate totals
+    const subtotal  = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const discAmt   = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const discSub   = subtotal - discAmt;
+    const total     = discSub + 6;
+
+    // Build WhatsApp message
+    const discLine  = activeDiscount ? ('\n*Discount:* ' + activeDiscount.code + ' (' + activeDiscount.pct + '% off) -£' + discAmt.toFixed(2)) : '';
+    let msg = '*Novigen Peptides Order*\n*Order:* ' + orderNum + discLine + '\n\n*Customer*\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\nAddress: ' + address + '\n\n*Items*\n';
+    basket.forEach(function(i) { msg += '• ' + i.name + ' × ' + i.quantity + ' = £' + (i.price * i.quantity).toFixed(2) + '\n'; });
+    msg += '\n*Subtotal:* £' + subtotal.toFixed(2) + discLine + '\n*Delivery:* £6.00\n*Total: £' + total.toFixed(2) + '*';
+    if (notes) msg += '\n\n*Notes:* ' + notes;
+
+    window.open('https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank');
+
+    // Show confirmation
+    var modal = document.getElementById('order-confirm-modal');
+    if (modal) { document.getElementById('order-confirm-num').textContent = orderNum; modal.style.display = 'flex'; }
     basket = []; updateBasketUI(); closeCheckout();
     document.getElementById('checkout-form').reset();
-    alert('Opening WhatsApp with your order details. Please review and send!');
   }
 
   document.addEventListener('DOMContentLoaded', initShop);
