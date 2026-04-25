@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact / FAQ — Novigen Peptides</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #2a5a8a; --steel-light: #4a8abf; --steel-dark: #1a3a5a;
+    --bg: #eef5ff; --text: #0d1f38; --text-muted: #3a5068; --text-subtle: #6a8090;
+    --rule: #c8daf0; --rule-light: #dce8f8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; min-height: 100vh; color: var(--text); overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.6'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E"); background-size: 90px 78px; opacity: 0.04; }
+  @keyframes holoShimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+  header { background: transparent; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-links { display: flex; align-items: center; gap: 12px; }
+  .nav-link { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-subtle); text-decoration: none; font-weight: 600; padding: 7px 16px; border-radius: 20px; transition: color 0.2s; }
+  .nav-link:hover { color: var(--steel); }
+  .shop-btn { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; padding: 9px 20px; border-radius: 20px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; text-decoration: none; }
+
+  .page-wrap { max-width: 1000px; margin: 0 auto; padding: 64px 48px; position: relative; z-index: 1; }
+
+  .page-eyebrow { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--steel); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .page-eyebrow::before { content: ''; width: 24px; height: 2px; background: linear-gradient(90deg, var(--steel), var(--steel-light)); border-radius: 2px; display: block; }
+  .page-h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--steel-dark); line-height: 1.0; margin-bottom: 16px; }
+  .page-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; max-width: 520px; font-weight: 300; margin-bottom: 48px; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+
+  .contact-card { background: white; border: 1px solid var(--rule); border-radius: 16px; padding: 32px; box-shadow: 0 4px 24px rgba(42,90,138,0.07); }
+  .contact-card h2 { font-size: 1rem; font-weight: 700; color: var(--steel-dark); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--rule-light); letter-spacing: -0.01em; }
+
+  .contact-method { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--rule-light); }
+  .contact-method:last-child { border-bottom: none; padding-bottom: 0; }
+  .contact-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-icon.whatsapp { background: rgba(37,211,102,0.1); }
+  .contact-icon.email { background: rgba(42,90,138,0.08); }
+  .contact-icon.verify { background: rgba(42,90,138,0.08); }
+  .contact-method-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-subtle); font-weight: 700; margin-bottom: 4px; }
+  .contact-method-val { font-size: 0.92rem; font-weight: 600; color: var(--steel-dark); }
+  .contact-method-desc { font-size: 0.78rem; color: var(--text-subtle); margin-top: 3px; line-height: 1.5; }
+  .contact-method-link { display: inline-block; margin-top: 8px; font-size: 0.75rem; font-weight: 700; color: white; background: linear-gradient(135deg, var(--steel), var(--steel-light)); padding: 7px 16px; border-radius: 20px; text-decoration: none; letter-spacing: 0.06em; }
+  .contact-method-link.whatsapp-btn { background: linear-gradient(135deg, #1a9a4a, #25d366); }
+
+  .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .hours-item { background: var(--bg); border-radius: 8px; padding: 10px 14px; }
+  .hours-day { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-subtle); font-weight: 700; }
+  .hours-time { font-size: 0.82rem; color: var(--steel-dark); font-weight: 600; margin-top: 2px; }
+
+  .faq-card { background: white; border: 1px solid var(--rule); border-radius: 16px; padding: 32px; box-shadow: 0 4px 24px rgba(42,90,138,0.07); }
+  .faq-card h2 { font-size: 1rem; font-weight: 700; color: var(--steel-dark); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--rule-light); }
+  .faq-item { padding: 16px 0; border-bottom: 1px solid var(--rule-light); }
+  .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .faq-q { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .faq-a { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+  .disclaimer-bar { background: rgba(42,90,138,0.06); border: 1px solid rgba(42,90,138,0.12); border-radius: 10px; padding: 14px 18px; margin-top: 32px; font-size: 0.78rem; color: var(--text-subtle); line-height: 1.65; text-align: center; }
+
+  footer { border-top: 1px solid var(--rule); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: white; position: relative; z-index: 1; }
+  footer p { font-size: 0.72rem; color: var(--text-subtle); }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.22em; color: var(--steel); font-weight: 800; text-transform: uppercase; }
+
+  /* Disclaimer */
+  .disclaimer-overlay { position:fixed; inset:0; z-index:9999; background:rgba(10,20,40,0.85); display:flex; align-items:center; justify-content:center; padding:24px; backdrop-filter:blur(6px); }
+  .disclaimer-box { background:white; border-radius:16px; max-width:540px; width:100%; padding:40px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.3); text-align:center; }
+  .disclaimer-box h2 { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.4rem; color:#1a3a5a; margin-bottom:12px; }
+  .disclaimer-box p { font-size:0.88rem; color:#3a5068; line-height:1.8; margin-bottom:16px; font-weight:300; }
+  .disclaimer-box p strong { color:#1a3a5a; font-weight:700; }
+  .disclaimer-confirm { width:100%; background:linear-gradient(135deg,#2a5a8a,#4a8abf); color:white; border:none; padding:14px 24px; border-radius:10px; font-family:'Outfit',sans-serif; font-size:0.88rem; font-weight:700; letter-spacing:0.08em; cursor:pointer; margin-top:8px; }
+  .disclaimer-decline { display:block; margin-top:12px; font-size:0.78rem; color:#6a8090; text-decoration:none; cursor:pointer; }
+
+  @media(max-width: 768px) {
+    header { padding: 14px 20px; }
+    .page-wrap { padding: 40px 20px; }
+    .page-h1 { font-size: 2.2rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="disclaimer-overlay" id="disclaimer-overlay">
+  <div class="disclaimer-box">
+    <div style="font-size:2.4rem;margin-bottom:16px;">⚗️</div>
+    <h2>Research Use Only</h2>
+    <p>The products on this website are <strong>for research purposes only</strong>. They are <strong>not intended for human consumption</strong> and have not been approved by the MHRA, FDA, or any regulatory authority.</p>
+    <p>By continuing you confirm you are a <strong>qualified researcher or medical professional</strong>, are over 18 years of age, and understand these products are strictly for laboratory and research use.</p>
+    <button class="disclaimer-confirm" onclick="acceptDisclaimer()">I Understand — Continue to Site</button>
+    <a class="disclaimer-decline" href="https://www.google.com">I do not agree — Leave this site</a>
+  </div>
+</div>
+<script>
+  function acceptDisclaimer() {
+    sessionStorage.setItem('novigen_disclaimer','1');
+    document.getElementById('disclaimer-overlay').style.display='none';
+  }
+  if (sessionStorage.getItem('novigen_disclaimer')==='1') {
+    document.getElementById('disclaimer-overlay').style.display='none';
+  }
+</script>
+
+<header>
+  <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;"><div style="position:relative;z-index:2;">
+    <svg width="100%" height="auto" viewBox="0 0 220 80" style="max-width:160px;display:block;" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cLG1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1a3a5a"/><stop offset="25%" stop-color="#2a6aaa"/>
+          <stop offset="45%" stop-color="#5aaad8"/><stop offset="55%" stop-color="#3a7abf"/>
+          <stop offset="75%" stop-color="#2a5a9a"/><stop offset="100%" stop-color="#1a3a5a"/>
+        </linearGradient>
+        <linearGradient id="cLG2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2a5a8a"/><stop offset="50%" stop-color="#5aaad8"/><stop offset="100%" stop-color="#2a5a8a"/>
+        </linearGradient>
+        <clipPath id="cLC"><rect x="0" y="0" width="220" height="36"/></clipPath>
+      </defs>
+      <g clip-path="url(#cLC)">
+        <g transform="translate(97,26)">
+          <circle cx="0" cy="0" r="5" fill="url(#cLG1)"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#cLG1)" stroke-width="2"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#cLG1)" stroke-width="2" transform="rotate(60)"/>
+          <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#cLG1)" stroke-width="2" transform="rotate(-60)"/>
+          <circle cx="21" cy="0" r="3" fill="url(#cLG2)"/>
+          <circle cx="-10.5" cy="18.2" r="3" fill="url(#cLG2)"/>
+          <circle cx="-10.5" cy="-18.2" r="3" fill="url(#cLG2)"/>
+        </g>
+      </g>
+      <text x="10" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#cLG1)" letter-spacing="-3">nov</text>
+      <text x="91" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#cLG1)" letter-spacing="-3">i</text>
+      <text x="103" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#cLG1)" letter-spacing="-3">gen</text>
+      <text x="16" y="77" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#cLG2)" textLength="163" lengthAdjust="spacing">PEPTIDES</text>
+    </svg>
+  </div></a>
+  <div class="nav-links">
+    <a href="guides.html" class="nav-link">Guides</a>
+    <a href="verify.html" class="nav-link">Verify</a>
+    <a href="contact.html" class="nav-link" style="color:var(--steel);">Contact</a>
+    <a href="shop.html" class="shop-btn">🛒 Shop Now</a>
+  </div>
+</header>
+
+<div class="page-wrap">
+  <div class="page-eyebrow">Get in Touch</div>
+  <h1 class="page-h1">Contact / FAQ</h1>
+  <p class="page-sub">Questions about an order, a product, or verification? We're here to help. Reach us via WhatsApp for the fastest response.</p>
+
+  <div class="contact-grid">
+
+    <!-- Left: Contact methods -->
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div class="contact-card">
+        <h2>Get in Touch</h2>
+
+        <div class="contact-method">
+          <div class="contact-icon whatsapp">💬</div>
+          <div>
+            <div class="contact-method-label">WhatsApp</div>
+            <div class="contact-method-val">+44 7348 650538</div>
+            <div class="contact-method-desc">Fastest response. Order enquiries, tracking, and general questions. Typically reply within a few hours.</div>
+            <a href="https://wa.me/447348650538" class="contact-method-link whatsapp-btn" target="_blank">Message on WhatsApp →</a>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="contact-icon email">✉️</div>
+          <div>
+            <div class="contact-method-label">Email</div>
+            <div class="contact-method-val">info@novigenpeptides.com</div>
+            <div class="contact-method-desc">For detailed enquiries, bulk orders, or documentation requests. We aim to respond within 24 hours.</div>
+            <a href="mailto:info@novigenpeptides.com" class="contact-method-link">Send Email →</a>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="contact-icon verify">🔍</div>
+          <div>
+            <div class="contact-method-label">Product Verification</div>
+            <div class="contact-method-val">novigenpeptides.com/verify</div>
+            <div class="contact-method-desc">Verify the authenticity of your product using the scratch-off code on your packaging.</div>
+            <a href="verify.html" class="contact-method-link">Verify Product →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h2>Response Hours</h2>
+        <div class="hours-grid">
+          <div class="hours-item"><div class="hours-day">Mon – Fri</div><div class="hours-time">9am – 6pm</div></div>
+          <div class="hours-item"><div class="hours-day">Saturday</div><div class="hours-time">10am – 4pm</div></div>
+          <div class="hours-item"><div class="hours-day">Sunday</div><div class="hours-time">Closed</div></div>
+          <div class="hours-item"><div class="hours-day">Bank Holidays</div><div class="hours-time">Limited</div></div>
+        </div>
+        <p style="font-size:0.78rem;color:var(--text-subtle);margin-top:14px;line-height:1.6;">All times are UK time (GMT/BST). WhatsApp messages outside these hours will be responded to on the next working day.</p>
+      </div>
+    </div>
+
+    <!-- Right: FAQ -->
+    <div class="faq-card">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I place an order?</div>
+        <div class="faq-a">Visit our shop page, add products to your basket, and complete checkout. Your order is sent to us via WhatsApp and we'll follow up with payment instructions and confirmation.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How long does delivery take?</div>
+        <div class="faq-a">We dispatch within 1–2 working days of payment confirmation. UK delivery typically takes 1 working day via tracked courier. You'll receive your tracking number by email once dispatched.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I pay?</div>
+        <div class="faq-a">Payment instructions are provided after you place your order via WhatsApp. We accept bank transfer (BACS). We'll send you our payment details directly.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How is my order packaged?</div>
+        <div class="faq-a">All products are dispatched in discreet, unmarked packaging. Cold chain products are packed with gel ice packs and insulated liners to maintain the correct temperature during transit.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I verify my product is genuine?</div>
+        <div class="faq-a">Every product comes with a unique scratch-off verification code on the packaging. Visit our verify page and enter your code, or scan the QR code on your label.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I return or exchange a product?</div>
+        <div class="faq-a">Due to the nature of research compounds and cold chain requirements, we are unable to accept returns unless a product arrives damaged or is incorrectly supplied. Contact us immediately if there is an issue with your order.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Where can I find usage guides?</div>
+        <div class="faq-a">Comprehensive usage guides, dosing information, and reconstitution instructions are available on our Guides page for every product we stock.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="disclaimer-bar">
+    ⚗️ All products are for <strong>research purposes only</strong>. Not for human consumption. Not approved by the MHRA or FDA. By contacting us you confirm you are a qualified researcher or medical professional.
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Novigen Peptides. All rights reserved. For research purposes only. Not for human consumption. &nbsp;|&nbsp; <a href="verify.html" style="color:var(--text-subtle);text-decoration:none;font-weight:600;">Verify Product</a></p>
+  <span class="footer-logo">Novigen Peptides</span>
+</footer>
+
+</body>
+</html>
