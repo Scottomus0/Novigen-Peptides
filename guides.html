@@ -177,6 +177,9 @@
   .product-card[data-product="glow"]::before        { background: linear-gradient(90deg, var(--glow), var(--glow-light), transparent); }
   .product-card[data-product="tirzepatide"]::before  { background: linear-gradient(90deg, var(--tir), var(--tir-light), transparent); }
   .product-card[data-product="hgh"]::before          { background: linear-gradient(90deg, var(--hgh), var(--hgh-light), transparent); }
+  .product-card[data-product="nad"]::before          { background: linear-gradient(90deg, #1a6a8a, #3a9abf, transparent); }
+  .product-card[data-product="ghkcu"]::before        { background: linear-gradient(90deg, #2a7a3a, #4aab5a, transparent); }
+  .product-card[data-product="mt2"]::before          { background: linear-gradient(90deg, #8a3a6a, #bf5a9a, transparent); }
 
   .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(42,90,138,0.14); }
 
@@ -194,6 +197,9 @@
   .product-card[data-product="glow"]        .product-card-header { background: transparent;   }
   .product-card[data-product="tirzepatide"] .product-card-header { background: transparent;   }
   .product-card[data-product="hgh"]         .product-card-header { background: transparent;   }
+  .product-card[data-product="nad"]         .product-card-header { background: transparent;   }
+  .product-card[data-product="ghkcu"]       .product-card-header { background: transparent;   }
+  .product-card[data-product="mt2"]         .product-card-header { background: transparent;   }
 
   .product-card-body { padding: 22px 22px 26px; flex: 1; display: flex; flex-direction: column; background: rgba(255,255,255,0.7); }
 
@@ -204,6 +210,9 @@
   .product-card[data-product="glow"]        .product-tag { color: var(--glow);  background: rgba(106,74,138,0.08); border: 1px solid rgba(106,74,138,0.18); }
   .product-card[data-product="tirzepatide"] .product-tag { color: var(--tir);   background: rgba(26,122,122,0.08); border: 1px solid rgba(26,122,122,0.18); }
   .product-card[data-product="hgh"]         .product-tag { color: var(--hgh);   background: rgba(42,122,90,0.08);  border: 1px solid rgba(42,122,90,0.18); }
+  .product-card[data-product="nad"]         .product-tag { color: #1a6a8a; background: rgba(26,106,138,0.08); border: 1px solid rgba(26,106,138,0.18); }
+  .product-card[data-product="ghkcu"]       .product-tag { color: #2a7a3a; background: rgba(42,122,58,0.08);  border: 1px solid rgba(42,122,58,0.18); }
+  .product-card[data-product="mt2"]         .product-tag { color: #8a3a6a; background: rgba(138,58,106,0.08); border: 1px solid rgba(138,58,106,0.18); }
 
   .product-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 20px; font-weight: 300; flex: 1; }
 
@@ -231,6 +240,9 @@
   .product-card[data-product="glow"]        .product-btn { background: linear-gradient(135deg, var(--glow), var(--glow-light)); }
   .product-card[data-product="tirzepatide"] .product-btn { background: linear-gradient(135deg, var(--tir), var(--tir-light)); }
   .product-card[data-product="hgh"]         .product-btn { background: linear-gradient(135deg, var(--hgh), var(--hgh-light)); }
+  .product-card[data-product="nad"]         .product-btn { background: linear-gradient(135deg, #1a6a8a, #3a9abf); }
+  .product-card[data-product="ghkcu"]       .product-btn { background: linear-gradient(135deg, #2a7a3a, #4aab5a); }
+  .product-card[data-product="mt2"]         .product-btn { background: linear-gradient(135deg, #8a3a6a, #bf5a9a); }
 
   /* ── Footer ── */
   footer { border-top: 1px solid var(--rule); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: white; box-shadow: 0 -2px 16px rgba(42,90,138,0.05); }
@@ -398,6 +410,35 @@
         <div class="product-name">HGH</div>
         <div class="product-tag">rHGH — E. coli</div>
         <div class="product-desc">Recombinant Human Growth Hormone. Pen and vial kit formats — reconstitution, dosage tiers, and storage.</div>
+        <span class="product-btn">View Guide →</span>
+      </div>
+    </a>
+    <a href="guides-detailed.html#nad" class="product-card" data-product="nad">
+      <div class="product-card-header">⚡</div>
+      <div class="product-card-body">
+        <div class="product-name">NAD+</div>
+        <div class="product-tag">1000mg Vial</div>
+        <div class="product-desc">Nicotinamide Adenine Dinucleotide. Cellular energy, DNA repair, and sirtuin activation. Titration, maintenance, and click dosing guide.</div>
+        <span class="product-btn">View Guide →</span>
+      </div>
+    </a>
+
+    <a href="guides-detailed.html#ghkcu" class="product-card" data-product="ghkcu">
+      <div class="product-card-header">🔬</div>
+      <div class="product-card-body">
+        <div class="product-name">GHK-Cu</div>
+        <div class="product-tag">50mg Vial — Copper Peptide</div>
+        <div class="product-desc">Glycyl-L-Histidyl-L-Lysine Copper Complex. Phase 1 &amp; 2 protocols, 30-day cycling, collagen synthesis and tissue repair.</div>
+        <span class="product-btn">View Guide →</span>
+      </div>
+    </a>
+
+    <a href="guides-detailed.html#mt2" class="product-card" data-product="mt2">
+      <div class="product-card-header">☀️</div>
+      <div class="product-card-body">
+        <div class="product-name">Melanotan II</div>
+        <div class="product-tag">10mg Vial — MT2</div>
+        <div class="product-desc">α-MSH analogue. Loading and maintenance protocols, UV exposure guidance, side effect management, and skin monitoring advice.</div>
         <span class="product-btn">View Guide →</span>
       </div>
     </a>
