@@ -96,6 +96,7 @@
       </div>
       <button class="btn btn-primary" onclick="generateCode()" style="height:38px;">⚡ Generate Code</button>
       <button class="btn btn-secondary" onclick="generateBatch()" style="height:38px;">Generate 5</button>
+      <span id="gen-status" style="font-size:0.78rem;color:#1a6a2a;font-weight:700;align-self:center;display:none;">✓ Code generated!</span>
     </div>
     <div class="code-list" id="code-list">
       <div style="text-align:center;padding:24px;color:var(--text-subtle);font-size:0.84rem;">No custom codes yet. Generate one above.</div>
@@ -142,20 +143,35 @@
 <script>
   // ── Data helpers ──
   function getOrders() { return JSON.parse(localStorage.getItem('nvg_order_log') || '[]'); }
-  function getCodes()  { return JSON.parse(localStorage.getItem('nvg_custom_codes') || '[]'); }
-  function saveCodes(codes) { localStorage.setItem('nvg_custom_codes', JSON.stringify(codes)); }
+  function getCodes() {
+    try { return JSON.parse(localStorage.getItem('nvg_custom_codes') || '[]'); }
+    catch(e) { return []; }
+  }
+  function saveCodes(codes) {
+    try {
+      localStorage.setItem('nvg_custom_codes', JSON.stringify(codes));
+    } catch(e) {
+      alert('Storage error: ' + e.message + '. Try enabling localStorage in your browser settings.');
+    }
+  }
 
   // ── Code Generator ──
   function generateCode() {
-    var prefix  = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
-    var pct     = parseInt(document.getElementById('gen-pct').value);
-    var maxUses = parseInt(document.getElementById('gen-uses').value);
-    var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
-    var code    = prefix + suffix;
-    var codes   = getCodes();
-    codes.push({ code: code, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
-    saveCodes(codes);
-    renderCodes();
+    try {
+      var prefix  = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
+      var pct     = parseInt(document.getElementById('gen-pct').value);
+      var maxUses = parseInt(document.getElementById('gen-uses').value);
+      var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
+      var code    = prefix + suffix;
+      var codes   = getCodes();
+      codes.push({ code: code, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
+      saveCodes(codes);
+      renderCodes();
+      var st = document.getElementById('gen-status');
+      if (st) { st.style.display = 'inline'; setTimeout(function(){ st.style.display = 'none'; }, 2000); }
+    } catch(e) {
+      alert('Error generating code: ' + e.message);
+    }
   }
 
   function generateBatch() {
@@ -169,6 +185,8 @@
     }
     saveCodes(codes);
     renderCodes();
+    var st = document.getElementById('gen-status');
+    if (st) { st.style.display = 'inline'; setTimeout(function(){ st.style.display = 'none'; }, 2000); }
   }
 
   function deleteCode(idx) {
@@ -179,10 +197,26 @@
   }
 
   function copyCode(code) {
-    navigator.clipboard.writeText(code).then(function() {
-      var el = document.getElementById('flash-' + code);
-      if (el) { el.style.display = 'inline'; setTimeout(function(){ el.style.display = 'none'; }, 2000); }
-    });
+    var el = document.getElementById('flash-' + code);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(function() {
+        if (el) { el.style.display = 'inline'; setTimeout(function(){ el.style.display = 'none'; }, 2000); }
+      }).catch(function() { fallbackCopy(code, el); });
+    } else {
+      fallbackCopy(code, el);
+    }
+  }
+
+  function fallbackCopy(code, el) {
+    var ta = document.createElement('textarea');
+    ta.value = code;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+    if (el) { el.style.display = 'inline'; setTimeout(function(){ el.style.display = 'none'; }, 2000); }
   }
 
   function renderCodes() {
