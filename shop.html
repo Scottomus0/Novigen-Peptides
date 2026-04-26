@@ -593,7 +593,7 @@
           <div id="discount-feedback"></div>
         </div>
         <div class="refer-banner" style="margin-bottom:14px;">
-          <b>🎁 Refer a Friend — Get 5% Off</b>
+          <b>Refer a Friend &mdash; Get 5% Off</b>
           <p>Share Novigen with a friend and get a personal 5% code for your next order.</p>
         </div>
       </div>
@@ -669,7 +669,7 @@
 
 
   function generateInvoice(orderNum, items, subtotal, discountCode, discountPct, discAmt, total, name, email, address) {
-    var invoiceHTML = \`<!DOCTYPE html>
+    var invoiceHTML = `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -741,7 +741,7 @@
     For research purposes only. Not for human consumption.
   </div>
 </body>
-</html>\`;
+</html>`;
 
     var win = window.open('', '_blank');
     win.document.write(invoiceHTML);
