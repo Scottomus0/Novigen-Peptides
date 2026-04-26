@@ -768,12 +768,8 @@
     if (activeDiscount) {
       var used = JSON.parse(localStorage.getItem('nvg_used') || '[]');
       if (!used.includes(activeDiscount.code)) { used.push(activeDiscount.code); localStorage.setItem('nvg_used', JSON.stringify(used)); }
-      // Log to order log
+      // Log to order log (subtotal calculated below)
       var log = JSON.parse(localStorage.getItem('nvg_order_log') || '[]');
-      var subtotal = basket.reduce(function(s,i){return s+(i.price*i.quantity);},0);
-      var saved = (subtotal * activeDiscount.pct / 100).toFixed(2);
-      log.push({ order: orderNum, code: activeDiscount.code, pct: activeDiscount.pct, subtotal: subtotal.toFixed(2), saved: saved, date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) });
-      localStorage.setItem('nvg_order_log', JSON.stringify(log));
     }
 
     // Calculate totals
@@ -781,6 +777,13 @@
     const discAmt   = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
     const discSub   = subtotal - discAmt;
     const total     = discSub + 6;
+
+    // Log discount use
+    if (activeDiscount && typeof log !== 'undefined') {
+      const saved = discAmt.toFixed(2);
+      log.push({ order: orderNum, code: activeDiscount.code, pct: activeDiscount.pct, subtotal: subtotal.toFixed(2), saved: saved, date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) });
+      localStorage.setItem('nvg_order_log', JSON.stringify(log));
+    }
 
     // Build WhatsApp message
     const discLine  = activeDiscount ? ('\n*Discount:* ' + activeDiscount.code + ' (' + activeDiscount.pct + '% off) -£' + discAmt.toFixed(2)) : '';
