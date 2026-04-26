@@ -302,6 +302,9 @@
   }
   .lab-notice { background: rgba(42,90,138,0.06); border-bottom: 1px solid rgba(42,90,138,0.12); padding: 8px 48px; font-size: 0.72rem; color: var(--text-subtle); text-align: center; font-weight: 500; letter-spacing: 0.02em; position: relative; z-index: 99; }
   .lab-notice strong { color: var(--steel); }
+
+  .product-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 8px; }
+  .product-image.has-img { padding: 0; background: white !important; }
 </style>
 </head>
 <body>
@@ -479,15 +482,15 @@
 
 <script>
   const products = [
-    { id: 1, name: 'Retatrutide® 20mg', cat: 'ret', emoji: '💉', price: 115, dose: '20mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.', research: true },
-    { id: 2, name: 'Retatrutide® 40mg', cat: 'ret', emoji: '💉', price: 150, dose: '40mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.', research: true },
-    { id: 3, name: 'Glow 70mg', cat: 'glow', emoji: '✨', price: 80, dose: '70mg pen — GHK-Cu, TB-500, BPC-157', description: 'Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.', research: true },
-    { id: 8, name: 'NAD+', cat: 'nad', emoji: '⚡', price: 90, dose: '1000mg pre-filled pen', description: 'Nicotinamide Adenine Dinucleotide 1000mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
-    { id: 9, name: 'GHK-Cu', cat: 'ghkcu', emoji: '🔬', price: 30, dose: '50mg pre-filled pen', description: 'Glycyl-L-Histidyl-L-Lysine Copper Complex 50mg lyophilised vial. Reconstitute with 2ml BAC water. Research chemical for scientific study only.', research: true },
-    { id: 10, name: 'Melanotan II', cat: 'mt2', emoji: '☀️', price: 25, dose: '10mg pre-filled pen', description: 'Melanotan II 10mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
+    { id: 1, img: 'img-reta-20.png', name: 'Retatrutide® 20mg', cat: 'ret', emoji: '💉', price: 115, dose: '20mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.', research: true },
+    { id: 2, img: 'img-reta-40.png', name: 'Retatrutide® 40mg', cat: 'ret', emoji: '💉', price: 150, dose: '40mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.', research: true },
+    { id: 3, img: 'img-glow-70.png', name: 'Glow 70mg', cat: 'glow', emoji: '✨', price: 80, dose: '70mg pen — GHK-Cu, TB-500, BPC-157', description: 'Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.', research: true },
+    { id: 8, img: 'img-nad-1000.png', name: 'NAD+', cat: 'nad', emoji: '⚡', price: 90, dose: '1000mg pre-filled pen', description: 'Nicotinamide Adenine Dinucleotide 1000mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
+    { id: 9, img: 'img-ghkcu-50.png', name: 'GHK-Cu', cat: 'ghkcu', emoji: '🔬', price: 30, dose: '50mg pre-filled pen', description: 'Glycyl-L-Histidyl-L-Lysine Copper Complex 50mg lyophilised vial. Reconstitute with 2ml BAC water. Research chemical for scientific study only.', research: true },
+    { id: 10, img: 'img-mt2-10.png', name: 'Melanotan II', cat: 'mt2', emoji: '☀️', price: 25, dose: '10mg pre-filled pen', description: 'Melanotan II 10mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
     { id: 4, name: 'Tirzepatide® 15mg', cat: 'tir', emoji: '💊', price: 100, dose: '15mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist. Research chemical for scientific study only.', research: false },
-    { id: 5, name: 'Tirzepatide® 30mg', cat: 'tir', emoji: '💊', price: 120, dose: '30mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.', research: false },
-    { id: 6, name: 'Tirzepatide® 60mg', cat: 'tir', emoji: '💊', price: 160, dose: '60mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.', research: false },
+    { id: 5, img: 'img-tirz-30.png', name: 'Tirzepatide® 30mg', cat: 'tir', emoji: '💊', price: 120, dose: '30mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.', research: false },
+    { id: 6, img: 'img-tirz-60.png', name: 'Tirzepatide® 60mg', cat: 'tir', emoji: '💊', price: 160, dose: '60mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.', research: false },
     { id: 7, name: 'HGH 120IU Pen', cat: 'hgh', emoji: '⚡', price: 120, dose: '120IU pre-filled pen', description: 'Recombinant Human Growth Hormone in pre-filled pen format. Research chemical for scientific study only.', research: false },
     { id: 8, name: 'HGH 240IU Kit', cat: 'hgh', emoji: '⚡', price: 200, dose: '10 × 24IU lyophilised vials', description: 'Recombinant Human Growth Hormone in multi-vial kit. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
     { id: 9, name: 'HGH 360IU Kit', cat: 'hgh', emoji: '⚡', price: 260, dose: '10 × 36IU lyophilised vials', description: 'Recombinant Human Growth Hormone at highest dosage per vial. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
@@ -501,7 +504,7 @@
     if (!grid) return;
     grid.innerHTML = products.map(p => `
       <div class="product-card" onclick="openProductDetail(${p.id})">
-        <div class="product-image ${p.cat}">${p.emoji}</div>
+        <div class="product-image ${p.cat}${p.img ? ' has-img' : ''}">${p.img ? `<img src="${p.img}" alt="${p.name}">` : p.emoji}</div>
         <div class="product-info">
           <div class="product-name">${p.name}</div>
           <div class="product-dose">${p.dose}</div>
