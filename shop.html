@@ -627,6 +627,21 @@
   const CODES = { 'WELCOME10': 10, 'REFERRAL5': 5, 'NOVI10': 10 };
   let activeDiscount = null;
 
+  function getAllCodes() {
+    // Merge hardcoded + admin-generated codes
+    var all = Object.assign({}, CODES);
+    var custom = JSON.parse(localStorage.getItem('nvg_custom_codes') || '[]');
+    custom.forEach(function(c) {
+      // Check max uses
+      var used = JSON.parse(localStorage.getItem('nvg_used') || '[]');
+      var timesUsed = used.filter(function(u){ return u === c.code; }).length;
+      if (c.maxUses === 0 || timesUsed < c.maxUses) {
+        all[c.code] = c.pct;
+      }
+    });
+    return all;
+  }
+
   function applyDiscount() {
     var raw = document.getElementById('discount-code-input').value.trim().toUpperCase();
     var fb = document.getElementById('discount-feedback');
@@ -635,9 +650,10 @@
     if (used.includes(raw)) {
       fb.innerHTML = '<div class="discount-msg-err">This code has already been used on this device.</div>'; return;
     }
-    if (CODES[raw] !== undefined) {
-      activeDiscount = { code: raw, pct: CODES[raw] };
-      fb.innerHTML = '<div class="discount-msg-ok"><span>✓ ' + raw + ' — ' + CODES[raw] + '% off applied</span><button class="discount-remove-btn" onclick="removeDiscount()">✕ Remove</button></div>';
+    var all = getAllCodes();
+    if (all[raw] !== undefined) {
+      activeDiscount = { code: raw, pct: all[raw] };
+      fb.innerHTML = '<div class="discount-msg-ok"><span>✓ ' + raw + ' — ' + all[raw] + '% off applied</span><button class="discount-remove-btn" onclick="removeDiscount()">✕ Remove</button></div>';
       document.getElementById('discount-code-input').disabled = true;
     } else {
       fb.innerHTML = '<div class="discount-msg-err">Invalid code — please check and try again.</div>';

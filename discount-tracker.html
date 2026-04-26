@@ -38,6 +38,25 @@
   .code-item-uses { font-size: 1.2rem; font-weight: 800; color: var(--steel); margin: 4px 0; }
   .code-item-pct { font-size: 0.68rem; color: var(--text-subtle); }
   .gap { display: flex; gap: 8px; }
+
+  .gen-card { background: white; border: 1px solid var(--rule); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  .gen-card h2 { font-size: 0.88rem; font-weight: 700; color: var(--steel-dark); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-light); }
+  .gen-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+  .gen-field { display: flex; flex-direction: column; gap: 6px; }
+  .gen-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-subtle); font-weight: 700; }
+  .gen-input { padding: 9px 14px; border: 1px solid var(--rule); border-radius: 8px; font-family: 'Outfit',sans-serif; font-size: 0.88rem; color: var(--text); background: white; outline: none; width: 180px; }
+  .gen-input:focus { border-color: var(--steel-light); }
+  .gen-select { padding: 9px 14px; border: 1px solid var(--rule); border-radius: 8px; font-family: 'Outfit',sans-serif; font-size: 0.88rem; color: var(--text); background: white; outline: none; width: 140px; }
+  .code-list { display: flex; flex-direction: column; gap: 8px; }
+  .code-row { display: flex; align-items: center; gap: 12px; background: var(--bg); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 14px; flex-wrap: wrap; }
+  .code-pill { font-family: 'Courier New', monospace; font-size: 0.92rem; font-weight: 700; color: var(--steel-dark); letter-spacing: 0.08em; flex: 1; }
+  .code-pct { font-size: 0.75rem; color: var(--text-subtle); font-weight: 600; white-space: nowrap; }
+  .code-uses { font-size: 0.72rem; color: var(--text-subtle); white-space: nowrap; }
+  .code-actions { display: flex; gap: 6px; margin-left: auto; }
+  .share-wa { background: #25d366; color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+  .copy-code { background: var(--steel); color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; border: none; cursor: pointer; }
+  .del-code { background: rgba(138,32,32,0.1); color: #8a2020; padding: 6px 10px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; border: none; cursor: pointer; }
+  .copied-flash { font-size: 0.7rem; color: #1a6a2a; font-weight: 700; display: none; }
 </style>
 </head>
 <body>
@@ -48,7 +67,42 @@
 
 <div class="wrap">
 
-  <div class="stats" id="stats-row">
+  
+  <div class="gen-card">
+    <h2>🔑 Generate & Manage Discount Codes</h2>
+    <div class="gen-row">
+      <div class="gen-field">
+        <label class="gen-label">Code Prefix</label>
+        <input type="text" id="gen-prefix" class="gen-input" value="NOVI" placeholder="NOVI" maxlength="10" style="text-transform:uppercase;">
+      </div>
+      <div class="gen-field">
+        <label class="gen-label">Discount %</label>
+        <select id="gen-pct" class="gen-select">
+          <option value="5">5% off</option>
+          <option value="10" selected>10% off</option>
+          <option value="15">15% off</option>
+          <option value="20">20% off</option>
+          <option value="25">25% off</option>
+        </select>
+      </div>
+      <div class="gen-field">
+        <label class="gen-label">Max Uses</label>
+        <select id="gen-uses" class="gen-select">
+          <option value="1">1 use</option>
+          <option value="5">5 uses</option>
+          <option value="10">10 uses</option>
+          <option value="0" selected>Unlimited</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="generateCode()" style="height:38px;">⚡ Generate Code</button>
+      <button class="btn btn-secondary" onclick="generateBatch()" style="height:38px;">Generate 5</button>
+    </div>
+    <div class="code-list" id="code-list">
+      <div style="text-align:center;padding:24px;color:var(--text-subtle);font-size:0.84rem;">No custom codes yet. Generate one above.</div>
+    </div>
+  </div>
+
+<div class="stats" id="stats-row">
     <div class="stat-card"><div class="stat-val" id="s-total">0</div><div class="stat-lbl">Total Uses</div></div>
     <div class="stat-card"><div class="stat-val" id="s-saved">£0</div><div class="stat-lbl">Total Saved</div></div>
     <div class="stat-card"><div class="stat-val" id="s-codes">0</div><div class="stat-lbl">Unique Codes</div></div>
@@ -139,11 +193,93 @@
   function clearLog() {
     if (confirm('Clear all discount log data? This cannot be undone.')) {
       localStorage.removeItem('nvg_order_log');
-      render();
+    
+  // ── Code Generator ──
+  function getCodes() {
+    return JSON.parse(localStorage.getItem('nvg_custom_codes') || '[]');
+  }
+  function saveCodes(codes) {
+    localStorage.setItem('nvg_custom_codes', JSON.stringify(codes));
+    // Also sync to shop's CODES object via shared storage
+    var codeMap = {};
+    codes.forEach(function(c){ codeMap[c.code] = c.pct; });
+    localStorage.setItem('nvg_codes_map', JSON.stringify(codeMap));
+  }
+
+  function generateCode() {
+    var prefix = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
+    var pct = parseInt(document.getElementById('gen-pct').value);
+    var maxUses = parseInt(document.getElementById('gen-uses').value);
+    var suffix = Math.random().toString(36).substring(2,6).toUpperCase();
+    var code = prefix + suffix;
+    var codes = getCodes();
+    codes.push({ code: code, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
+    saveCodes(codes);
+    renderCodes();
+  }
+
+  function generateBatch() {
+    var prefix = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
+    var pct = parseInt(document.getElementById('gen-pct').value);
+    var maxUses = parseInt(document.getElementById('gen-uses').value);
+    var codes = getCodes();
+    for (var i = 0; i < 5; i++) {
+      var suffix = Math.random().toString(36).substring(2,6).toUpperCase();
+      var code = prefix + suffix;
+      codes.push({ code: code, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
+    }
+    saveCodes(codes);
+    renderCodes();
+  }
+
+  function deleteCode(idx) {
+    var codes = getCodes();
+    codes.splice(idx, 1);
+    saveCodes(codes);
+    renderCodes();
+  }
+
+  function copyCode(code) {
+    navigator.clipboard.writeText(code).then(function() {
+      var el = document.getElementById('flash-' + code);
+      if (el) { el.style.display = 'inline'; setTimeout(function(){ el.style.display='none'; }, 2000); }
+    });
+  }
+
+  function renderCodes() {
+    var codes = getCodes();
+    var list = document.getElementById('code-list');
+    if (!codes.length) {
+      list.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-subtle);font-size:0.84rem;">No custom codes yet. Generate one above.</div>';
+      return;
+    }
+    list.innerHTML = codes.map(function(c, i) {
+      var usesLabel = c.maxUses === 0 ? 'Unlimited' : c.uses + '/' + c.maxUses + ' uses';
+      var waMsg = encodeURIComponent('Here is your ' + c.pct + '% discount code for Novigen Peptides: ' + c.code + ' — use it at checkout on novigenpeptides.com/shop.html');
+      return '<div class="code-row">' +
+        '<span class="code-pill">' + c.code + '</span>' +
+        '<span class="code-pct">' + c.pct + '% off</span>' +
+        '<span class="code-uses">' + usesLabel + '</span>' +
+        '<span class="copied-flash" id="flash-' + c.code + '">✓ Copied!</span>' +
+        '<div class="code-actions">' +
+        '<button class="copy-code" onclick="copyCode('' + c.code + '')">📋 Copy</button>' +
+        '<a class="share-wa" href="https://wa.me/?text=' + waMsg + '" target="_blank">💬 Share</a>' +
+        '<button class="del-code" onclick="deleteCode(' + i + ')">✕</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  renderCodes();
+
+  render();
     }
   }
 
   render();
+
+  // Sync custom codes so shop.html can use them
+  window.addEventListener('storage', function() { renderCodes(); render(); });
 </script>
 </body>
 </html>
