@@ -140,93 +140,32 @@
 </div>
 
 <script>
-  const CODES = { 'WELCOME10': 10, 'REFERRAL5': 5, 'NOVI10': 10 };
+  // ── Data helpers ──
+  function getOrders() { return JSON.parse(localStorage.getItem('nvg_order_log') || '[]'); }
+  function getCodes()  { return JSON.parse(localStorage.getItem('nvg_custom_codes') || '[]'); }
+  function saveCodes(codes) { localStorage.setItem('nvg_custom_codes', JSON.stringify(codes)); }
 
-  function getLog() {
-    return JSON.parse(localStorage.getItem('nvg_order_log') || '[]');
-  }
-
-  function render() {
-    const log = getLog();
-    const body = document.getElementById('log-body');
-
-    if (log.length === 0) {
-      body.innerHTML = '<tr><td colspan="6" class="empty">No discount codes used yet.</td></tr>';
-    } else {
-      body.innerHTML = log.slice().reverse().map(entry => `
-        <tr>
-          <td><span class="badge badge-blue">${entry.order}</span></td>
-          <td><span class="badge badge-green">${entry.code}</span></td>
-          <td>${entry.pct}%</td>
-          <td>£${entry.subtotal}</td>
-          <td style="color:#1a6a2a;font-weight:700;">-£${entry.saved}</td>
-          <td style="color:var(--text-subtle);">${entry.date}</td>
-        </tr>`).join('');
-    }
-
-    // Stats
-    const totalSaved = log.reduce((s,e) => s + parseFloat(e.saved), 0);
-    document.getElementById('s-total').textContent = log.length;
-    document.getElementById('s-saved').textContent = '£' + totalSaved.toFixed(2);
-    document.getElementById('s-codes').textContent = Object.keys(CODES).length;
-    document.getElementById('s-orders').textContent = log.length;
-
-    // Code breakdown
-    Object.keys(CODES).forEach(code => {
-      const count = log.filter(e => e.code === code).length;
-      const el = document.getElementById('cb-' + code);
-      if (el) el.textContent = count + ' use' + (count !== 1 ? 's' : '');
-    });
-  }
-
-  function exportCSV() {
-    const log = getLog();
-    if (!log.length) { alert('No data to export.'); return; }
-    const rows = [['Order', 'Code', 'Discount %', 'Subtotal', 'Saved', 'Date']];
-    log.forEach(e => rows.push([e.order, e.code, e.pct + '%', '£' + e.subtotal, '-£' + e.saved, e.date]));
-    const csv = rows.map(r => r.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-    a.download = 'novigen-discount-log.csv'; a.click();
-  }
-
-  function clearLog() {
-    if (confirm('Clear all discount log data? This cannot be undone.')) {
-      localStorage.removeItem('nvg_order_log');
-    
   // ── Code Generator ──
-  function getCodes() {
-    return JSON.parse(localStorage.getItem('nvg_custom_codes') || '[]');
-  }
-  function saveCodes(codes) {
-    localStorage.setItem('nvg_custom_codes', JSON.stringify(codes));
-    // Also sync to shop's CODES object via shared storage
-    var codeMap = {};
-    codes.forEach(function(c){ codeMap[c.code] = c.pct; });
-    localStorage.setItem('nvg_codes_map', JSON.stringify(codeMap));
-  }
-
   function generateCode() {
-    var prefix = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
-    var pct = parseInt(document.getElementById('gen-pct').value);
+    var prefix  = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
+    var pct     = parseInt(document.getElementById('gen-pct').value);
     var maxUses = parseInt(document.getElementById('gen-uses').value);
-    var suffix = Math.random().toString(36).substring(2,6).toUpperCase();
-    var code = prefix + suffix;
-    var codes = getCodes();
+    var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
+    var code    = prefix + suffix;
+    var codes   = getCodes();
     codes.push({ code: code, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
     saveCodes(codes);
     renderCodes();
   }
 
   function generateBatch() {
-    var prefix = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
-    var pct = parseInt(document.getElementById('gen-pct').value);
+    var prefix  = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
+    var pct     = parseInt(document.getElementById('gen-pct').value);
     var maxUses = parseInt(document.getElementById('gen-uses').value);
-    var codes = getCodes();
+    var codes   = getCodes();
     for (var i = 0; i < 5; i++) {
       var suffix = Math.random().toString(36).substring(2,6).toUpperCase();
-      var code = prefix + suffix;
-      codes.push({ code: code, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
+      codes.push({ code: prefix + suffix, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
     }
     saveCodes(codes);
     renderCodes();
@@ -242,20 +181,20 @@
   function copyCode(code) {
     navigator.clipboard.writeText(code).then(function() {
       var el = document.getElementById('flash-' + code);
-      if (el) { el.style.display = 'inline'; setTimeout(function(){ el.style.display='none'; }, 2000); }
+      if (el) { el.style.display = 'inline'; setTimeout(function(){ el.style.display = 'none'; }, 2000); }
     });
   }
 
   function renderCodes() {
     var codes = getCodes();
-    var list = document.getElementById('code-list');
+    var list  = document.getElementById('code-list');
     if (!codes.length) {
       list.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-subtle);font-size:0.84rem;">No custom codes yet. Generate one above.</div>';
       return;
     }
     list.innerHTML = codes.map(function(c, i) {
       var usesLabel = c.maxUses === 0 ? 'Unlimited' : c.uses + '/' + c.maxUses + ' uses';
-      var waMsg = encodeURIComponent('Here is your ' + c.pct + '% discount code for Novigen Peptides: ' + c.code + ' — use it at checkout on novigenpeptides.com/shop.html');
+      var waMsg = encodeURIComponent('Here is your ' + c.pct + '% discount code for Novigen Peptides: ' + c.code + ' — use it at checkout on novigenpeptides.com');
       return '<div class="code-row">' +
         '<span class="code-pill">' + c.code + '</span>' +
         '<span class="code-pct">' + c.pct + '% off</span>' +
@@ -265,21 +204,74 @@
         '<button class="copy-code" onclick="copyCode('' + c.code + '')">📋 Copy</button>' +
         '<a class="share-wa" href="https://wa.me/?text=' + waMsg + '" target="_blank">💬 Share</a>' +
         '<button class="del-code" onclick="deleteCode(' + i + ')">✕</button>' +
-        '</div>' +
-      '</div>';
+        '</div></div>';
     }).join('');
   }
 
-  renderCodes();
+  // ── Stats + Order Log ──
+  const CODES_BASE = { 'WELCOME10': 10, 'REFERRAL5': 5, 'NOVI10': 10 };
 
-  render();
+  function formatDate(iso) {
+    return new Date(iso).toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  }
+
+  function render() {
+    var log  = getOrders();
+    var body = document.getElementById('log-body');
+
+    if (!log.length) {
+      body.innerHTML = '<tr><td colspan="6" class="empty">No discount codes used yet.</td></tr>';
+    } else {
+      body.innerHTML = log.slice().reverse().map(function(entry) {
+        return '<tr>' +
+          '<td><span class="badge badge-blue">'   + entry.order + '</span></td>' +
+          '<td><span class="badge badge-green">'  + entry.code  + '</span></td>' +
+          '<td>' + entry.pct + '%</td>' +
+          '<td>£' + entry.subtotal + '</td>' +
+          '<td style="color:#1a6a2a;font-weight:700;">-£' + entry.saved + '</td>' +
+          '<td style="color:var(--text-subtle);">' + formatDate(entry.date) + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    // Stats
+    var totalSaved = log.reduce(function(s,e){ return s + parseFloat(e.saved); }, 0);
+    document.getElementById('s-total').textContent  = log.length;
+    document.getElementById('s-saved').textContent  = '£' + totalSaved.toFixed(2);
+    document.getElementById('s-codes').textContent  = Object.keys(CODES_BASE).length + getCodes().length;
+    document.getElementById('s-orders').textContent = log.length;
+
+    // Code breakdown
+    Object.keys(CODES_BASE).forEach(function(code) {
+      var count = log.filter(function(e){ return e.code === code; }).length;
+      var el = document.getElementById('cb-' + code);
+      if (el) el.textContent = count + ' use' + (count !== 1 ? 's' : '');
+    });
+  }
+
+  function exportCSV() {
+    var log = getOrders();
+    if (!log.length) { alert('No data to export.'); return; }
+    var rows = [['Order','Code','Discount %','Subtotal','Saved','Date']];
+    log.forEach(function(e){ rows.push([e.order, e.code, e.pct+'%', '£'+e.subtotal, '-£'+e.saved, formatDate(e.date)]); });
+    var csv  = rows.map(function(r){ return r.join(','); }).join('\n');
+    var blob = new Blob([csv], {type:'text/csv'});
+    var a    = document.createElement('a');
+    a.href   = URL.createObjectURL(blob);
+    a.download = 'novigen-discount-log.csv';
+    a.click();
+  }
+
+  function clearLog() {
+    if (confirm('Clear all discount log data? This cannot be undone.')) {
+      localStorage.removeItem('nvg_order_log');
+      render();
     }
   }
 
+  // ── Init ──
+  renderCodes();
   render();
-
-  // Sync custom codes so shop.html can use them
-  window.addEventListener('storage', function() { renderCodes(); render(); });
 </script>
 </body>
 </html>
