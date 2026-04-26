@@ -159,7 +159,7 @@
       ? '<div class="total-row discount"><span>' + o.discountCode + ' (' + o.discountPct + '% off)</span><span>-£' + o.discAmt.toFixed(2) + '</span></div>'
       : '';
 
-    var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice ' + o.orderNum + ' — Novigen Peptides</title>' +
+    var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice ' + o.orderNum + ' — Novigen Coaching</title>' +
     '<style>' +
     'body{font-family:Arial,sans-serif;max-width:680px;margin:40px auto;color:#0d1f38;padding:0 24px;}' +
     '.no-print{background:#2a5a8a;color:white;padding:10px 16px;border-radius:8px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;}' +
@@ -186,12 +186,12 @@
     '<div class="no-print"><span style="font-weight:700;">Invoice ' + o.orderNum + '</span><button onclick="window.print()">🖨 Print / Save PDF</button></div>' +
 
     '<div class="inv-header">' +
-    '<div class="inv-logo">novi<span>gen</span><small>Peptides</small></div>' +
-    '<div class="inv-meta"><strong>Invoice</strong>Order Ref: ' + o.orderNum + '<br>Date: ' + new Date(o.date).toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'}) + '<br>novigenpeptides.com</div>' +
+    '<div class="inv-logo">novi<span>gen</span><small>Coaching</small></div>' +
+    '<div class="inv-meta"><strong>Invoice</strong>Order Ref: ' + o.orderNum + '<br>Date: ' + new Date(o.date).toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'}) + '</div>' +
     '</div>' +
 
     '<h3>Bill To</h3>' +
-    '<div class="bill-to">' + o.name + '<br>' + o.address + '<br>' + o.email + '</div>' +
+    '<div class="bill-to">' + o.name + '<br>' + o.address + '</div>' +
 
     '<h3>Services</h3>' +
     '<table><thead><tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Amount</th></tr></thead>' +
@@ -203,7 +203,7 @@
     '<div class="total-row grand"><span>Total Due</span><span>£' + o.total.toFixed(2) + '</span></div>' +
     '</div>' +
 
-    '<div class="footer">Novigen Peptides · novigenpeptides.com · info@novigenpeptides.com · +44 7348 650538<br>Thank you for your business.</div>' +
+    '<div class="footer">Novigen Coaching · info@novigenpeptides.com · +44 7348 650538<br>Thank you for your business.</div>' +
     '</body></html>';
 
     var win = window.open('', '_blank');
