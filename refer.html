@@ -88,6 +88,13 @@
     .steps-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
   }
+
+  @media(max-width: 600px) {
+    header { padding: 12px 16px; }
+    header a[href="index.html"] svg { max-width: 140px !important; }
+    .nav-links .nav-link { display: none; }
+    .nav-links .shop-btn, .nav-links .nav-cta { display: inline-flex; }
+  }
 </style>
 </head>
 <body>

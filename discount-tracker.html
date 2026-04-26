@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discount Code Tracker — Novigen Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --steel: #2a5a8a; --steel-light: #4a8abf; --steel-dark: #1a3a5a; --bg: #eef5ff; --text: #0d1f38; --text-muted: #3a5068; --text-subtle: #6a8090; --rule: #c8daf0; --rule-light: #dce8f8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  header { background: white; border-bottom: 1px solid var(--rule); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
+  header h1 { font-size: 1rem; font-weight: 700; color: var(--steel-dark); }
+  header span { font-size: 0.75rem; color: var(--text-subtle); }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px; }
+  .stat-card { background: white; border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; }
+  .stat-val { font-size: 1.8rem; font-weight: 800; color: var(--steel-dark); letter-spacing: -0.03em; }
+  .stat-lbl { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-subtle); margin-top: 4px; font-weight: 700; }
+  .card { background: white; border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+  .card-header { padding: 16px 20px; border-bottom: 1px solid var(--rule-light); display: flex; align-items: center; justify-content: space-between; }
+  .card-title { font-size: 0.88rem; font-weight: 700; color: var(--steel-dark); }
+  .btn { padding: 8px 16px; border-radius: 8px; font-family: 'Outfit',sans-serif; font-size: 0.78rem; font-weight: 700; cursor: pointer; border: none; letter-spacing: 0.05em; }
+  .btn-primary { background: var(--steel); color: white; }
+  .btn-danger { background: #8a2020; color: white; }
+  .btn-secondary { background: var(--bg); color: var(--steel); border: 1px solid var(--rule); }
+  table { width: 100%; border-collapse: collapse; }
+  th { padding: 10px 16px; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-subtle); background: var(--bg); border-bottom: 1px solid var(--rule); text-align: left; font-weight: 700; }
+  td { padding: 12px 16px; font-size: 0.84rem; color: var(--text); border-bottom: 1px solid var(--rule-light); }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; }
+  .badge-blue { background: rgba(42,90,138,0.1); color: var(--steel); }
+  .badge-green { background: rgba(26,106,42,0.1); color: #1a6a2a; }
+  .empty { text-align: center; padding: 48px; color: var(--text-subtle); font-size: 0.88rem; }
+  .code-breakdown { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 16px 20px; }
+  .code-item { background: var(--bg); border-radius: 8px; padding: 12px 14px; }
+  .code-item-name { font-size: 0.78rem; font-weight: 700; color: var(--steel-dark); }
+  .code-item-uses { font-size: 1.2rem; font-weight: 800; color: var(--steel); margin: 4px 0; }
+  .code-item-pct { font-size: 0.68rem; color: var(--text-subtle); }
+  .gap { display: flex; gap: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔑 Novigen — Discount Code Tracker</h1>
+  <span>Admin Panel · Data stored in browser localStorage</span>
+</header>
+
+<div class="wrap">
+
+  <div class="stats" id="stats-row">
+    <div class="stat-card"><div class="stat-val" id="s-total">0</div><div class="stat-lbl">Total Uses</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-saved">£0</div><div class="stat-lbl">Total Saved</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-codes">0</div><div class="stat-lbl">Unique Codes</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-orders">0</div><div class="stat-lbl">Orders w/ Discount</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Code Breakdown</div>
+    </div>
+    <div class="code-breakdown" id="code-breakdown">
+      <div class="code-item"><div class="code-item-name">WELCOME10</div><div class="code-item-uses" id="cb-WELCOME10">0</div><div class="code-item-pct">10% off</div></div>
+      <div class="code-item"><div class="code-item-name">REFERRAL5</div><div class="code-item-uses" id="cb-REFERRAL5">0</div><div class="code-item-pct">5% off</div></div>
+      <div class="code-item"><div class="code-item-name">NOVI10</div><div class="code-item-uses" id="cb-NOVI10">0</div><div class="code-item-pct">10% off</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Order Log</div>
+      <div class="gap">
+        <button class="btn btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
+        <button class="btn btn-danger" onclick="clearLog()">✕ Clear Log</button>
+      </div>
+    </div>
+    <div id="log-wrap">
+      <table>
+        <thead><tr><th>Order #</th><th>Code</th><th>Discount</th><th>Subtotal</th><th>Saved</th><th>Date</th></tr></thead>
+        <tbody id="log-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <p style="font-size:0.75rem;color:var(--text-subtle);text-align:center;margin-top:16px;">Note: Data is stored in the customer's browser. This page reads from the same localStorage. For cross-device tracking, use the order log exported from here alongside your WhatsApp order records.</p>
+</div>
+
+<script>
+  const CODES = { 'WELCOME10': 10, 'REFERRAL5': 5, 'NOVI10': 10 };
+
+  function getLog() {
+    return JSON.parse(localStorage.getItem('nvg_order_log') || '[]');
+  }
+
+  function render() {
+    const log = getLog();
+    const body = document.getElementById('log-body');
+
+    if (log.length === 0) {
+      body.innerHTML = '<tr><td colspan="6" class="empty">No discount codes used yet.</td></tr>';
+    } else {
+      body.innerHTML = log.slice().reverse().map(entry => `
+        <tr>
+          <td><span class="badge badge-blue">${entry.order}</span></td>
+          <td><span class="badge badge-green">${entry.code}</span></td>
+          <td>${entry.pct}%</td>
+          <td>£${entry.subtotal}</td>
+          <td style="color:#1a6a2a;font-weight:700;">-£${entry.saved}</td>
+          <td style="color:var(--text-subtle);">${entry.date}</td>
+        </tr>`).join('');
+    }
+
+    // Stats
+    const totalSaved = log.reduce((s,e) => s + parseFloat(e.saved), 0);
+    document.getElementById('s-total').textContent = log.length;
+    document.getElementById('s-saved').textContent = '£' + totalSaved.toFixed(2);
+    document.getElementById('s-codes').textContent = Object.keys(CODES).length;
+    document.getElementById('s-orders').textContent = log.length;
+
+    // Code breakdown
+    Object.keys(CODES).forEach(code => {
+      const count = log.filter(e => e.code === code).length;
+      const el = document.getElementById('cb-' + code);
+      if (el) el.textContent = count + ' use' + (count !== 1 ? 's' : '');
+    });
+  }
+
+  function exportCSV() {
+    const log = getLog();
+    if (!log.length) { alert('No data to export.'); return; }
+    const rows = [['Order', 'Code', 'Discount %', 'Subtotal', 'Saved', 'Date']];
+    log.forEach(e => rows.push([e.order, e.code, e.pct + '%', '£' + e.subtotal, '-£' + e.saved, e.date]));
+    const csv = rows.map(r => r.join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'novigen-discount-log.csv'; a.click();
+  }
+
+  function clearLog() {
+    if (confirm('Clear all discount log data? This cannot be undone.')) {
+      localStorage.removeItem('nvg_order_log');
+      render();
+    }
+  }
+
+  render();
+</script>
+</body>
+</html>
