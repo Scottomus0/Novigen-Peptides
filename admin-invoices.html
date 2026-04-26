@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Manager — Novigen Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --steel: #2a5a8a; --steel-light: #4a8abf; --steel-dark: #1a3a5a; --bg: #eef5ff; --text: #0d1f38; --text-muted: #3a5068; --text-subtle: #6a8090; --rule: #c8daf0; --rule-light: #dce8f8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  header { background: white; border-bottom: 1px solid var(--rule); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
+  header h1 { font-size: 1rem; font-weight: 700; color: var(--steel-dark); }
+  header small { font-size: 0.72rem; color: var(--text-subtle); display: block; margin-top: 2px; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px; }
+  .stat-card { background: white; border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; }
+  .stat-val { font-size: 1.8rem; font-weight: 800; color: var(--steel-dark); letter-spacing: -0.03em; }
+  .stat-lbl { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-subtle); margin-top: 4px; font-weight: 700; }
+  .card { background: white; border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+  .card-header { padding: 16px 20px; border-bottom: 1px solid var(--rule-light); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .card-title { font-size: 0.88rem; font-weight: 700; color: var(--steel-dark); }
+  .btn { padding: 8px 16px; border-radius: 8px; font-family: 'Outfit',sans-serif; font-size: 0.78rem; font-weight: 700; cursor: pointer; border: none; letter-spacing: 0.05em; transition: opacity 0.2s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--steel); color: white; }
+  .btn-green { background: #1a6a2a; color: white; }
+  .btn-danger { background: #8a2020; color: white; }
+  .btn-secondary { background: var(--bg); color: var(--steel); border: 1px solid var(--rule); }
+  .gap { display: flex; gap: 8px; flex-wrap: wrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  th { padding: 10px 14px; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-subtle); background: var(--bg); border-bottom: 1px solid var(--rule); text-align: left; font-weight: 700; }
+  td { padding: 12px 14px; border-bottom: 1px solid var(--rule-light); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(42,90,138,0.02); }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; }
+  .badge-blue { background: rgba(42,90,138,0.1); color: var(--steel); }
+  .badge-green { background: rgba(26,106,42,0.1); color: #1a6a2a; }
+  .badge-coaching { background: rgba(42,90,138,0.12); color: var(--steel-dark); }
+  .badge-consult { background: rgba(106,74,138,0.1); color: #4a2a6a; }
+  .empty { text-align: center; padding: 56px; color: var(--text-subtle); }
+  .empty-icon { font-size: 2rem; margin-bottom: 12px; }
+  .type-coaching { color: var(--steel); font-weight: 700; }
+  .type-consult { color: #6a2a8a; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>📋 Novigen — Invoice Manager</h1>
+    <small>Admin only · Keep this URL private · novigenpeptides.com/admin-invoices.html</small>
+  </div>
+  <div class="gap">
+    <button class="btn btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-danger" onclick="clearAll()">✕ Clear All</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="stats">
+    <div class="stat-card"><div class="stat-val" id="s-orders">0</div><div class="stat-lbl">Total Orders</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-revenue">£0</div><div class="stat-lbl">Total Revenue</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-coaching">0</div><div class="stat-lbl">Coaching Invoices</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-consult">0</div><div class="stat-lbl">Consultation Invoices</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Order Log</div>
+      <div class="gap">
+        <span style="font-size:0.72rem;color:var(--text-subtle);align-self:center;">≥£100 = Coaching · &lt;£100 = Consultation</span>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Order #</th>
+          <th>Customer</th>
+          <th>Total</th>
+          <th>Discount</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Invoice</th>
+        </tr>
+      </thead>
+      <tbody id="orders-body"></tbody>
+    </table>
+  </div>
+
+  <p style="font-size:0.74rem;color:var(--text-subtle);text-align:center;">Data is stored in browser localStorage on the device used to place orders. For best results, view this page on the same device/browser customers use to shop, or use the Export CSV to save records.</p>
+</div>
+
+<script>
+  function getOrders() {
+    return JSON.parse(localStorage.getItem('nvg_orders') || '[]');
+  }
+
+  function getType(total) {
+    return total >= 100 ? 'coaching' : 'consultation';
+  }
+
+  function formatDate(iso) {
+    return new Date(iso).toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  }
+
+  function render() {
+    var orders = getOrders();
+    var body = document.getElementById('orders-body');
+
+    if (!orders.length) {
+      body.innerHTML = '<tr><td colspan="7"><div class="empty"><div class="empty-icon">📋</div>No orders yet. Orders placed via the shop will appear here.</div></td></tr>';
+    } else {
+      body.innerHTML = orders.slice().reverse().map(function(o, idx) {
+        var type = getType(o.total);
+        var typeBadge = type === 'coaching'
+          ? '<span class="badge badge-coaching">Monthly Coaching Fee</span>'
+          : '<span class="badge badge-consult">Consultation Fee</span>';
+        var discBadge = o.discountCode
+          ? '<span class="badge badge-green">' + o.discountCode + ' −' + o.discountPct + '%</span>'
+          : '<span style="color:var(--text-subtle);font-size:0.78rem;">None</span>';
+        return '<tr>' +
+          '<td><span class="badge badge-blue">' + o.orderNum + '</span></td>' +
+          '<td><div style="font-weight:600;">' + o.name + '</div><div style="font-size:0.75rem;color:var(--text-subtle);">' + o.email + '</div></td>' +
+          '<td style="font-weight:700;">£' + o.total.toFixed(2) + '</td>' +
+          '<td>' + discBadge + '</td>' +
+          '<td>' + typeBadge + '</td>' +
+          '<td style="color:var(--text-subtle);font-size:0.78rem;">' + formatDate(o.date) + '</td>' +
+          '<td><button class="btn btn-green" onclick="generateInvoice(' + (orders.length - 1 - idx) + ')">📄 Invoice</button></td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    // Stats
+    var total = orders.reduce(function(s,o){return s+o.total;},0);
+    var coaching = orders.filter(function(o){return getType(o.total)==='coaching';}).length;
+    var consult  = orders.filter(function(o){return getType(o.total)==='consultation';}).length;
+    document.getElementById('s-orders').textContent = orders.length;
+    document.getElementById('s-revenue').textContent = '£' + total.toFixed(2);
+    document.getElementById('s-coaching').textContent = coaching;
+    document.getElementById('s-consult').textContent = consult;
+  }
+
+  function generateInvoice(idx) {
+    var orders = getOrders();
+    var o = orders[idx];
+    if (!o) return;
+
+    var type = getType(o.total);
+    var lineItems = '';
+
+    if (type === 'coaching') {
+      lineItems = '<tr><td>Monthly Coaching Fee</td><td>1</td><td>£' + o.total.toFixed(2) + '</td><td>£' + o.total.toFixed(2) + '</td></tr>';
+    } else {
+      lineItems = '<tr><td>Consultation Fee</td><td>1</td><td>£' + o.total.toFixed(2) + '</td><td>£' + o.total.toFixed(2) + '</td></tr>';
+    }
+
+    var discRow = o.discountCode
+      ? '<div class="total-row discount"><span>' + o.discountCode + ' (' + o.discountPct + '% off)</span><span>-£' + o.discAmt.toFixed(2) + '</span></div>'
+      : '';
+
+    var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice ' + o.orderNum + ' — Novigen Peptides</title>' +
+    '<style>' +
+    'body{font-family:Arial,sans-serif;max-width:680px;margin:40px auto;color:#0d1f38;padding:0 24px;}' +
+    '.no-print{background:#2a5a8a;color:white;padding:10px 16px;border-radius:8px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;}' +
+    '.no-print button{background:white;color:#2a5a8a;border:none;padding:7px 16px;border-radius:6px;font-weight:700;cursor:pointer;}' +
+    '.inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;border-bottom:2px solid #2a5a8a;padding-bottom:20px;}' +
+    '.inv-logo{font-size:26px;font-weight:900;color:#1a3a5a;letter-spacing:-0.03em;}' +
+    '.inv-logo span{color:#4a8abf;}' +
+    '.inv-logo small{display:block;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#6a8090;font-weight:400;margin-top:2px;}' +
+    '.inv-meta{text-align:right;font-size:13px;color:#6a8090;line-height:1.7;}' +
+    '.inv-meta strong{display:block;font-size:20px;color:#0d1f38;font-weight:800;margin-bottom:4px;}' +
+    'h3{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6a8090;font-weight:700;margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid #dce8f8;}' +
+    '.bill-to{font-size:13px;line-height:1.8;color:#0d1f38;}' +
+    'table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}' +
+    'th{background:#eef5ff;padding:9px 12px;text-align:left;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#6a8090;font-weight:700;}' +
+    'td{padding:11px 12px;border-bottom:1px solid #dce8f8;}' +
+    '.totals{margin-left:auto;width:260px;margin-top:16px;}' +
+    '.total-row{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;color:#3a5068;}' +
+    '.total-row.grand{border-top:2px solid #2a5a8a;margin-top:8px;padding-top:10px;font-size:16px;font-weight:800;color:#0d1f38;}' +
+    '.total-row.discount{color:#1a6a2a;font-weight:600;}' +
+    '.footer{margin-top:40px;padding-top:16px;border-top:1px solid #dce8f8;font-size:11px;color:#6a8090;text-align:center;line-height:1.8;}' +
+    '@media print{.no-print{display:none!important;}}' +
+    '</style></head><body>' +
+
+    '<div class="no-print"><span style="font-weight:700;">Invoice ' + o.orderNum + '</span><button onclick="window.print()">🖨 Print / Save PDF</button></div>' +
+
+    '<div class="inv-header">' +
+    '<div class="inv-logo">novi<span>gen</span><small>Peptides</small></div>' +
+    '<div class="inv-meta"><strong>Invoice</strong>Order Ref: ' + o.orderNum + '<br>Date: ' + new Date(o.date).toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'}) + '<br>novigenpeptides.com</div>' +
+    '</div>' +
+
+    '<h3>Bill To</h3>' +
+    '<div class="bill-to">' + o.name + '<br>' + o.address + '<br>' + o.email + '</div>' +
+
+    '<h3>Services</h3>' +
+    '<table><thead><tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Amount</th></tr></thead>' +
+    '<tbody>' + lineItems + '</tbody></table>' +
+
+    '<div class="totals">' +
+    '<div class="total-row"><span>Subtotal</span><span>£' + o.total.toFixed(2) + '</span></div>' +
+    discRow +
+    '<div class="total-row grand"><span>Total Due</span><span>£' + o.total.toFixed(2) + '</span></div>' +
+    '</div>' +
+
+    '<div class="footer">Novigen Peptides · novigenpeptides.com · info@novigenpeptides.com · +44 7348 650538<br>Thank you for your business.</div>' +
+    '</body></html>';
+
+    var win = window.open('', '_blank');
+    win.document.write(html);
+    win.document.close();
+  }
+
+  function exportCSV() {
+    var orders = getOrders();
+    if (!orders.length) { alert('No orders to export.'); return; }
+    var rows = [['Order','Customer','Email','Address','Total','Discount Code','Discount %','Saved','Type','Date']];
+    orders.forEach(function(o) {
+      rows.push([
+        o.orderNum, o.name, o.email, '"' + o.address + '"',
+        '£' + o.total.toFixed(2),
+        o.discountCode || 'None', o.discountPct + '%',
+        o.discAmt ? '-£' + o.discAmt.toFixed(2) : '£0.00',
+        getType(o.total) === 'coaching' ? 'Monthly Coaching Fee' : 'Consultation Fee',
+        formatDate(o.date)
+      ]);
+    });
+    var csv = rows.map(function(r){return r.join(',');}).join('\n');
+    var blob = new Blob([csv], {type:'text/csv'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'novigen-orders-' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+  }
+
+  function clearAll() {
+    if (confirm('Delete ALL order records? This cannot be undone.')) {
+      localStorage.removeItem('nvg_orders');
+      render();
+    }
+  }
+
+  render();
+</script>
+</body>
+</html>
