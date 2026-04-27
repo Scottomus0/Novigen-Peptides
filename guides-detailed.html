@@ -535,6 +535,22 @@
   .disclaimer-decline { display:block; margin-top:12px; font-size:0.78rem; color:#6a8090; text-decoration:none; cursor:pointer; }
   .lab-notice { background: rgba(42,90,138,0.06); border-bottom: 1px solid rgba(42,90,138,0.12); padding: 8px 48px; font-size: 0.72rem; color: var(--text-subtle); text-align: center; font-weight: 500; letter-spacing: 0.02em; position: relative; z-index: 99; }
   .lab-notice strong { color: var(--steel); }
+
+  /* ── Hamburger menu for mobile ── */
+  .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px; border-radius: 8px; background: white; border: 1px solid var(--rule); }
+  .hamburger span { width: 20px; height: 2px; background: var(--steel); border-radius: 2px; display: block; transition: all 0.2s; }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,20,40,0.7); z-index: 999; backdrop-filter: blur(4px); }
+  .mobile-menu-inner { position: absolute; top: 0; right: 0; width: 75%; max-width: 280px; height: 100%; background: white; padding: 24px 20px; box-shadow: -8px 0 32px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+  .mobile-menu-inner a { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--rule-light); }
+  .mobile-menu-inner a:last-child { border-bottom: none; }
+  .mobile-menu-inner .close-btn { font-size: 1.2rem; color: var(--text-subtle); cursor: pointer; text-align: right; padding: 0 0 16px; border-bottom: 1px solid var(--rule); margin-bottom: 4px; font-weight: 400; }
+  .mobile-menu-inner .shop-link { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white !important; padding: 12px 20px; border-radius: 10px; text-align: center; margin-top: 8px; border-bottom: none !important; }
+  @media(max-width: 640px) {
+    .hamburger { display: flex !important; }
+    .nav-links .nav-link, .nav-links .shop-btn, .nav-links .nav-cta { display: none !important; }
+    header a[href="index.html"] svg { max-width: 130px !important; }
+    .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
+  }
 </style>
 </head>
 <body>
@@ -561,7 +577,7 @@
 
 <header>
   <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;"><div style="position:relative;z-index:2;">
-    <svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:200px;display:block;" xmlns="http://www.w3.org/2000/svg">
+    <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;"><svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:200px;display:block;" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="gdLG1" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stop-color="#1a3a5a"/><stop offset="25%" stop-color="#2a6aaa"/>
@@ -588,10 +604,10 @@
       <text x="94" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#gdLG1)" letter-spacing="-3">i</text>
       <text x="107" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#gdLG1)" letter-spacing="-3">gen</text>
       <text x="8" y="74" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="url(#gdLG2)" textLength="190" lengthAdjust="spacing">PEPTIDES</text>
-    </svg>
+    </svg></a>
   </div></a>
   <div style="display:flex;align-items:center;gap:12px;">
-    <a href="guides.html" style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-subtle);border:1px solid var(--rule);padding:5px 14px;border-radius:20px;background:white;text-decoration:none;font-weight:600;">← Guides</a>
+    <a href="index.html" style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-subtle);border:1px solid var(--rule);padding:5px 14px;border-radius:20px;background:white;text-decoration:none;font-weight:600;">← Home</a>
     <span class="header-tag">Product Usage Guides</span>
     <a href="research-docs.html-placeholder" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Refer a Friend</a><a href="research-docs.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Research Docs</a>
     <a href="shop.html" style="color:white;border:none;padding:9px 18px;border-radius:20px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#2a5a8a,#4a8abf);box-shadow:0 4px 12px rgba(42,90,138,0.2);">🛒 Shop</a>
@@ -1872,5 +1888,16 @@
     var ct = document.getElementById('ghk-clicks-'+size); if(ct) ct.style.display='block';
   }
 </script>
+<script>
+  function openMobileMenu() {
+    document.getElementById('mobile-menu').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu(e) {
+    if (e.target === document.getElementById('mobile-menu')) {
+      document.getElementById('mobile-menu').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }</script>
 </body>
 </html>
