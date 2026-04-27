@@ -99,8 +99,7 @@
   .mobile-menu-inner a:last-child { border-bottom: none; }
   .mobile-menu-inner .close-btn { font-size: 1.2rem; color: var(--text-subtle); cursor: pointer; text-align: right; padding: 0 0 16px; border-bottom: 1px solid var(--rule); margin-bottom: 4px; font-weight: 400; }
   .mobile-menu-inner .shop-link { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white !important; padding: 12px 20px; border-radius: 10px; text-align: center; margin-top: 8px; border-bottom: none !important; }
-  @media(max-width: 640px) {
-    .hamburger { display: flex !important; }
+  
     .nav-links .nav-link, .nav-links .shop-btn, .nav-links .nav-cta { display: none !important; }
     header a[href="index.html"] svg { max-width: 130px !important; }
     .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
@@ -120,12 +119,28 @@
   .mob-drawer-links a { display: block; padding: 14px 20px; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--rule-light); transition: background 0.15s; }
   .mob-drawer-links a:hover { background: var(--bg); }
   .mob-drawer-links a.mob-shop { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white !important; margin: 12px 16px; border-radius: 10px; text-align: center; border-bottom: none; }
-  @media(max-width: 640px) {
-    .hamburger-btn { display: flex !important; }
+  
     header nav .nav-link, header nav .nav-cta, header nav .shop-btn,
     header .nav-links .nav-link, header .nav-links .nav-cta, header .nav-links .shop-btn { display: none !important; }
     header a[href="index.html"] svg { max-width: 130px !important; }
     .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
+  }
+
+  @media(max-width: 640px) {
+    /* Hide desktop nav links, show hamburger */
+    .hamburger-btn { display: flex !important; }
+    header nav .nav-link, header nav .nav-cta, header nav .shop-btn,
+    header .nav-links .nav-link, header .nav-links .nav-cta, header .nav-links .shop-btn,
+    header > div > a.nav-link, header > div > .shop-btn { display: none !important; }
+    /* Logo size */
+    header a[href="index.html"] svg { max-width: 120px !important; }
+    /* Lab notice */
+    .lab-notice { padding: 6px 12px !important; font-size: 0.62rem !important; }
+    /* Tab nav - scroll horizontal, don't stretch */
+    .tab-nav { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; white-space: nowrap !important; scrollbar-width: none !important; flex-wrap: nowrap !important; }
+    .tab-nav::-webkit-scrollbar { display: none !important; }
+    .tab-btn { flex-shrink: 0 !important; font-size: 0.6rem !important; padding: 10px 10px !important; }
+    .tab-dot { display: none !important; }
   }
 </style>
 </head>
