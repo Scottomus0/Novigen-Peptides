@@ -27,27 +27,18 @@
     --warn-text: #7a5010;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
 
-
-  @keyframes holoShimmer {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  @keyframes holoRay {
-    0%   { transform: translateX(-100%) rotate(15deg); opacity:0; }
-    20%  { opacity: 0.5; }
-    80%  { opacity: 0.5; }
-    100% { transform: translateX(300%) rotate(15deg); opacity:0; }
-  }
-  /* ── Header ── */
+  /* \u2500\u2500 Header \u2500\u2500 */
   header {
-    background: transparent;  
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--rule);
     padding: 18px 48px;
     display: flex;
     align-items: center;
@@ -55,9 +46,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    
+    box-shadow: 0 2px 24px rgba(42,90,138,0.09);
   }
-  .logo-block { display: flex; flex-direction: column; align-items: center; line-height: 1; cursor: pointer; transition: opacity 0.2s; }
+  .logo-block { display: flex; flex-direction: column; line-height: 1; cursor: pointer; transition: opacity 0.2s; }
   .logo-block:hover { opacity: 0.8; }
   .logo-main { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 0.18em; color: var(--steel); text-transform: uppercase; }
   .logo-sub  { font-size: 0.6rem; letter-spacing: 0.45em; color: var(--text-subtle); text-transform: uppercase; margin-top: 3px; font-weight: 400; }
@@ -69,13 +60,13 @@
   .basket-btn:hover { box-shadow: 0 6px 18px rgba(42,90,138,0.3); }
   .basket-count { position: absolute; top: -8px; right: -8px; background: #e74c3c; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; }
 
-  /* ── Hero ── */
+  /* \u2500\u2500 Hero \u2500\u2500 */
   .hero {
     border-bottom: 1px solid var(--rule);
     padding: 60px 48px 52px;
     position: relative;
     overflow: hidden;
-    background: transparent;
+    background: linear-gradient(140deg, #ddeeff 0%, #c8e0f8 35%, #ddeeff 65%, #f0f8ff 100%);
   }
   .hero-watermark {
     position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
@@ -94,18 +85,6 @@
     -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
     animation: hexBreathe 9s ease-in-out infinite;
   }
-  
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.6'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 90px 78px;
-    opacity: 0.07;
-    animation: hexBreathe 9s ease-in-out infinite;
-  }
   @keyframes hexBreathe { 0%,100%{opacity:0.1} 50%{opacity:0.06} }
   .hero-ray { position: absolute; top: -100%; right: 12%; width: 180px; height: 300%; transform: rotate(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); animation: raySlide 7s ease-in-out infinite; pointer-events: none; z-index: 1; }
   @keyframes raySlide { 0%{opacity:0;transform:rotate(-18deg) translateX(-60px)} 30%{opacity:0.8} 70%{opacity:0.8} 100%{opacity:0;transform:rotate(-18deg) translateX(60px)} }
@@ -116,8 +95,8 @@
   .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 3rem; line-height: 1.0; letter-spacing: -0.03em; color: var(--steel-dark); margin-bottom: 16px; max-width: 560px; }
   .hero p { font-size: 0.9rem; color: var(--text-muted); max-width: 500px; line-height: 1.8; font-weight: 300; }
 
-  /* ── Shop Grid ── */
-  .page-body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+  /* \u2500\u2500 Shop Grid \u2500\u2500 */
+  .page-body { max-width: 1200px; margin: 0 auto; padding: 52px 48px 64px; }
   .section-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; font-weight: 700; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
@@ -148,10 +127,7 @@
   .product-image.ret  { background: linear-gradient(140deg, #ddeeff, #c8e0f8); }
   .product-image.glow { background: linear-gradient(140deg, #ecddf8, #ddc8f0); }
   .product-image.tir  { background: linear-gradient(140deg, #d8f2f2, #c2e8e8); }
-  .product-image.hgh   { background: linear-gradient(140deg, #d8f0e8, #c2e8d8); }
-  .product-image.nad   { background: linear-gradient(140deg, #d0eaf5, #b8d8ee); }
-  .product-image.ghkcu { background: linear-gradient(140deg, #d8f0e0, #c0e8cc); }
-  .product-image.mt2   { background: linear-gradient(140deg, #f0d8ea, #e4c0d8); }
+  .product-image.hgh  { background: linear-gradient(140deg, #d8f0e8, #c2e8d8); }
 
   .product-info { padding: 18px 18px 20px; }
   .product-name  { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: -0.01em; }
@@ -161,10 +137,10 @@
   .add-btn { width: 100%; color: white; border: none; padding: 11px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: box-shadow 0.2s, transform 0.15s; box-shadow: 0 4px 12px rgba(42,90,138,0.15); background: linear-gradient(135deg, var(--steel), var(--steel-light)); }
   .add-btn:hover { box-shadow: 0 6px 18px rgba(42,90,138,0.25); transform: translateY(-1px); }
 
-  /* ── Basket Sidebar ── */
+  /* \u2500\u2500 Basket Sidebar \u2500\u2500 */
   .sidebar-basket { position: fixed; right: -420px; top: 0; width: 420px; height: 100vh; background: white; box-shadow: -4px 0 32px rgba(42,90,138,0.12); transition: right 0.3s cubic-bezier(0.16,1,0.3,1); z-index: 200; overflow-y: auto; border-left: 1px solid var(--rule); }
   .sidebar-basket.open { right: 0; }
-  .basket-header { background: transparent;   color: white; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+  .basket-header { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
   .basket-header h2 { font-family: 'Outfit', sans-serif; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
   .basket-close { background: rgba(255,255,255,0.2); border: none; color: white; cursor: pointer; font-size: 1.1rem; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
   .basket-close:hover { background: rgba(255,255,255,0.35); }
@@ -186,8 +162,8 @@
   .checkout-btn { width: 100%; color: white; border: none; padding: 14px; border-radius: 10px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; background: linear-gradient(135deg, var(--steel), var(--steel-light)); box-shadow: 0 4px 16px rgba(42,90,138,0.2); transition: box-shadow 0.2s; }
   .checkout-btn:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.3); }
 
-  /* ── Product Modal ── */
-  .product-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; }
+  /* \u2500\u2500 Product Modal \u2500\u2500 */
+  .product-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
   .product-modal.open { display: flex; animation: modalIn 0.2s ease; }
   @keyframes modalIn { from{opacity:0} to{opacity:1} }
   .product-detail { background: white; border-radius: 12px; padding: 40px; max-width: 580px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -205,8 +181,8 @@
   .btn-close-modal { flex: 1; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--rule); padding: 13px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: background 0.15s; }
   .btn-close-modal:hover { background: var(--rule); }
 
-  /* ── Checkout Modal ── */
-  .checkout-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; }
+  /* \u2500\u2500 Checkout Modal \u2500\u2500 */
+  .checkout-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
   .checkout-modal.open { display: flex; animation: modalIn 0.2s ease; }
   .checkout-form { background: white; border-radius: 12px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
   .checkout-form h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; color: var(--text); letter-spacing: -0.02em; }
@@ -225,7 +201,7 @@
   .btn-cancel { flex: 1; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--rule); padding: 13px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: background 0.15s; }
   .btn-cancel:hover { background: var(--rule); }
 
-  /* ── Footer ── */
+  /* \u2500\u2500 Footer \u2500\u2500 */
   footer { border-top: 1px solid var(--rule); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: white; box-shadow: 0 -2px 16px rgba(42,90,138,0.05); }
   footer p { font-size: 0.72rem; color: var(--text-subtle); }
   .footer-logo { font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.22em; color: var(--steel); font-weight: 800; text-transform: uppercase; }
@@ -236,288 +212,293 @@
     .hero { padding: 36px 20px; }
     .hero-watermark { display: none; }
     .hero h1 { font-size: 2.2rem; }
-    .page-body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+    .page-body { padding: 28px 20px 48px; }
     .shop-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
     footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
     .sidebar-basket { width: 100%; right: -100%; }
     .checkout-form, .product-detail { padding: 24px 20px; }
   }
 
-  /* ── Disclaimer Banner ── */
-  .disclaimer-overlay {
-    position: fixed; inset: 0; z-index: 9999;
-    background: rgba(10,20,40,0.85);
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
-    backdrop-filter: blur(6px);
-  }
-  .disclaimer-box {
-    background: white; border-radius: 16px; max-width: 540px; width: 100%;
-    padding: 40px 36px; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
-    text-align: center;
-  }
-  .disclaimer-icon { font-size: 2.4rem; margin-bottom: 16px; }
-  .disclaimer-box h2 { font-family: 'Outfit',sans-serif; font-weight: 800; font-size: 1.4rem; color: #1a3a5a; margin-bottom: 12px; letter-spacing: -0.02em; }
-  .disclaimer-box p { font-size: 0.88rem; color: #3a5068; line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
-  .disclaimer-box p strong { color: #1a3a5a; font-weight: 700; }
-  .disclaimer-divider { border: none; border-top: 1px solid #c8daf0; margin: 20px 0; }
-  .disclaimer-confirm { width: 100%; background: linear-gradient(135deg,#2a5a8a,#4a8abf); color: white; border: none; padding: 14px 24px; border-radius: 10px; font-family: 'Outfit',sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; cursor: pointer; box-shadow: 0 4px 16px rgba(42,90,138,0.25); transition: box-shadow 0.2s, transform 0.2s; }
-  .disclaimer-confirm:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.35); transform: translateY(-1px); }
-  .disclaimer-decline { display: block; margin-top: 12px; font-size: 0.78rem; color: #6a8090; text-decoration: none; cursor: pointer; }
-  .disclaimer-decline:hover { color: #1a3a5a; }
-
-  .discount-row { display: flex; gap: 8px; margin-bottom: 14px; }
-  .discount-input { flex: 1; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: var(--text); background: white; outline: none; text-transform: uppercase; letter-spacing: 0.05em; }
-  .discount-input:focus { border-color: var(--steel-light); }
-  .discount-btn { padding: 10px 18px; background: var(--steel); color: white; border: none; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; letter-spacing: 0.06em; white-space: nowrap; }
-  .discount-btn:hover { background: var(--steel-light); }
-  .discount-msg { font-size: 0.78rem; margin-top: 6px; padding: 7px 12px; border-radius: 6px; font-weight: 600; }
-  .discount-msg.success { color: #1a6a2a; background: rgba(26,106,42,0.08); border: 1px solid rgba(26,106,42,0.15); }
-  .discount-msg.error { color: #8a2020; background: rgba(138,32,32,0.08); border: 1px solid rgba(138,32,32,0.15); }
-  .discount-applied { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(26,106,42,0.06); border: 1px solid rgba(26,106,42,0.15); border-radius: 8px; margin-bottom: 10px; }
-  .discount-applied span { font-size: 0.82rem; color: #1a6a2a; font-weight: 600; }
-  .discount-remove { font-size: 0.72rem; color: #8a2020; cursor: pointer; font-weight: 700; border: none; background: none; padding: 0; }
-  .refer-banner { background: linear-gradient(135deg, rgba(42,90,138,0.06), rgba(74,138,191,0.06)); border: 1px solid rgba(42,90,138,0.15); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
-  .refer-banner-title { font-size: 0.78rem; font-weight: 700; color: var(--steel-dark); margin-bottom: 4px; font-family: 'Outfit', sans-serif; }
-  .refer-banner-text { font-size: 0.74rem; color: var(--text-muted); line-height: 1.55; }
-  .refer-link { font-size: 0.74rem; color: var(--steel); font-weight: 700; cursor: pointer; text-decoration: underline; }
-
-  .discount-row { display: flex; gap: 8px; margin-bottom: 6px; }
-  .discount-input { flex: 1; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: var(--text); background: white; outline: none; }
-  .discount-input:focus { border-color: var(--steel-light); }
-  .discount-apply-btn { padding: 10px 16px; background: var(--steel); color: white; border: none; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; letter-spacing: 0.06em; white-space: nowrap; }
-  .discount-apply-btn:hover { background: var(--steel-light); }
-  .discount-msg-ok { font-size: 0.78rem; color: #1a6a2a; background: rgba(26,106,42,0.08); border: 1px solid rgba(26,106,42,0.15); border-radius: 6px; padding: 7px 12px; font-weight: 600; margin-top: 6px; display: flex; align-items: center; justify-content: space-between; }
-  .discount-msg-err { font-size: 0.78rem; color: #8a2020; background: rgba(138,32,32,0.08); border: 1px solid rgba(138,32,32,0.15); border-radius: 6px; padding: 7px 12px; font-weight: 600; margin-top: 6px; }
-  .discount-remove-btn { font-size: 0.72rem; color: #8a2020; cursor: pointer; font-weight: 700; border: none; background: none; padding: 0; }
-  .refer-banner { background: linear-gradient(135deg, rgba(42,90,138,0.05), rgba(74,138,191,0.08)); border: 1px solid rgba(42,90,138,0.14); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
-  .refer-banner b { font-size: 0.8rem; color: var(--steel-dark); display: block; margin-bottom: 4px; }
-  .refer-banner p { font-size: 0.74rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
-
-  
-/* removed */
-  .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px; border-radius: 8px; background: white; border: 1px solid var(--rule); }
-  .hamburger span { width: 20px; height: 2px; background: var(--steel); border-radius: 2px; display: block; transition: all 0.2s; }
-  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,20,40,0.7); z-index: 999; backdrop-filter: blur(4px); }
-  .mobile-menu-inner { position: absolute; top: 0; right: 0; width: 75%; max-width: 280px; height: 100%; background: white; padding: 24px 20px; box-shadow: -8px 0 32px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
-  .mobile-menu-inner a { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--rule-light); }
-  .mobile-menu-inner a:last-child { border-bottom: none; }
-  .mobile-menu-inner .close-btn { font-size: 1.2rem; color: var(--text-subtle); cursor: pointer; text-align: right; padding: 0 0 16px; border-bottom: 1px solid var(--rule); margin-bottom: 4px; font-weight: 400; }
-  .mobile-menu-inner .shop-link { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white !important; padding: 12px 20px; border-radius: 10px; text-align: center; margin-top: 8px; border-bottom: none !important; }
-  
-    header a[href="index.html"] svg { max-width: 130px !important; }
-    .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
-  }
-  .lab-notice { background: rgba(42,90,138,0.06); border-bottom: 1px solid rgba(42,90,138,0.12); padding: 8px 48px; font-size: 0.72rem; color: var(--text-subtle); text-align: center; font-weight: 500; letter-spacing: 0.02em; position: relative; z-index: 99; }
-  .lab-notice strong { color: var(--steel); }
-
-  .product-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 8px; }
-  .product-image.has-img { padding: 0; background: white !important; }
-
-  
-  
-
-  
-
-  /* ═══ MOBILE NAV ═══ */
-
-  
-
+  .product-image img { width:100%; height:100%; object-fit:contain; display:block; padding:8px; }
+  .product-image.has-img { padding:0; background:white !important; }
   /* ── Mobile Nav ── */
-  .mob-bg  { display:none; position:fixed; inset:0; background:rgba(10,20,40,0.72); z-index:8000; }
-  .mob-panel { position:fixed; top:0; right:0; width:80vw; max-width:300px; height:100%; background:#fff; z-index:8001; transform:translateX(110%); transition:transform .3s ease; display:flex; flex-direction:column; box-shadow:-4px 0 24px rgba(0,0,0,.18); }
-  .mob-panel.open { transform:translateX(0); }
-  .mob-head { padding:16px; border-bottom:1px solid #dce8f8; display:flex; align-items:center; justify-content:space-between; }
-  .mob-close { font-size:1.4rem; background:none; border:none; cursor:pointer; color:#6a8090; line-height:1; }
-  .mob-links { flex:1; overflow-y:auto; }
-  .mob-links a { display:block; padding:13px 18px; font-family:Outfit,sans-serif; font-size:.85rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:#3a5068; text-decoration:none; border-bottom:1px solid #dce8f8; }
-  .mob-links a:last-child { border-bottom:none; }
-  .mob-links .m-shop { background:linear-gradient(135deg,#2a5a8a,#4a8abf); color:#fff !important; margin:10px 14px; border-radius:10px; text-align:center; }
-  .hbg { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:7px 8px; border-radius:8px; background:#fff; border:1px solid #c8daf0; flex-shrink:0; margin-left:8px; }
-  .hbg span { display:block; width:20px; height:2px; background:#2a5a8a; border-radius:2px; }
+  .mob-bg{display:none;position:fixed;inset:0;background:rgba(10,20,40,0.72);z-index:8000;}
+  .mob-panel{position:fixed;top:0;right:0;width:80vw;max-width:300px;height:100%;background:#fff;z-index:8001;transform:translateX(110%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.18);}
+  .mob-panel.open{transform:translateX(0);}
+  .mob-head{padding:16px;border-bottom:1px solid #dce8f8;display:flex;align-items:center;justify-content:space-between;}
+  .mob-close{font-size:1.4rem;background:none;border:none;cursor:pointer;color:#6a8090;line-height:1;}
+  .mob-links{flex:1;overflow-y:auto;}
+  .mob-links a{display:block;padding:13px 18px;font-family:Outfit,sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3a5068;text-decoration:none;border-bottom:1px solid #dce8f8;}
+  .mob-links a:last-child{border-bottom:none;}
+  .mob-links .m-shop{background:linear-gradient(135deg,#2a5a8a,#4a8abf);color:#fff!important;margin:10px 14px;border-radius:10px;text-align:center;}
+  .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:7px 8px;border-radius:8px;background:#fff;border:1px solid #c8daf0;flex-shrink:0;margin-left:8px;}
+  .hbg span{display:block;width:20px;height:2px;background:#2a5a8a;border-radius:2px;}
   @media(max-width:680px){
-    header { padding:10px 14px !important; }
-    .hbg { display:flex !important; }
-    .nav-links { display:none !important; }
-    header svg { max-width:115px !important; }
-    .lab-notice { padding:5px 10px !important; font-size:.6rem !important; }
-    .tab-nav { overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; white-space:nowrap !important; scrollbar-width:none !important; }
-    .tab-nav::-webkit-scrollbar { display:none; }
-    .tab-btn { flex-shrink:0 !important; font-size:.58rem !important; padding:9px 8px !important; }
-    .tab-dot { display:none !important; }
+    header{padding:10px 14px!important;}
+    .hbg{display:flex!important;}
+    .nav-links{display:none!important;}
+    header svg{max-width:115px!important;}
+    .lab-notice{padding:5px 10px!important;font-size:.6rem!important;}
   }
 </style>
 </head>
 <body>
-  <div class="no-print" style="background:#2a5a8a;color:white;padding:10px 16px;border-radius:8px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;">
-    <span style="font-weight:700;">Invoice \${orderNum}</span>
-    <button onclick="window.print()" style="background:white;color:#2a5a8a;border:none;padding:7px 16px;border-radius:6px;font-weight:700;cursor:pointer;">🖨 Print / Save PDF</button>
-  </div>
 
-  <div class="inv-header">
-    <div class="inv-logo">novi<span>gen</span><small>Peptides</small></div>
-    <div class="inv-meta">
-      <strong>Invoice</strong>
-      Order: \${orderNum}<br>
-      Date: \${new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'})}<br>
-      novigenpeptides.com
+<header>
+  <div class="logo-block" onclick="window.location.href='index.html'">
+    <span class="logo-main">Novigen</span>
+    <span class="logo-sub">Peptides</span>
+  </div>
+  <div class="header-right">
+    <a href="guides.html" class="back-btn">\u2190 Guides</a>
+    <span class="header-tag">Shop</span>
+    <button class="basket-btn" onclick="toggleBasket()">
+      \ud83d\uded2 Basket
+      <span class="basket-count" id="basket-count" style="display:none;">0</span>
+    </button>
+  </div>
+  <button class="hbg" onclick="mobOpen()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="mob-bg" id="mob-bg" onclick="mobClose()"></div>
+  <div class="mob-panel" id="mob-panel">
+    <div class="mob-head">
+      <svg width="110" viewBox="0 0 240 82" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mhsh" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a3a5a"/><stop offset="50%" stop-color="#4a8abf"/><stop offset="100%" stop-color="#1a3a5a"/></linearGradient></defs><text x="8" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh)" letter-spacing="-3">nov</text><text x="94" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh)" letter-spacing="-3">i</text><text x="107" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh)" letter-spacing="-3">gen</text><text x="8" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#mhsh)" textLength="190" lengthAdjust="spacing">PEPTIDES</text></svg>
+      <button class="mob-close" onclick="mobClose()">&#x2715;</button>
+    </div>
+    <div class="mob-links">
+      <a href="index.html">Home</a><a href="guides-detailed.html">Guides</a><a href="lab-tests.html">Lab Tests</a><a href="research-docs.html">Research Docs</a><a href="verify.html">Verify</a><a href="contact.html">Contact / FAQ</a><a href="refer.html">Refer a Friend</a><a href="shop.html" class="m-shop">Shop Now</a>
     </div>
   </div>
+</header>
 
-  <div class="section">
-    <h3>Bill To</h3>
-    <div class="bill-to">\${name}<br>\${address}<br>\${email}</div>
+<div class="hero">
+  <div class="hero-watermark">SHOP</div>
+  <div class="hero-hex"></div>
+  <div class="hero-ray"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Browse Products</div>
+    <h1>Complete Product Range</h1>
+    <p>Select your products, add to basket, and checkout securely via WhatsApp. We deliver premium research peptides directly to your door.</p>
   </div>
+</div>
 
-  <div class="section">
-    <h3>Items</h3>
-    <table>
-      <thead><tr><th>Product</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead>
-      <tbody>
-        \${items.map(function(i){ return \'<tr><td>\'+i.name+\'</td><td>\'+i.quantity+\'</td><td>£\'+i.price.toFixed(2)+\'</td><td>£\'+(i.price*i.quantity).toFixed(2)+\'</td></tr>\'; }).join('')}
-      </tbody>
-    </table>
-    <div class="totals">
-      <div class="total-row"><span>Subtotal</span><span>£\${subtotal.toFixed(2)}</span></div>
-      \${discountCode ? \'<div class="total-row discount"><span>\'+discountCode+\'(\'+discountPct+\'% off)</span><span>-£\'+discAmt.toFixed(2)+\'</span></div>\' : \'\'}
-      <div class="total-row"><span>Delivery</span><span>£6.00</span></div>
-      <div class="total-row grand"><span>Total</span><span>£\${total.toFixed(2)}</span></div>
+<div class="page-body">
+  <div class="section-label">All Products</div>
+  <div class="shop-grid" id="shop-grid"></div>
+</div>
+
+<!-- BASKET SIDEBAR -->
+<div class="sidebar-basket" id="sidebar-basket">
+  <div class="basket-header">
+    <h2>Your Basket</h2>
+    <button class="basket-close" onclick="toggleBasket()">\u2715</button>
+  </div>
+  <div class="basket-items" id="basket-items">
+    <div class="basket-empty">Your basket is empty</div>
+  </div>
+  <div class="basket-total" id="basket-total" style="display:none;"></div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="product-modal" id="product-modal">
+  <div class="product-detail" id="product-detail-content"></div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-modal" id="checkout-modal">
+  <form class="checkout-form" id="checkout-form" onsubmit="submitOrder(event)">
+    <h2>Complete Your Order</h2>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="customer-name" required placeholder="Your full name">
     </div>
-  </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="customer-email" required placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="customer-phone" required placeholder="+44 7700 000000">
+    </div>
+    <hr class="form-divider">
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div id="checkout-summary"></div>
+    </div>
+    <div class="form-group">
+      <label>Special Instructions (Optional)</label>
+      <input type="text" id="customer-notes" placeholder="Any special instructions...">
+    </div>
+    <div class="form-buttons">
+      <button type="submit" class="btn-submit">\ud83d\udcf1 Send to WhatsApp</button>
+      <button type="button" class="btn-cancel" onclick="closeCheckout()">Cancel</button>
+    </div>
+  </form>
+</div>
 
-  <div class="research-note">⚗️ <strong>Research Use Only:</strong> All products are for research purposes only. Not for human consumption. Not approved by the MHRA or FDA.</div>
-
-  <div class="footer">
-    Novigen Peptides · novigenpeptides.com · info@novigenpeptides.com · +44 7348 650538<br>
-    For research purposes only. Not for human consumption.
-  </div>
-
-
+<footer>
+  <p>\u00a9 2025 Novigen Peptides. All rights reserved. For use under medical supervision only.</p>
+  <span class="footer-logo">Novigen Peptides</span>
+</footer>
 
 <script>
-function mobOpen(){
-  document.getElementById('mob-panel').classList.add('open');
-  document.getElementById('mob-bg').style.display='block';
-  document.body.style.overflow='hidden';
-}
-function mobClose(){
-  document.getElementById('mob-panel').classList.remove('open');
-  document.getElementById('mob-bg').style.display='none';
-  document.body.style.overflow='';
-}
-</script>
-</body>
-</html>`;
+  const products = [
+    { id: 1, img: 'img-reta-20.png', name: 'Retatrutide® 20mg', cat: 'ret', emoji: '💉', price: 120, dose: '20mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.', research: true },
+    { id: 2, img: 'img-reta-40.png', name: 'Retatrutide® 40mg', cat: 'ret', emoji: '💉', price: 160, dose: '40mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.', research: true },
+    { id: 3, img: 'img-glow-70.png', name: 'Glow 70mg', cat: 'glow', emoji: '\u2728', price: 100, dose: '70mg pen — GHK-Cu, TB-500, BPC-157', description: 'Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.', research: true },
+    { id: 4, img: 'img-tirz-15.png', name: 'Tirzepatide® 15mg', cat: 'tir', emoji: '\ud83d\udc8a', price: 100, dose: '15mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist. Research chemical for scientific study only.', research: false },
+    { id: 5, img: 'img-tirz-30.png', name: 'Tirzepatide® 30mg', cat: 'tir', emoji: '\ud83d\udc8a', price: 120, dose: '30mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.', research: false },
+    { id: 6, img: 'img-tirz-60.png', name: 'Tirzepatide® 60mg', cat: 'tir', emoji: '\ud83d\udc8a', price: 160, dose: '60mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.', research: false },
+    { id: 7, img: 'img-hgh-120.png', name: 'HGH 120IU Pen', cat: 'hgh', emoji: '\u26a1', price: 120, dose: '120IU pre-filled pen', description: 'Recombinant Human Growth Hormone in pre-filled pen format. Research chemical for scientific study only.', research: false },
+    { id: 8, name: 'HGH 240IU Kit', cat: 'hgh', emoji: '\u26a1', price: 200, dose: '10 \u00d7 24IU lyophilised vials', description: 'Recombinant Human Growth Hormone in multi-vial kit. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
+    { id: 9, name: 'HGH 360IU Kit', cat: 'hgh', emoji: '\u26a1', price: 260, dose: '10 \u00d7 36IU lyophilised vials', description: 'Recombinant Human Growth Hormone at highest dosage per vial. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
+  ];
 
-    var win = window.open('', '_blank');
-    win.document.write(invoiceHTML);
-    win.document.close();
+  let basket = [];
+  const whatsappNumber = '447800522364';
+
+  function initShop() {
+    const grid = document.getElementById('shop-grid');
+    if (!grid) return;
+    grid.innerHTML = products.map(p => `
+      <div class="product-card" onclick="openProductDetail(${p.id})">
+        <div class="product-image ${p.cat}${p.img ? ' has-img' : ''}">${p.img ? `<img src="${p.img}" alt="${p.name}">` : p.emoji}</div>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-dose">${p.dose}</div>
+          <div class="product-price">£${p.price.toFixed(2)}</div>
+          <button class="add-btn" onclick="event.stopPropagation(); addToBasket(${p.id})">Add to Basket</button>
+        </div>
+      </div>
+    `).join('');
   }
 
+  function openProductDetail(productId) {
+    const p = products.find(x => x.id === productId);
+    if (!p) return;
+    const disclaimer = p.research ? `<div class="product-detail-disclaimer"><p><strong>\ud83d\udd2c Research Chemical Notice:</strong> This is a research chemical for laboratory use only. Not for human consumption.</p></div>` : '';
+    document.getElementById('product-detail-content').innerHTML = `
+      <h2>${p.name}</h2>
+      <div class="product-detail-price">£${p.price.toFixed(2)}</div>
+      <div class="product-detail-section"><h3>Description</h3><p>${p.description}</p></div>
+      <div class="product-detail-section"><h3>Specifications</h3><p>${p.dose}</p></div>
+      ${disclaimer}
+      <div class="product-detail-section"><h3>Storage</h3><p>Store refrigerated at 2–8\u00b0C. Protect from light. Keep out of reach of children.</p></div>
+      <div class="product-modal-buttons">
+        <button class="btn-add-modal" onclick="addToBasket(${p.id}); closeProductDetail()">Add to Basket</button>
+        <button class="btn-close-modal" onclick="closeProductDetail()">Close</button>
+      </div>`;
+    document.getElementById('product-modal').classList.add('open');
+  }
+
+  function closeProductDetail() { document.getElementById('product-modal').classList.remove('open'); }
+
+  function addToBasket(productId) {
+    const p = products.find(x => x.id === productId);
+    const existing = basket.find(i => i.id === productId);
+    if (existing) { existing.quantity += 1; } else { basket.push({ ...p, quantity: 1 }); }
+    updateBasketUI();
+  }
+
+  function removeFromBasket(productId) { basket = basket.filter(i => i.id !== productId); updateBasketUI(); }
+
+  function updateQuantity(productId, change) {
+    const item = basket.find(i => i.id === productId);
+    if (item) { item.quantity += change; if (item.quantity <= 0) removeFromBasket(productId); else updateBasketUI(); }
+  }
+
+  function updateBasketUI() {
+    const items = document.getElementById('basket-items');
+    const count = document.getElementById('basket-count');
+    const total = document.getElementById('basket-total');
+    if (!items) return;
+
+    if (basket.length === 0) {
+      items.innerHTML = '<div class="basket-empty">Your basket is empty</div>';
+      count.style.display = 'none'; total.style.display = 'none'; return;
+    }
+
+    count.textContent = basket.reduce((s, i) => s + i.quantity, 0);
+    count.style.display = 'flex'; total.style.display = 'block';
+
+    items.innerHTML = basket.map(item => `
+      <div class="basket-item">
+        <div class="basket-item-name">
+          <h4>${item.name}</h4>
+          <div class="basket-item-price">£${item.price.toFixed(2)} each</div>
+        </div>
+        <div class="basket-item-qty">
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">\u2212</button>
+          <span style="min-width:28px;text-align:center;font-weight:600;">${item.quantity}</span>
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+          <button class="remove-btn" onclick="removeFromBasket(${item.id})">Remove</button>
+        </div>
+      </div>`).join('');
+
+    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const delivery = 6.00;
+    const orderTotal = subtotal + delivery;
+    total.innerHTML = `
+      <div class="total-row"><span class="total-label">Subtotal</span><span style="font-weight:700;color:var(--text);">£${subtotal.toFixed(2)}</span></div>
+      <div class="total-row"><span class="total-label">Delivery</span><span style="font-weight:600;color:var(--text-muted);">£6.00</span></div>
+      <div class="total-row"><span class="total-label">Total</span><span class="total-value">£${orderTotal.toFixed(2)}</span></div>
+      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout \u2192</button>`;
+  }
+
+  function toggleBasket() { document.getElementById('sidebar-basket').classList.toggle('open'); }
+
+  function openCheckout() {
+    if (basket.length === 0) { alert('Your basket is empty'); return; }
+    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const orderTotal = subtotal + 6;
+    document.getElementById('checkout-summary').innerHTML = basket.map(i =>
+      `<div class="order-summary-item"><span>${i.name} \u00d7 ${i.quantity}</span><span>£${(i.price * i.quantity).toFixed(2)}</span></div>`
+    ).join('') + `
+      <div class="order-summary-item"><span>Delivery</span><span>£6.00</span></div>
+      <div class="order-summary-total">Total: £${orderTotal.toFixed(2)}</div>`;
+    document.getElementById('checkout-modal').classList.add('open');
+  }
+
+  function closeCheckout() { document.getElementById('checkout-modal').classList.remove('open'); }
+
   function submitOrder(event) {
-    if (event) event.preventDefault();
-    if (basket.length === 0) { alert('Your basket is empty!'); return; }
-    const name     = document.getElementById('customer-name').value;
-    const email    = document.getElementById('customer-email').value;
-    const phone    = document.getElementById('customer-phone').value;
-    const notes    = document.getElementById('customer-notes').value;
-    const addr1    = document.getElementById('customer-address1').value;
-    const addr2    = document.getElementById('customer-address2').value;
-    const city     = document.getElementById('customer-city').value;
-    const postcode = document.getElementById('customer-postcode').value;
-    const address  = [addr1, addr2, city, postcode].filter(Boolean).join(', ');
+    event.preventDefault();
+    const name  = document.getElementById('customer-name').value;
+    const email = document.getElementById('customer-email').value;
+    const phone = document.getElementById('customer-phone').value;
+    const notes = document.getElementById('customer-notes').value;
+    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const orderTotal = subtotal + 6;
 
-    // Generate order number
-    const orderNum = 'NVG-' + Math.floor(1000 + Math.random() * 9000);
+    let msg = `*Novigen Peptides Order*
 
-    // Mark discount code as used
-    if (activeDiscount) {
-      var used = JSON.parse(localStorage.getItem('nvg_used') || '[]');
-      if (!used.includes(activeDiscount.code)) { used.push(activeDiscount.code); localStorage.setItem('nvg_used', JSON.stringify(used)); }
-      // Log to order log (subtotal calculated below)
-      var log = JSON.parse(localStorage.getItem('nvg_order_log') || '[]');
-    }
+*Customer*
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
 
-    // Calculate totals
-    const subtotal  = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const discAmt   = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
-    const discSub   = subtotal - discAmt;
-    const total     = discSub + 6;
+*Items*
+`;
+    basket.forEach(i => { msg += `• ${i.name} \u00d7 ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}
+`; });
+    msg += `
+*Subtotal:* £${subtotal.toFixed(2)}
+*Delivery:* £6.00
+*Total:* £${orderTotal.toFixed(2)}`;
+    if (notes) msg += `
 
-    // Log discount use
-    if (activeDiscount && typeof log !== 'undefined') {
-      const saved = discAmt.toFixed(2);
-      log.push({ order: orderNum, code: activeDiscount.code, pct: activeDiscount.pct, subtotal: subtotal.toFixed(2), saved: saved, date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) });
-      localStorage.setItem('nvg_order_log', JSON.stringify(log));
-    }
+*Notes:* ${notes}`;
 
-    // Build WhatsApp message
-    const discLine  = activeDiscount ? ('\n*Discount:* ' + activeDiscount.code + ' (' + activeDiscount.pct + '% off) -£' + discAmt.toFixed(2)) : '';
-    let msg = '*Novigen Peptides Order*\n*Order:* ' + orderNum + discLine + '\n\n*Customer*\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\nAddress: ' + address + '\n\n*Items*\n';
-    basket.forEach(function(i) { msg += '• ' + i.name + ' × ' + i.quantity + ' = £' + (i.price * i.quantity).toFixed(2) + '\n'; });
-    msg += '\n*Subtotal:* £' + subtotal.toFixed(2) + discLine + '\n*Delivery:* £6.00\n*Total: £' + total.toFixed(2) + '*';
-    if (notes) msg += '\n\n*Notes:* ' + notes;
-
-    window.open('https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank');
-
-
-    // Save order to admin log
-    var invoiceItems = basket.slice();
-    var invSubtotal = basket.reduce(function(s,i){return s+(i.price*i.quantity);},0);
-    var invDiscAmt = activeDiscount ? (invSubtotal * activeDiscount.pct / 100) : 0;
-    var invTotal = invSubtotal - invDiscAmt + 6;
-    var orders = JSON.parse(localStorage.getItem('nvg_orders') || '[]');
-    orders.push({
-      orderNum: orderNum,
-      name: name, email: email, address: address,
-      items: invoiceItems,
-      subtotal: invSubtotal,
-      discountCode: activeDiscount ? activeDiscount.code : null,
-      discountPct: activeDiscount ? activeDiscount.pct : 0,
-      discAmt: invDiscAmt,
-      total: invTotal,
-      date: new Date().toISOString()
-    });
-    localStorage.setItem('nvg_orders', JSON.stringify(orders));
-
-    // Show confirmation
-    var modal = document.getElementById('order-confirm-modal');
-    if (modal) { document.getElementById('order-confirm-num').textContent = orderNum; modal.style.display = 'flex'; }
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     basket = []; updateBasketUI(); closeCheckout();
     document.getElementById('checkout-form').reset();
+    alert('Opening WhatsApp with your order details. Please review and send!');
   }
 
   document.addEventListener('DOMContentLoaded', initShop);
 </script>
-
-<!-- Order Confirmation Modal -->
-<div id="order-confirm-modal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(10,20,40,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px;">
-  <div style="background:white;border-radius:16px;max-width:420px;width:100%;padding:40px 32px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.2);">
-    <div style="font-size:2.8rem;margin-bottom:16px;">✅</div>
-    <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.4rem;color:#1a3a5a;margin-bottom:8px;letter-spacing:-0.02em;">Order Placed!</h2>
-    <p style="font-size:0.88rem;color:#3a5068;line-height:1.8;margin-bottom:20px;font-weight:300;">Your order has been sent via WhatsApp. Please quote your order number in all correspondence.</p>
-    <div style="background:#eef5ff;border:1px solid #c8daf0;border-radius:10px;padding:16px 24px;margin-bottom:24px;">
-      <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#6a8090;font-weight:700;margin-bottom:6px;">Your Order Number</div>
-      <div id="order-confirm-num" style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:#1a3a5a;letter-spacing:0.05em;"></div>
-    </div>
-    <p style="font-size:0.82rem;color:#3a5068;margin-bottom:24px;line-height:1.7;">Payment instructions will be sent to you shortly. Please keep this order number safe.</p>
-    <button onclick="document.getElementById('order-confirm-modal').style.display='none'" style="width:100%;background:linear-gradient(135deg,#2a5a8a,#4a8abf);color:white;border:none;padding:14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;">Close</button>
-  </div>
-</div>
-
-
-
 <script>
-function mobOpen(){
-  document.getElementById('mob-panel').classList.add('open');
-  document.getElementById('mob-bg').style.display='block';
-  document.body.style.overflow='hidden';
-}
-function mobClose(){
-  document.getElementById('mob-panel').classList.remove('open');
-  document.getElementById('mob-bg').style.display='none';
-  document.body.style.overflow='';
-}
+function mobOpen(){document.getElementById("mob-panel").classList.add("open");document.getElementById("mob-bg").style.display="block";document.body.style.overflow="hidden";}
+function mobClose(){document.getElementById("mob-panel").classList.remove("open");document.getElementById("mob-bg").style.display="none";document.body.style.overflow="";}
 </script>
 </body>
 </html>
