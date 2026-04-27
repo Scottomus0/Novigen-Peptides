@@ -253,6 +253,17 @@
   }
   body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='78' viewBox='0 0 90 78'%3E%3Cg fill='none' stroke='%232a5a8a' stroke-width='0.6'%3E%3Cpolygon points='45,4 80,22 80,56 45,74 10,56 10,22'/%3E%3Ccircle cx='45' cy='4' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='22' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='80' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='45' cy='74' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='56' r='1.5' fill='%232a5a8a'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%232a5a8a'/%3E%3C/g%3E%3C/svg%3E"); background-size:90px 78px; opacity:0.04; }
   @keyframes holoShimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+  .basket-discount { padding: 12px 20px 4px; border-top: 1px solid var(--rule-light); }
+  .discount-row { display: flex; gap: 8px; margin-bottom: 6px; }
+  .discount-input { flex: 1; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 8px; font-family: Outfit,sans-serif; font-size: 0.85rem; outline: none; color: var(--text); }
+  .discount-input:focus { border-color: var(--steel-light); }
+  .discount-btn { background: var(--steel); color: white; border: none; padding: 9px 16px; border-radius: 8px; font-family: Outfit,sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+  .discount-applied { display: flex; align-items: center; justify-content: space-between; background: rgba(42,122,58,0.08); border: 1px solid rgba(42,122,58,0.2); border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; color: #2a7a3a; font-weight: 600; margin-top: 4px; }
+  .discount-remove { background: none; border: none; cursor: pointer; color: #2a7a3a; font-size: 1rem; padding: 0 0 0 8px; }
+  .discount-msg-el { font-size: 0.78rem; margin-top: 4px; }
+  .discount-error { color: #c03030; }
+  .discount-success { color: #2a7a3a; }
 </style>
 </head>
 <body>
@@ -323,10 +334,25 @@
 <div class="sidebar-basket" id="sidebar-basket">
   <div class="basket-header">
     <h2>Your Basket</h2>
-    <button class="basket-close" onclick="toggleBasket()">\u2715</button>
+    <button class="basket-close" onclick="toggleBasket()">&#x2715;</button>
   </div>
   <div class="basket-items" id="basket-items">
     <div class="basket-empty">Your basket is empty</div>
+  </div>
+  <div class="basket-discount" id="basket-discount" style="display:none;">
+    <label style="font-size:0.78rem;font-weight:700;color:var(--text);letter-spacing:0.04em;display:block;margin-bottom:8px;">Discount Code</label>
+    <div class="discount-row">
+      <input type="text" id="discount-input" class="discount-input" placeholder="Enter code e.g. WELCOME10">
+      <button class="discount-btn" onclick="applyDiscount()">Apply</button>
+    </div>
+    <div id="discount-msg"></div>
+    <div id="discount-applied" style="display:none;" class="discount-applied">
+      <span id="discount-applied-text"></span>
+      <button class="discount-remove" onclick="removeDiscount()">&#x2715;</button>
+    </div>
+  </div>
+  <div id="refer-banner" style="display:none;background:rgba(42,90,138,0.06);border:1px solid rgba(42,90,138,0.15);border-radius:8px;padding:10px 14px;margin:0 16px 8px;font-size:0.78rem;color:var(--steel-dark);line-height:1.5;">
+    🎁 <strong>Refer a Friend</strong> — share your code and both get <strong>5% off</strong>. <a href="refer.html" style="color:var(--steel);font-weight:700;">Learn more →</a>
   </div>
   <div class="basket-total" id="basket-total" style="display:none;"></div>
 </div>
@@ -345,7 +371,7 @@
       <input type="text" id="customer-name" required placeholder="Your full name">
     </div>
     <div class="form-group">
-      <label>Email Address</label>
+      <label>Email Address <span style="font-size:0.75rem;color:var(--text-subtle);font-weight:400;">(for order tracking)</span></label>
       <input type="email" id="customer-email" required placeholder="your@email.com">
     </div>
     <div class="form-group">
@@ -353,16 +379,35 @@
       <input type="tel" id="customer-phone" required placeholder="+44 7700 000000">
     </div>
     <hr class="form-divider">
+    <div class="form-group">
+      <label>Delivery Address — Line 1</label>
+      <input type="text" id="customer-address1" required placeholder="House number and street name">
+    </div>
+    <div class="form-group">
+      <label>Address Line 2 (Optional)</label>
+      <input type="text" id="customer-address2" placeholder="Apartment, flat, suite, etc.">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="form-group">
+        <label>Town / City</label>
+        <input type="text" id="customer-city" required placeholder="City">
+      </div>
+      <div class="form-group">
+        <label>Postcode</label>
+        <input type="text" id="customer-postcode" required placeholder="SW1A 1AA">
+      </div>
+    </div>
+    <hr class="form-divider">
     <div class="order-summary">
       <h3>Order Summary</h3>
       <div id="checkout-summary"></div>
     </div>
     <div class="form-group">
-      <label>Special Instructions (Optional)</label>
-      <input type="text" id="customer-notes" placeholder="Any special instructions...">
+      <label>Special Notes (Optional)</label>
+      <textarea id="customer-notes" placeholder="Any special instructions..." style="width:100%;padding:10px 14px;border:1px solid var(--rule);border-radius:8px;font-family:Outfit,sans-serif;font-size:0.88rem;resize:vertical;min-height:70px;"></textarea>
     </div>
     <div class="form-buttons">
-      <button type="submit" class="btn-submit">\ud83d\udcf1 Send to WhatsApp</button>
+      <button type="submit" class="btn-submit">📱 Send Order via WhatsApp</button>
       <button type="button" class="btn-cancel" onclick="closeCheckout()">Cancel</button>
     </div>
   </form>
@@ -391,6 +436,39 @@
 
   let basket = [];
   const whatsappNumber = '447348650538';
+
+
+  // ── Discount codes ──
+  const DISCOUNT_CODES = { 'WELCOME10': 10, 'REFERRAL5': 5, 'NOVI10': 10 };
+  let activeDiscount = null;
+
+  function applyDiscount() {
+    const input = document.getElementById('discount-input');
+    const code = input.value.trim().toUpperCase();
+    const msgEl = document.getElementById('discount-msg');
+    if (!code) { msgEl.innerHTML = '<div class="discount-msg-el discount-error">Please enter a code.</div>'; return; }
+    const used = JSON.parse(localStorage.getItem('nvg_used_codes') || '[]');
+    if (used.includes(code)) { msgEl.innerHTML = '<div class="discount-msg-el discount-error">This code has already been used.</div>'; return; }
+    if (DISCOUNT_CODES[code] !== undefined) {
+      activeDiscount = { code, pct: DISCOUNT_CODES[code] };
+      msgEl.innerHTML = '';
+      document.getElementById('discount-applied').style.display = 'flex';
+      document.getElementById('discount-applied-text').textContent = code + ' — ' + activeDiscount.pct + '% off ✓';
+      input.value = ''; input.disabled = true;
+      updateBasketUI();
+    } else {
+      msgEl.innerHTML = '<div class="discount-msg-el discount-error">Invalid code. Please check and try again.</div>';
+    }
+  }
+
+  function removeDiscount() {
+    activeDiscount = null;
+    document.getElementById('discount-applied').style.display = 'none';
+    const inp = document.getElementById('discount-input');
+    if (inp) { inp.disabled = false; inp.value = ''; }
+    document.getElementById('discount-msg').innerHTML = '';
+    updateBasketUI();
+  }
 
   function initShop() {
     const grid = document.getElementById('shop-grid');
@@ -471,10 +549,19 @@
       </div>`).join('');
 
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const delivery = 6.00;
-    const orderTotal = subtotal + delivery;
+    const discAmt = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const discSub = subtotal - discAmt;
+    const orderTotal = discSub + 6.00;
+    const discEl = document.getElementById('basket-discount');
+    const referEl = document.getElementById('refer-banner');
+    if (discEl) discEl.style.display = 'block';
+    if (referEl) referEl.style.display = 'block';
+    const discRow = activeDiscount
+      ? `<div class="total-row" style="color:#2a7a3a;font-size:0.85rem;"><span class="total-label">Discount (${activeDiscount.code} ${activeDiscount.pct}%)</span><span>-£${discAmt.toFixed(2)}</span></div>`
+      : '';
     total.innerHTML = `
       <div class="total-row"><span class="total-label">Subtotal</span><span style="font-weight:700;color:var(--text);">£${subtotal.toFixed(2)}</span></div>
+      ${discRow}
       <div class="total-row"><span class="total-label">Delivery</span><span style="font-weight:600;color:var(--text-muted);">£6.00</span></div>
       <div class="total-row"><span class="total-label">Total</span><span class="total-value">£${orderTotal.toFixed(2)}</span></div>
       <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>`;
@@ -485,12 +572,17 @@
   function openCheckout() {
     if (basket.length === 0) { alert('Your basket is empty'); return; }
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const orderTotal = subtotal + 6;
-    document.getElementById('checkout-summary').innerHTML = basket.map(i =>
-      `<div class="order-summary-item"><span>${i.name} × ${i.quantity}</span><span>£${(i.price * i.quantity).toFixed(2)}</span></div>`
-    ).join('') + `
-      <div class="order-summary-item"><span>Delivery</span><span>£6.00</span></div>
-      <div class="order-summary-total">Total: £${orderTotal.toFixed(2)}</div>`;
+    const discAmt  = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const total    = subtotal - discAmt + 6;
+    const discRow  = activeDiscount
+      ? '<div class="order-summary-item" style="color:#2a7a3a;"><span>Discount (' + activeDiscount.code + ' ' + activeDiscount.pct + '% off)</span><span>-£' + discAmt.toFixed(2) + '</span></div>'
+      : '';
+    document.getElementById('checkout-summary').innerHTML =
+      basket.map(function(i) { return '<div class="order-summary-item"><span>' + i.name + ' × ' + i.quantity + '</span><span>£' + (i.price * i.quantity).toFixed(2) + '</span></div>'; }).join('') +
+      '<div class="order-summary-item"><span>Subtotal</span><span>£' + subtotal.toFixed(2) + '</span></div>' +
+      discRow +
+      '<div class="order-summary-item"><span>Delivery</span><span>£6.00</span></div>' +
+      '<div class="order-summary-total">Total: £' + total.toFixed(2) + '</div>';
     document.getElementById('checkout-modal').classList.add('open');
   }
 
@@ -498,36 +590,44 @@
 
   function submitOrder(event) {
     event.preventDefault();
-    const name  = document.getElementById('customer-name').value;
-    const email = document.getElementById('customer-email').value;
-    const phone = document.getElementById('customer-phone').value;
-    const notes = document.getElementById('customer-notes').value;
-    const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const orderTotal = subtotal + 6;
+    if (basket.length === 0) { alert('Your basket is empty!'); return; }
+    const name     = document.getElementById('customer-name').value;
+    const email    = document.getElementById('customer-email').value;
+    const phone    = document.getElementById('customer-phone').value;
+    const addr1    = document.getElementById('customer-address1') ? document.getElementById('customer-address1').value : '';
+    const addr2    = document.getElementById('customer-address2') ? document.getElementById('customer-address2').value : '';
+    const city     = document.getElementById('customer-city') ? document.getElementById('customer-city').value : '';
+    const postcode = document.getElementById('customer-postcode') ? document.getElementById('customer-postcode').value : '';
+    const address  = [addr1, addr2, city, postcode].filter(Boolean).join(', ');
+    const notesEl  = document.getElementById('customer-notes');
+    const notes    = notesEl ? notesEl.value : '';
 
-    let msg = `*Novigen Peptides Order*
+    const orderNum  = 'NVG-' + Math.floor(1000 + Math.random() * 9000);
+    const subtotal  = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const discAmt   = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const invTotal  = subtotal - discAmt + 6.00;
 
-*Customer*
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
+    if (activeDiscount) {
+      const usedCodes = JSON.parse(localStorage.getItem('nvg_used_codes') || '[]');
+      if (!usedCodes.includes(activeDiscount.code)) { usedCodes.push(activeDiscount.code); localStorage.setItem('nvg_used_codes', JSON.stringify(usedCodes)); }
+    }
 
-*Items*
-`;
-    basket.forEach(i => { msg += `• ${i.name} × ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}
-`; });
-    msg += `
-*Subtotal:* £${subtotal.toFixed(2)}
-*Delivery:* £6.00
-*Total:* £${orderTotal.toFixed(2)}`;
-    if (notes) msg += `
+    const discLine = activeDiscount ? '\n*Discount:* ' + activeDiscount.code + ' (' + activeDiscount.pct + '% off) -£' + discAmt.toFixed(2) : '';
+    let msg = '*Novigen Peptides Order*\n*Order:* ' + orderNum + discLine + '\n\n*Customer*\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\nAddress: ' + address + '\n\n*Items*\n';
+    basket.forEach(function(i) { msg += '• ' + i.name + ' × ' + i.quantity + ' = £' + (i.price * i.quantity).toFixed(2) + '\n'; });
+    msg += '\n*Subtotal:* £' + subtotal.toFixed(2);
+    if (activeDiscount) msg += '\n*Discount (' + activeDiscount.code + ' ' + activeDiscount.pct + '%):* -£' + discAmt.toFixed(2);
+    msg += '\n*Delivery:* £6.00\n*Total:* £' + invTotal.toFixed(2);
+    if (notes) msg += '\n\n*Notes:* ' + notes;
 
-*Notes:* ${notes}`;
+    window.open('https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank');
 
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
-    basket = []; updateBasketUI(); closeCheckout();
+    const orders = JSON.parse(localStorage.getItem('nvg_orders') || '[]');
+    orders.push({ orderNum, name, email, address, items: basket.slice(), subtotal: subtotal.toFixed(2), discountCode: activeDiscount ? activeDiscount.code : null, discountPct: activeDiscount ? activeDiscount.pct : 0, discAmt: discAmt.toFixed(2), total: invTotal.toFixed(2), date: new Date().toISOString() });
+    localStorage.setItem('nvg_orders', JSON.stringify(orders));
+
+    basket = []; activeDiscount = null; updateBasketUI(); closeCheckout();
     document.getElementById('checkout-form').reset();
-    alert('Opening WhatsApp with your order details. Please review and send!');
   }
 
   document.addEventListener('DOMContentLoaded', initShop);
