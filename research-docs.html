@@ -72,7 +72,6 @@
   .mobile-menu-inner .close-btn { font-size: 1.2rem; color: var(--text-subtle); cursor: pointer; text-align: right; padding: 0 0 16px; border-bottom: 1px solid var(--rule); margin-bottom: 4px; font-weight: 400; }
   .mobile-menu-inner .shop-link { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white !important; padding: 12px 20px; border-radius: 10px; text-align: center; margin-top: 8px; border-bottom: none !important; }
   
-    .nav-links .nav-link, .nav-links .shop-btn, .nav-links .nav-cta { display: none !important; }
     header a[href="index.html"] svg { max-width: 130px !important; }
     .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
   }
@@ -117,7 +116,30 @@
     .tab-btn { flex-shrink:0 !important; font-size:.58rem !important; padding:9px 8px !important; }
     .tab-dot { display:none !important; }
   }
-  </style>
+    /* ── Mobile Nav ── */
+  .mob-bg  { display:none; position:fixed; inset:0; background:rgba(10,20,40,0.72); z-index:8000; }
+  .mob-panel { position:fixed; top:0; right:0; width:80vw; max-width:300px; height:100%; background:#fff; z-index:8001; transform:translateX(110%); transition:transform .3s ease; display:flex; flex-direction:column; box-shadow:-4px 0 24px rgba(0,0,0,.18); }
+  .mob-panel.open { transform:translateX(0); }
+  .mob-head { padding:16px; border-bottom:1px solid #dce8f8; display:flex; align-items:center; justify-content:space-between; }
+  .mob-close { font-size:1.4rem; background:none; border:none; cursor:pointer; color:#6a8090; line-height:1; }
+  .mob-links { flex:1; overflow-y:auto; }
+  .mob-links a { display:block; padding:13px 18px; font-family:Outfit,sans-serif; font-size:.85rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:#3a5068; text-decoration:none; border-bottom:1px solid #dce8f8; }
+  .mob-links a:last-child { border-bottom:none; }
+  .mob-links .m-shop { background:linear-gradient(135deg,#2a5a8a,#4a8abf); color:#fff !important; margin:10px 14px; border-radius:10px; text-align:center; }
+  .hbg { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:7px 8px; border-radius:8px; background:#fff; border:1px solid #c8daf0; flex-shrink:0; margin-left:8px; }
+  .hbg span { display:block; width:20px; height:2px; background:#2a5a8a; border-radius:2px; }
+  @media(max-width:680px){
+    header { padding:10px 14px !important; }
+    .hbg { display:flex !important; }
+    .nav-links { display:none !important; }
+    header svg { max-width:115px !important; }
+    .lab-notice { padding:5px 10px !important; font-size:.6rem !important; }
+    .tab-nav { overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; white-space:nowrap !important; scrollbar-width:none !important; }
+    .tab-nav::-webkit-scrollbar { display:none; }
+    .tab-btn { flex-shrink:0 !important; font-size:.58rem !important; padding:9px 8px !important; }
+    .tab-dot { display:none !important; }
+  }
+</style>
 </head>
 <body>
 
