@@ -240,32 +240,56 @@
     header svg{max-width:115px!important;}
     .lab-notice{padding:5px 10px!important;font-size:.6rem!important;}
   }
+
+  .product-image.nad { background: linear-gradient(140deg, #c8e8f8, #a8d0e8); }
+  .product-image.ghkcu { background: linear-gradient(140deg, #d8f0d8, #b8e0b8); }
+  .product-image.mt2 { background: linear-gradient(140deg, #f0d8e8, #e0b8d0); }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-block" onclick="window.location.href='index.html'">
-    <span class="logo-main">Novigen</span>
-    <span class="logo-sub">Peptides</span>
-  </div>
-  <div class="header-right">
-    <a href="guides.html" class="back-btn">\u2190 Guides</a>
-    <span class="header-tag">Shop</span>
-    <button class="basket-btn" onclick="toggleBasket()">
-      \ud83d\uded2 Basket
-      <span class="basket-count" id="basket-count" style="display:none;">0</span>
+  <a href="index.html" style="text-decoration:none;display:inline-block;flex-shrink:0;">
+    <svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:190px;display:block;" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="shLG1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a3a5a"/><stop offset="25%" stop-color="#2a6aaa"/><stop offset="45%" stop-color="#5aaad8"/><stop offset="55%" stop-color="#3a7abf"/><stop offset="75%" stop-color="#2a5a9a"/><stop offset="100%" stop-color="#1a3a5a"/></linearGradient>
+        <linearGradient id="shLG2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2a5a8a"/><stop offset="50%" stop-color="#5aaad8"/><stop offset="100%" stop-color="#2a5a8a"/></linearGradient>
+        <clipPath id="shLGC"><rect x="0" y="0" width="240" height="36"/></clipPath>
+      </defs>
+      <g clip-path="url(#shLGC)"><g transform="translate(102,26)"><circle cx="0" cy="0" r="5" fill="url(#shLG1)"/><ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#shLG1)" stroke-width="2"/><ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#shLG1)" stroke-width="2" transform="rotate(60)"/><ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#shLG1)" stroke-width="2" transform="rotate(-60)"/><circle cx="21" cy="0" r="3" fill="url(#shLG2)"/><circle cx="-10.5" cy="18.2" r="3" fill="url(#shLG2)"/><circle cx="-10.5" cy="-18.2" r="3" fill="url(#shLG2)"/></g></g>
+      <text x="8" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#shLG1)" letter-spacing="-3">nov</text>
+      <text x="94" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#shLG1)" letter-spacing="-3">i</text>
+      <text x="107" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#shLG1)" letter-spacing="-3">gen</text>
+      <text x="8" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#shLG2)" textLength="190" lengthAdjust="spacing">PEPTIDES</text>
+    </svg>
+  </a>
+  <div class="nav-links" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+    <a href="guides-detailed.html" class="nav-link">Guides</a>
+    <a href="lab-tests.html" class="nav-link">Lab Tests</a>
+    <a href="research-docs.html" class="nav-link">Research Docs</a>
+    <a href="verify.html" class="nav-link">Verify</a>
+    <a href="contact.html" class="nav-link">Contact / FAQ</a>
+    <a href="refer.html" class="nav-link">Refer a Friend</a>
+    <button class="basket-btn" onclick="toggleBasket()" style="margin-left:4px;">
+      🛒 Basket <span class="basket-count" id="basket-count" style="display:none;">0</span>
     </button>
   </div>
   <button class="hbg" onclick="mobOpen()" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="mob-bg" id="mob-bg" onclick="mobClose()"></div>
   <div class="mob-panel" id="mob-panel">
     <div class="mob-head">
-      <svg width="110" viewBox="0 0 240 82" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mhsh" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a3a5a"/><stop offset="50%" stop-color="#4a8abf"/><stop offset="100%" stop-color="#1a3a5a"/></linearGradient></defs><text x="8" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh)" letter-spacing="-3">nov</text><text x="94" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh)" letter-spacing="-3">i</text><text x="107" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh)" letter-spacing="-3">gen</text><text x="8" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#mhsh)" textLength="190" lengthAdjust="spacing">PEPTIDES</text></svg>
+      <svg width="110" viewBox="0 0 240 82" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mhsh2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a3a5a"/><stop offset="50%" stop-color="#4a8abf"/><stop offset="100%" stop-color="#1a3a5a"/></linearGradient></defs><text x="8" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh2)" letter-spacing="-3">nov</text><text x="94" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh2)" letter-spacing="-3">i</text><text x="107" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhsh2)" letter-spacing="-3">gen</text><text x="8" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#mhsh2)" textLength="190" lengthAdjust="spacing">PEPTIDES</text></svg>
       <button class="mob-close" onclick="mobClose()">&#x2715;</button>
     </div>
     <div class="mob-links">
-      <a href="index.html">Home</a><a href="guides-detailed.html">Guides</a><a href="lab-tests.html">Lab Tests</a><a href="research-docs.html">Research Docs</a><a href="verify.html">Verify</a><a href="contact.html">Contact / FAQ</a><a href="refer.html">Refer a Friend</a><a href="shop.html" class="m-shop">Shop Now</a>
+      <a href="index.html">Home</a>
+      <a href="guides-detailed.html">Guides</a>
+      <a href="lab-tests.html">Lab Tests</a>
+      <a href="research-docs.html">Research Docs</a>
+      <a href="verify.html">Verify</a>
+      <a href="contact.html">Contact / FAQ</a>
+      <a href="refer.html">Refer a Friend</a>
+      <a href="shop.html" class="m-shop">🛒 Shop Now</a>
     </div>
   </div>
 </header>
@@ -344,17 +368,20 @@
   const products = [
     { id: 1, img: 'img-reta-20.png', name: 'Retatrutide® 20mg', cat: 'ret', emoji: '💉', price: 120, dose: '20mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.', research: true },
     { id: 2, img: 'img-reta-40.png', name: 'Retatrutide® 40mg', cat: 'ret', emoji: '💉', price: 160, dose: '40mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.', research: true },
-    { id: 3, img: 'img-glow-70.png', name: 'Glow 70mg', cat: 'glow', emoji: '\u2728', price: 100, dose: '70mg pen — GHK-Cu, TB-500, BPC-157', description: 'Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.', research: true },
-    { id: 4, img: 'img-tirz-15.png', name: 'Tirzepatide® 15mg', cat: 'tir', emoji: '\ud83d\udc8a', price: 100, dose: '15mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist. Research chemical for scientific study only.', research: false },
-    { id: 5, img: 'img-tirz-30.png', name: 'Tirzepatide® 30mg', cat: 'tir', emoji: '\ud83d\udc8a', price: 120, dose: '30mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.', research: false },
-    { id: 6, img: 'img-tirz-60.png', name: 'Tirzepatide® 60mg', cat: 'tir', emoji: '\ud83d\udc8a', price: 160, dose: '60mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.', research: false },
-    { id: 7, img: 'img-hgh-120.png', name: 'HGH 120IU Pen', cat: 'hgh', emoji: '\u26a1', price: 120, dose: '120IU pre-filled pen', description: 'Recombinant Human Growth Hormone in pre-filled pen format. Research chemical for scientific study only.', research: false },
-    { id: 8, name: 'HGH 240IU Kit', cat: 'hgh', emoji: '\u26a1', price: 200, dose: '10 \u00d7 24IU lyophilised vials', description: 'Recombinant Human Growth Hormone in multi-vial kit. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
-    { id: 9, name: 'HGH 360IU Kit', cat: 'hgh', emoji: '\u26a1', price: 260, dose: '10 \u00d7 36IU lyophilised vials', description: 'Recombinant Human Growth Hormone at highest dosage per vial. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
+    { id: 3, img: 'img-glow-70.png', name: 'Glow 70mg', cat: 'glow', emoji: '✨', price: 100, dose: '70mg pen — GHK-Cu, TB-500, BPC-157', description: 'Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.', research: true },
+    { id: 4, img: 'img-tirz-15.png', name: 'Tirzepatide® 15mg', cat: 'tir', emoji: '💊', price: 100, dose: '15mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist. Research chemical for scientific study only.', research: false },
+    { id: 5, img: 'img-tirz-30.png', name: 'Tirzepatide® 30mg', cat: 'tir', emoji: '💊', price: 120, dose: '30mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.', research: false },
+    { id: 6, img: 'img-tirz-60.png', name: 'Tirzepatide® 60mg', cat: 'tir', emoji: '💊', price: 160, dose: '60mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.', research: false },
+    { id: 7, img: 'img-hgh-120.png', name: 'HGH 120IU Pen', cat: 'hgh', emoji: '⚡', price: 120, dose: '120IU pre-filled pen', description: 'Recombinant Human Growth Hormone in pre-filled pen format. Research chemical for scientific study only.', research: false },
+    { id: 8, img: 'img-hgh-240.png', name: 'HGH 240IU Kit', cat: 'hgh', emoji: '⚡', price: 200, dose: '10 × 24IU lyophilised vials', description: 'Recombinant Human Growth Hormone in multi-vial kit. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
+    { id: 9, img: 'img-hgh-360.png', name: 'HGH 360IU Kit', cat: 'hgh', emoji: '⚡', price: 260, dose: '10 × 36IU lyophilised vials', description: 'Recombinant Human Growth Hormone at highest dosage per vial. Includes bacteriostatic water. Research chemical for scientific study only.', research: false },
+    { id: 10, img: 'img-nad-1000.png', name: 'NAD+ 1000mg', cat: 'nad', emoji: '⚡', price: 100, dose: '1000mg pre-filled pen', description: 'Nicotinamide Adenine Dinucleotide. Supports cellular energy, DNA repair and sirtuin activation. Research chemical for scientific study only.', research: false },
+    { id: 11, img: 'img-ghkcu-50.png', name: 'GHK-Cu 50mg', cat: 'ghkcu', emoji: '🔬', price: 35, dose: '50mg pre-filled pen', description: 'Glycyl-L-Histidyl-L-Lysine Copper Complex. Copper-binding tripeptide. Research chemical for scientific study only.', research: false },
+    { id: 12, img: 'img-mt2-10.png', name: 'Melanotan II 10mg', cat: 'mt2', emoji: '☀️', price: 30, dose: '10mg pre-filled pen', description: 'Cyclic heptapeptide alpha-MSH analogue. MC1R/MC4R agonist. Research chemical for scientific study only.', research: false },
   ];
 
   let basket = [];
-  const whatsappNumber = '447800522364';
+  const whatsappNumber = '447348650538';
 
   function initShop() {
     const grid = document.getElementById('shop-grid');
@@ -441,7 +468,7 @@
       <div class="total-row"><span class="total-label">Subtotal</span><span style="font-weight:700;color:var(--text);">£${subtotal.toFixed(2)}</span></div>
       <div class="total-row"><span class="total-label">Delivery</span><span style="font-weight:600;color:var(--text-muted);">£6.00</span></div>
       <div class="total-row"><span class="total-label">Total</span><span class="total-value">£${orderTotal.toFixed(2)}</span></div>
-      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout \u2192</button>`;
+      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>`;
   }
 
   function toggleBasket() { document.getElementById('sidebar-basket').classList.toggle('open'); }
@@ -451,7 +478,7 @@
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
     const orderTotal = subtotal + 6;
     document.getElementById('checkout-summary').innerHTML = basket.map(i =>
-      `<div class="order-summary-item"><span>${i.name} \u00d7 ${i.quantity}</span><span>£${(i.price * i.quantity).toFixed(2)}</span></div>`
+      `<div class="order-summary-item"><span>${i.name} × ${i.quantity}</span><span>£${(i.price * i.quantity).toFixed(2)}</span></div>`
     ).join('') + `
       <div class="order-summary-item"><span>Delivery</span><span>£6.00</span></div>
       <div class="order-summary-total">Total: £${orderTotal.toFixed(2)}</div>`;
@@ -478,7 +505,7 @@ Phone: ${phone}
 
 *Items*
 `;
-    basket.forEach(i => { msg += `• ${i.name} \u00d7 ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}
+    basket.forEach(i => { msg += `• ${i.name} × ${i.quantity} = £${(i.price * i.quantity).toFixed(2)}
 `; });
     msg += `
 *Subtotal:* £${subtotal.toFixed(2)}
