@@ -295,7 +295,7 @@
   .refer-banner p { font-size: 0.74rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
   
-  /* ── Hamburger menu for mobile ── */
+/* removed */
   .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px; border-radius: 8px; background: white; border: 1px solid var(--rule); }
   .hamburger span { width: 20px; height: 2px; background: var(--steel); border-radius: 2px; display: block; transition: all 0.2s; }
   .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,20,40,0.7); z-index: 999; backdrop-filter: blur(4px); }
@@ -315,6 +315,26 @@
 
   .product-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 8px; }
   .product-image.has-img { padding: 0; background: white !important; }
+
+  /* ── Hamburger mobile nav ── */
+  .hamburger-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; border-radius: 8px; background: white; border: 1px solid var(--rule); margin-left: 8px; }
+  .hamburger-btn span { width: 22px; height: 2px; background: var(--steel); border-radius: 2px; display: block; }
+  .mob-overlay { display: none; position: fixed; inset: 0; background: rgba(10,20,40,0.75); z-index: 9998; backdrop-filter: blur(4px); }
+  .mob-drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: white; z-index: 9999; box-shadow: -4px 0 24px rgba(0,0,0,0.18); padding: 0; transition: right 0.28s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; }
+  .mob-drawer.open { right: 0; }
+  .mob-drawer-header { padding: 20px 20px 16px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; }
+  .mob-drawer-close { font-size: 1.4rem; cursor: pointer; color: var(--text-subtle); background: none; border: none; padding: 0; line-height: 1; }
+  .mob-drawer-links { padding: 8px 0; flex: 1; overflow-y: auto; }
+  .mob-drawer-links a { display: block; padding: 14px 20px; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--rule-light); transition: background 0.15s; }
+  .mob-drawer-links a:hover { background: var(--bg); }
+  .mob-drawer-links a.mob-shop { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white !important; margin: 12px 16px; border-radius: 10px; text-align: center; border-bottom: none; }
+  @media(max-width: 640px) {
+    .hamburger-btn { display: flex !important; }
+    header nav .nav-link, header nav .nav-cta, header nav .shop-btn,
+    header .nav-links .nav-link, header .nav-links .nav-cta, header .nav-links .shop-btn { display: none !important; }
+    header a[href="index.html"] svg { max-width: 130px !important; }
+    .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
+  }
 </style>
 </head>
 <body>
@@ -399,7 +419,23 @@
       <span class="basket-count" id="basket-count" style="display:none;">0</span>
     </button>
   </div>
+<button class="hamburger" onclick="openMobileMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+<div class="mobile-menu" id="mobile-menu" onclick="closeMobileMenu(event)">
+    <div class="mobile-menu-inner">
+      <div class="close-btn" onclick="document.getElementById('mobile-menu').style.display='none';document.body.style.overflow='';">✕ Close</div>
+      <a href="index.html">Home</a>
+      <a href="guides-detailed.html">Guides</a>
+      <a href="lab-tests.html">Lab Tests</a>
+      <a href="research-docs.html">Research Docs</a>
+      <a href="verify.html">Verify</a>
+      <a href="contact.html">Contact / FAQ</a>
+      <a href="refer.html">Refer a Friend</a>
+      <a href="shop.html" class="shop-link">🛒 Shop Now</a>
+    </div>
+  </div>
 
 <div class="hero">
   <div class="hero-watermark">SHOP</div>
@@ -495,9 +531,9 @@
     { id: 1, img: 'img-reta-20.png', name: 'Retatrutide® 20mg', cat: 'ret', emoji: '💉', price: 120, dose: '20mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.', research: true },
     { id: 2, img: 'img-reta-40.png', name: 'Retatrutide® 40mg', cat: 'ret', emoji: '💉', price: 160, dose: '40mg pre-filled pen', description: 'A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.', research: true },
     { id: 3, img: 'img-glow-70.png', name: 'Glow 70mg', cat: 'glow', emoji: '✨', price: 100, dose: '70mg pen — GHK-Cu, TB-500, BPC-157', description: 'Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.', research: true },
-    { id: 8, img: 'img-nad-1000.png', name: 'NAD+', cat: 'nad', emoji: '⚡', price: 100, dose: '1000mg pre-filled pen', description: 'Nicotinamide Adenine Dinucleotide 1000mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
-    { id: 9, img: 'img-ghkcu-50.png', name: 'GHK-Cu', cat: 'ghkcu', emoji: '🔬', price: 35, dose: '50mg pre-filled pen', description: 'Glycyl-L-Histidyl-L-Lysine Copper Complex 50mg lyophilised vial. Reconstitute with 2ml BAC water. Research chemical for scientific study only.', research: true },
-    { id: 10, img: 'img-mt2-10.png', name: 'Melanotan II', cat: 'mt2', emoji: '☀️', price: 30, dose: '10mg pre-filled pen', description: 'Melanotan II 10mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
+    { id: 11, img: 'img-nad-1000.png', name: 'NAD+', cat: 'nad', emoji: '⚡', price: 100, dose: '1000mg pre-filled pen', description: 'Nicotinamide Adenine Dinucleotide 1000mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
+    { id: 12, img: 'img-ghkcu-50.png', name: 'GHK-Cu', cat: 'ghkcu', emoji: '🔬', price: 35, dose: '50mg pre-filled pen', description: 'Glycyl-L-Histidyl-L-Lysine Copper Complex 50mg lyophilised vial. Reconstitute with 2ml BAC water. Research chemical for scientific study only.', research: true },
+    { id: 13, img: 'img-mt2-10.png', name: 'Melanotan II', cat: 'mt2', emoji: '☀️', price: 30, dose: '10mg pre-filled pen', description: 'Melanotan II 10mg lyophilised vial. Reconstitute with 3ml BAC water. Research chemical for scientific study only.', research: true },
     { id: 4, img: 'img-tirz-15.png', name: 'Tirzepatide® 15mg', cat: 'tir', emoji: '💊', price: 100, dose: '15mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist. Research chemical for scientific study only.', research: false },
     { id: 5, img: 'img-tirz-30.png', name: 'Tirzepatide® 30mg', cat: 'tir', emoji: '💊', price: 120, dose: '30mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.', research: false },
     { id: 6, img: 'img-tirz-60.png', name: 'Tirzepatide® 60mg', cat: 'tir', emoji: '💊', price: 160, dose: '60mg pre-filled pen', description: 'A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.', research: false },
@@ -756,17 +792,19 @@
     Novigen Peptides · novigenpeptides.com · info@novigenpeptides.com · +44 7348 650538<br>
     For research purposes only. Not for human consumption.
   </div>
+
 <script>
-  function openMobileMenu() {
-    document.getElementById('mobile-menu').style.display = 'block';
-    document.body.style.overflow = 'hidden';
+  function novDrawerOpen(){
+    document.getElementById('mob-drawer').classList.add('open');
+    document.getElementById('mob-overlay').style.display='block';
+    document.body.style.overflow='hidden';
   }
-  function closeMobileMenu(e) {
-    if (e.target === document.getElementById('mobile-menu')) {
-      document.getElementById('mobile-menu').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-  }</script>
+  function novDrawerClose(){
+    document.getElementById('mob-drawer').classList.remove('open');
+    document.getElementById('mob-overlay').style.display='none';
+    document.body.style.overflow='';
+  }
+</script>
 </body>
 </html>`;
 
@@ -865,16 +903,18 @@
     <button onclick="document.getElementById('order-confirm-modal').style.display='none'" style="width:100%;background:linear-gradient(135deg,#2a5a8a,#4a8abf);color:white;border:none;padding:14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;">Close</button>
   </div>
 </div>
+
 <script>
-  function openMobileMenu() {
-    document.getElementById('mobile-menu').style.display = 'block';
-    document.body.style.overflow = 'hidden';
+  function novDrawerOpen(){
+    document.getElementById('mob-drawer').classList.add('open');
+    document.getElementById('mob-overlay').style.display='block';
+    document.body.style.overflow='hidden';
   }
-  function closeMobileMenu(e) {
-    if (e.target === document.getElementById('mobile-menu')) {
-      document.getElementById('mobile-menu').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-  }</script>
+  function novDrawerClose(){
+    document.getElementById('mob-drawer').classList.remove('open');
+    document.getElementById('mob-overlay').style.display='none';
+    document.body.style.overflow='';
+  }
+</script>
 </body>
 </html>

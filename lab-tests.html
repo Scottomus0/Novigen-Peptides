@@ -59,7 +59,7 @@
   .disclaimer-decline { display:block; margin-top:12px; font-size:0.78rem; color:#6a8090; text-decoration:none; cursor:pointer; }
   @media(max-width:768px) { header { padding:14px 20px; } .page-wrap { padding:40px 20px 60px; } .page-h1 { font-size:2.2rem; } .standards-grid { grid-template-columns:1fr 1fr; } .method-grid { grid-template-columns:1fr; } .coa-row { grid-template-columns:1fr; } footer { flex-direction:column; gap:8px; text-align:center; padding:18px 20px; } }
 
-  /* ── Hamburger menu for mobile ── */
+/* removed */
   .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px; border-radius: 8px; background: white; border: 1px solid var(--rule); }
   .hamburger span { width: 20px; height: 2px; background: var(--steel); border-radius: 2px; display: block; transition: all 0.2s; }
   .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,20,40,0.7); z-index: 999; backdrop-filter: blur(4px); }
@@ -71,6 +71,26 @@
   @media(max-width: 640px) {
     .hamburger { display: flex !important; }
     .nav-links .nav-link, .nav-links .shop-btn, .nav-links .nav-cta { display: none !important; }
+    header a[href="index.html"] svg { max-width: 130px !important; }
+    .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
+  }
+
+  /* ── Hamburger mobile nav ── */
+  .hamburger-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; border-radius: 8px; background: white; border: 1px solid var(--rule); margin-left: 8px; }
+  .hamburger-btn span { width: 22px; height: 2px; background: var(--steel); border-radius: 2px; display: block; }
+  .mob-overlay { display: none; position: fixed; inset: 0; background: rgba(10,20,40,0.75); z-index: 9998; backdrop-filter: blur(4px); }
+  .mob-drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: white; z-index: 9999; box-shadow: -4px 0 24px rgba(0,0,0,0.18); padding: 0; transition: right 0.28s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; }
+  .mob-drawer.open { right: 0; }
+  .mob-drawer-header { padding: 20px 20px 16px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; }
+  .mob-drawer-close { font-size: 1.4rem; cursor: pointer; color: var(--text-subtle); background: none; border: none; padding: 0; line-height: 1; }
+  .mob-drawer-links { padding: 8px 0; flex: 1; overflow-y: auto; }
+  .mob-drawer-links a { display: block; padding: 14px 20px; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--rule-light); transition: background 0.15s; }
+  .mob-drawer-links a:hover { background: var(--bg); }
+  .mob-drawer-links a.mob-shop { background: linear-gradient(135deg, var(--steel), var(--steel-light)); color: white !important; margin: 12px 16px; border-radius: 10px; text-align: center; border-bottom: none; }
+  @media(max-width: 640px) {
+    .hamburger-btn { display: flex !important; }
+    header nav .nav-link, header nav .nav-cta, header nav .shop-btn,
+    header .nav-links .nav-link, header .nav-links .nav-cta, header .nav-links .shop-btn { display: none !important; }
     header a[href="index.html"] svg { max-width: 130px !important; }
     .lab-notice { padding: 6px 12px !important; font-size: 0.65rem !important; }
   }
@@ -129,13 +149,29 @@
   <div class="nav-links">
     <a href="research-docs.html" class="nav-link">Research Docs</a>
     <a href="guides-detailed.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Guides</a><a href="lab-tests.html" class="nav-link active">Lab Tests</a>
-    <a href="research-docs.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Research Docs</a>
+    
     <a href="verify.html" class="nav-link">Verify</a>
     <a href="contact.html" class="nav-link">Contact / FAQ</a>
     <a href="refer.html" class="nav-link">Refer a Friend</a>
     <a href="shop.html" class="shop-btn">🛒 Shop Now</a>
   </div>
+<button class="hamburger" onclick="openMobileMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+<div class="mobile-menu" id="mobile-menu" onclick="closeMobileMenu(event)">
+    <div class="mobile-menu-inner">
+      <div class="close-btn" onclick="document.getElementById('mobile-menu').style.display='none';document.body.style.overflow='';">✕ Close</div>
+      <a href="index.html">Home</a>
+      <a href="guides-detailed.html">Guides</a>
+      <a href="lab-tests.html">Lab Tests</a>
+      <a href="research-docs.html">Research Docs</a>
+      <a href="verify.html">Verify</a>
+      <a href="contact.html">Contact / FAQ</a>
+      <a href="refer.html">Refer a Friend</a>
+      <a href="shop.html" class="shop-link">🛒 Shop Now</a>
+    </div>
+  </div>
 
 <div class="page-wrap">
   <div class="page-eyebrow">Quality Assurance</div>
@@ -260,16 +296,18 @@
   <span class="footer-logo">Novigen Peptides</span>
 </footer>
 
+
 <script>
-  function openMobileMenu() {
-    document.getElementById('mobile-menu').style.display = 'block';
-    document.body.style.overflow = 'hidden';
+  function novDrawerOpen(){
+    document.getElementById('mob-drawer').classList.add('open');
+    document.getElementById('mob-overlay').style.display='block';
+    document.body.style.overflow='hidden';
   }
-  function closeMobileMenu(e) {
-    if (e.target === document.getElementById('mobile-menu')) {
-      document.getElementById('mobile-menu').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-  }</script>
+  function novDrawerClose(){
+    document.getElementById('mob-drawer').classList.remove('open');
+    document.getElementById('mob-overlay').style.display='none';
+    document.body.style.overflow='';
+  }
+</script>
 </body>
 </html>
