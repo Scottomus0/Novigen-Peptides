@@ -27,7 +27,7 @@
     --warn-text: #7a5010;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; min-height: 100vh; color: var(--text); overflow-x: hidden; }
 
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -233,25 +233,29 @@
   .mob-links .m-shop{background:linear-gradient(135deg,#2a5a8a,#4a8abf);color:#fff!important;margin:10px 14px;border-radius:10px;text-align:center;}
   .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:7px 8px;border-radius:8px;background:#fff;border:1px solid #c8daf0;flex-shrink:0;margin-left:8px;}
   .hbg span{display:block;width:20px;height:2px;background:#2a5a8a;border-radius:2px;}
-  @media(max-width:680px){
-    .nav-links{display:none!important;}
-    header{padding:10px 14px!important;}
-    .hbg{display:flex!important;}
-    .nav-links{display:none!important;}
-    header svg{max-width:115px!important;}
-    .lab-notice{padding:5px 10px!important;font-size:.6rem!important;}
-  }
+  
 
   .product-image.nad { background: linear-gradient(140deg, #c8e8f8, #a8d0e8); }
   .product-image.ghkcu { background: linear-gradient(140deg, #d8f0d8, #b8e0b8); }
   .product-image.mt2 { background: linear-gradient(140deg, #f0d8e8, #e0b8d0); }
+  @media(max-width:680px) {
+    header { padding:10px 14px !important; }
+    .hbg { display:flex !important; }
+    .nav-links { display:none !important; }
+    header svg { max-width:115px !important; }
+    .lab-notice { padding:5px 10px !important; font-size:.6rem !important; }
+    .tab-nav { overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; white-space:nowrap !important; scrollbar-width:none !important; }
+    .tab-nav::-webkit-scrollbar { display:none; }
+    .tab-btn { flex-shrink:0 !important; font-size:.58rem !important; padding:9px 8px !important; }
+    .tab-dot { display:none !important; }
+  }
 </style>
 </head>
 <body>
 
 <header>
   <a href="index.html" style="text-decoration:none;display:inline-block;flex-shrink:0;">
-    <svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:190px;display:block;" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:160px;display:block;" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="shLG1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a3a5a"/><stop offset="25%" stop-color="#2a6aaa"/><stop offset="45%" stop-color="#5aaad8"/><stop offset="55%" stop-color="#3a7abf"/><stop offset="75%" stop-color="#2a5a9a"/><stop offset="100%" stop-color="#1a3a5a"/></linearGradient>
         <linearGradient id="shLG2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2a5a8a"/><stop offset="50%" stop-color="#5aaad8"/><stop offset="100%" stop-color="#2a5a8a"/></linearGradient>
