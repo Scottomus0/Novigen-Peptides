@@ -151,10 +151,10 @@
     <p>This documentation is intended exclusively for <strong>qualified researchers, scientists, and laboratory professionals</strong>. Please confirm the following before downloading:</p>
     <hr class="gate-divider">
     <div class="gate-checks">
-      <label class="gate-check"><input type="checkbox" id="chk1" onchange="checkGate()"><span>I am a <strong>qualified researcher, scientist, or laboratory professional</strong> and will use this documentation solely for legitimate research purposes.</span></label>
-      <label class="gate-check"><input type="checkbox" id="chk2" onchange="checkGate()"><span>I understand this compound is <strong>not intended for human consumption</strong> and is not approved by the MHRA, FDA, or any regulatory authority.</span></label>
-      <label class="gate-check"><input type="checkbox" id="chk3" onchange="checkGate()"><span>I confirm I will <strong>handle this compound in appropriate laboratory conditions</strong> in accordance with applicable safety regulations.</span></label>
-      <label class="gate-check"><input type="checkbox" id="chk4" onchange="checkGate()"><span>All information is provided for <strong>educational purposes only</strong> and does not constitute medical or clinical advice.</span></label>
+      <label class="gate-check"><input type="checkbox" id="chk1" onchange="updateConfirmBtn()"><span>I am a <strong>qualified researcher, scientist, or laboratory professional</strong> and will use this documentation solely for legitimate research purposes.</span></label>
+      <label class="gate-check"><input type="checkbox" id="chk2" onchange="updateConfirmBtn()"><span>I understand this compound is <strong>not intended for human consumption</strong> and is not approved by the MHRA, FDA, or any regulatory authority.</span></label>
+      <label class="gate-check"><input type="checkbox" id="chk3" onchange="updateConfirmBtn()"><span>I confirm I will <strong>handle this compound in appropriate laboratory conditions</strong> in accordance with applicable safety regulations.</span></label>
+      <label class="gate-check"><input type="checkbox" id="chk4" onchange="updateConfirmBtn()"><span>All information is provided for <strong>educational purposes only</strong> and does not constitute medical or clinical advice.</span></label>
     </div>
     <button type="button" class="gate-confirm" id="gate-confirm-btn" disabled onclick="confirmDownload()">✓ I Confirm — Download Research Data Sheet</button>
     <button type="button" class="gate-decline" onclick="closeGate()">Cancel</button>
@@ -308,30 +308,60 @@
 
 <script>
   var pendingFile = null;
-  function acceptDisclaimer(){sessionStorage.setItem('novigen_disclaimer','1');document.getElementById('disclaimer-overlay').style.display='none';}
-  if(sessionStorage.getItem('novigen_disclaimer')==='1'){document.getElementById('disclaimer-overlay').style.display='none';}
+
+  // Disclaimer
+  function acceptDisclaimer(){
+    sessionStorage.setItem('novigen_disclaimer','1');
+    document.getElementById('disclaimer-overlay').style.display='none';
+  }
+  if(sessionStorage.getItem('novigen_disclaimer')==='1'){
+    document.getElementById('disclaimer-overlay').style.display='none';
+  }
+
+  // Gate
   function openGate(file){
-    pendingFile=file;
-    ['chk1','chk2','chk3','chk4'].forEach(function(id){document.getElementById(id).checked=false;});
-    document.getElementById('gate-confirm-btn').disabled=true;
-    document.getElementById('doc-gate').style.display='flex';
+    pendingFile = file;
+    document.getElementById('chk1').checked = false;
+    document.getElementById('chk2').checked = false;
+    document.getElementById('chk3').checked = false;
+    document.getElementById('chk4').checked = false;
+    updateConfirmBtn();
+    document.getElementById('doc-gate').style.display = 'flex';
   }
-  function closeGate(){document.getElementById('doc-gate').style.display='none';pendingFile=null;}
-  function checkGate(){
-    var all=['chk1','chk2','chk3','chk4'].every(function(id){return document.getElementById(id).checked;});
-    document.getElementById('gate-confirm-btn').disabled=!all;
+
+  function closeGate(){
+    document.getElementById('doc-gate').style.display = 'none';
+    pendingFile = null;
   }
+
+  function updateConfirmBtn(){
+    var all = document.getElementById('chk1').checked &&
+              document.getElementById('chk2').checked &&
+              document.getElementById('chk3').checked &&
+              document.getElementById('chk4').checked;
+    var btn = document.getElementById('gate-confirm-btn');
+    if(all){
+      btn.removeAttribute('disabled');
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
+    } else {
+      btn.setAttribute('disabled','disabled');
+      btn.style.opacity = '0.4';
+      btn.style.cursor = 'not-allowed';
+    }
+  }
+
   function confirmDownload(){
     if(!pendingFile){ return; }
+    var file = pendingFile;
+    closeGate();
     var a = document.createElement('a');
-    a.href = pendingFile;
-    a.download = pendingFile.split('/').pop();
-    a.target = '_blank';
-    a.rel = 'noopener';
+    a.href = file;
+    a.download = file;
+    a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
-    setTimeout(function(){ document.body.removeChild(a); }, 200);
-    closeGate();
+    setTimeout(function(){ document.body.removeChild(a); }, 500);
   }
 </script>
 
