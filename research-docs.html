@@ -323,17 +323,8 @@
   }
   function confirmDownload(){
     if(!pendingFile){ alert('No file selected'); return; }
-    try {
-      var link = document.createElement('a');
-      link.href = pendingFile;
-      link.setAttribute('download', pendingFile);
-      link.setAttribute('target', '_blank');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch(e) {
-      window.open(pendingFile, '_blank');
-    }
+    // Open PDF in new tab - works on all browsers including mobile
+    window.open(pendingFile, '_blank');
     closeGate();
   }
 </script>
