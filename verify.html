@@ -432,11 +432,6 @@
 </footer>
 
 <script>
-  // GitHub raw content URL for codes.json
-  // IMPORTANT: Replace with your actual GitHub username and repo
-  const GITHUB_RAW = 'https://raw.githubusercontent.com/Scottomus0/novigen-peptides/main/codes.json';
-  const GITHUB_API = 'https://api.github.com/repos/Scottomus0/novigen-peptides/contents/codes.json';
-
   // Get code from URL param
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
@@ -453,11 +448,9 @@
   function submitManual() {
     const input = document.getElementById('manual-code').value.trim().toUpperCase();
     if (!input) return;
-    // Redirect to same page with code param
     window.location.href = 'verify.html?code=' + encodeURIComponent(input);
   }
 
-  // Allow Enter key
   document.addEventListener('DOMContentLoaded', function() {
     const inp = document.getElementById('manual-code');
     if (inp) inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') submitManual(); });
@@ -477,52 +470,41 @@
       '<div class="verify-code">' + code + '</div>';
 
     try {
-      // Fetch codes from GitHub
-      const res = await fetch(GITHUB_RAW + '?t=' + Date.now());
-      if (!res.ok) throw new Error('Could not reach verification database');
-      const codes = await res.json();
+      // Call our Vercel serverless function — handles read + write securely
+      const res = await fetch('/api/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: code })
+      });
 
-      if (!codes[code]) {
-        // Code not found
+      if (!res.ok) throw new Error('Server error');
+      const data = await res.json();
+
+      if (data.status === 'invalid') {
         setResult('invalid', '❌', 'Invalid Code',
           'This code was not found in our database. This product may not be genuine.',
           '<div class="verify-code">' + code + '</div><div class="result-box invalid"><div class="result-box-title">Not Authenticated</div><p>If you believe this is an error, please contact info@novigenpeptides.com with your code and purchase details.</p></div>');
-        return;
-      }
 
-      const entry = codes[code];
-      const scanCount = (entry.scan_count || 0) + 1;
-      const now = new Date().toISOString();
-
-      if (entry.scan_count === 0) {
-        // First scan — genuine
+      } else if (data.status === 'genuine') {
         setResult('genuine', '✅', 'Genuine Product',
           'This is an authentic Novigen Peptides product. Your code has been successfully verified.',
           '<div class="verify-code">' + code + '</div><div class="result-box genuine"><div class="result-box-title">✓ Authenticated</div><p>This product is genuine and has been verified for the first time. Keep this code safe — future scans will trigger a warning.</p></div>');
-      } else {
-        // Previously scanned — warning
+
+      } else if (data.status === 'warning') {
+        const firstDate = data.first_scanned
+          ? new Date(data.first_scanned).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'})
+          : 'an earlier date';
+        const count = (data.scan_count - 1);
         setResult('warning', '⚠️', 'Previously Verified',
           'This code has been scanned before. If you did not scan this previously, your product may have been tampered with.',
-          '<div class="verify-code">' + code + '</div><div class="result-box warning"><div class="result-box-title">⚠ Already Scanned ' + entry.scan_count + ' time' + (entry.scan_count > 1 ? 's' : '') + '</div><p>This code was first verified on ' + (entry.first_scanned ? new Date(entry.first_scanned).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'}) : 'an earlier date') + '. If you did not perform that scan, please contact us immediately at info@novigenpeptides.com.</p></div>');
+          '<div class="verify-code">' + code + '</div><div class="result-box warning"><div class="result-box-title">⚠ Already Scanned ' + count + ' time' + (count > 1 ? 's' : '') + '</div><p>This code was first verified on ' + firstDate + '. If you did not perform that scan, please contact us immediately at info@novigenpeptides.com.</p></div>');
       }
-
-      // Update scan count in GitHub via API
-      await updateScanCount(code, entry, scanCount, now);
 
     } catch (err) {
       setResult('invalid', '⚠️', 'Verification Unavailable',
         'We could not connect to the verification database. Please try again or contact info@novigenpeptides.com.',
         '');
     }
-  }
-
-  async function updateScanCount(code, entry, newCount, now) {
-    // This requires a GitHub Personal Access Token
-    // Store token in a Netlify environment variable or serverless function
-    // For now we log — the admin panel handles updates
-    console.log('Scan recorded:', code, 'count:', newCount);
-    // In production, call a Netlify serverless function here
-    // that has the GitHub token to update the JSON file
   }
 
   verify();
