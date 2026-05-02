@@ -477,13 +477,17 @@
     const grid = document.getElementById('shop-grid');
     if (!grid) return;
     grid.innerHTML = products.map(p => `
-      <div class="product-card" onclick="openProductDetail(${p.id})">
-        <div class="product-image ${p.cat}${p.img ? ' has-img' : ''}">${p.img ? `<img src="${p.img}" alt="${p.name}">` : p.emoji}</div>
-        <div class="product-info">
-          <div class="product-name">${p.name}</div>
-          <div class="product-dose">${p.dose}</div>
-          <div class="product-price">£${p.price.toFixed(2)}</div>
-          <button class="add-btn" onclick="event.stopPropagation(); event.preventDefault(); addToBasket(${p.id})">Add to Basket +</button>
+      <div class="product-card">
+        <div onclick="openProductDetail(${p.id})" style="cursor:pointer;">
+          <div class="product-image ${p.cat}${p.img ? ' has-img' : ''}">${p.img ? `<img src="${p.img}" alt="${p.name}">` : p.emoji}</div>
+          <div class="product-info" style="padding-bottom:0;">
+            <div class="product-name">${p.name}</div>
+            <div class="product-dose">${p.dose}</div>
+            <div class="product-price">£${p.price.toFixed(2)}</div>
+          </div>
+        </div>
+        <div style="padding:0 16px 16px;">
+          <button class="add-btn" onclick="addToBasket(${p.id})">Add to Basket</button>
         </div>
       </div>
     `).join('');
@@ -511,9 +515,17 @@
 
   function addToBasket(productId) {
     const p = products.find(x => x.id === productId);
+    if (!p) return;
     const existing = basket.find(i => i.id === productId);
     if (existing) { existing.quantity += 1; } else { basket.push({ ...p, quantity: 1 }); }
     updateBasketUI();
+    const sb = document.getElementById('sidebar-basket');
+    const ov = document.getElementById('basket-overlay');
+    if (sb && !sb.classList.contains('open')) {
+      sb.classList.add('open');
+      if (ov) ov.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   function removeFromBasket(productId) { basket = basket.filter(i => i.id !== productId); updateBasketUI(); }
