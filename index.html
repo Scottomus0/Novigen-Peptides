@@ -55,6 +55,26 @@
   /* hero handled above */ .hero-unused { min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; position: relative; overflow: hidden; background: transparent; }
   
   
+  .hero-lab-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('img-lab-bg.png');
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.13;
+    z-index: 0;
+    border-radius: 0;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0) 100%);
+  }
+  .hero-lab-bg-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(42,90,138,0.08) 0%, rgba(74,138,191,0.05) 50%, rgba(200,232,248,0.12) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
   body::before {
     content: '';
     position: fixed;
@@ -382,10 +402,10 @@
         <linearGradient id="ixLG2" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stop-color="#2a5a8a"/><stop offset="50%" stop-color="#5aaad8"/><stop offset="100%" stop-color="#2a5a8a"/>
         </linearGradient>
-        <clipPath id="ixLGC"><rect x="0" y="0" width="240" height="36"/></clipPath>
+        <clipPath id="ixLGC"><rect x="0" y="0" width="240" height="82"/></clipPath>
       </defs>
       <g clip-path="url(#ixLGC)">
-        <g transform="translate(102,26)">
+        <g transform="translate(91,26)">
           <circle cx="0" cy="0" r="5" fill="url(#ixLG1)"/>
           <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#ixLG1)" stroke-width="2"/>
           <ellipse cx="0" cy="0" rx="21" ry="7" fill="none" stroke="url(#ixLG1)" stroke-width="2" transform="rotate(60)"/>
@@ -396,9 +416,9 @@
         </g>
       </g>
       <text x="8" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#ixLG1)" letter-spacing="-3">nov</text>
-      <text x="94" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#ixLG1)" letter-spacing="-3">i</text>
-      <text x="107" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#ixLG1)" letter-spacing="-3">gen</text>
-      <text x="8" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#ixLG2)" textLength="190" lengthAdjust="spacing">PEPTIDES</text>
+      <text x="85" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#ixLG1)" letter-spacing="-3">i</text>
+      <text x="96" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#ixLG1)" letter-spacing="-3">gen</text>
+      <text x="10" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#ixLG2)"  textLength="163" lengthAdjust="spacing">PEPTIDES</text>
     </svg>
   </a>
   <div class="nav-links" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -419,9 +439,9 @@
           <stop offset="0%" stop-color="#1a3a5a"/><stop offset="50%" stop-color="#4a8abf"/><stop offset="100%" stop-color="#1a3a5a"/>
         </linearGradient></defs>
         <text x="8" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhix)" letter-spacing="-3">nov</text>
-        <text x="94" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhix)" letter-spacing="-3">i</text>
-        <text x="107" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhix)" letter-spacing="-3">gen</text>
-        <text x="8" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#mhix)" textLength="190" lengthAdjust="spacing">PEPTIDES</text>
+        <text x="85" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhix)" letter-spacing="-3">i</text>
+        <text x="96" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#mhix)" letter-spacing="-3">gen</text>
+        <text x="10" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#mhix)"  textLength="163" lengthAdjust="spacing">PEPTIDES</text>
       </svg>
       <button class="mob-close" onclick="mobClose()">&#x2715;</button>
     </div>
@@ -439,7 +459,7 @@
 </header>
 
 <!-- ══ HERO ══ -->
-<div style="width:100%;"><section class="hero">
+<div style="width:100%;position:relative;overflow:hidden;background: linear-gradient(90deg, rgba(200,232,248,0.97) 0%, rgba(220,240,250,0.88) 40%, rgba(180,215,240,0.45) 100%), url('img-lab-bg.png') center right / cover no-repeat;"><div class="hero-lab-bg"></div><div class="hero-lab-bg-tint"></div><section class="hero" style="position:relative;z-index:1;">
   <div class="hero-ray"></div>
   <div class="hero-left">
     <div class="hero-eyebrow">Premium Research Peptides</div>
@@ -516,7 +536,9 @@
 </div>
 
 <!-- ══ MOST POPULAR ══ -->
-<section style="padding:48px 80px;">
+<section style="padding:48px 80px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:url('img-lab-bg.png');background-size:cover;background-position:center 40%;opacity:0.055;pointer-events:none;mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 30%,rgba(0,0,0,0.8) 70%,rgba(0,0,0,0) 100%);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 30%,rgba(0,0,0,0.8) 70%,rgba(0,0,0,0) 100%);z-index:0;"></div>
+  <div style="position:relative;z-index:1;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px;">
       <div>
@@ -613,7 +635,7 @@
 
     </div>
   </div>
-</section>
+</div></section>
 
 <style>
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
