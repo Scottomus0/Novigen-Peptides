@@ -167,7 +167,7 @@
   .checkout-btn:hover { box-shadow: 0 6px 24px rgba(42,90,138,0.3); }
 
   /* \u2500\u2500 Product Modal \u2500\u2500 */
-  .product-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .product-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 9500; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
   .product-modal.open { display: flex; animation: modalIn 0.2s ease; }
   @keyframes modalIn { from{opacity:0} to{opacity:1} }
   .product-detail { background: white; border-radius: 12px; padding: 40px; max-width: 580px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -186,7 +186,7 @@
   .btn-close-modal:hover { background: var(--rule); }
 
   /* \u2500\u2500 Checkout Modal \u2500\u2500 */
-  .checkout-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 300; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .checkout-modal { display: none; position: fixed; inset: 0; background: rgba(13,31,56,0.5); z-index: 9500; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
   .checkout-modal.open { display: flex; animation: modalIn 0.2s ease; }
   .checkout-form { background: white; border-radius: 12px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,56,0.2); animation: detailIn 0.3s cubic-bezier(0.16,1,0.3,1); }
   .checkout-form h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; color: var(--text); letter-spacing: -0.02em; }
