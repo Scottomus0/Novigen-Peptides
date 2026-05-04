@@ -133,7 +133,7 @@
   .hero p { font-size: 0.9rem; color: var(--text-muted); max-width: 500px; line-height: 1.8; font-weight: 300; }
 
   /* ── Product Grid ── */
-  .page-body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+  .page-body { max-width: 1200px; margin: 0 auto; padding: 48px 60px; }
 
   .section-label {
     font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
@@ -255,7 +255,7 @@
     .hero { padding: 40px 20px; }
     .hero-watermark { display: none; }
     .hero h1 { font-size: 2.2rem; }
-    .page-body { font-family: 'Outfit', sans-serif; background: linear-gradient(125deg, #c8e8f8 0%, #e8f4ff 12%, #b8d8f0 22%, #dff0fa 32%, #c0e8e8 42%, #e8f8ff 52%, #b0cce8 62%, #d8eef8 72%, #c4e4f4 82%, #e4f4ff 92%, #c8e8f8 100%); background-size: 400% 400%; animation: holoShimmer 8s ease infinite; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+    .page-body { max-width: 1200px; margin: 0 auto; padding: 48px 60px; }
     .product-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
     footer { flex-direction: column; gap: 8px; text-align: center; padding: 18px 20px; }
   }
@@ -322,7 +322,7 @@
 </script>
 
 <header>
-  <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;"><div style="position:relative;z-index:2;">
+  <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;flex-shrink:0;">
     <svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:190px;display:block;" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="gLG1" x1="0%" y1="0%" x2="100%" y2="0%">
