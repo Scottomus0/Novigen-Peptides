@@ -322,7 +322,7 @@
 </script>
 
 <header>
-  <a href="index.html" style="text-decoration:none;cursor:pointer;display:inline-block;flex-shrink:0;">
+  <a href="index.html" style="text-decoration:none;display:inline-block;flex-shrink:0;">
     <svg width="100%" height="auto" viewBox="0 0 240 82" style="max-width:190px;display:block;" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="gLG1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -349,13 +349,43 @@
       <text x="8" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#gLG1)" letter-spacing="-3">nov</text>
       <text x="85" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#gLG1)" letter-spacing="-3">i</text>
       <text x="96" y="58" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="48" fill="url(#gLG1)" letter-spacing="-3">gen</text>
-      <text x="10" y="72" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="url(#gLG2)"  textLength="163" lengthAdjust="spacing">PEPTIDES</text>
+      <text x="8" y="76" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="url(#gLG2)"  textLength="178" lengthAdjust="spacing">PEPTIDES</text>
     </svg>
+  </a>
+  <div class="nav-links" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+    <a href="guides.html" class="nav-link active">Guides</a>
+    <a href="lab-tests.html" class="nav-link">Lab Tests</a>
+    <a href="research-docs.html" class="nav-link">Research Docs</a>
+    <a href="verify.html" class="nav-link">Verify</a>
+    <a href="contact.html" class="nav-link">Contact / FAQ</a>
+    <a href="refer.html" class="nav-link">Refer a Friend</a>
+    <a href="shop.html" class="shop-btn">🛒 Shop Now</a>
   </div>
-  <div class="header-right">
-    <span class="header-tag">Guides</span>
-    <a href="verify.html" class="nav-link" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 16px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;">Verify</a><a href="research-docs.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Research Docs</a>
-    <a href="contact.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 16px;border-radius:20px;">Contact / FAQ</a><a href="refer.html" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--text-subtle);text-decoration:none;padding:7px 14px;border-radius:20px;">Refer a Friend</a><a href="shop.html" class="shop-btn">🛒 Shop</a>
+  <button class="hbg" onclick="mobOpen()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="mob-bg" id="mob-bg" onclick="mobClose()"></div>
+  <div class="mob-panel" id="mob-panel">
+    <div class="mob-head">
+      <svg width="110" viewBox="0 0 240 82" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="ixmh" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1a3a5a"/><stop offset="50%" stop-color="#4a8abf"/><stop offset="100%" stop-color="#1a3a5a"/>
+        </linearGradient></defs>
+        <text x="8" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#ixmh)" letter-spacing="-3">nov</text>
+        <text x="85" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#ixmh)" letter-spacing="-3">i</text>
+        <text x="96" y="58" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="url(#ixmh)" letter-spacing="-3">gen</text>
+        <text x="8" y="76" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="url(#ixmh)"  textLength="178" lengthAdjust="spacing">PEPTIDES</text>
+      </svg>
+      <button class="mob-close" onclick="mobClose()">&#x2715;</button>
+    </div>
+    <div class="mob-links">
+      <a href="index.html">Home</a>
+      <a href="guides.html">Guides</a>
+      <a href="lab-tests.html">Lab Tests</a>
+      <a href="research-docs.html">Research Docs</a>
+      <a href="verify.html">Verify</a>
+      <a href="contact.html">Contact / FAQ</a>
+      <a href="refer.html">Refer a Friend</a>
+      <a href="shop.html" class="m-shop">Shop Now</a>
+    </div>
   </div>
 </header>
 
