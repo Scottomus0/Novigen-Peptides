@@ -6,6 +6,14 @@
     }
   },
   "rewrites": [
-    { "source": "/verify", "destination": "/verify.html" }
+    { "source": "/guides", "destination": "/guides.html" },
+    { "source": "/guides-detailed", "destination": "/guides-detailed.html" },
+    { "source": "/shop", "destination": "/shop.html" },
+    { "source": "/verify", "destination": "/verify.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/refer", "destination": "/refer.html" },
+    { "source": "/lab-tests", "destination": "/lab-tests.html" },
+    { "source": "/research-docs", "destination": "/research-docs.html" },
+    { "source": "/admin", "destination": "/admin.html" }
   ]
 }
