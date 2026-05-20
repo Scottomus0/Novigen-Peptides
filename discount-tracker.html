@@ -187,7 +187,7 @@
     if (!adminKey) { alert('Please enter your admin key.'); return; }
 
     try {
-      var res = await fetch('/api/add-discount', {
+      var res = await fetch('/api/discount-admin-api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: code, type: type, value: value, adminKey: adminKey })
