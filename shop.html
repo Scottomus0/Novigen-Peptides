@@ -680,16 +680,13 @@
     const discAmtFinal = Math.min(discAmt, subtotal);
     const invTotal  = subtotal - discAmt + 6.00;
 
-    if (activeDiscounts.length) {
-      const usedCodes = JSON.parse(localStorage.getItem('nvg_used_codes') || '[]');
-      if (!usedCodes.includes(activeDiscount.code)) { usedCodes.push(activeDiscount.code); localStorage.setItem('nvg_used_codes', JSON.stringify(usedCodes)); }
-    }
 
-    const discLine = activeDiscount ? '\n*Discount:* ' + activeDiscount.code + ' (' + activeDiscount.pct + '% off) -£' + discAmt.toFixed(2) : '';
-    let msg = '*Novigen Peptides Order*\n*Order:* ' + orderNum + discLine + '\n\n*Customer*\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\nAddress: ' + address + '\n\n*Items*\n';
+
+    const discLines = activeDiscounts.map(d => '\n*Discount:* ' + d.code + ' (' + d.description + ') -£' + (d.type === 'fixed' ? Math.min(d.value, subtotal) : subtotal * d.value / 100).toFixed(2)).join('');
+    let msg = '*Novigen Peptides Order*\n*Order:* ' + orderNum + discLines + '\n\n*Customer*\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\nAddress: ' + address + '\n\n*Items*\n';
     basket.forEach(function(i) { msg += '• ' + i.name + ' × ' + i.quantity + ' = £' + (i.price * i.quantity).toFixed(2) + '\n'; });
     msg += '\n*Subtotal:* £' + subtotal.toFixed(2);
-    if (activeDiscount) msg += '\n*Discount (' + activeDiscount.code + ' ' + activeDiscount.pct + '%):* -£' + discAmt.toFixed(2);
+    if (activeDiscounts.length) msg += '\n*Discount:* -£' + discAmtFinal.toFixed(2);
     msg += '\n*Delivery:* £6.00\n*Total:* £' + invTotal.toFixed(2);
     if (notes) msg += '\n\n*Notes:* ' + notes;
 
