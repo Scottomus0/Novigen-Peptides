@@ -180,6 +180,7 @@
       ? parseFloat(document.getElementById('gen-fixed-amount') ? document.getElementById('gen-fixed-amount').value : 10)
       : parseFloat(document.getElementById('gen-pct').value);
     var adminKey = document.getElementById('admin-key').value.trim();
+    var maxUses = parseInt(document.getElementById('gen-uses').value) || 1;
     var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
     var code    = prefix + suffix;
     var st = document.getElementById('gen-status');
