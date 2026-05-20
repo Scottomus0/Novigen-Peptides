@@ -39,5 +39,14 @@
     "active": true,
     "note": "NOVI generated code",
     "created": "2026-05-20T19:57:26.113Z"
+  },
+  "TESTAPBJ": {
+    "type": "pct",
+    "value": 10,
+    "maxUses": 1,
+    "uses": 0,
+    "active": true,
+    "note": "TEST generated code",
+    "created": "2026-05-20T20:28:42.163Z"
   }
 }
