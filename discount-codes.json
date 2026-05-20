@@ -49,5 +49,14 @@
     "note": "TEST generated code",
     "created": "2026-05-20T20:28:42.163Z",
     "last_used": "2026-05-20T20:34:34.768Z"
+  },
+  "TESTHOAP": {
+    "type": "pct",
+    "value": 10,
+    "maxUses": 1,
+    "uses": 0,
+    "active": true,
+    "note": "TEST generated code",
+    "created": "2026-05-20T20:39:12.375Z"
   }
 }
