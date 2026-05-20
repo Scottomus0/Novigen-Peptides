@@ -190,7 +190,7 @@
       var res = await fetch('/api/discount-admin-api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey },
-        body: JSON.stringify({ code: code, type: type, value: value })
+        body: JSON.stringify({ action: 'create', code: code, type: type, value: value, maxUses: maxUses, note: prefix + ' generated code' })
       });
       var data = await res.json();
       if (data.status === 'created') {
