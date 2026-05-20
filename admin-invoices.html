@@ -108,7 +108,7 @@
       const data = await res.json();
       if (data.orders) {
         localStorage.setItem('nvg_orders', JSON.stringify(data.orders));
-        renderInvoices();
+        render();
         alert('Loaded ' + data.orders.length + ' orders from server.');
       } else {
         alert('Error: ' + (data.error || 'Could not load orders'));
