@@ -466,36 +466,53 @@
   const whatsappNumber = '447348650538';
 
 
-  // ── Discount codes ──
-  const DISCOUNT_CODES = { 'WELCOME10': 10, 'REFERRAL5': 5, 'NOVI10': 10 };
-  let activeDiscount = null;
+  // ── Discount codes — validated via /api/discount, supports stacking ──
+  let activeDiscounts = [];
 
-  function applyDiscount() {
+  async function applyDiscount() {
     const input = document.getElementById('discount-input');
     const code = input.value.trim().toUpperCase();
     const msgEl = document.getElementById('discount-msg');
     if (!code) { msgEl.innerHTML = '<div class="discount-msg-el discount-error">Please enter a code.</div>'; return; }
-    const used = JSON.parse(localStorage.getItem('nvg_used_codes') || '[]');
-    if (used.includes(code)) { msgEl.innerHTML = '<div class="discount-msg-el discount-error">This code has already been used.</div>'; return; }
-    if (DISCOUNT_CODES[code] !== undefined) {
-      activeDiscount = { code, pct: DISCOUNT_CODES[code] };
-      msgEl.innerHTML = '';
-      document.getElementById('discount-applied').style.display = 'flex';
-      document.getElementById('discount-applied-text').textContent = code + ' — ' + activeDiscount.pct + '% off ✓';
-      input.value = ''; input.disabled = true;
-      updateBasketUI();
-    } else {
-      msgEl.innerHTML = '<div class="discount-msg-el discount-error">Invalid code. Please check and try again.</div>';
+    if (activeDiscounts.find(d => d.code === code)) { msgEl.innerHTML = '<div class="discount-msg-el discount-error">Code already applied.</div>'; return; }
+    msgEl.innerHTML = '<div class="discount-msg-el" style="color:var(--steel);">Checking code...</div>';
+    try {
+      const res = await fetch('/api/discount', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code, action: 'check' }) });
+      const data = await res.json();
+      if (data.status === 'valid') {
+        const desc = data.type === 'fixed' ? '£' + data.value.toFixed(2) + ' off' : data.value + '% off';
+        activeDiscounts.push({ code, type: data.type, value: data.value, description: desc });
+        msgEl.innerHTML = '';
+        input.value = '';
+        updateBasketUI();
+        updateDiscountTags();
+      } else if (data.status === 'used') {
+        msgEl.innerHTML = '<div class="discount-msg-el discount-error">This code has already been used.</div>';
+      } else {
+        msgEl.innerHTML = '<div class="discount-msg-el discount-error">Invalid code. Please check and try again.</div>';
+      }
+    } catch(err) {
+      msgEl.innerHTML = '<div class="discount-msg-el discount-error">Could not verify code. Please try again.</div>';
     }
   }
 
-  function removeDiscount() {
-    activeDiscount = null;
-    document.getElementById('discount-applied').style.display = 'none';
-    const inp = document.getElementById('discount-input');
-    if (inp) { inp.disabled = false; inp.value = ''; }
+  function removeDiscount(idx) {
+    if (idx === undefined) { activeDiscounts = []; } else { activeDiscounts.splice(idx, 1); }
     document.getElementById('discount-msg').innerHTML = '';
+    document.getElementById('discount-input').disabled = false;
     updateBasketUI();
+    updateDiscountTags();
+  }
+
+  function updateDiscountTags() {
+    const applied = document.getElementById('discount-applied');
+    const tagsEl = document.getElementById('discount-applied-text');
+    if (!activeDiscounts.length) { applied.style.display = 'none'; tagsEl.innerHTML = ''; return; }
+    applied.style.display = 'flex';
+    tagsEl.innerHTML = activeDiscounts.map((d, i) =>
+      '<span style="display:inline-flex;align-items:center;gap:4px;margin-right:4px;">' + d.code + ' (' + d.description + ')' +
+      '<button onclick="removeDiscount(' + i + ')" style="background:none;border:none;cursor:pointer;color:#2a7a3a;font-size:0.9rem;padding:0 0 0 4px;">&#x2715;</button></span>'
+    ).join('');
   }
 
   function initShop() {
@@ -589,15 +606,19 @@
       </div>`).join('');
 
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const discAmt = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const discAmt = activeDiscounts.reduce((total, d) => {
+      const amt = d.type === 'fixed' ? d.value : subtotal * d.value / 100;
+      return total + amt;
+    }, 0);
+    const discAmtFinal = Math.min(discAmt, subtotal);
     const discSub = subtotal - discAmt;
     const orderTotal = discSub + 6.00;
     const discEl = document.getElementById('basket-discount');
     const referEl = document.getElementById('refer-banner');
     if (discEl) discEl.style.display = 'block';
     if (referEl) referEl.style.display = 'block';
-    const discRow = activeDiscount
-      ? `<div class="total-row" style="color:#2a7a3a;font-size:0.85rem;"><span class="total-label">Discount (${activeDiscount.code} ${activeDiscount.pct}%)</span><span>-£${discAmt.toFixed(2)}</span></div>`
+    const discRow = activeDiscounts.length
+      ? activeDiscounts.map(d => `<div class="total-row" style="color:#2a7a3a;font-size:0.85rem;"><span class="total-label">Discount (${d.code} ${d.description})</span><span>-£${(d.type==="fixed" ? Math.min(d.value,subtotal) : subtotal*d.value/100).toFixed(2)}</span></div>`).join("")
       : '';
     total.innerHTML = `
       <div class="total-row"><span class="total-label">Subtotal</span><span style="font-weight:700;color:var(--text);">£${subtotal.toFixed(2)}</span></div>
@@ -616,10 +637,14 @@
   function openCheckout() {
     if (basket.length === 0) { alert('Your basket is empty'); return; }
     const subtotal = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const discAmt  = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const discAmt = activeDiscounts.reduce((total, d) => {
+      const amt = d.type === 'fixed' ? d.value : subtotal * d.value / 100;
+      return total + amt;
+    }, 0);
+    const discAmtFinal = Math.min(discAmt, subtotal);
     const total    = subtotal - discAmt + 6;
-    const discRow  = activeDiscount
-      ? '<div class="order-summary-item" style="color:#2a7a3a;"><span>Discount (' + activeDiscount.code + ' ' + activeDiscount.pct + '% off)</span><span>-£' + discAmt.toFixed(2) + '</span></div>'
+    const discRow  = activeDiscounts.length
+      ? activeDiscounts.map(d => '<div class="order-summary-item" style="color:#2a7a3a;"><span>Discount (' + d.code + ' ' + d.description + ')</span><span>-£' + (d.type==="fixed" ? Math.min(d.value,subtotal) : subtotal*d.value/100).toFixed(2) + '</span></div>').join('')
       : '';
     document.getElementById('checkout-summary').innerHTML =
       basket.map(function(i) { return '<div class="order-summary-item"><span>' + i.name + ' × ' + i.quantity + '</span><span>£' + (i.price * i.quantity).toFixed(2) + '</span></div>'; }).join('') +
@@ -648,10 +673,14 @@
 
     const orderNum  = 'NVG-' + Math.floor(1000 + Math.random() * 9000);
     const subtotal  = basket.reduce((s, i) => s + (i.price * i.quantity), 0);
-    const discAmt   = activeDiscount ? (subtotal * activeDiscount.pct / 100) : 0;
+    const discAmt = activeDiscounts.reduce((total, d) => {
+      const amt = d.type === 'fixed' ? d.value : subtotal * d.value / 100;
+      return total + amt;
+    }, 0);
+    const discAmtFinal = Math.min(discAmt, subtotal);
     const invTotal  = subtotal - discAmt + 6.00;
 
-    if (activeDiscount) {
+    if (activeDiscounts.length) {
       const usedCodes = JSON.parse(localStorage.getItem('nvg_used_codes') || '[]');
       if (!usedCodes.includes(activeDiscount.code)) { usedCodes.push(activeDiscount.code); localStorage.setItem('nvg_used_codes', JSON.stringify(usedCodes)); }
     }
@@ -664,13 +693,21 @@
     msg += '\n*Delivery:* £6.00\n*Total:* £' + invTotal.toFixed(2);
     if (notes) msg += '\n\n*Notes:* ' + notes;
 
+    // Redeem all codes
+    for (const d of activeDiscounts) {
+      fetch('/api/discount', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: d.code, action: 'redeem' }) }).catch(() => {});
+    }
     window.open('https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank');
 
     const orders = JSON.parse(localStorage.getItem('nvg_orders') || '[]');
-    orders.push({ orderNum, name, email, address, items: basket.slice(), subtotal: subtotal.toFixed(2), discountCode: activeDiscount ? activeDiscount.code : null, discountPct: activeDiscount ? activeDiscount.pct : 0, discAmt: discAmt.toFixed(2), total: invTotal.toFixed(2), date: new Date().toISOString() });
+    orders.push({ orderNum, name, email, address, items: basket.slice(), subtotal: subtotal.toFixed(2), discountCodes: activeDiscounts.map(d=>d.code), discAmt: discAmtFinal.toFixed(2), total: invTotal.toFixed(2), date: new Date().toISOString() });
     localStorage.setItem('nvg_orders', JSON.stringify(orders));
 
-    basket = []; activeDiscount = null; updateBasketUI(); closeCheckout();
+    // Redeem all discount codes
+    activeDiscounts.forEach(d => {
+      fetch('/api/discount', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: d.code, action: 'redeem' }) }).catch(()=>{});
+    });
+    basket = []; activeDiscounts = []; updateDiscountTags(); updateBasketUI(); closeCheckout();
     document.getElementById('checkout-form').reset();
   }
 

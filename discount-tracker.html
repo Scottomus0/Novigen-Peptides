@@ -62,7 +62,7 @@
 <body>
 <header>
   <h1>🔑 Novigen — Discount Code Tracker</h1>
-  <span>Admin Panel · Data stored in browser localStorage</span>
+  <span>Admin Panel · Codes stored in GitHub · Single-use across all devices</span>
 </header>
 
 <div class="wrap">
@@ -94,7 +94,11 @@
           <option value="0" selected>Unlimited</option>
         </select>
       </div>
-      <button class="btn btn-primary" onclick="generateCode()" style="height:38px;">⚡ Generate Code</button>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-size:0.72rem;font-weight:700;color:var(--text-subtle);text-transform:uppercase;letter-spacing:0.08em;">Admin Key</label>
+        <input id="admin-key" type="password" placeholder="Enter admin key" style="padding:8px 12px;border:1px solid var(--rule);border-radius:8px;font-family:Outfit,sans-serif;font-size:0.85rem;outline:none;width:160px;">
+      </div>
+      <select id="gen-type" style="padding:8px;border:1px solid var(--rule);border-radius:8px;font-family:Outfit,sans-serif;font-size:0.85rem;"><option value="pct">% off</option><option value="fixed">£ fixed</option></select><input id="admin-key" type="password" placeholder="Admin key" style="padding:8px;border:1px solid var(--rule);border-radius:8px;font-family:Outfit,sans-serif;font-size:0.85rem;width:120px;"><button class="btn btn-primary" onclick="generateCode()" style="height:38px;">⚡ Generate Code</button>
       <button class="btn btn-secondary" onclick="generateBatch()" style="height:38px;">Generate 5</button>
       <span id="gen-status" style="font-size:0.78rem;color:#1a6a2a;font-weight:700;align-self:center;display:none;">✓ Code generated!</span>
     </div>
@@ -137,7 +141,7 @@
     </div>
   </div>
 
-  <p style="font-size:0.75rem;color:var(--text-subtle);text-align:center;margin-top:16px;">Note: Data is stored in the customer's browser. This page reads from the same localStorage. For cross-device tracking, use the order log exported from here alongside your WhatsApp order records.</p>
+  <p style="font-size:0.75rem;color:var(--text-subtle);text-align:center;margin-top:16px;">Note: Codes are stored in this browser only. For codes to work for customers, copy them into shop.html's DISCOUNT_CODES list, or use the button below to copy all active codes ready to paste.</p>
 </div>
 
 <script>
@@ -156,21 +160,36 @@
   }
 
   // ── Code Generator ──
-  function generateCode() {
+  async function generateCode() {
+    var prefix  = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
+    var value   = parseFloat(document.getElementById('gen-pct').value);
+    var type    = document.getElementById('gen-type').value;
+    var adminKey = document.getElementById('admin-key').value.trim();
+    var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
+    var code    = prefix + suffix;
+    var st = document.getElementById('gen-status');
+
+    if (!adminKey) { alert('Please enter your admin key.'); return; }
+
     try {
-      var prefix  = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
-      var pct     = parseInt(document.getElementById('gen-pct').value);
-      var maxUses = parseInt(document.getElementById('gen-uses').value);
-      var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
-      var code    = prefix + suffix;
-      var codes   = getCodes();
-      codes.push({ code: code, pct: pct, maxUses: maxUses, uses: 0, created: new Date().toISOString() });
-      saveCodes(codes);
-      renderCodes();
-      var st = document.getElementById('gen-status');
-      if (st) { st.style.display = 'inline'; setTimeout(function(){ st.style.display = 'none'; }, 2000); }
+      var res = await fetch('/api/add-discount', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: code, type: type, value: value, adminKey: adminKey })
+      });
+      var data = await res.json();
+      if (data.status === 'created') {
+        if (st) { st.textContent = '✓ Code ' + code + ' saved!'; st.style.display = 'inline'; setTimeout(function(){ st.style.display = 'none'; }, 3000); }
+        // Also save locally for display
+        var codes = getCodes();
+        codes.push({ code: code, pct: value, type: type, maxUses: 1, uses: 0, created: new Date().toISOString() });
+        saveCodes(codes);
+        renderCodes();
+      } else {
+        alert('Error: ' + (data.error || 'Unknown error'));
+      }
     } catch(e) {
-      alert('Error generating code: ' + e.message);
+      alert('Network error. Check your connection and try again.');
     }
   }
 
@@ -306,6 +325,20 @@
   // ── Init ──
   renderCodes();
   render();
+
+  function copyForShop() {
+    var codes = getCodes();
+    if (!codes.length) { alert('No codes generated yet.'); return; }
+    var obj = {};
+    codes.forEach(function(c) { if (c.active !== false) obj[c.code] = c.pct; });
+    var text = JSON.stringify(obj, null, 2);
+    navigator.clipboard.writeText(text).then(function() {
+      var st = document.getElementById('copy-status');
+      st.style.display = 'inline';
+      setTimeout(function(){ st.style.display = 'none'; }, 2000);
+    });
+  }
+
 </script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+{
+  "WELCOME10": {
+    "type": "pct",
+    "value": 10,
+    "maxUses": null,
+    "uses": 0,
+    "active": true,
+    "note": "Welcome discount 10% off"
+  },
+  "REFERRAL5": {
+    "type": "pct",
+    "value": 5,
+    "maxUses": null,
+    "uses": 0,
+    "active": true,
+    "note": "Referral discount 5% off"
+  },
+  "NOVI10": {
+    "type": "pct",
+    "value": 10,
+    "maxUses": null,
+    "uses": 0,
+    "active": true,
+    "note": "Novigen 10% off"
+  },
+  "NOVI6OFF": {
+    "type": "fixed",
+    "value": 6,
+    "maxUses": 1,
+    "uses": 0,
+    "active": true,
+    "note": "£6 off - single use"
+  }
+}
