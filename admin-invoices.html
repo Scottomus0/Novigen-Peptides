@@ -51,7 +51,7 @@
     <small>Admin only · Keep this URL private · novigenpeptides.com/admin-invoices.html</small>
   </div>
   <div class="gap">
-    <button class="btn btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
+    <button onclick="loadFromGitHub()" style="background:linear-gradient(135deg,#2a7a5a,#4aab7a);color:white;border:none;padding:10px 20px;border-radius:8px;font-family:Outfit,sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;margin-right:8px;">🔄 Load All Orders</button><button class="btn btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
     <button class="btn btn-danger" onclick="clearAll()">✕ Clear All</button>
   </div>
 </header>
@@ -88,7 +88,7 @@
     </table>
   </div>
 
-  <p style="font-size:0.74rem;color:var(--text-subtle);text-align:center;">Data is stored in browser localStorage on the device used to place orders. For best results, view this page on the same device/browser customers use to shop, or use the Export CSV to save records.</p>
+  <p style="font-size:0.74rem;color:var(--text-subtle);text-align:center;">Click "🔄 Load All Orders" to pull all orders from the server (requires admin key). Orders are also cached locally in this browser.</p>
 </div>
 
 <script>
