@@ -76,7 +76,7 @@
         <input type="text" id="gen-prefix" class="gen-input" value="NOVI" placeholder="NOVI" maxlength="10" style="text-transform:uppercase;">
       </div>
       <div class="gen-field">
-        <label class="gen-label">Discount %</label>
+        <label class="gen-label" id="pct-label">Discount %</label>
         <select id="gen-pct" class="gen-select">
           <option value="5">5% off</option>
           <option value="10" selected>10% off</option>
@@ -94,12 +94,25 @@
           <option value="0" selected>Unlimited</option>
         </select>
       </div>
-      <div style="display:flex;flex-direction:column;gap:4px;">
-        <label style="font-size:0.72rem;font-weight:700;color:var(--text-subtle);text-transform:uppercase;letter-spacing:0.08em;">Admin Key</label>
-        <input id="admin-key" type="password" placeholder="Enter admin key" style="padding:8px 12px;border:1px solid var(--rule);border-radius:8px;font-family:Outfit,sans-serif;font-size:0.85rem;outline:none;width:160px;">
+      <div class="gen-field">
+        <label class="gen-label">Type</label>
+        <select id="gen-type" class="gen-select" onchange="toggleDiscountInput()">
+          <option value="pct">% off</option>
+          <option value="fixed">£ fixed</option>
+        </select>
       </div>
-      <select id="gen-type" style="padding:8px;border:1px solid var(--rule);border-radius:8px;font-family:Outfit,sans-serif;font-size:0.85rem;"><option value="pct">% off</option><option value="fixed">£ fixed</option></select><input id="admin-key" type="password" placeholder="Admin key" style="padding:8px;border:1px solid var(--rule);border-radius:8px;font-family:Outfit,sans-serif;font-size:0.85rem;width:120px;"><button class="btn btn-primary" onclick="generateCode()" style="height:38px;">⚡ Generate Code</button>
-      <button class="btn btn-secondary" onclick="generateBatch()" style="height:38px;">Generate 5</button>
+      <div class="gen-field" id="fixed-amount-field" style="display:none;">
+        <label class="gen-label">£ Amount</label>
+        <input type="number" id="gen-fixed-amount" class="gen-input" value="6" min="1" max="100" step="0.50" style="width:80px;">
+      </div>
+      <div class="gen-field">
+        <label class="gen-label">Admin Key</label>
+        <input id="admin-key" type="password" class="gen-input" placeholder="Enter admin key" style="width:140px;">
+      </div>
+      <div style="display:flex;align-items:flex-end;gap:8px;">
+        <button class="btn btn-primary" onclick="generateCode()" style="height:38px;">⚡ Generate Code</button>
+        <button class="btn btn-secondary" onclick="generateBatch()" style="height:38px;">Generate 5</button>
+      </div>
       <span id="gen-status" style="font-size:0.78rem;color:#1a6a2a;font-weight:700;align-self:center;display:none;">✓ Code generated!</span>
     </div>
     <div class="code-list" id="code-list">
@@ -162,8 +175,10 @@
   // ── Code Generator ──
   async function generateCode() {
     var prefix  = (document.getElementById('gen-prefix').value.trim().toUpperCase() || 'NOVI');
-    var value   = parseFloat(document.getElementById('gen-pct').value);
-    var type    = document.getElementById('gen-type').value;
+    var type    = document.getElementById('gen-type') ? document.getElementById('gen-type').value : 'pct';
+    var value   = type === 'fixed' 
+      ? parseFloat(document.getElementById('gen-fixed-amount') ? document.getElementById('gen-fixed-amount').value : 10)
+      : parseFloat(document.getElementById('gen-pct').value);
     var adminKey = document.getElementById('admin-key').value.trim();
     var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
     var code    = prefix + suffix;
@@ -337,6 +352,23 @@
       st.style.display = 'inline';
       setTimeout(function(){ st.style.display = 'none'; }, 2000);
     });
+  }
+
+
+  function toggleDiscountInput() {
+    var type = document.getElementById('gen-type').value;
+    var fixedField = document.getElementById('fixed-amount-field');
+    var pctField = document.getElementById('gen-pct');
+    var pctLabel = document.getElementById('pct-label');
+    if (type === 'fixed') {
+      fixedField.style.display = 'flex';
+      pctField.style.display = 'none';
+      if (pctLabel) pctLabel.style.display = 'none';
+    } else {
+      fixedField.style.display = 'none';
+      pctField.style.display = '';
+      if (pctLabel) pctLabel.style.display = '';
+    }
   }
 
 </script>
