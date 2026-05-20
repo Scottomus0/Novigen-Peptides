@@ -73,9 +73,10 @@
     "type": "pct",
     "value": 10,
     "maxUses": 1,
-    "uses": 0,
+    "uses": 1,
     "active": true,
     "note": "TEST generated code",
-    "created": "2026-05-20T20:45:38.737Z"
+    "created": "2026-05-20T20:45:38.737Z",
+    "last_used": "2026-05-20T20:46:10.692Z"
   }
 }
