@@ -51,7 +51,7 @@
     <small>Admin only · Keep this URL private · novigenpeptides.com/admin-invoices.html</small>
   </div>
   <div class="gap">
-    <button onclick="loadFromGitHub()" style="background:linear-gradient(135deg,#2a7a5a,#4aab7a);color:white;border:none;padding:10px 20px;border-radius:8px;font-family:Outfit,sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;margin-right:8px;">🔄 Load All Orders</button><button class="btn btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
+    <input id="admin-key-input" type="password" placeholder="Admin key" style="padding:8px 12px;border:1px solid #c8daf0;border-radius:8px;font-family:Outfit,sans-serif;font-size:0.82rem;outline:none;width:130px;margin-right:6px;"><button onclick="loadFromGitHub()" style="background:linear-gradient(135deg,#2a7a5a,#4aab7a);color:white;border:none;padding:10px 20px;border-radius:8px;font-family:Outfit,sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;margin-right:8px;">🔄 Load All Orders</button><button class="btn btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
     <button class="btn btn-danger" onclick="clearAll()">✕ Clear All</button>
   </div>
 </header>
@@ -97,8 +97,8 @@
   }
 
   async function loadFromGitHub() {
-    const adminKey = prompt('Enter admin key to load all orders from server:');
-    if (!adminKey) return;
+    const adminKey = document.getElementById('admin-key-input').value.trim();
+    if (!adminKey) { alert('Please enter your admin key.'); return; }
     try {
       const res = await fetch('/api/orders', {
         method: 'POST',
