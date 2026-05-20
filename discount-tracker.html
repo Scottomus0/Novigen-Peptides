@@ -159,7 +159,7 @@
 
 <script>
   // ── Data helpers ──
-  function getOrders() { return JSON.parse(localStorage.getItem('nvg_order_log') || '[]'); }
+  function getOrders() { return JSON.parse(localStorage.getItem('nvg_orders') || '[]'); }
   function getCodes() {
     try { return JSON.parse(localStorage.getItem('nvg_custom_codes') || '[]'); }
     catch(e) { return []; }
@@ -332,7 +332,7 @@
 
   function clearLog() {
     if (confirm('Clear all discount log data? This cannot be undone.')) {
-      localStorage.removeItem('nvg_order_log');
+      localStorage.removeItem('nvg_orders');
       render();
     }
   }

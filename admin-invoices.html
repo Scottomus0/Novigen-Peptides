@@ -96,6 +96,28 @@
     return JSON.parse(localStorage.getItem('nvg_orders') || '[]');
   }
 
+  async function loadFromGitHub() {
+    const adminKey = prompt('Enter admin key to load all orders from server:');
+    if (!adminKey) return;
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey },
+        body: JSON.stringify({ action: 'list' })
+      });
+      const data = await res.json();
+      if (data.orders) {
+        localStorage.setItem('nvg_orders', JSON.stringify(data.orders));
+        renderInvoices();
+        alert('Loaded ' + data.orders.length + ' orders from server.');
+      } else {
+        alert('Error: ' + (data.error || 'Could not load orders'));
+      }
+    } catch(e) {
+      alert('Error connecting to server: ' + e.message);
+    }
+  }
+
   function getType(total) {
     return total >= 100 ? 'coaching' : 'consultation';
   }

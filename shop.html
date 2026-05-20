@@ -699,9 +699,13 @@
     }
     window.open('https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank');
 
+    const orderData = { orderNum, name, email, address, items: basket.slice(), subtotal: subtotal.toFixed(2), discountCodes: activeDiscounts.map(d=>d.code), discAmt: discAmtFinal.toFixed(2), total: invTotal.toFixed(2), date: new Date().toISOString() };
+    // Save to localStorage (for same-device invoice view)
     const orders = JSON.parse(localStorage.getItem('nvg_orders') || '[]');
-    orders.push({ orderNum, name, email, address, items: basket.slice(), subtotal: subtotal.toFixed(2), discountCodes: activeDiscounts.map(d=>d.code), discAmt: discAmtFinal.toFixed(2), total: invTotal.toFixed(2), date: new Date().toISOString() });
+    orders.push(orderData);
     localStorage.setItem('nvg_orders', JSON.stringify(orders));
+    // Also save to GitHub via API (cross-device, persistent)
+    fetch('/api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'save', order: orderData }) }).catch(() => {});
 
     // Redeem all discount codes
     activeDiscounts.forEach(d => {

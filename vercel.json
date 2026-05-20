@@ -3,7 +3,8 @@
   "functions": {
     "api/verify.js": { "maxDuration": 10 },
     "api/discount.js": { "maxDuration": 10 },
-    "api/discount-admin-api.js": { "maxDuration": 10 }
+    "api/discount-admin-api.js": { "maxDuration": 10 },
+    "api/orders.js": { "maxDuration": 10 }
   },
   "rewrites": [
     { "source": "/guides", "destination": "/guides.html" },
