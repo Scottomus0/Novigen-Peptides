@@ -88,5 +88,14 @@
     "note": "TEST generated code",
     "created": "2026-05-20T22:58:10.885Z",
     "last_used": "2026-05-20T22:58:27.175Z"
+  },
+  "NOVIV4L7": {
+    "type": "pct",
+    "value": 10,
+    "maxUses": 1,
+    "uses": 0,
+    "active": true,
+    "note": "NOVI generated code",
+    "created": "2026-05-22T18:37:08.537Z"
   }
 }
