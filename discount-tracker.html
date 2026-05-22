@@ -181,7 +181,8 @@
       : parseFloat(document.getElementById('gen-pct').value);
     var adminKey = document.getElementById('admin-key').value.trim();
     var maxUses = parseInt(document.getElementById('gen-uses').value) || 1;
-    var suffix  = Math.random().toString(36).substring(2,6).toUpperCase();
+    var exact   = document.getElementById('gen-exact') && document.getElementById('gen-exact').checked;
+    var suffix  = exact ? '' : Math.random().toString(36).substring(2,6).toUpperCase();
     var code    = prefix + suffix;
     var st = document.getElementById('gen-status');
 
