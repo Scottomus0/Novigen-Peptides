@@ -72,8 +72,12 @@
     <h2>🔑 Generate & Manage Discount Codes</h2>
     <div class="gen-row">
       <div class="gen-field">
-        <label class="gen-label">Code Prefix</label>
-        <input type="text" id="gen-prefix" class="gen-input" value="NOVI" placeholder="NOVI" maxlength="10" style="text-transform:uppercase;">
+        <label class="gen-label">Code</label>
+        <input type="text" id="gen-prefix" class="gen-input" value="NOVI" placeholder="NOVI" maxlength="20" style="text-transform:uppercase;width:120px;" oninput="this.value=this.value.toUpperCase()">
+      </div>
+      <div class="gen-field" style="align-items:center;">
+        <label class="gen-label">Exact?</label>
+        <input type="checkbox" id="gen-exact" style="width:18px;height:18px;cursor:pointer;margin-top:4px;" title="Tick to use code exactly as typed">
       </div>
       <div class="gen-field">
         <label class="gen-label" id="pct-label">Discount %</label>
