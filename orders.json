@@ -54,5 +54,33 @@
     "total": "114.00",
     "date": "2026-05-20T22:58:27.310Z",
     "savedAt": "2026-05-20T22:58:27.574Z"
+  },
+  {
+    "orderNum": "NVG-7894",
+    "name": "Aaron Cash",
+    "email": "aaroncash@hotmail.com",
+    "address": "2940 Chestnut Ave, Long Beach, 90806",
+    "items": [
+      {
+        "id": 1,
+        "img": "img-reta-20.png",
+        "name": "Retatrutide® 20mg",
+        "cat": "ret",
+        "emoji": "💉",
+        "price": 120,
+        "dose": "20mg pre-filled pen",
+        "description": "A triple GLP-1/GIP/Glucagon receptor agonist. Research chemical for scientific study only.",
+        "research": true,
+        "quantity": 3
+      }
+    ],
+    "subtotal": "360.00",
+    "discountCodes": [
+      "CBC10"
+    ],
+    "discAmt": "36.00",
+    "total": "330.00",
+    "date": "2026-05-22T21:19:54.480Z",
+    "savedAt": "2026-05-22T21:19:55.502Z"
   }
 ]
