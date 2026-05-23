@@ -111,10 +111,9 @@
     "type": "pct",
     "value": 10,
     "maxUses": 1,
-    "uses": 1,
+    "uses": 0,
     "active": true,
     "note": "CBC10 generated code",
-    "created": "2026-05-22T20:29:58.265Z",
-    "last_used": "2026-05-22T21:19:54.652Z"
+    "created": "2026-05-23T13:51:11.530Z"
   }
 }
