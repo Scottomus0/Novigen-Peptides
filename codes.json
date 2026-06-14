@@ -49,9 +49,9 @@
   },
   "NVG-4LPG-CKCU-ZKAH": {
     "valid": true,
-    "scan_count": 0,
-    "first_scanned": null,
-    "last_scanned": null
+    "scan_count": 1,
+    "first_scanned": "2026-06-14T18:15:16.563Z",
+    "last_scanned": "2026-06-14T18:15:16.563Z"
   },
   "NVG-BDCW-22PT-WHZE": {
     "valid": true,
