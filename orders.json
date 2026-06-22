@@ -350,5 +350,33 @@
     "total": "114.00",
     "date": "2026-06-19T15:26:24.565Z",
     "savedAt": "2026-06-19T15:26:27.260Z"
+  },
+  {
+    "orderNum": "NVG-4711",
+    "name": "MS JANA MALOVA",
+    "email": "jaanika_1@hotmail.com",
+    "address": "91 MIDDLEMARSH, Leominster, HR6 8UP",
+    "items": [
+      {
+        "id": 12,
+        "img": "img-mt2-10.png",
+        "name": "Melanotan II 10mg",
+        "cat": "mt2",
+        "emoji": "☀️",
+        "price": 30,
+        "dose": "10mg pre-filled pen",
+        "description": "Cyclic heptapeptide alpha-MSH analogue. MC1R/MC4R agonist. Research chemical for scientific study only.",
+        "research": false,
+        "quantity": 2
+      }
+    ],
+    "subtotal": "60.00",
+    "discountCodes": [
+      "WELCOME10"
+    ],
+    "discAmt": "6.00",
+    "total": "60.00",
+    "date": "2026-06-22T12:30:08.055Z",
+    "savedAt": "2026-06-22T12:30:09.082Z"
   }
 ]
