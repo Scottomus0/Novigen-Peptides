@@ -205,9 +205,9 @@
   },
   "NVG-RACU-NJGD-LUUW": {
     "valid": true,
-    "scan_count": 0,
-    "first_scanned": null,
-    "last_scanned": null
+    "scan_count": 1,
+    "first_scanned": "2026-06-23T16:18:29.868Z",
+    "last_scanned": "2026-06-23T16:18:29.868Z"
   },
   "NVG-KAXG-F7UC-8UFK": {
     "valid": true,
