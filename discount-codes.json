@@ -3,10 +3,10 @@
     "type": "pct",
     "value": 10,
     "maxUses": null,
-    "uses": 7,
+    "uses": 8,
     "active": true,
     "note": "Welcome discount 10% off",
-    "last_used": "2026-06-22T12:30:08.157Z"
+    "last_used": "2026-06-27T19:08:15.352Z"
   },
   "REFERRAL5": {
     "type": "pct",
