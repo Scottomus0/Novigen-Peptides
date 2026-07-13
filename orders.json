@@ -458,5 +458,33 @@
     "total": "114.00",
     "date": "2026-06-27T19:08:15.106Z",
     "savedAt": "2026-06-27T19:08:16.321Z"
+  },
+  {
+    "orderNum": "NVG-7525",
+    "name": "Niall Doughty",
+    "email": "nialldoughty@hotmail.co.uk",
+    "address": "16 poplar drive, Middlewich, Cw100ag",
+    "items": [
+      {
+        "id": 6,
+        "img": "img-tirz-60.png",
+        "name": "Tirzepatide® 60mg",
+        "cat": "tir",
+        "emoji": "💊",
+        "price": 160,
+        "dose": "60mg pre-filled pen",
+        "description": "A dual GLP-1/GIP receptor agonist at higher concentration. Research chemical for scientific study only.",
+        "research": false,
+        "quantity": 1
+      }
+    ],
+    "subtotal": "160.00",
+    "discountCodes": [
+      "WELCOME10"
+    ],
+    "discAmt": "16.00",
+    "total": "150.00",
+    "date": "2026-07-13T22:54:01.068Z",
+    "savedAt": "2026-07-13T22:54:02.477Z"
   }
 ]
