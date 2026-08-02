@@ -183,6 +183,9 @@
   .product-card[data-product="nad"]::before          { background: linear-gradient(90deg, #1a6a8a, #3a9abf, transparent); }
   .product-card[data-product="ghkcu"]::before        { background: linear-gradient(90deg, #2a7a3a, #4aab5a, transparent); }
   .product-card[data-product="mt2"]::before          { background: linear-gradient(90deg, #8a3a6a, #bf5a9a, transparent); }
+  .product-card[data-product="motsc"]::before        { background: linear-gradient(90deg, #1a6a8a, #2a9abf, transparent); }
+  .product-card[data-product="tesamorelin"]::before  { background: linear-gradient(90deg, #2a5a8a, #4a8abf, transparent); }
+  .product-card[data-product="glutathione"]::before  { background: linear-gradient(90deg, #3a7a3a, #5aaa5a, transparent); }
 
   .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(42,90,138,0.14); }
 
@@ -203,6 +206,9 @@
   .product-card[data-product="nad"]         .product-card-header { background: transparent;   }
   .product-card[data-product="ghkcu"]       .product-card-header { background: transparent;   }
   .product-card[data-product="mt2"]         .product-card-header { background: transparent;   }
+  .product-card[data-product="motsc"]       .product-card-header { background: transparent;   }
+  .product-card[data-product="tesamorelin"] .product-card-header { background: transparent;   }
+  .product-card[data-product="glutathione"] .product-card-header { background: transparent;   }
 
   .product-card-body { padding: 22px 22px 26px; flex: 1; display: flex; flex-direction: column; background: rgba(255,255,255,0.7); }
 
@@ -216,6 +222,9 @@
   .product-card[data-product="nad"]         .product-tag { color: #1a6a8a; background: rgba(26,106,138,0.08); border: 1px solid rgba(26,106,138,0.18); }
   .product-card[data-product="ghkcu"]       .product-tag { color: #2a7a3a; background: rgba(42,122,58,0.08);  border: 1px solid rgba(42,122,58,0.18); }
   .product-card[data-product="mt2"]         .product-tag { color: #8a3a6a; background: rgba(138,58,106,0.08); border: 1px solid rgba(138,58,106,0.18); }
+  .product-card[data-product="motsc"]       .product-tag { color: #1a6a8a; background: rgba(26,106,138,0.08); border: 1px solid rgba(26,106,138,0.18); }
+  .product-card[data-product="tesamorelin"] .product-tag { color: #2a5a8a; background: rgba(42,90,138,0.08); border: 1px solid rgba(42,90,138,0.18); }
+  .product-card[data-product="glutathione"] .product-tag { color: #3a7a3a; background: rgba(58,122,58,0.08); border: 1px solid rgba(58,122,58,0.18); }
 
   .product-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 20px; font-weight: 300; flex: 1; }
 
@@ -246,6 +255,9 @@
   .product-card[data-product="nad"]         .product-btn { background: linear-gradient(135deg, #1a6a8a, #3a9abf); }
   .product-card[data-product="ghkcu"]       .product-btn { background: linear-gradient(135deg, #2a7a3a, #4aab5a); }
   .product-card[data-product="mt2"]         .product-btn { background: linear-gradient(135deg, #8a3a6a, #bf5a9a); }
+  .product-card[data-product="motsc"]       .product-btn { background: linear-gradient(135deg, #1a6a8a, #2a9abf); }
+  .product-card[data-product="tesamorelin"] .product-btn { background: linear-gradient(135deg, #2a5a8a, #4a8abf); }
+  .product-card[data-product="glutathione"] .product-btn { background: linear-gradient(135deg, #3a7a3a, #5aaa5a); }
 
   /* ── Footer ── */
   footer { border-top: 1px solid var(--rule); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: white; box-shadow: 0 -2px 16px rgba(42,90,138,0.05); }
@@ -495,6 +507,35 @@
         <div class="product-name">Melanotan II</div>
         <div class="product-tag">10mg Vial — MT2</div>
         <div class="product-desc">α-MSH analogue. Loading and maintenance protocols, UV exposure guidance, side effect management, and skin monitoring advice.</div>
+        <span class="product-btn">View Guide →</span>
+      </div>
+
+    <a href="guides-detailed.html#motsc" class="product-card" data-product="motsc">
+      <div class="product-card-header">⚡</div>
+      <div class="product-card-body">
+        <div class="product-name">MOTS-C</div>
+        <div class="product-tag">40mg Pen — Mitochondrial Peptide</div>
+        <div class="product-desc">Mitochondria-derived peptide. Cellular energy support, metabolic health, performance and recovery protocols.</div>
+        <span class="product-btn">View Guide →</span>
+      </div>
+    </a>
+
+    <a href="guides-detailed.html#tesamorelin" class="product-card" data-product="tesamorelin">
+      <div class="product-card-header">⚡</div>
+      <div class="product-card-body">
+        <div class="product-name">Tesamorelin</div>
+        <div class="product-tag">20mg Pen — GHRH Analogue</div>
+        <div class="product-desc">Synthetic growth hormone releasing peptide. GH secretion support, dosage protocols and administration guidance.</div>
+        <span class="product-btn">View Guide →</span>
+      </div>
+    </a>
+
+    <a href="guides-detailed.html#glutathione" class="product-card" data-product="glutathione">
+      <div class="product-card-header">🌿</div>
+      <div class="product-card-body">
+        <div class="product-name">Glutathione</div>
+        <div class="product-tag">1500mg Pen — Master Antioxidant</div>
+        <div class="product-desc">Master antioxidant tripeptide. Detoxification support, skin wellness and cellular health protocols.</div>
         <span class="product-btn">View Guide →</span>
       </div>
     </a>
