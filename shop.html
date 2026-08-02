@@ -275,6 +275,26 @@
   .promo-banner { background: linear-gradient(90deg, #1a3a5a, #2a6aaa, #1a3a5a); color: #fff; text-align: center; padding: 9px 16px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; position: relative; z-index: 100; }
   .promo-banner strong { font-weight: 800; letter-spacing: 0.06em; }
   .promo-banner code { background: rgba(255,255,255,0.18); padding: 2px 8px; border-radius: 5px; font-weight: 800; letter-spacing: 0.08em; font-family: 'Outfit',sans-serif; }
+
+  /* WhatsApp Promo Popup */
+  .wa-popup-overlay { display:none; position:fixed; inset:0; background:rgba(13,31,56,0.55); z-index:10000; align-items:center; justify-content:center; backdrop-filter:blur(4px); animation:modalIn 0.2s ease; }
+  .wa-popup-overlay.open { display:flex; }
+  .wa-popup-box { background:#fff; border-radius:20px; padding:36px 32px 28px; max-width:420px; width:90%; text-align:center; position:relative; box-shadow:0 24px 64px rgba(13,31,56,0.18); }
+  .wa-popup-close { position:absolute; top:14px; right:16px; background:none; border:none; font-size:1.3rem; color:var(--text-subtle); cursor:pointer; line-height:1; }
+  .wa-popup-icon { font-size:2.8rem; margin-bottom:12px; }
+  .wa-popup-box h2 { font-family:Outfit,sans-serif; font-weight:800; font-size:1.35rem; color:var(--steel-dark); margin-bottom:8px; letter-spacing:-0.02em; }
+  .wa-popup-box p { font-size:0.88rem; color:var(--text-subtle); line-height:1.65; margin-bottom:20px; }
+  .wa-popup-btn { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#25D366,#128C7E); color:#fff; font-family:Outfit,sans-serif; font-weight:800; font-size:0.95rem; padding:14px 28px; border-radius:12px; text-decoration:none; box-shadow:0 6px 20px rgba(37,211,102,0.3); transition:transform 0.2s,box-shadow 0.2s; }
+  .wa-popup-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(37,211,102,0.4); }
+  .wa-popup-skip { display:block; margin-top:14px; font-size:0.78rem; color:var(--text-subtle); cursor:pointer; text-decoration:underline; background:none; border:none; font-family:Outfit,sans-serif; }
+
+  /* WhatsApp banner in basket */
+  .wa-basket-banner { background:linear-gradient(135deg,rgba(37,211,102,0.08),rgba(18,140,126,0.08)); border:1px solid rgba(37,211,102,0.25); border-radius:10px; padding:12px 14px; margin:0 16px 10px; display:flex; align-items:center; gap:10px; }
+  .wa-basket-banner-text { font-size:0.78rem; color:#0a5a3a; line-height:1.5; flex:1; }
+  .wa-basket-banner-text strong { font-weight:800; display:block; margin-bottom:2px; }
+  .wa-basket-banner a { color:#0a7a4a; font-weight:700; text-decoration:none; white-space:nowrap; font-size:0.78rem; }
+  .wa-basket-banner a:hover { text-decoration:underline; }
+
 </style>
 </head>
 <body>
@@ -374,6 +394,14 @@
   </div>
   <div class="basket-items" id="basket-items">
     <div class="basket-empty">Your basket is empty</div>
+  </div>
+  <div class="wa-basket-banner">
+    <span style="font-size:1.4rem;">💬</span>
+    <div class="wa-basket-banner-text">
+      <strong>Get exclusive discount codes</strong>
+      Join our WhatsApp group for members-only offers.
+    </div>
+    <a href="https://chat.whatsapp.com/Iz78twywXWE1YwFYgFebFY?s=cl&p=i&mlu=4" target="_blank" rel="noopener">Join →</a>
   </div>
   <div class="basket-discount" id="basket-discount" style="display:none;">
     <label style="font-size:0.78rem;font-weight:700;color:var(--text);letter-spacing:0.04em;display:block;margin-bottom:8px;">Discount Code</label>
@@ -724,10 +752,41 @@
   }
 
   document.addEventListener('DOMContentLoaded', initShop);
+
+  // WhatsApp popup
+  function closeWaPopup() {
+    document.getElementById('wa-popup').classList.remove('open');
+    sessionStorage.setItem('wa_popup_seen', '1');
+  }
+  // Show popup after 3 seconds if not seen this session
+  window.addEventListener('DOMContentLoaded', function() {
+    if (!sessionStorage.getItem('wa_popup_seen')) {
+      setTimeout(function() {
+        document.getElementById('wa-popup').classList.add('open');
+      }, 3000);
+    }
+  });
+
 </script>
 <script>
 function mobOpen(){document.getElementById("mob-panel").classList.add("open");document.getElementById("mob-bg").style.display="block";document.body.style.overflow="hidden";}
 function mobClose(){document.getElementById("mob-panel").classList.remove("open");document.getElementById("mob-bg").style.display="none";document.body.style.overflow="";}
 </script>
+
+<!-- WhatsApp Promo Popup -->
+<div class="wa-popup-overlay" id="wa-popup">
+  <div class="wa-popup-box">
+    <button class="wa-popup-close" onclick="closeWaPopup()">&#x2715;</button>
+    <div class="wa-popup-icon">💬</div>
+    <h2>Get Exclusive Discounts</h2>
+    <p>Join our <strong>WhatsApp group</strong> for members-only discount codes, early access to new products, and special offers — not available anywhere else.</p>
+    <a href="https://chat.whatsapp.com/Iz78twywXWE1YwFYgFebFY?s=cl&p=i&mlu=4" target="_blank" rel="noopener" class="wa-popup-btn" onclick="closeWaPopup()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.528 5.853L.044 23.956l6.248-1.637A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.374l-.36-.214-3.707.972.99-3.614-.235-.37A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+      Join WhatsApp Group
+    </a>
+    <button class="wa-popup-skip" onclick="closeWaPopup()">No thanks, continue shopping</button>
+  </div>
+</div>
+
 </body>
 </html>
