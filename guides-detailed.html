@@ -1131,12 +1131,11 @@
     <div class="hero-eyebrow">Official Product Documentation — Educational Purposes Only</div>
     <h1>Novigen Tirzepatide®<br>Usage Guide</h1>
     <p>Please read all instructions carefully before use. Follow each step precisely to ensure safe and effective administration of your Novigen Tirzepatide® pre-filled pen.</p>
-    <div class="product-badge"><span id="tir-badge">Tirzepatide®</span><small>Pre-filled injection pen &nbsp;·&nbsp; Once weekly</small></div>
+    <div class="product-badge"><span id="tir-badge">Tirzepatide® 30mg</span><small>Pre-filled injection pen &nbsp;·&nbsp; Once weekly</small></div>
     <div class="pen-selector">
       <label>Pen size</label>
       <select class="pen-select" onchange="updateTirPen(this.value)">
-        <option value="15" selected>15mg</option>
-        <option value="30">30mg</option>
+        <option value="30" selected>30mg</option>
         <option value="60">60mg</option>
       </select>
     </div>
@@ -1169,9 +1168,9 @@
             <div class="dose-divider"></div>
             <div class="dose-item"><span class="dose-label">Step 2</span><span class="dose-value">5<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">once weekly × 4 wks</span></div>
             <div class="dose-divider"></div>
-            <div class="dose-item"><span class="dose-label">Pen Size</span><span class="dose-value" id="tir-capacity">15<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">per pen</span></div>
+            <div class="dose-item"><span class="dose-label">Pen Size</span><span class="dose-value" id="tir-capacity">30<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">per pen</span></div>
           </div>
-          <span class="supply-badge" id="tir-supply">15mg pen = 6 doses at 2.5mg</span>
+          <span class="supply-badge" id="tir-supply">30mg pen = 12 doses at 2.5mg</span>
           <span class="note">Further increases to 7.5mg, 10mg, 12.5mg, and 15mg may be made in 4-weekly intervals as directed by your prescriber.</span>
         </div></div>
         <div class="step"><div class="step-num">7</div><div class="step-content"><h3>Injection Day</h3><p>Administer on the same day each week, at any time of day, with or without food. If you wish to change your injection day, ensure at least 3 days have passed since your last injection.</p></div></div>
@@ -1212,30 +1211,25 @@
 
     <aside class="sidebar">
       <div class="card">
-        <div class="click-table" id="tir-clicks-15" style="display:block;">
-          <div class="click-table-title" style="background:var(--tir);">15mg Pen (2.4ml BAC = 6.25mg/ml)</div>
+        <div class="click-table" id="tir-clicks-30" style="display:block;">
+          <div class="click-table-title" style="background:var(--tir);">30mg Pen (3ml = 10mg/ml)</div>
           <table><tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
-            <tr><td>2.5mg</td><td>40</td><td>0.40ml</td></tr>
-            <tr class="max-dose"><td>3.75mg</td><td>60</td><td>0.60ml</td></tr>
-          </table></div>
-        <div class="click-table" id="tir-clicks-30" style="display:none;">
-          <div class="click-table-title" style="background:var(--tir);">30mg Pen (2.4ml BAC = 12.5mg/ml)</div>
-          <table><tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
-            <tr><td>2.5mg</td><td>20</td><td>0.20ml</td></tr>
-            <tr><td>5mg</td><td>40</td><td>0.40ml</td></tr>
-            <tr class="max-dose"><td>7.5mg</td><td>60</td><td>0.60ml</td></tr>
+            <tr><td>2.5mg</td><td>25</td><td>0.25ml</td></tr>
+            <tr><td>5mg</td><td>50</td><td>0.50ml</td></tr>
+            <tr><td>7.5mg</td><td>75</td><td>0.75ml</td></tr>
+            <tr class="max-dose"><td>10mg</td><td>100</td><td>1.00ml</td></tr>
           </table></div>
         <div class="click-table" id="tir-clicks-60" style="display:none;">
-          <div class="click-table-title" style="background:var(--tir);">60mg Pen (2.4ml BAC = 25mg/ml)</div>
+          <div class="click-table-title" style="background:var(--tir);">60mg Pen (3ml = 20mg/ml)</div>
           <table><tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
-            <tr><td>2.5mg</td><td>10</td><td>0.10ml</td></tr>
-            <tr><td>5mg</td><td>20</td><td>0.20ml</td></tr>
-            <tr><td>10mg</td><td>40</td><td>0.40ml</td></tr>
-            <tr class="max-dose"><td>15mg</td><td>60</td><td>0.60ml</td></tr>
+            <tr><td>2.5mg</td><td>13</td><td>0.13ml</td></tr>
+            <tr><td>5mg</td><td>25</td><td>0.25ml</td></tr>
+            <tr><td>10mg</td><td>50</td><td>0.50ml</td></tr>
+            <tr class="max-dose"><td>15mg</td><td>75</td><td>0.75ml</td></tr>
           </table></div>
-        <p class="click-note">2.4ml BAC water. Max 60 clicks. 1 click = 0.01ml.</p>
+        <p class="click-note">3ml pen. 1 click = 0.01ml. 30mg pen = 10mg/ml · 60mg pen = 20mg/ml.</p>
         <div class="card-title">Quick Reference</div>
-        <div class="quick-ref-item"><span>Product</span><span id="tir-ref-name">Tirzepatide® 15mg</span></div>
+        <div class="quick-ref-item"><span>Product</span><span id="tir-ref-name">Tirzepatide® 30mg</span></div>
         <div class="quick-ref-item"><span>Starting dose</span><span>2.5mg</span></div>
         <div class="quick-ref-item"><span>Step 2</span><span>5mg</span></div>
         <div class="quick-ref-item"><span>Max dose</span><span>15mg</span></div>
