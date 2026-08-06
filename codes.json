@@ -139,9 +139,9 @@
   },
   "NVG-K8CQ-RE55-U4DA": {
     "valid": true,
-    "scan_count": 0,
-    "first_scanned": null,
-    "last_scanned": null
+    "scan_count": 1,
+    "first_scanned": "2026-08-06T23:41:52.458Z",
+    "last_scanned": "2026-08-06T23:41:52.458Z"
   },
   "NVG-8Q2E-GZCR-2QS3": {
     "valid": true,
