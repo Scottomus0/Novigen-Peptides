@@ -566,5 +566,31 @@
     "total": "114.00",
     "date": "2026-07-30T10:07:29.988Z",
     "savedAt": "2026-07-30T10:07:30.816Z"
+  },
+  {
+    "orderNum": "NVG-8920",
+    "name": "CLAUDEMIR DE SOUZA VALENTIM",
+    "email": "klausdisouza@gmail.com",
+    "address": "Rua João Tudela, Casa, Marília, 14519160",
+    "items": [
+      {
+        "id": 5,
+        "img": "img-tirz-30.png",
+        "name": "Tirzepatide® 30mg",
+        "cat": "tir",
+        "emoji": "💊",
+        "price": 120,
+        "dose": "30mg pre-filled pen",
+        "description": "A dual GLP-1/GIP receptor agonist at mid-range dosage. Research chemical for scientific study only.",
+        "research": false,
+        "quantity": 1
+      }
+    ],
+    "subtotal": "120.00",
+    "discountCodes": [],
+    "discAmt": "0.00",
+    "total": "126.00",
+    "date": "2026-08-14T01:24:19.105Z",
+    "savedAt": "2026-08-14T01:24:55.902Z"
   }
 ]
