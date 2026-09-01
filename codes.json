@@ -217,9 +217,9 @@
   },
   "NVG-DHN3-CDB6-CSBX": {
     "valid": true,
-    "scan_count": 0,
-    "first_scanned": null,
-    "last_scanned": null
+    "scan_count": 1,
+    "first_scanned": "2026-09-01T16:21:59.329Z",
+    "last_scanned": "2026-09-01T16:21:59.329Z"
   },
   "NVG-S3P4-LHYQ-5V9W": {
     "valid": true,
