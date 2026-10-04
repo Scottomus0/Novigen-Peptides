@@ -189,24 +189,31 @@
 
   .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(42,90,138,0.14); }
 
+  .product-card-header img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
   .product-card-header {
-    padding: 28px 24px 20px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3.2rem;
     position: relative;
     overflow: hidden;
-    height: 100px;
+    height: 160px;
   }
   .product-card[data-product="retatrutide"] .product-card-header { background: transparent;   }
-  .product-card[data-product="glow"]        .product-card-header { background: transparent;   }
+  .product-card[data-product="glow"]        .product-card-header img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .product-card-header { background: transparent;   }
   .product-card[data-product="tirzepatide"] .product-card-header { background: transparent;   }
-  .product-card[data-product="hgh"]         .product-card-header { background: transparent;   }
-  .product-card[data-product="nad"]         .product-card-header { background: transparent;   }
-  .product-card[data-product="ghkcu"]       .product-card-header { background: transparent;   }
-  .product-card[data-product="mt2"]         .product-card-header { background: transparent;   }
-  .product-card[data-product="motsc"]       .product-card-header { background: transparent;   }
+  .product-card[data-product="hgh"]         .product-card-header img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .product-card-header { background: transparent;   }
+  .product-card[data-product="nad"]         .product-card-header img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .product-card-header { background: transparent;   }
+  .product-card[data-product="ghkcu"]       .product-card-header img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .product-card-header { background: transparent;   }
+  .product-card[data-product="mt2"]         .product-card-header img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .product-card-header { background: transparent;   }
+  .product-card[data-product="motsc"]       .product-card-header img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .product-card-header { background: transparent;   }
   .product-card[data-product="tesamorelin"] .product-card-header { background: transparent;   }
   .product-card[data-product="glutathione"] .product-card-header { background: transparent;   }
 
@@ -443,7 +450,7 @@
   <div class="product-grid">
 
     <a href="guides-detailed.html#retatrutide" class="product-card" data-product="retatrutide">
-      <div class="product-card-header">💉</div>
+      <div class="product-card-header"><img src="img-reta-40.png" alt="Retatrutide"></div>
       <div class="product-card-body">
         <div class="product-name">Retatrutide®</div>
         <div class="product-tag">Triple Agonist</div>
@@ -453,7 +460,7 @@
     </a>
 
     <a href="guides-detailed.html#glow" class="product-card" data-product="glow">
-      <div class="product-card-header">✨</div>
+      <div class="product-card-header"><img src="img-glow-70.png" alt="Glow 70mg"></div>
       <div class="product-card-body">
         <div class="product-name">Glow 70mg</div>
         <div class="product-tag">Peptide Blend</div>
@@ -463,7 +470,7 @@
     </a>
 
     <a href="guides-detailed.html#tirzepatide" class="product-card" data-product="tirzepatide">
-      <div class="product-card-header">💊</div>
+      <div class="product-card-header"><img src="img-tirz-60.png" alt="Tirzepatide"></div>
       <div class="product-card-body">
         <div class="product-name">Tirzepatide®</div>
         <div class="product-tag">Dual Agonist</div>
@@ -473,7 +480,7 @@
     </a>
 
     <a href="guides-detailed.html#hgh" class="product-card" data-product="hgh">
-      <div class="product-card-header">⚡</div>
+      <div class="product-card-header"><img src="img-hgh-150.png" alt="HGH"></div>
       <div class="product-card-body">
         <div class="product-name">HGH</div>
         <div class="product-tag">rHGH — E. coli</div>
@@ -482,7 +489,7 @@
       </div>
     </a>
     <a href="guides-detailed.html#nad" class="product-card" data-product="nad">
-      <div class="product-card-header">⚡</div>
+      <div class="product-card-header"><img src="img-nad-1000.png" alt="NAD+"></div>
       <div class="product-card-body">
         <div class="product-name">NAD+</div>
         <div class="product-tag">1000mg Vial</div>
@@ -492,7 +499,7 @@
     </a>
 
     <a href="guides-detailed.html#ghkcu" class="product-card" data-product="ghkcu">
-      <div class="product-card-header">🔬</div>
+      <div class="product-card-header"><img src="img-ghkcu-50.png" alt="GHK-Cu"></div>
       <div class="product-card-body">
         <div class="product-name">GHK-Cu</div>
         <div class="product-tag">50mg Vial — Copper Peptide</div>
@@ -502,7 +509,7 @@
     </a>
 
     <a href="guides-detailed.html#mt2" class="product-card" data-product="mt2">
-      <div class="product-card-header">☀️</div>
+      <div class="product-card-header"><img src="img-mt2-10.png" alt="Melanotan II"></div>
       <div class="product-card-body">
         <div class="product-name">Melanotan II</div>
         <div class="product-tag">10mg Vial — MT2</div>
@@ -511,7 +518,7 @@
       </div>
 
     <a href="guides-detailed.html#motsc" class="product-card" data-product="motsc">
-      <div class="product-card-header">⚡</div>
+      <div class="product-card-header"><img src="img-mots-c-40.png" alt="MOTS-C"></div>
       <div class="product-card-body">
         <div class="product-name">MOTS-C</div>
         <div class="product-tag">40mg Pen — Mitochondrial Peptide</div>
@@ -521,7 +528,7 @@
     </a>
 
     <a href="guides-detailed.html#tesamorelin" class="product-card" data-product="tesamorelin">
-      <div class="product-card-header">⚡</div>
+      <div class="product-card-header"><img src="img-tesamorelin-20.png" alt="Tesamorelin"></div>
       <div class="product-card-body">
         <div class="product-name">Tesamorelin</div>
         <div class="product-tag">20mg Pen — GHRH Analogue</div>
@@ -531,7 +538,7 @@
     </a>
 
     <a href="guides-detailed.html#glutathione" class="product-card" data-product="glutathione">
-      <div class="product-card-header">🌿</div>
+      <div class="product-card-header"><img src="img-glutathione-1500.png" alt="Glutathione"></div>
       <div class="product-card-body">
         <div class="product-name">Glutathione</div>
         <div class="product-tag">1500mg Pen — Master Antioxidant</div>
