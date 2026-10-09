@@ -937,9 +937,9 @@
   },
   "NVG-YN5R-7RL6-W2SK": {
     "valid": true,
-    "scan_count": 0,
-    "first_scanned": null,
-    "last_scanned": null
+    "scan_count": 1,
+    "first_scanned": "2026-10-09T11:40:02.843Z",
+    "last_scanned": "2026-10-09T11:40:02.843Z"
   },
   "NVG-R3UT-N2KP-JPCK": {
     "valid": true,
