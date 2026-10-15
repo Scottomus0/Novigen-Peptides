@@ -696,5 +696,31 @@
     "total": "166.00",
     "date": "2026-10-12T18:45:12.199Z",
     "savedAt": "2026-10-12T18:45:13.102Z"
+  },
+  {
+    "orderNum": "NVG-7292",
+    "name": "Adam Herman",
+    "email": "adamherman22@me.com",
+    "address": "49 Greendale Drive, Radcliffe, Manchester, M26 1UE",
+    "items": [
+      {
+        "id": 13,
+        "img": "img-pen-needles-100.png",
+        "name": "Pen Needles 31G 6mm",
+        "cat": "acc",
+        "emoji": "💉",
+        "price": 14.99,
+        "dose": "Pack of 100",
+        "description": "Universal fit pen needles, 31G x 6mm. Compatible with all standard pre-filled pens. Sterile, single-use. Sold for research and laboratory use only.",
+        "research": false,
+        "quantity": 1
+      }
+    ],
+    "subtotal": "14.99",
+    "discountCodes": [],
+    "discAmt": "0.00",
+    "total": "20.99",
+    "date": "2026-10-15T16:41:51.309Z",
+    "savedAt": "2026-10-15T16:41:52.500Z"
   }
 ]
