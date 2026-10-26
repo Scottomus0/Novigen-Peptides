@@ -2671,9 +2671,9 @@
   },
   "NVG-LD2H-K6GZ-TYUW": {
     "valid": true,
-    "scan_count": 0,
-    "first_scanned": null,
-    "last_scanned": null
+    "scan_count": 1,
+    "first_scanned": "2026-10-26T16:12:31.274Z",
+    "last_scanned": "2026-10-26T16:12:31.274Z"
   },
   "NVG-YPC7-DVLR-QU6V": {
     "valid": true,
