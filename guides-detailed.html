@@ -1171,7 +1171,7 @@
             <div class="dose-item"><span class="dose-label">Pen Size</span><span class="dose-value" id="tir-capacity">30<span style="font-size:1.1rem">mg</span></span><span class="dose-unit">per pen</span></div>
           </div>
           <span class="supply-badge" id="tir-supply">30mg pen = 12 doses at 2.5mg</span>
-          <span class="note">Further increases to 7.5mg, 10mg, 12.5mg, and 15mg may be made in 4-weekly intervals as directed by your prescriber.</span>
+          <span class="note">Titrate in 2.5mg steps (2.5mg → 5mg → 7.5mg → 10mg) at 4-weekly intervals as directed by your prescriber. The pen maxes at 60 clicks (0.60ml), so the 30mg pen is limited to 5mg per dose and the 60mg pen to 10mg per dose.</span>
         </div></div>
         <div class="step"><div class="step-num">7</div><div class="step-content"><h3>Injection Day</h3><p>Administer on the same day each week, at any time of day, with or without food. If you wish to change your injection day, ensure at least 3 days have passed since your last injection.</p></div></div>
         <div class="step"><div class="step-num">8</div><div class="step-content"><h3>If You Miss a Dose</h3><p>If you miss a dose and it is within 4 days of the missed injection, administer it as soon as possible. If more than 4 days have passed, skip the missed dose and resume on your next scheduled day. Do not inject a double dose.</p></div></div>
@@ -1215,24 +1215,22 @@
           <div class="click-table-title" style="background:var(--tir);">30mg Pen (3ml = 10mg/ml)</div>
           <table><tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
             <tr><td>2.5mg</td><td>25</td><td>0.25ml</td></tr>
-            <tr><td>5mg</td><td>50</td><td>0.50ml</td></tr>
-            <tr><td>7.5mg</td><td>75</td><td>0.75ml</td></tr>
-            <tr class="max-dose"><td>10mg</td><td>100</td><td>1.00ml</td></tr>
+            <tr class="max-dose"><td>5mg</td><td>50</td><td>0.50ml</td></tr>
           </table></div>
         <div class="click-table" id="tir-clicks-60" style="display:none;">
           <div class="click-table-title" style="background:var(--tir);">60mg Pen (3ml = 20mg/ml)</div>
           <table><tr><th>Dose</th><th>Clicks</th><th>Vol</th></tr>
             <tr><td>2.5mg</td><td>13</td><td>0.13ml</td></tr>
             <tr><td>5mg</td><td>25</td><td>0.25ml</td></tr>
-            <tr><td>10mg</td><td>50</td><td>0.50ml</td></tr>
-            <tr class="max-dose"><td>15mg</td><td>75</td><td>0.75ml</td></tr>
+            <tr><td>7.5mg</td><td>38</td><td>0.38ml</td></tr>
+            <tr class="max-dose"><td>10mg</td><td>50</td><td>0.50ml</td></tr>
           </table></div>
-        <p class="click-note">3ml pen. 1 click = 0.01ml. 30mg pen = 10mg/ml · 60mg pen = 20mg/ml.</p>
+        <p class="click-note">3ml pen. 1 click = 0.01ml. Pen maximum 60 clicks. 30mg pen = 10mg/ml · 60mg pen = 20mg/ml. Half-click doses rounded to nearest click.</p>
         <div class="card-title">Quick Reference</div>
         <div class="quick-ref-item"><span>Product</span><span id="tir-ref-name">Tirzepatide® 30mg</span></div>
         <div class="quick-ref-item"><span>Starting dose</span><span>2.5mg</span></div>
         <div class="quick-ref-item"><span>Step 2</span><span>5mg</span></div>
-        <div class="quick-ref-item"><span>Max dose</span><span>15mg</span></div>
+        <div class="quick-ref-item"><span>Max dose</span><span id="tir-ref-max">5mg</span></div>
         <div class="quick-ref-item"><span>Frequency</span><span>Once weekly</span></div>
         <div class="quick-ref-item"><span>Route</span><span>Subcutaneous</span></div>
         <div class="quick-ref-item"><span>Fridge (unopened)</span><span>2–8°C</span></div>
@@ -2188,6 +2186,7 @@
     document.getElementById('tir-badge').textContent = 'Tirzepatide®';
     document.getElementById('tir-capacity').innerHTML = size + '<span style="font-size:1.1rem">mg</span>';
     document.getElementById('tir-ref-name').textContent = 'Tirzepatide® ' + size + 'mg';
+    var mx=document.getElementById('tir-ref-max'); if(mx) mx.textContent = (size===60?10:5)+'mg';
     var doses = Math.floor(size / 2.5);
     document.getElementById('tir-supply').textContent = size + 'mg pen = ' + doses + ' doses at 2.5mg starting dose';
   }
