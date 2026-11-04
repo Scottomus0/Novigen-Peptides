@@ -800,5 +800,31 @@
     "total": "126.00",
     "date": "2026-11-04T11:26:52.723Z",
     "savedAt": "2026-11-04T11:26:53.219Z"
+  },
+  {
+    "orderNum": "NVG-3001",
+    "name": "Jonathan Wightman",
+    "email": "Jonathanwightman1982@gmail.com",
+    "address": "61 king Street, Pelaw, Gateshead, NE10 0RE",
+    "items": [
+      {
+        "id": 2,
+        "img": "img-reta-40.png",
+        "name": "Retatrutide® 40mg",
+        "cat": "ret",
+        "emoji": "💉",
+        "price": 160,
+        "dose": "40mg pre-filled pen",
+        "description": "A triple GLP-1/GIP/Glucagon receptor agonist at higher concentration. Research chemical for scientific study only.",
+        "research": true,
+        "quantity": 1
+      }
+    ],
+    "subtotal": "160.00",
+    "discountCodes": [],
+    "discAmt": "0.00",
+    "total": "166.00",
+    "date": "2026-11-04T19:56:56.210Z",
+    "savedAt": "2026-11-04T19:56:57.400Z"
   }
 ]
