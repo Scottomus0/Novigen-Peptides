@@ -864,5 +864,43 @@
     "total": "206.00",
     "date": "2026-11-11T15:19:45.377Z",
     "savedAt": "2026-11-11T15:19:46.912Z"
+  },
+  {
+    "orderNum": "NVG-8763",
+    "name": "Luke Hunter-Powell",
+    "email": "luke@finiteregress.com",
+    "address": "129a Southbury Road, Enfield, EN1 1PN",
+    "items": [
+      {
+        "id": 15,
+        "img": "img-tesamorelin-20.png",
+        "name": "Tesamorelin 20mg",
+        "cat": "tes",
+        "emoji": "⚡",
+        "price": 100,
+        "dose": "20mg pre-filled pen",
+        "description": "Synthetic growth hormone releasing peptide (GHRH analogue). Supports GH secretion. Research chemical for scientific study only.",
+        "research": false,
+        "quantity": 1
+      },
+      {
+        "id": 14,
+        "img": "img-mots-c-40.png",
+        "name": "MOTS-C 40mg",
+        "cat": "mots",
+        "emoji": "⚡",
+        "price": 100,
+        "dose": "40mg pre-filled pen",
+        "description": "Mitochondria-derived peptide. Supports cellular energy, metabolic health and performance. Research chemical for scientific study only.",
+        "research": false,
+        "quantity": 1
+      }
+    ],
+    "subtotal": "200.00",
+    "discountCodes": [],
+    "discAmt": "0.00",
+    "total": "206.00",
+    "date": "2026-11-12T12:34:08.215Z",
+    "savedAt": "2026-11-12T12:34:09.670Z"
   }
 ]
