@@ -928,5 +928,31 @@
     "total": "86.00",
     "date": "2026-11-15T17:28:13.797Z",
     "savedAt": "2026-11-15T17:28:14.749Z"
+  },
+  {
+    "orderNum": "NVG-3153",
+    "name": "Gabriel Wude",
+    "email": "gabrielwude@me.com",
+    "address": "Calle Doce de octubre 15, Piso 8A, Madrid, 28009",
+    "items": [
+      {
+        "id": 3,
+        "img": "img-glow-70.png",
+        "name": "Glow 70mg",
+        "cat": "glow",
+        "emoji": "✨",
+        "price": 120,
+        "dose": "70mg pen — GHK-Cu, TB-500, BPC-157",
+        "description": "Peptide blend containing GHK-Cu 50mg, TB-500 10mg, and BPC-157 10mg. Research chemical for scientific study only.",
+        "research": true,
+        "quantity": 2
+      }
+    ],
+    "subtotal": "240.00",
+    "discountCodes": [],
+    "discAmt": "0.00",
+    "total": "246.00",
+    "date": "2026-11-21T09:22:53.297Z",
+    "savedAt": "2026-11-21T09:22:54.627Z"
   }
 ]
